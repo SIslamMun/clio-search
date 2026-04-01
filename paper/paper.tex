@@ -79,13 +79,13 @@ The gap between what retrieval systems deliver and what scientific data discover
 
 \subsection{Hybrid Retrieval Foundations}
 
-Modern retrieval combines lexical and dense signals. BM25 \cite{robertson2009bm25} remains the strongest lexical baseline; dense retrieval via learned bi-encoders \cite{karpukhin2020dpr} captures semantic similarity that keyword matching misses. Fusing these signals is now standard practice. Bruch et al.\ \cite{bruch2023fusion} show that a learned convex combination consistently outperforms reciprocal rank fusion (RRF) on TREC benchmarks, establishing the analytic framework we adopt. Learned sparse methods---SPLADE \cite{formal2021splade} and its Mistral-SPLADE variant---bridge the gap by producing sparse lexical-weight vectors from dense encoders. BGE-M3 \cite{chen2024bgem3} unifies dense, sparse, and colBERT-style multi-vector retrieval in a single model trained on multilingual data, demonstrating that multi-granularity fusion improves recall across diverse query types. At the agentic frontier, A-RAG \cite{arag2026} introduces hierarchical retrieval interfaces that let LLM agents compose retrieval strategies dynamically.
+Modern retrieval combines lexical and dense signals. BM25 \cite{robertson2009bm25} remains the strongest lexical baseline; dense retrieval via learned bi-encoders \cite{karpukhin2020dpr} captures semantic similarity that keyword matching misses. Bruch et al.\ \cite{bruch2023fusion} show that a learned convex combination consistently outperforms reciprocal rank fusion (RRF) on TREC benchmarks, establishing the analytic framework we adopt. At the agentic frontier, A-RAG \cite{arag2026} introduces hierarchical retrieval interfaces that let LLM agents compose retrieval strategies dynamically.
 
 We build \emph{on} hybrid retrieval, not beside it. Our science-aware operators execute as parallel branches alongside BM25 and dense search within the same fusion pipeline, adding domain-specific recall without replacing any existing component.
 
 \subsection{The Numerical Reasoning Crisis}
 
-Numbers are fundamentally broken in both retrieval systems and large language models. The Numeracy Gap study \cite{numeracygap2026} evaluates 13 embedding models on numerical content and reports 0.54 binary retrieval accuracy---barely above random chance. NC-Retriever \cite{ncretriever2025} finds that dense retrieval achieves only 16.3\% accuracy on queries with numeric constraints, even when the constraint is stated explicitly in both query and document. The root cause is architectural: tokenizers encode numbers per-digit rather than by magnitude, so ``200'' and ``200000'' share no meaningful representation \cite{numbers_not_continuous2025}. NumericBench \cite{numericbench2025} confirms these failures across arithmetic, comparison, and unit conversion tasks in LLMs. The Number Cookbook \cite{numbercookbook2025} systematically catalogs failure modes. GSM-Symbolic \cite{gsmsymbolic2025} delivers the sharpest result: changing only the numeric values in grade-school math problems while preserving problem structure causes a 65\% accuracy drop, proving that LLMs pattern-match on surface numerals rather than reason about magnitude.
+Numbers are fundamentally broken in both retrieval systems and large language models. The Numeracy Gap study \cite{numeracygap2026} evaluates 13 embedding models on numerical content and reports 0.54 binary retrieval accuracy---barely above random chance. NC-Retriever \cite{ncretriever2025} finds that dense retrieval achieves only 16.3\% accuracy on queries with numeric constraints, even when the constraint is stated explicitly in both query and document. The root cause is architectural: tokenizers encode numbers per-digit rather than by magnitude, so ``200'' and ``200000'' share no meaningful representation \cite{numbers_not_continuous2025}. GSM-Symbolic \cite{gsmsymbolic2025} delivers the sharpest result: changing only the numeric values in grade-school math problems while preserving problem structure causes a 65\% accuracy drop, proving that LLMs pattern-match on surface numerals rather than reason about magnitude.
 
 This is not merely a unit problem. Numbers themselves---the substrate of all scientific measurement---are broken in every retrieval and language model. Scientific data retrieval, where matching requires comparing magnitudes across units, is especially vulnerable.
 
@@ -97,7 +97,7 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \textbf{Learned embeddings.} CONE \cite{cone2026} trains a transformer to embed number--unit pairs into a shared vector space, achieving a 25\% Recall@10 gain on quantity-bearing queries. NC-Retriever \cite{ncretriever2025} applies contrastive learning to numeric constraint matching. These approaches are probabilistic: a model may learn that 200~kPa is \emph{similar} to 200000~Pa, but provides no correctness guarantee. Weller et al.\ \cite{embedding_limits2025} prove theoretical upper bounds on embedding-based retrieval, showing that fixed-dimensional embeddings cannot faithfully preserve all distance relationships---a result that undercuts learned approaches to exact quantity matching.
 
-\textbf{Math-aware search.} Approach0 \cite{approach0} matches equation structure via operator trees. SSEmb \cite{ssemb2025} learns semantic similarity over mathematical expressions. MIRB \cite{mirb2025} provides the first unified math information retrieval benchmark across 12 datasets. These systems match formula \emph{structure} but are disconnected from physical measurements---they cannot link $F = ma$ to a document reporting force in newtons.
+\textbf{Math-aware search.} Approach0 \cite{approach0} matches equation structure via operator trees. SSEmb \cite{ssemb2025} learns semantic similarity over mathematical expressions. These systems match formula \emph{structure} but are disconnected from physical measurements---they cannot link $F = ma$ to a document reporting force in newtons.
 
 \textbf{Gap.} To our knowledge, no existing retrieval system performs arithmetic SI conversion to canonicalize measurements. Nor does any system combine quantity matching with formula normalization or operate across federated HPC backends with science-aware operators.
 
@@ -166,7 +166,7 @@ To address the three failures identified in Section~1, we design clio-agentic-se
 
 \input{figures/architecture}
 
-The system is a staged pipeline with four parallel retrieval branches (Fig.~1). A query enters through the Query Interface (FastAPI REST endpoint or CLI), which parses the raw query string, extracts typed scientific constraints (numeric ranges, unit filters, formula patterns), and forwards a structured query object to the Namespace Registry. The registry resolves which namespaces---each backed by one of six connector types---are eligible for the query based on capability negotiation (Sec.~3.5).
+The system is a staged pipeline with four parallel retrieval branches (Fig.~\ref{fig:architecture}). A query enters through the Query Interface (FastAPI REST endpoint or CLI), which parses the raw query string, extracts typed scientific constraints (numeric ranges, unit filters, formula patterns), and forwards a structured query object to the Namespace Registry. The registry resolves which namespaces---each backed by one of six connector types---are eligible for the query based on capability negotiation (Sec.~3.5).
 
 The Retrieval Coordinator fans the query out to four parallel branches: lexical (BM25), vector (dense embedding similarity), graph (entity-relationship traversal), and scientific (dimensional measurement and formula queries). Each branch executes independently and returns scored candidate chunks. The Merge and Rerank stage deduplicates candidates by chunk identifier, applies hard scientific filters, computes a composite score via heuristic fusion, and emits the final top-$K$ results with source citations.
 
@@ -202,7 +202,7 @@ Velocity & m/s, km/h      & m/s & 1, $\times\frac{1}{3.6}$ \\
 
 At query time, three operators execute against the canonicalized measurement store. The \textbf{numeric-range} operator parses range expressions of the form \texttt{low:high:unit}, converts both bounds to canonical units, and issues a DuckDB range predicate: a query ``190:360:kPa'' becomes a scan for canonical\_value between 190000 and 360000 with canonical\_unit = ``Pa''. The \textbf{unit-match} operator filters chunks containing any measurement in a specified unit domain regardless of value. The \textbf{value-match} operator retrieves measurements matching a specific canonical value within a configurable tolerance (default $\pm$1\%).
 
-The correctness guarantee distinguishes this approach from all prior work. Consider matching ``200 kPa'' against ``200000 Pa''. Arithmetic conversion computes $200 \times 1000 = 200000$ and succeeds by exact equality. String normalization maps ``kilopascal'' to one string and ``pascal'' to another---they never match. Learned embeddings \cite{cone2026} encode the two quantities as vectors in a shared space, but the Numeracy Gap study \cite{numeracygap2026} reports 0.54 mean binary retrieval accuracy across 13 embedding models on numerical content, effectively random against a 0.50 baseline. Weller et al.\ \cite{embedding_limits2025} prove theoretical upper bounds showing that fixed-dimensional embeddings cannot faithfully preserve all distance relationships, a result that fundamentally undercuts learned approaches to exact quantity matching. Our operators are correct by construction: if the SI conversion factor is correct, the match is correct. This approach parallels the Program of Thoughts paradigm \cite{pot2023}, which externalizes computation from LLM reasoning; we similarly externalize unit conversion from the retrieval model, ensuring deterministic results. We note that this guarantee depends on two assumptions: (1) the regex-based extractor correctly identifies numeric-unit pairs in the source text, and (2) the conversion table covers the unit in question. Our prototype supports 13 units across 5 domains; extending coverage requires only adding entries to the conversion table, not modifying the architecture.
+The correctness guarantee distinguishes this approach from all prior work. Consider matching ``200 kPa'' against ``200000 Pa''. Arithmetic conversion computes $200 \times 1000 = 200000$ and succeeds by exact equality. String normalization maps ``kilopascal'' to one string and ``pascal'' to another---they never match. Learned embeddings \cite{cone2026} encode the two quantities as vectors in a shared space, but the Numeracy Gap study \cite{numeracygap2026} reports 0.54 mean binary retrieval accuracy across 13 embedding models on numerical content, effectively random against a 0.50 baseline. Our operators are correct by construction: if the SI conversion factor is correct, the match is correct. We note that this guarantee depends on two assumptions: (1) the regex-based extractor correctly identifies numeric-unit pairs in the source text, and (2) the conversion table covers the unit in question. Our prototype supports 13 units across 5 domains; extending coverage requires only adding entries to the conversion table, not modifying the architecture.
 
 \subsection{Formula Normalization}
 
@@ -214,7 +214,7 @@ Normalized formulas are stored in a \texttt{scientific\_formulas} table in DuckD
 
 \subsection{Hybrid Retrieval Pipeline}
 
-The retrieval pipeline executes four branches in parallel and merges their results through a deterministic fusion strategy (Fig.~3).
+The retrieval pipeline executes four branches in parallel and merges their results through a deterministic fusion strategy.
 
 \textbf{Lexical branch.} BM25 with parameters $k_1 = 1.2$ and $b = 0.75$ scores term overlap between query and document chunks, retrieving $\text{top\_k} \times 4$ candidates to provide recall headroom for downstream filtering.
 
@@ -224,11 +224,7 @@ The retrieval pipeline executes four branches in parallel and merges their resul
 
 \textbf{Scientific branch.} The dimensional conversion and formula normalization operators (Secs.~3.2--3.3) execute against DuckDB, returning $\text{top\_k} \times 4$ candidates from measurement range queries, unit-match filters, value-match lookups, and formula lookups.
 
-\textbf{Merge and rerank.} Candidates from all branches are deduplicated by chunk\_id, retaining the maximum per-branch score. A scientific hard filter then applies: if the query specifies a numeric range or unit constraint, candidates not returned by the scientific branch are discarded---dimensional correctness is enforced, not merely preferred. A metadata filter removes candidates violating explicit metadata constraints (e.g., date range, file type). Surviving candidates are scored by a heuristic weighted sum:
-
-$$\text{score} = w_l \cdot s_{\text{lexical}} + w_v \cdot s_{\text{vector}} + w_m \cdot s_{\text{metadata}} + w_s \cdot s_{\text{scientific}}$$
-
-where the weights $w_l, w_v, w_m, w_s$ are configurable per deployment. The top-$K$ candidates by composite score constitute the final result set. Each result carries provenance: the source namespace, chunk identifier, file path, and the set of branches that contributed to its retrieval.
+\textbf{Merge and rerank.} Candidates from all branches are deduplicated by chunk\_id, retaining the maximum per-branch score. A scientific hard filter then applies: if the query specifies a numeric range or unit constraint, candidates not returned by the scientific branch are discarded---dimensional correctness is enforced, not merely preferred. A metadata filter removes candidates violating explicit metadata constraints (e.g., date range, file type). Surviving candidates are scored by a configurable weighted sum of branch scores (lexical, vector, metadata, scientific), with weights tunable per deployment. The top-$K$ candidates by composite score constitute the final result set. Each result carries provenance: the source namespace, chunk identifier, file path, and the set of branches that contributed to its retrieval.
 
 \subsection{Federated Multi-Namespace Search}
 
@@ -381,11 +377,18 @@ LLM-assisted       & 0.40 & 0.08 & 0.12 & 0.47 \\
 
 Table~\ref{tab:crossunit} reports results on cross-unit queries. R@5 is low across all methods because the 210-document corpus produces a high average number of relevant documents per query (approximately 42), making recall at $K{=}5$ structurally bounded. P@5 and MRR are the more meaningful metrics for this evaluation. The three text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. The strongest text baseline (Hybrid) achieves P@5 of 0.43 and MRR of 0.49.
 
-The string normalization baseline canonicalizes numeric tokens before indexing but cannot perform the arithmetic conversion required to recognize that 200 kPa equals 200000 Pa---it operates on token forms, not physical semantics, yielding only P@5 of 0.38. Our full pipeline bypasses this limitation entirely: at index time, all measurements are converted to canonical SI base units and stored in the \texttt{scientific\_measurements} table; at query time, the dimensional operator converts the query bounds to the same canonical space and issues a direct range predicate. This yields P@5 of 0.99 and MRR of 0.99 on cross-unit queries, representing an absolute improvement of 0.56 points in P@5 and 0.50 points in MRR over the strongest text baseline.
+String normalization cannot perform the arithmetic required to recognize that 200~kPa equals 200000~Pa, yielding only P@5 of 0.38. Our full pipeline converts all measurements to canonical SI base units at index time and issues direct range predicates at query time, achieving P@5 of 0.99 and MRR of 0.99---an absolute improvement of 0.56 P@5 and 0.50 MRR over the strongest text baseline.
 
 On the same-unit control set, all baselines achieve comparable performance (P@5 within 0.05 points of each other, range 0.30--0.45), confirming that the observed gains are attributable specifically to cross-unit matching rather than general retrieval quality differences.
 
-\textbf{Per-domain breakdown.} We disaggregate results across the seven scientific domains. Domains with high unit heterogeneity---materials science, fluid dynamics, and chemistry---show the largest baseline degradation and the largest improvement from dimensional conversion. The atmospheric science domain, which contains 32 documents with unsupported hPa units, demonstrates graceful degradation: the system falls back to lexical and vector retrieval without producing false positive dimensional matches. The 10 negative-control documents (containing no extractable measurements) are correctly excluded from dimensional results.
+\textbf{Per-domain breakdown.} We disaggregate results across the seven scientific domains. Domains with high unit heterogeneity---materials science, fluid dynamics, and chemistry---show the largest baseline degradation and the largest improvement from dimensional conversion. The atmospheric science domain, which contains 32 documents with unsupported hPa units, demonstrates graceful degradation: the system falls back to lexical and vector retrieval without producing false positive dimensional matches. The 10 negative-control documents (containing no extractable measurements) are correctly excluded from dimensional results. Fig.~\ref{fig:crossunit} visualizes the P@5 gap between baselines and our pipeline.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_crossunit_p5.pdf}
+\caption{Cross-unit retrieval P@5 across six configurations. Science-aware operators (rightmost) nearly triple the best text baseline.}
+\label{fig:crossunit}
+\end{figure}
 
 \subsection{RQ2: Formula Matching Accuracy}
 
@@ -434,9 +437,16 @@ D & Full pipeline              & 0.99 & 0.19 & 0.29 & 0.99 \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-Fig.~5 plots P@5 for each configuration. The transition from B to C---adding scientific operators---produces the largest marginal gain: P@5 jumps from 0.36 to 0.99 (+0.63) and MRR from 0.47 to 0.99 (+0.52), confirming that cross-unit matching is the dominant bottleneck for this query class. Adding vector retrieval to the lexical baseline (A to B) provides a marginal change in P@5 (0.40 to 0.36) with a slight MRR improvement (0.45 to 0.47), consistent with the known complementarity of sparse and dense retrieval on non-numeric content. The full pipeline (D) matches configuration C exactly, indicating that the remaining components (graph traversal, agentic rewriting) contribute no additional gain on this benchmark---single-pass retrieval with scientific operators already achieves near-perfect P@5 and MRR. The multi-hop loop is designed for more complex real-world queries where initial formulations are underspecified.
+Fig.~\ref{fig:ablation} plots P@5 for each configuration. The transition from B to C---adding scientific operators---produces the largest marginal gain: P@5 jumps from 0.36 to 0.99 (+0.63) and MRR from 0.47 to 0.99 (+0.52), confirming that cross-unit matching is the dominant bottleneck for this query class. Adding vector retrieval to the lexical baseline (A to B) provides a marginal change in P@5 (0.40 to 0.36) with a slight MRR improvement (0.45 to 0.47), consistent with the known complementarity of sparse and dense retrieval on non-numeric content. The full pipeline (D) matches configuration C exactly, indicating that the remaining components (graph traversal, agentic rewriting) contribute no additional gain on this benchmark---single-pass retrieval with scientific operators already achieves near-perfect P@5 and MRR. The multi-hop loop is designed for more complex real-world queries where initial formulations are underspecified.
 
-On the same-unit control queries, the A-through-D progression shows all configurations within 0.05 P@5 of each other (range 0.30--0.45), confirming that the science-aware operators' value is specific to the cross-unit retrieval scenario they were designed for.
+On the same-unit control queries, the A-through-D progression shows all configurations within 0.05 P@5 of each other (range 0.30--0.45), confirming that the science-aware operators' value is specific to the cross-unit retrieval scenario they were designed for. Fig.~\ref{fig:ablation} shows the P@5 and MRR progression.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig5_ablation.pdf}
+\caption{Ablation study. Adding science-aware operators (B$\to$C) produces the dominant gain (+0.63 P@5). Additional components provide no measurable improvement on structured measurement queries.}
+\label{fig:ablation}
+\end{figure}
 
 \subsection{Multi-Hop Agentic Retrieval}
 
@@ -485,7 +495,14 @@ We measure indexing throughput on a single compute node (Section~4.3) across the
 
 Full indexing of the benchmark corpus (210 documents) completes in 67.0 seconds, corresponding to 3.1 documents/second.
 
-Incremental re-indexing, triggered by SHA-256 checksum changes in the \texttt{file\_index} table, substantially reduces update cost. When 10\% of documents are modified (21 files re-indexed, 189 skipped), incremental indexing completes in 6.7 seconds---10\% of the full-index time. The linear scaling arises because unchanged documents are skipped entirely---no text extraction, embedding computation, or measurement canonicalization is performed---and only the modified chunks and their dependent entries in the \texttt{embeddings}, \texttt{scientific\_measurements}, and \texttt{scientific\_formulas} tables are rewritten.
+Incremental re-indexing completes in 6.7 seconds when 10\% of documents change---10\% of the full-index time (Fig.~\ref{fig:indexing}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig6_indexing.pdf}
+\caption{Indexing time vs.\ corpus change fraction. Incremental indexing scales linearly with the changed fraction, saving up to 90\% of full-rebuild time.}
+\label{fig:indexing}
+\end{figure}
 
 \subsection{Error Analysis}
 
