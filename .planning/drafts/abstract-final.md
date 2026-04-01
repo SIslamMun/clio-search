@@ -1,6 +1,6 @@
 # SC2026 Abstract Submission — FINAL
 
-**Title**: Science-Aware Hybrid Retrieval with Dimensional Conversion for HPC Data Discovery
+**Title**: Pluggable Science-Aware Operators for Agentic Retrieval over Federated HPC Data
 
 **Track**: Data Analytics, Visualization, & Storage
 
@@ -8,12 +8,12 @@
 
 ---
 
-Scientific corpora encode dimensional quantities, mathematical formulas, and heterogeneous storage provenance that general-purpose retrieval systems cannot exploit. AI agents searching HPC data face three compounding failures: retrieval systems cannot match measurements across unit prefixes ("200 kPa" vs. "200000 Pa"), cannot match formulas across formatting variations ("F=ma" vs. "F = m · a"), and cannot query across the heterogeneous storage backends where scientific data resides. Embedding models achieve only 0.54 accuracy on numerical content, and existing quantity-aware systems normalize unit strings without performing dimensional conversion across SI prefixes.
+AI agents are transforming scientific computing — orchestrating experiments, writing papers, and querying workflow provenance across national facilities. Yet these agents consistently fail at data retrieval: the best agent achieves only 32% on scientific tasks, with failures traced to data handling, not reasoning. The root cause is that retrieval systems treat scientific content as plain text. Agentic RAG systems (Context-1, A-RAG) improve search orchestration but remain domain-agnostic. Scientific RAG systems (HiPerRAG, OpenScholar) scale to millions of articles but search papers, not the data artifacts — HDF5 files, simulation outputs, experimental logs — where scientific knowledge resides. No retrieval system combines domain-aware scientific operators with agentic multi-hop search across federated HPC storage.
 
-We present clio-agentic-search, a hybrid retrieval engine that introduces science-aware retrieval operators for HPC data discovery. First, dimensional-conversion measurement retrieval canonicalizes quantities to base SI units via explicit multiplication (kPa × 10³ = Pa), enabling cross-prefix numeric comparison guaranteed correct by construction — unlike string normalization or learned embeddings. Second, formula normalization matches mathematical expressions regardless of formatting, whitespace, or factor ordering, unified with measurement operators in a single retrieval pipeline. Third, federated multi-namespace search queries heterogeneous HPC storage backends — including filesystems, object stores, vector databases, and scientific file formats such as HDF5 and NetCDF — through a connector architecture with per-backend capability negotiation. An agentic retrieval loop with LLM-driven query rewriting enables multi-hop search over federated scientific data.
+We present clio-agentic-search, a retrieval engine that introduces pluggable science-aware operators as first-class retrieval primitives alongside standard BM25 and dense vector search. A dimensional-analysis operator canonicalizes physical quantities to base SI units via arithmetic conversion (kPa × 10³ = Pa), guaranteeing cross-prefix matching by construction. A formula-normalization operator matches mathematical expressions across notation variants. A scientific-metadata operator indexes HDF5 attributes and NetCDF variables directly. These operators execute as parallel branches within a federated multi-namespace architecture that searches across filesystems, object stores, vector databases, and scientific file formats through per-backend capability negotiation. An agentic retrieval loop with LLM-driven query rewriting orchestrates multi-hop search, refining queries across federated scientific data.
 
-We evaluate on scientific retrieval tasks with cross-unit queries spanning five SI domains. Dimensional conversion recovers results missed by standard hybrid search, string-based quantity normalization, and learned embeddings, establishing science-aware operators as a new class of retrieval primitives for AI-driven HPC data discovery.
+We evaluate on scientific retrieval tasks spanning five measurement domains. Science-aware operators recover results missed by all domain-agnostic baselines, establishing pluggable domain operators as a generalizable extension to agentic retrieval for HPC data discovery.
 
 ---
 
-**Word count**: 237
+**Word count**: 249
