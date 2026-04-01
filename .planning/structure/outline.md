@@ -22,7 +22,7 @@ Key points:
 - ALS beamline (arXiv:2509.17255): 100× prep time reduction
 - ORNL autonomous agents (SC'25): cross-facility experiment orchestration
 - MCP for HPC (arXiv:2508.18489): standard protocol wrapping Globus, compute, storage
-- ScienceAgentBench (NeurIPS 2024): best agent = 32%, failures at **data handling**, not reasoning
+- ScienceAgentBench (ICLR 2025, arXiv:2410.05080): best agent = 32.4% (34.3% with expert knowledge), failures at **data handling**, not reasoning
 - MLAgentBench (ICML 2024): agents break at data preparation
 - Agentic AI survey (ICLR 2025): data management explicitly identified as underexplored
 
