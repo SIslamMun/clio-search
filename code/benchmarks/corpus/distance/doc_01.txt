@@ -1,0 +1,1 @@
+The optical bench was calibrated at a separation of 500 mm between the laser source and the detector array.

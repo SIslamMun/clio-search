@@ -1,0 +1,1 @@
+Each measurement cycle required 2 min of sensor stabilization before data capture.

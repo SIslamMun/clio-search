@@ -1,0 +1,1 @@
+Compressor output stabilized at 0.5 MPa during steady-state operation.
