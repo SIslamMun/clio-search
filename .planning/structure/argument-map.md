@@ -20,7 +20,7 @@ General-purpose retrieval fails on scientific data. We introduce science-aware r
 
 ### Claim 3: HPC scientific data is unfindable
 - Evidence: OpenScholar searches 45M papers, not data; HiPerRAG: 3.6M papers, not data
-- Evidence: ScienceAgentBench (NeurIPS 2024): best agent = 32%, failures at data handling
+- Evidence: ScienceAgentBench (ICLR 2025): best agent = 32.4%, failures at data handling
 - Evidence: HDF Clinic: KG over HDF5 envisioned, not implemented
 - Evidence: PROV-IO+: captures provenance but no search interface
 - Differentiation: We search the data itself across heterogeneous HPC storage
@@ -55,8 +55,9 @@ Evaluation: dimensional conversion recovers false negatives that all baselines m
 ## Gaps / Risks
 
 - Evaluation data doesn't exist yet — must build benchmark
-- HDF5/NetCDF connector not implemented yet — must build by April 8
-- Multi-hop / LLM rewriting not implemented — must build by April 8
+- ~~HDF5/NetCDF connector~~ — IMPLEMENTED (2026-04-01)
+- ~~Multi-hop / LLM rewriting~~ — IMPLEMENTED (2026-04-01)
 - Real Qdrant/Neo4j integration needed (currently in-memory mocks)
-- Only 14 units supported vs CQE's 531 — must acknowledge
+- Only 13 units supported vs CQE's 531 — must acknowledge
 - No HPC-scale testing — cannot claim "HPC-scale" without evidence
+- PANGAEA-GPT (2026) searches geoscientific data — must differentiate clearly
