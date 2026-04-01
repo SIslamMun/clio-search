@@ -8,8 +8,14 @@
 \usepackage{pifont}
 \usepackage{multirow}
 \usepackage{url}
+\usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\renewcommand{\arraystretch}{1.1}
 
 \title{Science-Aware Retrieval Operators for AI-Driven HPC Data Discovery}
 
@@ -105,24 +111,27 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \textbf{Agentic retrieval.} The SoK on Agentic RAG \cite{sok_agentic_rag2026} provides the first systematization of knowledge in this space. Context-1 \cite{context1_2026} demonstrates 20-billion-token agentic search. CLADD \cite{cladd2025} augments collaborative drug-discovery agents with domain knowledge graph operators. SciAgent \cite{sciagent2025} coordinates specialist worker agents under a hierarchical controller. ScienceClaw \cite{scienceclaw2026} deploys a 300+ skill agent swarm with immutable artifact provenance. All improve orchestration. To our knowledge, none incorporates science-aware numerical operators---arithmetic dimensional conversion or formula normalization---into the retrieval pipeline itself.
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
-\caption{Capability comparison of retrieval and scientific data systems. Columns 1--5 correspond to our contributions. \ding{51} = supported, \ding{55} = not supported, $\circ$ = partial.}
+\caption{Capability comparison of retrieval and scientific data systems. Columns 1--5 correspond to our contributions. \cmark{} = supported, \xmark{} = not supported, $\circ$ = partial.}
 \label{tab:comparison}
 \small
-\begin{tabular}{l|ccccc|ccccc}
+\begin{tabular}{l ccccc ccccc}
 \toprule
- & \rotatebox{70}{SI conversion} & \rotatebox{70}{Formula norm.} & \rotatebox{70}{Science branches} & \rotatebox{70}{Federated backends} & \rotatebox{70}{HDF5/NetCDF index} & \rotatebox{70}{Agentic multi-hop} & \rotatebox{70}{Quantity extraction} & \rotatebox{70}{Paper search} & \rotatebox{70}{Data search} & \rotatebox{70}{LLM integration} \\
+ & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
+\cmidrule(lr){2-6} \cmidrule(lr){7-11}
+ & \rotatebox{70}{\textbf{SI conversion}} & \rotatebox{70}{\textbf{Formula norm.}} & \rotatebox{70}{\textbf{Science branches}} & \rotatebox{70}{\textbf{Federated backends}} & \rotatebox{70}{\textbf{HDF5/NetCDF index}} & \rotatebox{70}{\textbf{Agentic multi-hop}} & \rotatebox{70}{\textbf{Quantity extraction}} & \rotatebox{70}{\textbf{Paper search}} & \rotatebox{70}{\textbf{Data search}} & \rotatebox{70}{\textbf{LLM integration}} \\
 \midrule
-\textbf{Ours}        & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} \\
-PANGAEA-GPT          & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & $\circ$   & \ding{55} & \ding{51} & \ding{51} \\
-OpenScholar          & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} \\
-HiPerRAG             & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} \\
-Numbers Matter!      & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
-CONE                 & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
-CLADD                & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
-SciAgent             & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
-Context-1            & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
+\rowcolor{gray!10}
+\textbf{Ours}        & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+PANGAEA-GPT          & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$   & \xmark & \cmark & \cmark \\
+OpenScholar          & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+HiPerRAG             & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+Numbers Matter!      & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CONE                 & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CLADD                & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciAgent             & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+Context-1            & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -152,12 +161,12 @@ The core insight behind dimensional conversion is that cross-unit matching is an
 
 We define a conversion table covering five SI domains and 13 units (Table~\ref{tab:si_conversion}). Each entry maps a source unit to a canonical base unit and a multiplicative conversion factor. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, canonical\_unit). For example, ``200 kPa'' yields (200.0, ``kPa'', 200000.0, ``Pa''). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and canonical\_unit for efficient range scans.
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
 \caption{SI conversion table. 5 domains, 13 units. Each source unit maps to a canonical base unit via a deterministic multiplicative factor.}
 \label{tab:si_conversion}
-\small
-\begin{tabular}{llll}
+\footnotesize
+\begin{tabular}{l l l l}
 \toprule
 \textbf{Domain} & \textbf{Source units} & \textbf{Canonical} & \textbf{Factors} \\
 \midrule
@@ -242,12 +251,12 @@ Dense retrieval uses sentence-transformers with the all-MiniLM-L6-v2 model (22.7
 
 All persistent state resides in a single DuckDB database file. DuckDB was selected for three reasons: it is embedded (no external service to deploy on compute nodes), it supports SQL-native full-text search sufficient for BM25 scoring, and its single-file storage model is compatible with POSIX parallel filesystems common in HPC environments. The schema comprises eight tables (Table~\ref{tab:schema}).
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
 \caption{DuckDB storage schema.}
 \label{tab:schema}
-\small
-\begin{tabular}{lll}
+\footnotesize
+\begin{tabular}{l l l}
 \toprule
 \textbf{Table} & \textbf{Purpose} & \textbf{Key Columns} \\
 \midrule
@@ -300,12 +309,12 @@ We evaluate clio-agentic-search along three research questions. \textbf{RQ1}: Do
 
 We address the question: \emph{does dimensional conversion improve retrieval accuracy over standard baselines when query and document units differ?}
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
 \caption{Retrieval performance on cross-unit queries ($K{=}5$).}
 \label{tab:crossunit}
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{l cccc}
 \toprule
 \textbf{Configuration} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
 \midrule
@@ -313,7 +322,9 @@ BM25-only              & 0.35 & 0.60 & 0.42 & 0.73 \\
 Dense-only             & 0.36 & 0.66 & 0.44 & 0.66 \\
 Hybrid BM25+Dense      & 0.37 & 0.68 & 0.45 & 0.69 \\
 String normalization   & 0.34 & 0.79 & 0.46 & 0.70 \\
-Full pipeline (ours)   & 0.97 & 1.00 & 0.98 & 1.00 \\
+\midrule
+\rowcolor{gray!10}
+Full pipeline (ours)   & \textbf{0.97} & \textbf{1.00} & \textbf{0.98} & \textbf{1.00} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -350,21 +361,23 @@ Critically, science-aware operators compose with federation without degradation.
 
 To isolate the marginal contribution of each pipeline component, we evaluate six cumulative configurations on the cross-unit query set:
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
 \caption{Ablation study on cross-unit queries.}
 \label{tab:ablation}
 \small
-\begin{tabular}{llc}
+\begin{tabular}{l l c}
 \toprule
 \textbf{Config.} & \textbf{Components} & \textbf{F1@5} \\
 \midrule
 A: Lexical     & BM25                              & 0.42 \\
 B: +Vector     & A + dense embeddings              & 0.45 \\
-C: +Scientific & B + dimensional + formula ops.     & 0.98 \\
-D: +Graph      & C + entity-rel.\ traversal        & 0.98 \\
-E: +Agentic    & D + multi-hop query rewriting      & 0.98 \\
-F: Full        & E + all optimizations              & 0.98 \\
+\midrule
+\rowcolor{gray!10}
+C: +Scientific & B + dimensional + formula ops.     & \textbf{0.98} \\
+D: +Graph      & C + entity-rel.\ traversal        & \textbf{0.98} \\
+E: +Agentic    & D + multi-hop query rewriting      & \textbf{0.98} \\
+F: Full        & E + all optimizations              & \textbf{0.98} \\
 \bottomrule
 \end{tabular}
 \end{table}
