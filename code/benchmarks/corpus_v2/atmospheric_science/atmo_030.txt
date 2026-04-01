@@ -1,0 +1,22 @@
+Weather Station Report: Station WX-130, Intermountain West
+
+Observation period: 15/12/2025, 00:00-23:59 UTC
+
+Surface observations (hourly averages):
+- Barometric pressure: 1026.8 hPa (station level)
+- Sea-level pressure: 998.5 hPa
+- Temperature range: 11.9 to 19.9 degC
+- Relative humidity: 68%
+- Wind speed (10 m): 8.3 m/s, gusts to 17.9 m/s
+- Wind direction: 158 deg (meteorological convention)
+- Precipitation: 18.6 mm
+
+The barometric pressure in SI units was 99886 Pa. A cold front
+passage at approximately 10:00 UTC produced a pressure drop
+of 2.5 hPa over 4.5 hours. Peak wind
+during frontal passage was 61.2 km/h from the
+northwest. The 24-hour pressure tendency was
+-2.4 hPa.
+
+Data quality: all sensors passed daily calibration checks. Anemometer height: 10 m AGL.
+Barometer elevation: 1921 m MSL.

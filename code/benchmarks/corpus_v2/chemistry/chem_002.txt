@@ -1,0 +1,28 @@
+Electrochemical Characterization: Si/C Composite Electrode
+
+Cell ID: EC-302
+Configuration: pouch cell
+
+Electrode preparation:
+- Active material: 4.25 mg
+- Conductive additive (Super P): 0.18 mg
+- Binder (PVDF): 0.95 mg
+- Total electrode mass: 6.17 mg
+- Active material loading: 4.0 mg/cm^2
+- Electrode thickness: 37 um (0.036 mm)
+
+Cycling conditions:
+- Voltage window: 2.7 to 4.3 V
+- C-rate: C/1
+- Temperature: 21 degC
+
+Results (after 95 cycles):
+- Initial capacity: 141 mAh/g
+- Capacity retention: 72.7%
+- Coulombic efficiency: 99.1%
+- Impedance (Nyquist): R_ct = 72 Ohm
+
+The energy density E = q * V relationship gives 454 Wh/kg.
+Cyclic voltammetry at 0.4 mV/s showed redox peaks at
+3.36/3.03 V. EIS was performed from
+100 kHz to 10 mHz. Total test duration: 1812 h.

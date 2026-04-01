@@ -1,0 +1,23 @@
+Book Review: Fundamentals of Atmospheric Dynamics
+
+This comprehensive textbook provides an excellent introduction to the
+physical processes governing atmospheric motion. The author develops the
+governing equations from first principles, starting with the Navier-Stokes
+equations on a rotating sphere and systematically introducing the
+approximations that lead to the primitive equations.
+
+Particularly noteworthy is the treatment of quasi-geostrophic theory, which
+is presented with remarkable clarity. The chapter on baroclinic instability
+builds intuition through a series of progressively more realistic models,
+from the Eady problem to the Charney model. The inclusion of modern
+perspectives on potential vorticity dynamics is a welcome addition.
+
+The exercises range from straightforward derivations to challenging
+computational problems suitable for graduate-level courses. The appendices
+provide useful reference material on vector calculus in spherical
+coordinates and thermodynamic relations.
+
+Criticisms are minor: some figures could benefit from color, and the
+treatment of tropical dynamics, while adequate, lacks the depth of the
+midlatitude chapters. Overall, this is an outstanding resource for
+graduate students and researchers entering the field.

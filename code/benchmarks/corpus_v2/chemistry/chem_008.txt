@@ -1,0 +1,28 @@
+Electrochemical Characterization: LiCoO2 Electrode
+
+Cell ID: EC-308
+Configuration: pouch cell
+
+Electrode preparation:
+- Active material: 3.81 mg
+- Conductive additive (Super P): 0.51 mg
+- Binder (PVDF): 0.29 mg
+- Total electrode mass: 6.57 mg
+- Active material loading: 2.9 mg/cm^2
+- Electrode thickness: 61 um (0.079 mm)
+
+Cycling conditions:
+- Voltage window: 2.7 to 4.2 V
+- C-rate: C/10
+- Temperature: 20 degC
+
+Results (after 225 cycles):
+- Initial capacity: 159 mAh/g
+- Capacity retention: 89.6%
+- Coulombic efficiency: 98.3%
+- Impedance (Nyquist): R_ct = 197 Ohm
+
+The energy density E = q * V relationship gives 398 Wh/kg.
+Cyclic voltammetry at 0.3 mV/s showed redox peaks at
+3.26/3.22 V. EIS was performed from
+100 kHz to 10 mHz. Total test duration: 1921 h.

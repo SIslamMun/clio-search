@@ -1,0 +1,29 @@
+Grant Proposal Abstract: Advanced Manufacturing for Sustainable Energy
+
+This proposal seeks support for a three-year research program investigating
+novel manufacturing processes for next-generation energy conversion devices.
+The interdisciplinary team combines expertise in materials processing,
+computational modeling, and device characterization.
+
+The primary objective is to develop scalable fabrication routes for
+perovskite-silicon tandem solar cells that achieve both high efficiency
+and long-term stability. Current laboratory demonstrations have shown
+promising performance, but translating these results to manufacturing
+scale presents significant challenges in film uniformity, defect control,
+and encapsulation.
+
+The proposed approach integrates high-throughput experimentation with
+machine learning-guided process optimization. An automated deposition
+platform will explore a wide parameter space while minimizing material
+consumption. Physics-informed neural networks will be trained on the
+experimental data to develop predictive process-structure-property models.
+
+Broader impacts include training of graduate students and postdocs in
+advanced manufacturing techniques, development of open-source software
+tools for the community, and outreach activities targeting underrepresented
+groups in STEM. Industrial partnerships will facilitate technology transfer
+and ensure relevance of the research to manufacturing practice.
+
+The expected outcomes include demonstrated tandem cell efficiency exceeding
+current records, a validated digital twin for the manufacturing process,
+and at least ten peer-reviewed publications.

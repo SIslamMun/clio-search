@@ -1,0 +1,23 @@
+Fatigue Test Summary: Ti-6Al-4V ELI, Run FT-7038
+
+Specimen geometry: cylindrical, gauge diameter 7.0 mm,
+gauge length 23 mm. Surface finish: 0.6 um Ra.
+
+Testing parameters:
+- Stress amplitude: 501 MPa
+- Stress ratio R = -1
+- Frequency: 14 Hz
+- Environment: lab air, 20 degC
+
+The specimen endured 1328275 cycles before failure.
+The corresponding stress amplitude of 397709 kPa places this
+result below the published S-N curve for
+mill-annealed Ti-6Al-4V.
+
+Fractographic analysis revealed surface-initiated
+cracking. The fracture surface showed fatigue striations with spacing of
+approximately 3.0 um in the stable growth region.
+Crack propagation followed a Paris-law relationship da/dN = C * (DeltaK)^m with
+m = 2.94. Maximum stress intensity factor at failure was
+approximately 85 MPa*sqrt(m). Test duration:
+76.8 h.

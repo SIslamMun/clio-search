@@ -1,0 +1,22 @@
+Weather Station Report: Station WX-100, Appalachian Ridge
+
+Observation period: 04/12/2025, 00:00-23:59 UTC
+
+Surface observations (hourly averages):
+- Barometric pressure: 1020.9 hPa (station level)
+- Sea-level pressure: 1029.0 hPa
+- Temperature range: 7.0 to 17.4 degC
+- Relative humidity: 94%
+- Wind speed (10 m): 12.0 m/s, gusts to 16.9 m/s
+- Wind direction: 219 deg (meteorological convention)
+- Precipitation: 16.5 mm
+
+The barometric pressure in SI units was 99276 Pa. A cold front
+passage at approximately 18:00 UTC produced a pressure drop
+of 4.0 hPa over 5.4 hours. Peak wind
+during frontal passage was 72.9 km/h from the
+northwest. The 24-hour pressure tendency was
+-4.8 hPa.
+
+Data quality: all sensors passed daily calibration checks. Anemometer height: 10 m AGL.
+Barometer elevation: 1308 m MSL.

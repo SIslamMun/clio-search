@@ -1,0 +1,29 @@
+HPC Job Report: CFD Simulation RANS-2007
+
+Job ID: 767090
+Cluster: Summit
+GPUs: 16 x V100
+Wall time: 2.5 h
+
+Mesh statistics:
+- Total cells: 105.6 million
+- Mesh type: structured hexahedral
+- Minimum cell size: 0.357 mm
+- Maximum cell size: 40.4 mm
+- Average y+ on walls: 21.8
+
+Solver settings:
+- Algorithm: SIMPLE
+- Time step: 3.9e-03 s
+- Total physical time: 7.4 s
+- Turbulence model: k-epsilon
+
+Convergence:
+- Residuals: < 1e-7 for all equations
+- Iterations: 33314
+- Pressure range in domain: 115 kPa to 411 kPa
+- Velocity range: 1.9 to 167.5 m/s
+
+The maximum pressure of 673238 Pa occurs at the stagnation
+point. Mesh spacing at critical regions was 0.31 mm to resolve
+the boundary layer. Grid independence was verified by Richardson extrapolation.

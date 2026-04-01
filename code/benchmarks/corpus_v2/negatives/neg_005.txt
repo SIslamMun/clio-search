@@ -1,0 +1,27 @@
+Safety Protocol: Laboratory Chemical Handling Procedures
+
+All laboratory personnel must complete chemical safety training before
+handling any hazardous materials. This document outlines the standard
+operating procedures for common laboratory chemicals.
+
+Personal protective equipment (PPE) requirements vary by chemical class.
+At minimum, safety glasses, lab coat, and closed-toe shoes are required
+in all wet lab areas. Nitrile gloves are required when handling organic
+solvents, acids, or bases. A face shield is required when handling
+concentrated acids or when performing reactions that may splatter.
+
+Chemical storage follows the segregation matrix posted in each lab.
+Incompatible chemicals must never be stored together. Flammable solvents
+must be stored in approved flammable storage cabinets. Oxidizers must be
+stored separately from organic materials. Acids and bases must be stored
+in separate secondary containment.
+
+Waste disposal follows the institutional waste management plan. Chemical
+waste must be properly labeled with contents, hazards, and generator
+information. Mixed waste streams are generally more expensive to dispose
+of and should be avoided when possible. Sharps, broken glass, and
+contaminated materials have separate disposal streams.
+
+Emergency procedures: in case of chemical spill, alert nearby personnel,
+consult the SDS, and contact the safety office. For small spills of known
+chemicals, trained personnel may clean up using appropriate spill kits.

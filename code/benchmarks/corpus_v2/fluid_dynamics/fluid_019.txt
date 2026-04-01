@@ -1,0 +1,25 @@
+Wind Tunnel Test: Airfoil NACA 4415, Run WT-5019
+
+Test section: 1.6 m x 1.2 m,
+turbulence intensity < 0.30%.
+Model chord: 222 mm, span: 468 mm.
+End plates installed to enforce 2-D flow.
+
+Test conditions:
+- Freestream velocity: 57.1 m/s (171 km/h)
+- Dynamic pressure: 647 Pa (q = 0.5 * rho * V^2)
+- Reynolds number: 1.2 x 10^6
+- Angle of attack sweep: -4 to +20 deg in 2-deg increments
+- Stagnation pressure: 103.2 kPa
+
+Key results at alpha = 11 deg:
+- Lift coefficient: Cl = 0.855
+- Drag coefficient: Cd = 0.0143
+- Pitching moment: Cm = -0.0495
+- Stall angle: approximately 13 deg
+
+Surface pressure distribution was measured using 37 pressure taps
+connected to a Scanivalve system sampling at 394 Hz. The minimum
+surface pressure (suction peak) was -612 Pa gauge, occurring
+at x/c = 0.030. Wake survey at x/c = 2 confirmed the drag
+measurement within 8% uncertainty.

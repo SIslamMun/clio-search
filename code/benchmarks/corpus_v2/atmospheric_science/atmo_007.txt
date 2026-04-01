@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-307
+
+Date: 26/06/2025
+Location: Western Texas
+Event type: tornado-warned supercell
+
+Pre-storm environment:
+- Surface pressure: 98.5 kPa
+- Surface temperature: 34 degC
+- Surface dewpoint: 25 degC
+- 0-6 km shear: 39 m/s (99 km/h)
+- CAPE: 3481 J/kg
+- Storm-relative helicity (0-3 km): 132 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 94.2 kPa (96160 Pa)
+- Maximum wind gust: 33 m/s
+- Maximum hail diameter: 34 mm
+- Peak radar reflectivity: 57 dBZ
+
+The pressure perturbation of 5.8 kPa was detected by the
+Oklahoma Mesonet stations. Brief tornado (EF-1) was reported
+with estimated peak winds of 162 km/h. Storm motion was
+31 km/h from 234 degrees.
+Event duration: approximately 2.7 h.

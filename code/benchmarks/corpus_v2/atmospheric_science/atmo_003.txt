@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 403
+
+Month: December 2025
+Latitude: 43.15N, Longitude: -106.60W
+Elevation: 584 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1019.4 hPa
+- Pressure range: 989.7 to 1044.9 hPa
+- Mean temperature: 27.8 degC
+- Total precipitation: 139.6 mm
+- Mean wind speed: 3.5 m/s (28.5 km/h)
+- Peak wind gust: 22 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: -4.9 hPa
+- Temperature anomaly: +1.0 degC
+
+The mean station pressure of 815 hPa converts to
+79673 Pa. Cloud cover averaged 65%
+with 9 clear days. Solar radiation: 119 W/m^2
+daily average. Soil temperature (10 cm depth): 24.4 degC.
+
+This station has been operational since 1975 with
+96.4% data completeness.

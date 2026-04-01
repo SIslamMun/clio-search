@@ -1,0 +1,29 @@
+HPC Simulation Log: Molecular Dynamics, Run MD-3002
+
+System: Polymer melt
+Atom count: 4235006
+Force field: ReaxFF
+
+Simulation parameters:
+- Ensemble: NVE
+- Temperature: 337 K
+- Pressure (if NPT): 0.2 MPa (445 kPa)
+- Time step: 2 fs (2.9e-15 s)
+- Total simulation time: 799 ns
+- Steps: 138760181
+
+Compute resources:
+- Nodes: 16
+- GPUs: 1 x V100
+- Wall time: 132.7 h (231034 s)
+- Performance: 277 ns/day
+
+Output:
+- Trajectory frames: every 49 ps
+- Energy log: every 9.1 ps
+- Average pressure: 100.5 kPa (+/- 2.2 kPa)
+- RMSD from initial: 0.6 nm
+- Total output: 163 GB
+
+The target pressure of 99657 Pa was maintained by the
+Parrinello-Rahman barostat. Electrostatics treated with PME, cutoff 1.3 nm.

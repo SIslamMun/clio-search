@@ -1,0 +1,21 @@
+Radiosonde Profile: Launch 211, Denver CO
+
+Launch time: 19:00 UTC
+Surface conditions: pressure 936.4 hPa, temperature 29.6 degC,
+dewpoint 18.9 degC
+
+Upper-air data (selected levels):
+- 850 hPa: height 1455 m, temp 14.8 degC, wind 13 m/s from 309
+- 700 hPa: height 2980 m, temp -9.9 degC
+- 500 hPa: height 5763 m, temp -12.4 degC, wind 35 m/s
+- 300 hPa: height 9362 m, temp -37.0 degC, wind 47 m/s
+- 200 hPa: height 11984 m, wind 50 m/s (jet stream level)
+
+The tropopause was identified at 226 hPa (11820 m).
+CAPE was 3731 J/kg, CIN was 174 J/kg. The
+precipitable water was 59 mm. Lifted index: -4.9.
+The surface pressure converted to Pa was 91511 Pa.
+
+The 500 hPa wind speed in surface-relative units corresponds to approximately
+162 km/h. The sounding reached a maximum altitude of
+29108 m before balloon burst.

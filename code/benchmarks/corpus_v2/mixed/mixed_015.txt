@@ -1,0 +1,26 @@
+Geotechnical Site Investigation: Borehole BH-415
+
+Location: Wind farm foundation
+Depth: 31.7 m below ground level
+
+Soil profile:
+- 0-5.0 m: Fill material, unit weight 17 kN/m^3
+- 4.3-10.6 m: Medium clay
+- 14.2-31.8 m: Weathered rock
+- Below 22.7 m: Hardpan
+
+In-situ testing:
+- SPT N-values: 10 (soft layer) to 41 (dense layer)
+- CPT tip resistance: 12.2 MPa (15314 kPa)
+- Pore water pressure at 12 m: 135 kPa (130654 Pa)
+- Groundwater table: 5.3 m below surface
+
+Laboratory tests:
+- Unconfined compressive strength: 50 kPa
+- Consolidation: Cc = 0.46, preconsolidation pressure 278 kPa
+- Permeability: 1.8e-06 m/s (9.487 mm/s)
+
+The effective overburden pressure at 17 m depth is approximately
+294 kPa. Foundation design: mat foundation, bearing capacity
+494 kPa (allowable). Settlement estimate: 54 mm
+over 14 years. Sample mass extracted: 3.8 kg.

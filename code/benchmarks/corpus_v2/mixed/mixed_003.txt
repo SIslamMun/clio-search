@@ -1,0 +1,26 @@
+Geotechnical Site Investigation: Borehole BH-403
+
+Location: Seaport expansion
+Depth: 49.2 m below ground level
+
+Soil profile:
+- 0-4.7 m: Fill material, unit weight 18 kN/m^3
+- 2.8-14.7 m: Stiff clay
+- 11.2-22.7 m: Stiff glacial till
+- Below 32.1 m: Hardpan
+
+In-situ testing:
+- SPT N-values: 10 (soft layer) to 68 (dense layer)
+- CPT tip resistance: 25.4 MPa (16660 kPa)
+- Pore water pressure at 8 m: 124 kPa (105358 Pa)
+- Groundwater table: 2.5 m below surface
+
+Laboratory tests:
+- Unconfined compressive strength: 58 kPa
+- Consolidation: Cc = 0.60, preconsolidation pressure 375 kPa
+- Permeability: 9.2e-06 m/s (1.328 mm/s)
+
+The effective overburden pressure at 17 m depth is approximately
+295 kPa. Foundation design: mat foundation, bearing capacity
+271 kPa (allowable). Settlement estimate: 59 mm
+over 21 years. Sample mass extracted: 7.7 kg.

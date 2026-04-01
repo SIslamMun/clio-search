@@ -1,0 +1,25 @@
+Polymer Tensile Properties: Nylon 6,6 Injection-Molded Specimen
+
+Test ID: PLY-3010
+Specimen dimensions: 4.1 mm thick, 12.4 mm wide,
+overall length 170 mm (ISO 527-2, Type 1A).
+
+The specimen was conditioned at 23 degC and 50% RH for 48 hours before testing.
+Testing was performed on a universal testing machine with a 8 kN
+load cell at a crosshead speed of 11 mm/min.
+
+Measured properties:
+- Tensile strength: 71.5 MPa
+- Yield stress: 63.9 MPa
+- Strain at break: 37%
+- Elastic modulus: 3.03 GPa
+
+The stress-strain curve exhibited distinct yield point followed by cold drawing.
+Neck formation was observed at approximately 12% strain.
+The equivalent stress at yield, 64287 kPa, falls within
+manufacturer specifications. Five replicate tests were conducted; the coefficient
+of variation in UTS was 5.7%.
+
+Duration of test: 143 s. Specimen mass: 12.8 g.
+The inertial correction for the crosshead was negligible; F = m * a gives
+a dynamic contribution less than 0.1% of the applied force (F = ma).

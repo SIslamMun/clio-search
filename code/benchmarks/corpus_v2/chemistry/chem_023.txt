@@ -1,0 +1,22 @@
+Gas-Phase Reaction Study: H2 + I2 -> 2HI
+
+Reactor: CSTR with volume 3.2 L
+Temperature: 324 K
+Total pressure: 161 kPa (161099 Pa)
+
+Using the ideal gas law PV = nRT:
+- n = PV/RT = (68 kPa * 3.7 L) / (8.314 J/(mol*K) * 481 K)
+- n = 0.0903 mol
+
+Reactant partial pressures: 47.7 kPa each, balance He
+Residence time: 31.1 s
+Conversion at exit: 80%
+
+The rate constant was determined as k = 2.593e+01 cm^3/(molecule*s)
+at 349 K, giving an Arrhenius activation energy
+Ea = 62.5 kJ/mol from the relation k = A * e^{-Ea/RT}.
+The pre-exponential factor A = 8.75e-10 cm^3/(molecule*s).
+
+Product analysis by FTIR showed complete consumption of the limiting reagent.
+Mass balance closure: 98.7%. Total reactant mass:
+1.62 g. Reactor wall temperature uniformity: +/- 5 K.

@@ -1,0 +1,23 @@
+Composite Laminate Tensile Test: CFRP Layup [0/0/90/90]s
+
+Sample ID: CMP-4003
+Laminate thickness: 2.03 mm (9 plies)
+Specimen width: 15.5 mm
+Tab material: Glass/epoxy, bonded with cyanoacrylate adhesive
+
+The test was conducted per ASTM D3039 at a rate of 1.2 mm/min.
+Strain was measured by biaxial strain gauges with 6 mm
+gauge length, logged at 1319 Hz.
+
+Key results:
+- Longitudinal tensile strength: 740 MPa
+- Longitudinal modulus: 68 GPa
+- Transverse tensile strength: 44 MPa
+- Poisson ratio: 0.324
+- Failure strain: 1.24%
+
+Failure mode: lateral/gauge/middle (LGM) per ASTM classification. The laminate
+exhibited delamination as
+the dominant damage mechanism. The applied stress of 813162 kPa
+at failure is consistent with rule-of-mixtures predictions. Test duration was
+approximately 301 s.

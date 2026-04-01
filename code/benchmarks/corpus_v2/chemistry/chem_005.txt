@@ -1,0 +1,22 @@
+Gas-Phase Reaction Study: 2NO2 <-> N2O4
+
+Reactor: static reactor with volume 2.2 L
+Temperature: 527 K
+Total pressure: 109 kPa (67083 Pa)
+
+Using the ideal gas law PV = nRT:
+- n = PV/RT = (135 kPa * 3.2 L) / (8.314 J/(mol*K) * 418 K)
+- n = 0.3440 mol
+
+Reactant partial pressures: 28.0 kPa each, balance He
+Residence time: 27.8 s
+Conversion at exit: 70%
+
+The rate constant was determined as k = 4.385e+01 cm^3/(molecule*s)
+at 317 K, giving an Arrhenius activation energy
+Ea = 58.5 kJ/mol from the relation k = A * e^{-Ea/RT}.
+The pre-exponential factor A = 8.21e-10 cm^3/(molecule*s).
+
+Product analysis by FTIR showed complete consumption of the limiting reagent.
+Mass balance closure: 99.0%. Total reactant mass:
+4.39 g. Reactor wall temperature uniformity: +/- 3 K.

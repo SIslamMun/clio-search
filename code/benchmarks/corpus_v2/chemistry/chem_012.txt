@@ -1,0 +1,27 @@
+Synthesis Report: TiO2 Nanotube Preparation
+
+Batch ID: SYN-112
+Method: co-precipitation
+
+Reagent preparation:
+- Precursor: 358.1 mg dissolved in 47 mL deionized water
+- Reducing agent: 169.6 mg in 27 mL solvent
+- Stabilizer: 8.7 mg (0.006 g)
+
+The reaction was carried out at 90 degC for 74 min
+(4274 s) under continuous magnetic stirring at 415 rpm.
+The pH was adjusted to 5.2 using NaOH/HCl.
+
+After synthesis, the product was centrifuged at 9573 rpm for
+25 min and washed three times with ethanol. Final product mass:
+157.9 mg (yield: 67%).
+
+Characterization:
+- UV-Vis absorption peak: 445 nm
+- DLS mean diameter: 16 nm
+- Zeta potential: -19 mV
+- XRD confirmed anatase crystal structure
+
+The total reagent mass was 0.443 g. Using the Arrhenius equation
+k = A * e^{-Ea/RT}, the estimated rate constant at the synthesis temperature is consistent
+with literature values for Ea = 101 kJ/mol.

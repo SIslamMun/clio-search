@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 428
+
+Month: September 2025
+Latitude: 29.55N, Longitude: -99.21W
+Elevation: 715 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1018.6 hPa
+- Pressure range: 992.3 to 1043.3 hPa
+- Mean temperature: -13.0 degC
+- Total precipitation: 82.1 mm
+- Mean wind speed: 6.8 m/s (7.4 km/h)
+- Peak wind gust: 23 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +4.0 hPa
+- Temperature anomaly: -1.0 degC
+
+The mean station pressure of 738 hPa converts to
+85916 Pa. Cloud cover averaged 52%
+with 9 clear days. Solar radiation: 145 W/m^2
+daily average. Soil temperature (10 cm depth): 18.2 degC.
+
+This station has been operational since 1972 with
+97.7% data completeness.

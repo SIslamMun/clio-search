@@ -1,0 +1,21 @@
+Radiosonde Profile: Launch 221, Miami FL
+
+Launch time: 01:00 UTC
+Surface conditions: pressure 917.7 hPa, temperature -1.5 degC,
+dewpoint -14.5 degC
+
+Upper-air data (selected levels):
+- 850 hPa: height 1570 m, temp 6.4 degC, wind 18 m/s from 344
+- 700 hPa: height 3092 m, temp 9.4 degC
+- 500 hPa: height 5425 m, temp -20.0 degC, wind 50 m/s
+- 300 hPa: height 9451 m, temp -46.9 degC, wind 70 m/s
+- 200 hPa: height 12054 m, wind 69 m/s (jet stream level)
+
+The tropopause was identified at 231 hPa (11315 m).
+CAPE was 3097 J/kg, CIN was 158 J/kg. The
+precipitable water was 40 mm. Lifted index: -4.4.
+The surface pressure converted to Pa was 101728 Pa.
+
+The 500 hPa wind speed in surface-relative units corresponds to approximately
+178 km/h. The sounding reached a maximum altitude of
+30402 m before balloon burst.

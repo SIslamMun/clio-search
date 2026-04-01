@@ -1,0 +1,23 @@
+Literature Review: History of Turbulence Modeling
+
+The study of turbulence has captivated fluid dynamicists for over a century.
+Reynolds' seminal decomposition of flow variables into mean and fluctuating
+components laid the groundwork for statistical approaches. Boussinesq's eddy
+viscosity hypothesis, while remarkably useful, remains an approximation that
+fails in many complex flows.
+
+Prandtl's mixing length theory provided the first practical closure model,
+enabling engineering calculations of boundary layers and pipe flows. The
+subsequent development of two-equation models (k-epsilon by Launder and
+Spalding, k-omega by Wilcox) represented a major advance in predictive
+capability. These models remain workhorses of industrial CFD today.
+
+More recent developments include large eddy simulation (LES), where the
+large energy-containing scales are resolved directly while only the small
+scales require modeling. Direct numerical simulation (DNS) resolves all
+scales but remains computationally prohibitive for most engineering flows.
+
+The quest for a universal turbulence model continues. Machine learning
+approaches show promise for data-driven closure models, potentially
+combining the efficiency of RANS with improved accuracy in separated and
+recirculating flows. However, generalizability remains an open question.

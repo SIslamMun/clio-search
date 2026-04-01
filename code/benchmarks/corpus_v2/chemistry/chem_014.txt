@@ -1,0 +1,28 @@
+Electrochemical Characterization: LiFePO4 Electrode
+
+Cell ID: EC-314
+Configuration: three-electrode
+
+Electrode preparation:
+- Active material: 4.16 mg
+- Conductive additive (Super P): 0.35 mg
+- Binder (PVDF): 0.58 mg
+- Total electrode mass: 4.90 mg
+- Active material loading: 3.8 mg/cm^2
+- Electrode thickness: 50 um (0.049 mm)
+
+Cycling conditions:
+- Voltage window: 2.9 to 4.5 V
+- C-rate: C/10
+- Temperature: 21 degC
+
+Results (after 434 cycles):
+- Initial capacity: 167 mAh/g
+- Capacity retention: 96.6%
+- Coulombic efficiency: 99.9%
+- Impedance (Nyquist): R_ct = 175 Ohm
+
+The energy density E = q * V relationship gives 351 Wh/kg.
+Cyclic voltammetry at 0.9 mV/s showed redox peaks at
+3.30/3.28 V. EIS was performed from
+100 kHz to 10 mHz. Total test duration: 1674 h.

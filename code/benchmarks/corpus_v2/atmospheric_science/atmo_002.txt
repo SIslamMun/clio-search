@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-302
+
+Date: 09/04/2025
+Location: Eastern Kansas
+Event type: supercell
+
+Pre-storm environment:
+- Surface pressure: 99.0 kPa
+- Surface temperature: 30 degC
+- Surface dewpoint: 24 degC
+- 0-6 km shear: 21 m/s (97 km/h)
+- CAPE: 4136 J/kg
+- Storm-relative helicity (0-3 km): 279 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 94.1 kPa (95471 Pa)
+- Maximum wind gust: 35 m/s
+- Maximum hail diameter: 33 mm
+- Peak radar reflectivity: 68 dBZ
+
+The pressure perturbation of 3.5 kPa was detected by the
+Oklahoma Mesonet stations. Brief tornado (EF-1) was reported
+with estimated peak winds of 154 km/h. Storm motion was
+43 km/h from 270 degrees.
+Event duration: approximately 2.0 h.

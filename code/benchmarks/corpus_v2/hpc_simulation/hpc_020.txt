@@ -1,0 +1,29 @@
+HPC Simulation Log: Molecular Dynamics, Run MD-3020
+
+System: Metal nanoparticle
+Atom count: 1038022
+Force field: ReaxFF
+
+Simulation parameters:
+- Ensemble: NVT
+- Temperature: 384 K
+- Pressure (if NPT): 0.6 MPa (950 kPa)
+- Time step: 1 fs (3.7e-15 s)
+- Total simulation time: 505 ns
+- Steps: 470734311
+
+Compute resources:
+- Nodes: 8
+- GPUs: 4 x V100
+- Wall time: 14.8 h (519793 s)
+- Performance: 77 ns/day
+
+Output:
+- Trajectory frames: every 21 ps
+- Energy log: every 4.2 ps
+- Average pressure: 100.7 kPa (+/- 4.6 kPa)
+- RMSD from initial: 1.4 nm
+- Total output: 162 GB
+
+The target pressure of 101147 Pa was maintained by the
+Parrinello-Rahman barostat. Electrostatics treated with PME, cutoff 1.3 nm.

@@ -729,29 +729,59 @@ def discover_providers(
     """
     providers: list[LLMProvider] = []
 
-    # 1. Ollama
+    # 1. Ollama — multiple models (prefer llama, qwen, mistral, deepseek)
+    _OLLAMA_PREFERRED = [
+        "llama3.1:8b", "llama3.2:latest", "qwen2.5:14b",
+        "deepseek-r1:14b", "mistral:latest", "mistral-small3.2:24b",
+    ]
     try:
         import ollama as _ollama  # type: ignore[import-untyped]
-        _ollama.list()  # will raise if server is not running
-        providers.append(OllamaProvider())
-        print(f"  [OK] Ollama detected: {providers[-1].name()}")
+        _list_result = _ollama.list()
+        # Handle both dict and pydantic response formats
+        if hasattr(_list_result, "models"):
+            available = {m.model for m in _list_result.models}
+        else:
+            available = {m["name"] for m in _list_result.get("models", [])}
+        added_ollama = False
+        for model_name in _OLLAMA_PREFERRED:
+            if model_name in available:
+                try:
+                    providers.append(OllamaProvider(model=model_name))
+                    print(f"  [OK] Ollama detected: {providers[-1].name()}")
+                    added_ollama = True
+                except Exception:
+                    pass
+        if not added_ollama:
+            # Fall back to first available model
+            providers.append(OllamaProvider())
+            print(f"  [OK] Ollama detected: {providers[-1].name()}")
     except Exception as exc:
         print(f"  [--] Ollama not available: {exc}")
 
-    # 2. Gemini
+    # 2. Gemini — multiple models
+    _GEMINI_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
     try:
         if os.environ.get("GOOGLE_API_KEY"):
-            providers.append(GeminiProvider())
-            print(f"  [OK] Gemini detected: {providers[-1].name()}")
+            for gmodel in _GEMINI_MODELS:
+                try:
+                    providers.append(GeminiProvider(model=gmodel))
+                    print(f"  [OK] Gemini detected: {providers[-1].name()}")
+                except Exception:
+                    pass
         else:
             print("  [--] Gemini not available: GOOGLE_API_KEY not set")
     except Exception as exc:
         print(f"  [--] Gemini not available: {exc}")
 
-    # 3. Claude Agent SDK
+    # 3. Claude Agent SDK — multiple models
+    _CLAUDE_MODELS = ["sonnet", "haiku", "opus"]
     try:
-        providers.append(ClaudeAgentProvider())
-        print(f"  [OK] Claude Agent SDK detected: {providers[-1].name()}")
+        for cmodel in _CLAUDE_MODELS:
+            try:
+                providers.append(ClaudeAgentProvider(model=cmodel))
+                print(f"  [OK] Claude Agent SDK detected: {providers[-1].name()}")
+            except Exception:
+                pass
     except Exception as exc:
         print(f"  [--] Claude Agent SDK not available: {exc}")
 

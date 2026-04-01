@@ -1,0 +1,28 @@
+HPC Job: Finite Element Analysis, Case FEA-5010
+
+Analysis type: modal
+Component: turbine blade
+Software: ABAQUS
+
+Model details:
+- Nodes: 2.5 million
+- Elements: 5.2 million (C3D8R)
+- Minimum element size: 2.6 mm
+- Maximum element size: 20 mm
+- Material: composite
+
+Loading:
+- Applied pressure: 23.8 MPa (44796 kPa) on inner surface
+- Temperature load: 147 degC
+- Boundary conditions: fixed at supports
+
+Results:
+- Max von Mises stress: 481 MPa
+- Max displacement: 1.93 mm (0.0089 m)
+- Factor of safety: 2.2
+- First natural frequency: 228 Hz
+
+The peak stress of 284307 kPa occurs at the fillet radius.
+Mesh convergence study: stress changed < 3% between final two
+refinement levels. Wall time: 6.2 h on 42 cores.
+Total output size: 57 GB.

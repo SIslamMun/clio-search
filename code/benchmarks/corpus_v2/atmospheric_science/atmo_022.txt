@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-322
+
+Date: 26/05/2025
+Location: Central Oklahoma
+Event type: supercell
+
+Pre-storm environment:
+- Surface pressure: 98.5 kPa
+- Surface temperature: 30 degC
+- Surface dewpoint: 26 degC
+- 0-6 km shear: 30 m/s (55 km/h)
+- CAPE: 2796 J/kg
+- Storm-relative helicity (0-3 km): 151 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 96.1 kPa (94568 Pa)
+- Maximum wind gust: 27 m/s
+- Maximum hail diameter: 45 mm
+- Peak radar reflectivity: 62 dBZ
+
+The pressure perturbation of 4.4 kPa was detected by the
+Oklahoma Mesonet stations. No tornado was observed
+with estimated peak winds of 151 km/h. Storm motion was
+58 km/h from 205 degrees.
+Event duration: approximately 3.2 h.

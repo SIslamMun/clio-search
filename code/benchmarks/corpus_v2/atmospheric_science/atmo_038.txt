@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 438
+
+Month: January 2025
+Latitude: 41.60N, Longitude: -101.21W
+Elevation: 941 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1012.7 hPa
+- Pressure range: 986.2 to 1034.5 hPa
+- Mean temperature: -0.7 degC
+- Total precipitation: 24.3 mm
+- Mean wind speed: 7.7 m/s (16.9 km/h)
+- Peak wind gust: 19 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +1.8 hPa
+- Temperature anomaly: -2.1 degC
+
+The mean station pressure of 744 hPa converts to
+92577 Pa. Cloud cover averaged 52%
+with 5 clear days. Solar radiation: 276 W/m^2
+daily average. Soil temperature (10 cm depth): 2.4 degC.
+
+This station has been operational since 1953 with
+99.1% data completeness.

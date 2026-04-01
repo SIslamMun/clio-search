@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 423
+
+Month: November 2025
+Latitude: 45.86N, Longitude: -97.52W
+Elevation: 2410 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1006.2 hPa
+- Pressure range: 992.2 to 1038.0 hPa
+- Mean temperature: 15.9 degC
+- Total precipitation: 100.6 mm
+- Mean wind speed: 9.3 m/s (9.3 km/h)
+- Peak wind gust: 17 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +0.8 hPa
+- Temperature anomaly: -1.9 degC
+
+The mean station pressure of 887 hPa converts to
+92789 Pa. Cloud cover averaged 49%
+with 24 clear days. Solar radiation: 183 W/m^2
+daily average. Soil temperature (10 cm depth): 12.4 degC.
+
+This station has been operational since 1978 with
+97.1% data completeness.

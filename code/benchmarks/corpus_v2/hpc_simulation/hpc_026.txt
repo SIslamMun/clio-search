@@ -1,0 +1,29 @@
+HPC Simulation Log: Molecular Dynamics, Run MD-3026
+
+System: Protein in water
+Atom count: 2487454
+Force field: OPLS-AA
+
+Simulation parameters:
+- Ensemble: NVE
+- Temperature: 318 K
+- Pressure (if NPT): 0.8 MPa (185 kPa)
+- Time step: 3 fs (1.1e-15 s)
+- Total simulation time: 853 ns
+- Steps: 361136017
+
+Compute resources:
+- Nodes: 2
+- GPUs: 4 x V100
+- Wall time: 150.9 h (578608 s)
+- Performance: 141 ns/day
+
+Output:
+- Trajectory frames: every 74 ps
+- Energy log: every 3.8 ps
+- Average pressure: 100.0 kPa (+/- 1.0 kPa)
+- RMSD from initial: 1.3 nm
+- Total output: 231 GB
+
+The target pressure of 101507 Pa was maintained by the
+Parrinello-Rahman barostat. Electrostatics treated with PME, cutoff 1.2 nm.

@@ -1,0 +1,28 @@
+Electrochemical Characterization: Graphite Electrode
+
+Cell ID: EC-326
+Configuration: coin cell (CR2032)
+
+Electrode preparation:
+- Active material: 5.98 mg
+- Conductive additive (Super P): 0.11 mg
+- Binder (PVDF): 0.28 mg
+- Total electrode mass: 7.42 mg
+- Active material loading: 2.2 mg/cm^2
+- Electrode thickness: 74 um (0.062 mm)
+
+Cycling conditions:
+- Voltage window: 2.8 to 4.2 V
+- C-rate: C/5
+- Temperature: 27 degC
+
+Results (after 329 cycles):
+- Initial capacity: 166 mAh/g
+- Capacity retention: 77.1%
+- Coulombic efficiency: 98.0%
+- Impedance (Nyquist): R_ct = 88 Ohm
+
+The energy density E = q * V relationship gives 393 Wh/kg.
+Cyclic voltammetry at 0.4 mV/s showed redox peaks at
+3.54/3.35 V. EIS was performed from
+100 kHz to 10 mHz. Total test duration: 1907 h.

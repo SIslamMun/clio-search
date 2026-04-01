@@ -1,0 +1,29 @@
+HPC Simulation Log: Molecular Dynamics, Run MD-3014
+
+System: Polymer melt
+Atom count: 219725
+Force field: OPLS-AA
+
+Simulation parameters:
+- Ensemble: NPT
+- Temperature: 317 K
+- Pressure (if NPT): 0.9 MPa (872 kPa)
+- Time step: 3 fs (3.9e-15 s)
+- Total simulation time: 236 ns
+- Steps: 166319211
+
+Compute resources:
+- Nodes: 8
+- GPUs: 4 x V100
+- Wall time: 124.1 h (374424 s)
+- Performance: 54 ns/day
+
+Output:
+- Trajectory frames: every 45 ps
+- Energy log: every 9.1 ps
+- Average pressure: 100.2 kPa (+/- 2.7 kPa)
+- RMSD from initial: 1.6 nm
+- Total output: 190 GB
+
+The target pressure of 99169 Pa was maintained by the
+Parrinello-Rahman barostat. Electrostatics treated with PME, cutoff 1.3 nm.

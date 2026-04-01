@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 413
+
+Month: May 2025
+Latitude: 38.54N, Longitude: -83.44W
+Elevation: 1628 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1022.0 hPa
+- Pressure range: 997.8 to 1047.2 hPa
+- Mean temperature: 2.1 degC
+- Total precipitation: 66.7 mm
+- Mean wind speed: 7.7 m/s (29.1 km/h)
+- Peak wind gust: 37 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +3.3 hPa
+- Temperature anomaly: +2.0 degC
+
+The mean station pressure of 995 hPa converts to
+101918 Pa. Cloud cover averaged 67%
+with 18 clear days. Solar radiation: 295 W/m^2
+daily average. Soil temperature (10 cm depth): 19.5 degC.
+
+This station has been operational since 1985 with
+99.3% data completeness.

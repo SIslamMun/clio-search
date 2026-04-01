@@ -1,0 +1,27 @@
+Synthesis Report: ZnO Quantum Dot Preparation
+
+Batch ID: SYN-124
+Method: co-precipitation
+
+Reagent preparation:
+- Precursor: 172.4 mg dissolved in 16 mL deionized water
+- Reducing agent: 145.3 mg in 31 mL solvent
+- Stabilizer: 8.5 mg (0.025 g)
+
+The reaction was carried out at 74 degC for 105 min
+(6902 s) under continuous magnetic stirring at 347 rpm.
+The pH was adjusted to 5.8 using NaOH/HCl.
+
+After synthesis, the product was centrifuged at 6029 rpm for
+21 min and washed three times with ethanol. Final product mass:
+150.1 mg (yield: 51%).
+
+Characterization:
+- UV-Vis absorption peak: 604 nm
+- DLS mean diameter: 9 nm
+- Zeta potential: -15 mV
+- XRD confirmed wurtzite crystal structure
+
+The total reagent mass was 0.111 g. Using the Arrhenius equation
+k = A * e^{-Ea/RT}, the estimated rate constant at the synthesis temperature is consistent
+with literature values for Ea = 69 kJ/mol.

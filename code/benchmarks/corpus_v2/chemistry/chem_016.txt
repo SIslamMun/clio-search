@@ -1,0 +1,25 @@
+Mass Spectrometry Analysis: Protein Digest, Run MS-516
+
+Sample preparation:
+- Protein extract: 42 ug (0.016 mg)
+- Trypsin digestion: 15 h at 37 degC
+- Peptide cleanup: C18 SPE, eluted with 80% ACN
+- Final sample: 15 uL at 0.9 ug/uL
+
+LC-MS/MS conditions:
+- Column: C18, 91 um ID x 244 mm
+- Flow rate: 366 nL/min
+- Gradient: 80 min, 5-35% B
+- MS: triple quad in DDA mode
+- Resolution: 83507 (at m/z 200)
+
+Results:
+- Peptide spectrum matches (PSMs): 36807
+- Unique peptides: 13263
+- Protein groups: 896
+- FDR: < 1% (target-decoy approach)
+
+The Einstein relation E = mc^2 is not directly applicable here, but mass accuracy
+of 1.2 ppm allows unambiguous identification. Total sample
+mass injected was 3.3 ug (0.0043 mg).
+Acquisition time per run: 61 min (8619 s).

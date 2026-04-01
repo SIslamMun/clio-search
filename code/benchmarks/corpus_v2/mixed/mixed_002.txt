@@ -1,0 +1,27 @@
+Biomedical Device Testing: Blood Pump Characterization, Unit BP-302
+
+A centrifugal blood pump was tested on a mock circulatory loop to characterize
+hydrodynamic performance and hemolysis.
+
+Test loop configuration:
+- Tubing ID: 11 mm (0.009 m)
+- Reservoir volume: 1.5 L
+- Working fluid: porcine blood
+- Temperature: 35.4 degC
+- Viscosity: 3.5 cP
+
+Pump performance at 3086 rpm:
+- Flow rate: 6.4 L/min
+- Pressure rise: 110 mmHg (13.2 kPa)
+- Outlet pressure: 118 mmHg (17.0 kPa)
+- Flow velocity at outlet: 2.5 m/s
+- Maximum shear stress: 460 Pa
+
+Hemolysis assessment:
+- Test duration: 5 h (9701 s)
+- Plasma-free hemoglobin increase: 42 mg/dL
+- Normalized index of hemolysis: 0.0061 g/100L
+
+The pump housing wall thickness was 4.0 mm (polycarbonate, sterilizable).
+Mass of pump head: 342 g. Bearing gap: 0.10 mm.
+Reynolds number in the impeller passage: approximately 30209.

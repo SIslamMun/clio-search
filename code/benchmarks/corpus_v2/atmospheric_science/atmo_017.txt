@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-317
+
+Date: 04/04/2025
+Location: Western Texas
+Event type: tornado-warned supercell
+
+Pre-storm environment:
+- Surface pressure: 98.1 kPa
+- Surface temperature: 30 degC
+- Surface dewpoint: 19 degC
+- 0-6 km shear: 38 m/s (83 km/h)
+- CAPE: 3247 J/kg
+- Storm-relative helicity (0-3 km): 180 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 97.9 kPa (98382 Pa)
+- Maximum wind gust: 34 m/s
+- Maximum hail diameter: 48 mm
+- Peak radar reflectivity: 60 dBZ
+
+The pressure perturbation of 2.7 kPa was detected by the
+Oklahoma Mesonet stations. No tornado was observed
+with estimated peak winds of 215 km/h. Storm motion was
+39 km/h from 243 degrees.
+Event duration: approximately 3.4 h.
