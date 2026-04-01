@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-312
+
+Date: 11/07/2025
+Location: Northern Illinois
+Event type: tornado-warned supercell
+
+Pre-storm environment:
+- Surface pressure: 102.0 kPa
+- Surface temperature: 35 degC
+- Surface dewpoint: 25 degC
+- 0-6 km shear: 19 m/s (141 km/h)
+- CAPE: 2379 J/kg
+- Storm-relative helicity (0-3 km): 486 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 95.7 kPa (94502 Pa)
+- Maximum wind gust: 46 m/s
+- Maximum hail diameter: 25 mm
+- Peak radar reflectivity: 73 dBZ
+
+The pressure perturbation of 2.1 kPa was detected by the
+Oklahoma Mesonet stations. A tornado was confirmed
+with estimated peak winds of 137 km/h. Storm motion was
+50 km/h from 219 degrees.
+Event duration: approximately 1.2 h.

@@ -1,0 +1,24 @@
+Open Channel Flow Measurement: Site OC-3032
+
+A rectangular open channel with width 1.01 m and bed slope
+0.0023 was instrumented for velocity profiling. The channel
+lining is smooth concrete (Manning's n = 0.0125).
+
+Measured conditions at the test cross-section:
+- Water depth: 402 mm (0.289 m)
+- Mean velocity: 1.74 m/s
+- Flow rate: 157 L/s
+- Froude number: Fr = 1.15
+- Reynolds number: Re = 432458
+
+Velocity was measured using an acoustic Doppler velocimeter (ADV) at
+50 Hz. The vertical velocity profile was sampled at
+11 points from 11 mm above the bed to the
+free surface. Maximum velocity of 2.43 m/s occurred at
+approximately 0.7 of the flow depth.
+
+The hydraulic gradient corresponds to a pressure difference of 110 Pa
+per meter of channel length. The boundary shear stress was 5.6 Pa.
+A hydraulic jump was observed at 4.4 m downstream with a conjugate
+depth ratio of 3.1. Upstream Froude number: 2.9.
+Downstream velocity: 0.88 m/s (1.0 km/h).

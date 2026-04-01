@@ -1,0 +1,26 @@
+Geotechnical Site Investigation: Borehole BH-419
+
+Location: Highway bridge abutment
+Depth: 28.0 m below ground level
+
+Soil profile:
+- 0-5.0 m: Fill material, unit weight 19 kN/m^3
+- 2.5-13.8 m: Medium clay
+- 13.6-36.4 m: Gravel
+- Below 32.5 m: Hardpan
+
+In-situ testing:
+- SPT N-values: 6 (soft layer) to 51 (dense layer)
+- CPT tip resistance: 21.9 MPa (10609 kPa)
+- Pore water pressure at 10 m: 109 kPa (72981 Pa)
+- Groundwater table: 3.7 m below surface
+
+Laboratory tests:
+- Unconfined compressive strength: 40 kPa
+- Consolidation: Cc = 0.24, preconsolidation pressure 444 kPa
+- Permeability: 5.0e-06 m/s (4.199 mm/s)
+
+The effective overburden pressure at 11 m depth is approximately
+119 kPa. Foundation design: mat foundation, bearing capacity
+390 kPa (allowable). Settlement estimate: 65 mm
+over 6 years. Sample mass extracted: 8.3 kg.

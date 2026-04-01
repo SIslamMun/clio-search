@@ -1,0 +1,24 @@
+Tutorial: Introduction to Finite Element Method
+
+The finite element method (FEM) is a numerical technique for solving partial
+differential equations by discretizing a continuous domain into a finite
+number of elements. Each element is described by shape functions that
+approximate the variation of the unknown field variable within that element.
+
+The key steps in a finite element analysis are:
+First, the governing equations are cast in weak form using the principle of
+virtual work or the Galerkin method. Second, the domain is discretized into
+elements (triangles, quadrilaterals in two dimensions; tetrahedra, hexahedra
+in three dimensions). Third, shape functions are chosen to interpolate the
+solution within each element. Fourth, the element equations are assembled
+into a global system of algebraic equations. Finally, boundary conditions
+are applied and the system is solved.
+
+Convergence of the finite element solution depends on the mesh refinement
+(h-refinement), the polynomial order of shape functions (p-refinement),
+and the quality of the mesh. Poorly shaped elements (high aspect ratio,
+extreme angles) degrade accuracy and can cause numerical difficulties.
+
+Common applications include structural mechanics, heat transfer, fluid
+dynamics, and electromagnetics. Modern FEM software packages provide
+sophisticated pre-processing, solving, and post-processing capabilities.

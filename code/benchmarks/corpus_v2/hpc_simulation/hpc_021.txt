@@ -1,0 +1,26 @@
+HPC Run Summary: Climate Model CESM2, Experiment 4021
+
+Configuration: piControl
+Resolution: 0.5 deg atmosphere,
+1 deg ocean
+Simulation period: 210 years
+
+Compute allocation:
+- Cores: 4096
+- Wall time: 109 h
+- Throughput: 6.9 simulated years per wall day
+- Storage: 77 TB
+
+Global mean diagnostics (last decade):
+- Surface temperature: 13.67 degC
+- Sea-level pressure: 1013.5 hPa (101298 Pa)
+- Precipitation: 3.26 mm/day
+- TOA radiation imbalance: 0.63 W/m^2
+- Ocean heat uptake: 1.11 W/m^2
+
+The global mean surface pressure of 101327 Pa shows
+a slight positive trend.
+Arctic surface wind speeds averaged 5.1 m/s with extremes
+reaching 30 m/s (72 km/h).
+The model's time step for the atmosphere component is 1241 s
+(25 min).

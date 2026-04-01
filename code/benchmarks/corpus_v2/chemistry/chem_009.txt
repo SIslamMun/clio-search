@@ -1,0 +1,27 @@
+Calorimetry Report: Dissolution Enthalpy
+
+Experiment: CAL-409
+Calorimeter type: isothermal titration (ITC)
+
+Sample: 666.8 mg (0.268 g) of
+urea
+in 109 mL of NaOH solution
+
+Measurement:
+- Initial temperature: 24.456 degC
+- Final temperature: 26.171 degC
+- Temperature rise: 6.330 degC
+- Calorimeter constant: 477.8 J/degC
+- Measured heat: 7.34 kJ
+- Molar enthalpy: -407.4 kJ/mol
+
+Using the relation q = m * c * Delta_T and correcting for heat losses, the
+enthalpy of neutralization was determined.
+The ideal gas law PV = nRT was used to correct for gas-phase products where
+applicable. At the reaction pressure of 102.2 kPa, the molar
+volume correction is negligible.
+
+Uncertainty analysis: the combined standard uncertainty is 0.7%
+(k=2), dominated by the temperature measurement uncertainty of 0.007 degC.
+Replicate measurements (n=4): mean = -335.4 kJ/mol,
+s.d. = 2.8 kJ/mol. Duration of each run: 8 min.

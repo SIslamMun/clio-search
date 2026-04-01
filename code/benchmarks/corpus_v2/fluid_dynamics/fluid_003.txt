@@ -1,0 +1,28 @@
+CFD Validation Study: Backward-Facing Step, Case BFS-4003
+
+A RANS simulation of flow over a backward-facing step was performed to validate
+the Spalart-Allmaras turbulence model.
+The step height was h = 27 mm and the expansion ratio was
+1.46.
+
+Inlet conditions:
+- Freestream velocity: 16.0 m/s
+- Turbulence intensity: 4.8%
+- Reynolds number (based on step height): Re_h = 49438
+
+Computational details:
+- Domain: 39h upstream, 60h downstream
+- Mesh: structured, 1.7 million cells
+- Near-wall spacing: y+ < 4.7
+- Time step: 0.0026 s (for URANS)
+
+Results:
+- Reattachment length: 7.4h (experiment: 6.7h)
+- Peak reversed flow velocity: -0.28 times U_inlet
+- Pressure coefficient at reattachment: Cp = 0.220
+- Wall pressure recovery: 85% of theoretical
+
+The static pressure upstream of the step was 154.5 kPa while
+the base pressure (immediately behind step) dropped to 96.6 kPa.
+This pressure difference of 1721 Pa drives the recirculation.
+Simulation wall-clock time: 32 h on 94 cores.

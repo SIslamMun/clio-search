@@ -1,0 +1,25 @@
+Reaction Kinetics Study: Ester Hydrolysis
+
+Experiment ID: KIN-219
+
+Reaction conditions:
+- Temperature: 54.2 degC
+- Solvent: water
+- Initial concentration: 0.614 M
+- Catalyst loading: 2.5 mol%
+
+Aliquots (1.0 mL) were withdrawn at t = 0, 49,
+255, 576, 1339,
+and 2596 s. Conversion was monitored by HPLC.
+
+Kinetic analysis:
+- Reaction order: first
+- Rate constant k = 8.9763e-03 s^{-1} (at 32.7 degC)
+- Half-life: 496 s (44.1 min)
+- Activation energy Ea = 68 kJ/mol (from Arrhenius plot)
+
+The Arrhenius equation k = A * e^{-Ea/RT} with pre-exponential factor
+A = 4.29e+11 s^{-1} fits the data with R^2 = 0.989.
+The enthalpy of activation Delta_H_ddagger was 55 kJ/mol via
+Eyring analysis. Total reaction time to 95% conversion: 84 min.
+Product isolated mass: 1.62 g (3204 mg).

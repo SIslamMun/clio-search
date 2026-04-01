@@ -1,0 +1,27 @@
+Atmospheric Boundary Layer Study: Campaign ABL-539
+
+Site: Flat terrain, fetch > 5 km, crop stubble surface
+Measurement period: 9 days in spring
+
+Tower instrumentation (10 levels from 2 m to 60 m):
+- Sonic anemometers: 3-D wind at 10 Hz
+- Temperature/humidity: aspirated thermohygrometers
+- Pressure: Vaisala PTB330 at 2 m, accuracy +/- 0.1 hPa
+
+Selected results (convective afternoon case):
+- Mixed layer depth: 2164 m
+- Surface heat flux: 171 W/m^2
+- Friction velocity u*: 0.25 m/s
+- 10-m wind speed: 4.2 m/s
+- Surface pressure: 99.8 kPa
+- Roughness length z0: 0.066 m
+- Monin-Obukhov length: -78 m (unstable)
+
+Turbulence statistics: the velocity variance sigma_u was 1.76 m/s
+and the turbulent kinetic energy TKE = 0.5*(sigma_u^2 + sigma_v^2 + sigma_w^2)
+was approximately 1.75 m^2/s^2. The surface pressure
+in Pa was 99216 Pa with a diurnal range of
+353 Pa.
+
+The thermal wind estimated from the pressure gradient was 3.3 m/s
+at 1 km height. Entrainment zone thickness: 387 m.

@@ -1,0 +1,30 @@
+Wind Energy Assessment: Turbine Site 104
+
+This multi-disciplinary report covers the aerodynamic, structural, and atmospheric
+analysis for a proposed wind turbine installation.
+
+Atmospheric conditions (annual averages):
+- Mean wind speed at hub height (80 m): 10.3 m/s (32.2 km/h)
+- Wind power density: 550 W/m^2
+- Extreme gust (50-year return): 68 m/s
+- Barometric pressure (site elevation 1449 m): 94.2 kPa
+- Air density: 1.223 kg/m^3
+
+Turbine specifications:
+- Rotor diameter: 128 m (158973 mm)
+- Blade length: 57 m
+- Blade root thickness: 41 mm
+- Tower height: 66 m
+- Rated wind speed: 11.9 m/s
+- Cut-in speed: 3 m/s
+
+Structural analysis:
+- Maximum blade root bending moment: 6.4 MN*m
+- Blade tip deflection: 4.3 m (6928 mm)
+- Tower base von Mises stress: 248 MPa (202509 kPa)
+- Foundation design pressure: 244 kPa on soil
+
+The power output P = 0.5 * rho * A * Cp * v^3 at rated conditions gives
+approximately 2.4 MW. Annual energy production estimate:
+21 GWh at a capacity factor of 30%.
+Fatigue life assessment: 20+ years at 5.5e+08 cycles.

@@ -1,0 +1,29 @@
+HPC Simulation Log: Molecular Dynamics, Run MD-3008
+
+System: Lipid bilayer
+Atom count: 1414461
+Force field: ReaxFF
+
+Simulation parameters:
+- Ensemble: NVT
+- Temperature: 376 K
+- Pressure (if NPT): 0.1 MPa (118 kPa)
+- Time step: 2 fs (1.3e-15 s)
+- Total simulation time: 348 ns
+- Steps: 481704470
+
+Compute resources:
+- Nodes: 8
+- GPUs: 2 x RTX 3090
+- Wall time: 18.2 h (570878 s)
+- Performance: 489 ns/day
+
+Output:
+- Trajectory frames: every 34 ps
+- Energy log: every 9.9 ps
+- Average pressure: 101.7 kPa (+/- 3.7 kPa)
+- RMSD from initial: 1.4 nm
+- Total output: 329 GB
+
+The target pressure of 100822 Pa was maintained by the
+Parrinello-Rahman barostat. Electrostatics treated with PME, cutoff 1.1 nm.

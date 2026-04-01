@@ -1,0 +1,28 @@
+Aerospace Component Test: Thermal-Structural Qualification, Test 205
+
+Component: Turbopump housing
+Material: Niobium alloy C-103
+
+Thermal loading:
+- Gas temperature: 974 degC
+- Heat flux: 8.7 MW/m^2
+- Cooling fluid: LN2
+- Coolant pressure: 23 MPa (17277 kPa)
+- Coolant flow velocity: 16 m/s (145 km/h)
+
+Structural measurements:
+- Peak thermal stress: 679 MPa
+- Membrane stress: 122 MPa
+- Wall thickness: 7.0 mm
+- Displacement at tip: 4.7 mm
+- Component mass: 20.6 kg (47922 g)
+
+Pressure measurements:
+- Chamber pressure: 20 MPa
+- Nozzle exit pressure: 38 kPa (60243 Pa)
+- External ambient: 1.4 kPa
+
+Test duration: 173 s (6.4 min). The component
+survived 50 thermal cycles without cracking. Post-test inspection
+by DPI and X-ray revealed no defects exceeding the acceptance criteria of
+0.9 mm indication length.

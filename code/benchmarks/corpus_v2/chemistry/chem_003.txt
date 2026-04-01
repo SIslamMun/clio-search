@@ -1,0 +1,27 @@
+Calorimetry Report: Dissolution Enthalpy
+
+Experiment: CAL-403
+Calorimeter type: solution (coffee-cup)
+
+Sample: 716.8 mg (0.253 g) of
+naphthalene
+in 95 mL of HCl solution
+
+Measurement:
+- Initial temperature: 22.584 degC
+- Final temperature: 25.839 degC
+- Temperature rise: 3.484 degC
+- Calorimeter constant: 460.0 J/degC
+- Measured heat: 8.04 kJ
+- Molar enthalpy: -337.5 kJ/mol
+
+Using the relation q = m * c * Delta_T and correcting for heat losses, the
+enthalpy of combustion was determined.
+The ideal gas law PV = nRT was used to correct for gas-phase products where
+applicable. At the reaction pressure of 101.9 kPa, the molar
+volume correction is negligible.
+
+Uncertainty analysis: the combined standard uncertainty is 1.7%
+(k=2), dominated by the temperature measurement uncertainty of 0.014 degC.
+Replicate measurements (n=6): mean = -451.9 kJ/mol,
+s.d. = 3.7 kJ/mol. Duration of each run: 29 min.

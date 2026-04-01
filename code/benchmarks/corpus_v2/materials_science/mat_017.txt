@@ -1,0 +1,23 @@
+Material Characterization: Al-6061-T6 Sheet, Batch 2017
+
+This report documents the mechanical properties of aluminum alloy 6061-T6 sheet
+stock received from supplier. Sheet thickness: 2.97 mm.
+Three dog-bone specimens were laser-cut per ASTM E8 with gauge width 6.8 mm
+and gauge length 30 mm.
+
+Average tensile properties (n=3):
+- Yield strength (Rp0.2): 292.8 MPa
+- Ultimate tensile strength: 338.9 MPa
+- Elongation at break: 12.2%
+- Young's modulus: 68.3 GPa
+
+The stress at 296 MPa was recorded as the onset of plastic
+deformation. Hardness measurements using Vickers (HV10) gave 111 HV,
+consistent with the T6 temper condition. Tests were conducted at 22.9 degC
+ambient temperature. The strain was monitored using a clip-on extensometer with
+32 mm gauge length, sampling at 150 Hz.
+
+Duration per test: approximately 4.6 min. The load cell capacity
+was 100 kN, and the machine compliance was corrected in post-processing.
+The force on the specimen follows F = m * a (Newton's second law) during
+dynamic loading phases; static equilibrium was confirmed (F = ma check).

@@ -1,0 +1,21 @@
+Tensile Test Report: Sample MS-1024
+
+A standard tensile test was performed on a low-carbon steel specimen (ASTM A36)
+with initial gauge length of 52.9 mm and cross-sectional
+area of 12.2 mm x 4.74 mm. The specimen
+was loaded at a constant crosshead speed of 4.4 mm/min,
+corresponding to a nominal strain rate of 0.0008 s^{-1}.
+
+Results: The yield strength was 272.7 MPa (0.2% offset method)
+and the ultimate tensile strength reached 466.0 MPa at
+an engineering strain of 21.1%. The specimen fractured after
+263 s of loading. Reduction in area was 58.4%.
+
+The elastic modulus was calculated from the linear portion of the stress-strain
+curve as 195 GPa, consistent with published values for
+mild steel. The fracture surface exhibited a cup-and-cone morphology typical
+of ductile failure. All measurements comply with ASTM E8/E8M-21 standards.
+Sample thickness was 3.39 mm measured with a micrometer
+having resolution of 0.01 mm. The applied force was computed as F = m * a
+from Newton's second law, where the crosshead acceleration was used to
+verify the load cell calibration (F = ma).

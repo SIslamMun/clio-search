@@ -1,0 +1,26 @@
+High-Strength Steel Evaluation: DP800 Dual-Phase
+
+Specimen ID: HSS-5036
+Sheet thickness: 1.34 mm
+Rolling direction: longitudinal
+
+This dual-phase steel was tested at multiple strain rates to characterize its
+rate sensitivity. A servo-hydraulic machine was used for dynamic tests, while
+quasi-static tests used a screw-driven frame.
+
+Quasi-static results (strain rate 0.0071 s^{-1}):
+- Yield strength: 490 MPa
+- UTS: 792 MPa
+- Uniform elongation: 14.8%
+
+Dynamic results (strain rate 151 s^{-1}):
+- Yield strength: 643 MPa
+- UTS: 854 MPa
+
+The stress increase from quasi-static to dynamic loading confirms positive strain
+rate sensitivity typical of ferritic-martensitic microstructures. Sample preparation
+involved EDM cutting with 0.18 mm wire, followed by
+surface grinding to 1.3 um Ra finish. All pressures in
+the hydraulic system were maintained at 18.2 MPa during
+gripping. The test fixture was calibrated using a 82 kN
+reference load cell. Total test time: 1.1 min.

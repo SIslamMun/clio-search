@@ -1,0 +1,27 @@
+Synthesis Report: ZnO Quantum Dot Preparation
+
+Batch ID: SYN-106
+Method: sol-gel
+
+Reagent preparation:
+- Precursor: 163.7 mg dissolved in 24 mL deionized water
+- Reducing agent: 90.4 mg in 22 mL solvent
+- Stabilizer: 25.2 mg (0.032 g)
+
+The reaction was carried out at 83 degC for 110 min
+(10111 s) under continuous magnetic stirring at 548 rpm.
+The pH was adjusted to 6.9 using NaOH/HCl.
+
+After synthesis, the product was centrifuged at 5368 rpm for
+29 min and washed three times with ethanol. Final product mass:
+146.3 mg (yield: 81%).
+
+Characterization:
+- UV-Vis absorption peak: 638 nm
+- DLS mean diameter: 92 nm
+- Zeta potential: -46 mV
+- XRD confirmed wurtzite crystal structure
+
+The total reagent mass was 0.521 g. Using the Arrhenius equation
+k = A * e^{-Ea/RT}, the estimated rate constant at the synthesis temperature is consistent
+with literature values for Ea = 68 kJ/mol.

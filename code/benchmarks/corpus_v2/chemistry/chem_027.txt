@@ -1,0 +1,27 @@
+Calorimetry Report: Combustion Enthalpy
+
+Experiment: CAL-427
+Calorimeter type: isothermal titration (ITC)
+
+Sample: 864.1 mg (0.754 g) of
+benzoic acid
+in 81 mL of water
+
+Measurement:
+- Initial temperature: 23.679 degC
+- Final temperature: 34.573 degC
+- Temperature rise: 9.753 degC
+- Calorimeter constant: 428.5 J/degC
+- Measured heat: 3.52 kJ
+- Molar enthalpy: -480.2 kJ/mol
+
+Using the relation q = m * c * Delta_T and correcting for heat losses, the
+enthalpy of combustion was determined.
+The ideal gas law PV = nRT was used to correct for gas-phase products where
+applicable. At the reaction pressure of 102.6 kPa, the molar
+volume correction is negligible.
+
+Uncertainty analysis: the combined standard uncertainty is 1.8%
+(k=2), dominated by the temperature measurement uncertainty of 0.016 degC.
+Replicate measurements (n=5): mean = -293.7 kJ/mol,
+s.d. = 7.7 kJ/mol. Duration of each run: 20 min.

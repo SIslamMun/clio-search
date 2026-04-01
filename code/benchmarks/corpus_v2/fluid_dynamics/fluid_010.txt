@@ -1,0 +1,24 @@
+Pipe Flow Experiment: Run PF-110
+
+A fully developed turbulent pipe flow experiment was conducted in a 38 mm
+inner diameter smooth pipe. The pipe length was 7.4 m, giving an L/D ratio
+of 183, sufficient for fully developed conditions. Working fluid: water
+at 20.4 degC (kinematic viscosity approximately 1.0e-6 m^2/s).
+
+Flow conditions:
+- Bulk velocity: 4.66 m/s
+- Reynolds number: Re = 15798
+- Volume flow rate: 16.52 L/s
+- Inlet pressure: 160 kPa (gauge)
+- Outlet pressure: 105 kPa (gauge)
+- Pressure drop: 196.0 kPa over the test section
+
+The pressure drop of 177264 Pa corresponds to a Darcy friction
+factor of f = 0.0345, in good agreement with the Moody diagram
+prediction. Wall shear stress was estimated at 77.9 Pa using the
+relation tau_w = (delta_P * D) / (4 * L).
+
+PIV measurements in a cross-sectional plane at x/D = 92 revealed
+the expected logarithmic velocity profile. The centerline velocity was
+4.05 m/s (11.8 km/h).
+Turbulence intensity at the centerline: 6.1%.

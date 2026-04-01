@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 433
+
+Month: June 2025
+Latitude: 64.30N, Longitude: -119.94W
+Elevation: 1619 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1005.8 hPa
+- Pressure range: 995.6 to 1049.8 hPa
+- Mean temperature: 8.6 degC
+- Total precipitation: 123.9 mm
+- Mean wind speed: 4.9 m/s (33.6 km/h)
+- Peak wind gust: 25 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: -3.6 hPa
+- Temperature anomaly: +2.4 degC
+
+The mean station pressure of 907 hPa converts to
+72109 Pa. Cloud cover averaged 35%
+with 17 clear days. Solar radiation: 121 W/m^2
+daily average. Soil temperature (10 cm depth): 18.6 degC.
+
+This station has been operational since 1982 with
+99.7% data completeness.

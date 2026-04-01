@@ -1,0 +1,28 @@
+Aerospace Component Test: Thermal-Structural Qualification, Test 209
+
+Component: Turbopump housing
+Material: Inconel 718
+
+Thermal loading:
+- Gas temperature: 2412 degC
+- Heat flux: 2.1 MW/m^2
+- Cooling fluid: GN2
+- Coolant pressure: 19 MPa (7113 kPa)
+- Coolant flow velocity: 33 m/s (53 km/h)
+
+Structural measurements:
+- Peak thermal stress: 611 MPa
+- Membrane stress: 259 MPa
+- Wall thickness: 2.9 mm
+- Displacement at tip: 4.2 mm
+- Component mass: 44.2 kg (37586 g)
+
+Pressure measurements:
+- Chamber pressure: 10 MPa
+- Nozzle exit pressure: 84 kPa (16563 Pa)
+- External ambient: 69.3 kPa
+
+Test duration: 44 s (7.3 min). The component
+survived 3 thermal cycles without cracking. Post-test inspection
+by DPI and X-ray revealed no defects exceeding the acceptance criteria of
+0.2 mm indication length.

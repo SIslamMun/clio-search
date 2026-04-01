@@ -1,0 +1,29 @@
+Meeting Minutes: Departmental Research Computing Committee
+
+The committee convened to discuss the upcoming cluster upgrade and resource
+allocation policies for the next fiscal year.
+
+Regarding the cluster upgrade, the chair reported that vendor proposals
+have been received and evaluated. The recommended configuration includes
+newer generation processors, increased memory per node, and additional
+GPU accelerators. The timeline for procurement and installation is
+approximately six months from approval.
+
+The committee discussed job scheduling policies. Several users have
+reported long queue wait times for large parallel jobs. The proposed
+solution involves dedicated time slots for capability computing jobs and
+improved backfill scheduling for smaller jobs. A fair-share algorithm
+will replace the current first-come-first-served policy.
+
+Software environment management was also discussed. The transition to
+a container-based workflow was endorsed to improve reproducibility and
+reduce dependency conflicts. Training workshops will be organized to
+help users adapt their workflows.
+
+Data storage remains a concern. The current parallel filesystem is
+approaching capacity. Options include expanding existing storage,
+implementing tiered storage with automatic migration, or establishing
+a data lifecycle management policy. The committee will draft a proposal
+for the next meeting.
+
+The next meeting is scheduled for three weeks from today.

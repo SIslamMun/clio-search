@@ -1,0 +1,33 @@
+HPC Report: Direct Numerical Simulation of Turbulence, DNS-6029
+
+Configuration: Channel flow
+Reynolds number: Re_tau = 275
+
+Grid:
+- Nx x Ny x Nz = 1024 x 192 x 1024
+- Total grid points: 426 million
+- Streamwise spacing: delta_x+ = 13.5
+- Wall-normal (min): delta_y+ = 0.91
+- Spanwise spacing: delta_z+ = 3.4
+- Physical domain: 7 x 2 x 2 (in delta units)
+
+Time advancement:
+- Time step: 9.7e-04 s
+- CFL: < 0.3
+- Simulation time: 150 delta/u_tau
+- Statistical averaging: 136 delta/u_tau
+
+Resources:
+- Cores: 65536
+- Wall time: 418 h (307706 s)
+- Memory: 9.4 TB
+- Output: 119 TB
+
+Key statistics:
+- Bulk velocity: 2.7 m/s
+- Friction velocity: 0.264 m/s
+- Wall shear stress: 16.1 Pa
+- Mean pressure gradient: -0.29 Pa/m
+
+Grid spacing at walls was 0.039 mm to resolve the viscous sublayer.
+The pressure difference between inlet and outlet was 0.19 kPa.

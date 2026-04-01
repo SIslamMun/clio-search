@@ -1,0 +1,24 @@
+Creep Test Report: Inconel 718, Sample CR-8015
+
+Test conditions:
+- Temperature: 609 degC
+- Applied stress: 576 MPa
+- Environment: Argon atmosphere at 119 kPa
+
+Specimen: cylindrical, diameter 7.1 mm, gauge length
+45 mm. The specimen was solution treated at 980 degC
+for 1 h followed by double aging (620 degC).
+
+Results:
+- Primary creep duration: 21 h
+- Minimum creep rate: 7.00e-08 s^{-1}
+- Rupture time: 3679 h
+- Elongation at rupture: 20.7%
+
+The steady-state creep rate of 6.65e-08 s^{-1} is consistent
+with diffusion-controlled dislocation climb mechanisms. Activation energy was
+estimated at 299 kJ/mol via Arrhenius analysis across
+three temperatures. Grain boundary cavitation was observed in post-test metallography.
+The applied stress of 537980 kPa exceeds the threshold
+for power-law breakdown. Specimen mass before test: 48.7 g;
+after test: 41.3 g (minor oxidation loss).

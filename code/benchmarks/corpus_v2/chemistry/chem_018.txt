@@ -1,0 +1,27 @@
+Synthesis Report: Gold Nanoparticle Preparation
+
+Batch ID: SYN-118
+Method: Turkevich citrate reduction
+
+Reagent preparation:
+- Precursor: 50.5 mg dissolved in 53 mL deionized water
+- Reducing agent: 35.2 mg in 15 mL solvent
+- Stabilizer: 35.6 mg (0.005 g)
+
+The reaction was carried out at 88 degC for 153 min
+(10693 s) under continuous magnetic stirring at 369 rpm.
+The pH was adjusted to 4.9 using NaOH/HCl.
+
+After synthesis, the product was centrifuged at 5708 rpm for
+18 min and washed three times with ethanol. Final product mass:
+151.5 mg (yield: 45%).
+
+Characterization:
+- UV-Vis absorption peak: 525 nm
+- DLS mean diameter: 89 nm
+- Zeta potential: -45 mV
+- XRD confirmed wurtzite crystal structure
+
+The total reagent mass was 0.510 g. Using the Arrhenius equation
+k = A * e^{-Ea/RT}, the estimated rate constant at the synthesis temperature is consistent
+with literature values for Ea = 94 kJ/mol.

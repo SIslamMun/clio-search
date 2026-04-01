@@ -1,0 +1,21 @@
+Radiosonde Profile: Launch 201, Fairbanks AK
+
+Launch time: 22:00 UTC
+Surface conditions: pressure 876.0 hPa, temperature -2.1 degC,
+dewpoint 3.5 degC
+
+Upper-air data (selected levels):
+- 850 hPa: height 1530 m, temp 10.4 degC, wind 23 m/s from 303
+- 700 hPa: height 3039 m, temp 6.5 degC
+- 500 hPa: height 5696 m, temp -20.2 degC, wind 24 m/s
+- 300 hPa: height 9554 m, temp -45.8 degC, wind 47 m/s
+- 200 hPa: height 12250 m, wind 68 m/s (jet stream level)
+
+The tropopause was identified at 217 hPa (11677 m).
+CAPE was 1977 J/kg, CIN was 65 J/kg. The
+precipitable water was 34 mm. Lifted index: -3.4.
+The surface pressure converted to Pa was 89392 Pa.
+
+The 500 hPa wind speed in surface-relative units corresponds to approximately
+89 km/h. The sounding reached a maximum altitude of
+30962 m before balloon burst.

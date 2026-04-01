@@ -1,0 +1,28 @@
+HPC Job: Finite Element Analysis, Case FEA-5016
+
+Analysis type: modal
+Component: automotive frame
+Software: LS-DYNA
+
+Model details:
+- Nodes: 3.8 million
+- Elements: 6.7 million (S4R)
+- Minimum element size: 3.9 mm
+- Maximum element size: 72 mm
+- Material: titanium
+
+Loading:
+- Applied pressure: 1.9 MPa (2958 kPa) on inner surface
+- Temperature load: 430 degC
+- Boundary conditions: fixed at flange
+
+Results:
+- Max von Mises stress: 700 MPa
+- Max displacement: 6.51 mm (0.0068 m)
+- Factor of safety: 2.0
+- First natural frequency: 211 Hz
+
+The peak stress of 114037 kPa occurs at the fillet radius.
+Mesh convergence study: stress changed < 4% between final two
+refinement levels. Wall time: 18.7 h on 9 cores.
+Total output size: 48 GB.

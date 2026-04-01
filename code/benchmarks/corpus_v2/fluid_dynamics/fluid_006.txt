@@ -1,0 +1,23 @@
+Turbulent Flow Simulation: Run T-2006
+
+This simulation models turbulent flow through a converging nozzle at Reynolds
+number Re = 24869. The inlet velocity was set to
+5.6 m/s with a turbulence intensity of 3%.
+The nozzle throat diameter was 28 mm, expanding to
+77 mm at the outlet.
+
+Boundary conditions: inlet pressure 235 kPa (gauge),
+outlet pressure 103.9 kPa (atmospheric). The simulation ran
+for 3.8 seconds of physical time using a time step of
+0.0015 s. Peak velocity at the throat reached
+111.2 m/s, consistent with the isentropic relation
+v = sqrt(2 * delta_P / rho).
+
+The pressure drop across the nozzle was 308.2 kPa,
+corresponding to 399589 Pa. Grid convergence was verified
+using three mesh levels (0.4 mm, 0.9 mm,
+1.6 mm spacing). The k-epsilon turbulence model was employed with
+standard wall functions. Total cell count: 1.3 million.
+
+The throat velocity of 437 km/h indicates compressibility effects
+may become relevant. Mach number at throat: 0.50.

@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 418
+
+Month: August 2025
+Latitude: 63.52N, Longitude: -116.55W
+Elevation: 2417 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1022.2 hPa
+- Pressure range: 995.9 to 1049.6 hPa
+- Mean temperature: 28.5 degC
+- Total precipitation: 161.9 mm
+- Mean wind speed: 4.9 m/s (30.0 km/h)
+- Peak wind gust: 15 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +2.5 hPa
+- Temperature anomaly: -1.8 degC
+
+The mean station pressure of 963 hPa converts to
+100089 Pa. Cloud cover averaged 35%
+with 12 clear days. Solar radiation: 168 W/m^2
+daily average. Soil temperature (10 cm depth): 16.2 degC.
+
+This station has been operational since 2000 with
+97.8% data completeness.

@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-327
+
+Date: 24/04/2025
+Location: Central Oklahoma
+Event type: squall line
+
+Pre-storm environment:
+- Surface pressure: 99.5 kPa
+- Surface temperature: 31 degC
+- Surface dewpoint: 20 degC
+- 0-6 km shear: 23 m/s (83 km/h)
+- CAPE: 4824 J/kg
+- Storm-relative helicity (0-3 km): 338 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 98.4 kPa (94778 Pa)
+- Maximum wind gust: 44 m/s
+- Maximum hail diameter: 23 mm
+- Peak radar reflectivity: 57 dBZ
+
+The pressure perturbation of 3.8 kPa was detected by the
+Oklahoma Mesonet stations. No tornado was observed
+with estimated peak winds of 148 km/h. Storm motion was
+43 km/h from 234 degrees.
+Event duration: approximately 1.6 h.

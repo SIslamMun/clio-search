@@ -1,0 +1,27 @@
+Calorimetry Report: Mixing Enthalpy
+
+Experiment: CAL-415
+Calorimeter type: isothermal titration (ITC)
+
+Sample: 228.0 mg (0.669 g) of
+urea
+in 106 mL of water
+
+Measurement:
+- Initial temperature: 24.535 degC
+- Final temperature: 33.681 degC
+- Temperature rise: 1.838 degC
+- Calorimeter constant: 503.1 J/degC
+- Measured heat: 3.50 kJ
+- Molar enthalpy: -78.6 kJ/mol
+
+Using the relation q = m * c * Delta_T and correcting for heat losses, the
+enthalpy of dissolution was determined.
+The ideal gas law PV = nRT was used to correct for gas-phase products where
+applicable. At the reaction pressure of 100.8 kPa, the molar
+volume correction is negligible.
+
+Uncertainty analysis: the combined standard uncertainty is 1.7%
+(k=2), dominated by the temperature measurement uncertainty of 0.014 degC.
+Replicate measurements (n=3): mean = -171.1 kJ/mol,
+s.d. = 5.1 kJ/mol. Duration of each run: 22 min.

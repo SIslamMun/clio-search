@@ -1,0 +1,25 @@
+Reaction Kinetics Study: Saponification
+
+Experiment ID: KIN-225
+
+Reaction conditions:
+- Temperature: 34.8 degC
+- Solvent: water
+- Initial concentration: 0.557 M
+- Catalyst loading: 9.2 mol%
+
+Aliquots (1.6 mL) were withdrawn at t = 0, 68,
+178, 425, 1464,
+and 2288 s. Conversion was monitored by GC-MS.
+
+Kinetic analysis:
+- Reaction order: pseudo-first
+- Rate constant k = 3.7908e-03 s^{-1} (at 52.6 degC)
+- Half-life: 3253 s (11.6 min)
+- Activation energy Ea = 104 kJ/mol (from Arrhenius plot)
+
+The Arrhenius equation k = A * e^{-Ea/RT} with pre-exponential factor
+A = 9.81e+11 s^{-1} fits the data with R^2 = 0.997.
+The enthalpy of activation Delta_H_ddagger was 41 kJ/mol via
+Eyring analysis. Total reaction time to 95% conversion: 67 min.
+Product isolated mass: 1.77 g (4302 mg).

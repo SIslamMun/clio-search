@@ -1,0 +1,22 @@
+Thin Film Mechanical Properties: SiN_x on Silicon
+
+Sample: TF-6029
+Film thickness: 229 nm (0.277 mm equivalent is NOT correct; actual is sub-micron)
+Substrate: Si(100), 0.6 mm thick
+
+Nanoindentation was performed using a Berkovich tip with maximum load
+5.6 mN. The Oliver-Pharr method yielded:
+- Hardness: 22.9 GPa
+- Reduced modulus: 246 GPa
+
+The residual stress in the film was measured by wafer curvature (Stoney equation)
+at 468 MPa compressive. The biaxial modulus was
+266 GPa. Deposition was carried out via PECVD at a
+chamber pressure of 93 Pa with substrate temperature
+316 degC.
+
+Process gas: SiH4/NH3/N2 mixture at total flow 224 sccm.
+RF power: 64 W at 13.56 MHz. Deposition duration was
+58 min, yielding a deposition rate of approximately
+7.3 nm/min. Film adhesion was verified by scratch testing;
+critical load was 22 mN.

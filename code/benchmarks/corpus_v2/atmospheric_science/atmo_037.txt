@@ -1,0 +1,25 @@
+Severe Weather Event Summary: Case SW-337
+
+Date: 14/05/2025
+Location: Eastern Kansas
+Event type: squall line
+
+Pre-storm environment:
+- Surface pressure: 101.5 kPa
+- Surface temperature: 26 degC
+- Surface dewpoint: 23 degC
+- 0-6 km shear: 24 m/s (138 km/h)
+- CAPE: 4134 J/kg
+- Storm-relative helicity (0-3 km): 306 m^2/s^2
+
+Peak observations during event:
+- Minimum pressure: 94.6 kPa (94419 Pa)
+- Maximum wind gust: 29 m/s
+- Maximum hail diameter: 45 mm
+- Peak radar reflectivity: 65 dBZ
+
+The pressure perturbation of 5.3 kPa was detected by the
+Oklahoma Mesonet stations. A tornado was confirmed
+with estimated peak winds of 212 km/h. Storm motion was
+37 km/h from 257 degrees.
+Event duration: approximately 3.7 h.

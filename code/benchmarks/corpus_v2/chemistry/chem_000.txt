@@ -1,0 +1,27 @@
+Synthesis Report: Gold Nanoparticle Preparation
+
+Batch ID: SYN-100
+Method: sol-gel
+
+Reagent preparation:
+- Precursor: 467.9 mg dissolved in 38 mL deionized water
+- Reducing agent: 192.7 mg in 31 mL solvent
+- Stabilizer: 38.9 mg (0.037 g)
+
+The reaction was carried out at 76 degC for 42 min
+(3262 s) under continuous magnetic stirring at 296 rpm.
+The pH was adjusted to 9.8 using NaOH/HCl.
+
+After synthesis, the product was centrifuged at 8892 rpm for
+28 min and washed three times with ethanol. Final product mass:
+79.7 mg (yield: 78%).
+
+Characterization:
+- UV-Vis absorption peak: 456 nm
+- DLS mean diameter: 99 nm
+- Zeta potential: -21 mV
+- XRD confirmed anatase crystal structure
+
+The total reagent mass was 0.116 g. Using the Arrhenius equation
+k = A * e^{-Ea/RT}, the estimated rate constant at the synthesis temperature is consistent
+with literature values for Ea = 75 kJ/mol.

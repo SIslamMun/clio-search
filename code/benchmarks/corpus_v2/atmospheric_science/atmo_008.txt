@@ -1,0 +1,25 @@
+Climate Data Analysis: Monthly Summary for Station 408
+
+Month: March 2025
+Latitude: 43.82N, Longitude: -85.91W
+Elevation: 2291 m MSL
+
+Monthly statistics:
+- Mean sea-level pressure: 1008.6 hPa
+- Pressure range: 993.8 to 1042.7 hPa
+- Mean temperature: 7.1 degC
+- Total precipitation: 22.8 mm
+- Mean wind speed: 4.8 m/s (16.8 km/h)
+- Peak wind gust: 32 m/s
+
+Anomalies relative to 1991-2020 baseline:
+- Pressure anomaly: +2.0 hPa
+- Temperature anomaly: -1.0 degC
+
+The mean station pressure of 1002 hPa converts to
+96034 Pa. Cloud cover averaged 58%
+with 19 clear days. Solar radiation: 72 W/m^2
+daily average. Soil temperature (10 cm depth): 7.8 degC.
+
+This station has been operational since 1947 with
+99.8% data completeness.

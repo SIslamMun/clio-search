@@ -1,0 +1,22 @@
+Gas-Phase Reaction Study: H2 + I2 -> 2HI
+
+Reactor: static reactor with volume 3.2 L
+Temperature: 430 K
+Total pressure: 113 kPa (123001 Pa)
+
+Using the ideal gas law PV = nRT:
+- n = PV/RT = (131 kPa * 4.6 L) / (8.314 J/(mol*K) * 572 K)
+- n = 0.0949 mol
+
+Reactant partial pressures: 9.2 kPa each, balance Ar
+Residence time: 8.5 s
+Conversion at exit: 37%
+
+The rate constant was determined as k = 4.510e+01 cm^3/(molecule*s)
+at 221 K, giving an Arrhenius activation energy
+Ea = 35.1 kJ/mol from the relation k = A * e^{-Ea/RT}.
+The pre-exponential factor A = 1.95e-11 cm^3/(molecule*s).
+
+Product analysis by FTIR showed complete consumption of the limiting reagent.
+Mass balance closure: 95.7%. Total reactant mass:
+8.24 g. Reactor wall temperature uniformity: +/- 5 K.

@@ -1,0 +1,24 @@
+Editorial: The Reproducibility Crisis in Materials Science
+
+Recent studies have highlighted concerning trends in the reproducibility of
+published materials science results. A survey of leading journals found that
+fewer than half of experimental studies provided sufficient detail for
+independent replication. Key issues include incomplete reporting of synthesis
+conditions, ambiguous characterization protocols, and selective reporting of
+favorable results.
+
+The community has responded with initiatives such as FAIR data principles
+(Findable, Accessible, Interoperable, Reusable) and mandatory data
+deposition requirements. Some journals now require authors to submit raw
+data and analysis scripts alongside manuscripts.
+
+However, cultural change is slow. The incentive structure in academia still
+rewards novelty over rigor, and replication studies struggle to find
+publication venues. Several grassroots efforts have emerged, including
+community-organized replication challenges and open-source materials databases.
+
+Moving forward, the integration of automated experiment platforms and
+electronic lab notebooks promises to improve documentation and traceability.
+The development of standardized reporting guidelines specific to different
+subdisciplines would also help. Ultimately, the credibility of materials
+science depends on our collective commitment to transparency and rigor.

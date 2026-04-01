@@ -1,0 +1,29 @@
+HPC Job Report: CFD Simulation RANS-2025
+
+Job ID: 317782
+Cluster: Polaris
+GPUs: 16 x A100
+Wall time: 2.1 h
+
+Mesh statistics:
+- Total cells: 336.1 million
+- Mesh type: structured hexahedral
+- Minimum cell size: 0.837 mm
+- Maximum cell size: 35.1 mm
+- Average y+ on walls: 4.9
+
+Solver settings:
+- Algorithm: SIMPLE
+- Time step: 7.8e-03 s
+- Total physical time: 0.8 s
+- Turbulence model: k-omega SST
+
+Convergence:
+- Residuals: < 1e-6 for all equations
+- Iterations: 43227
+- Pressure range in domain: 89 kPa to 793 kPa
+- Velocity range: 1.5 to 98.2 m/s
+
+The maximum pressure of 259885 Pa occurs at the stagnation
+point. Mesh spacing at critical regions was 0.13 mm to resolve
+the boundary layer. Grid independence was verified by Richardson extrapolation.

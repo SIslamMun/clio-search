@@ -1,0 +1,26 @@
+Geotechnical Site Investigation: Borehole BH-407
+
+Location: Downtown construction site
+Depth: 23.2 m below ground level
+
+Soil profile:
+- 0-4.1 m: Fill material, unit weight 16 kN/m^3
+- 2.5-10.3 m: Soft clay
+- 13.4-32.5 m: Weathered rock
+- Below 29.8 m: Hardpan
+
+In-situ testing:
+- SPT N-values: 10 (soft layer) to 75 (dense layer)
+- CPT tip resistance: 2.6 MPa (21377 kPa)
+- Pore water pressure at 10 m: 146 kPa (102061 Pa)
+- Groundwater table: 6.5 m below surface
+
+Laboratory tests:
+- Unconfined compressive strength: 49 kPa
+- Consolidation: Cc = 0.48, preconsolidation pressure 261 kPa
+- Permeability: 3.5e-06 m/s (8.834 mm/s)
+
+The effective overburden pressure at 17 m depth is approximately
+166 kPa. Foundation design: mat foundation, bearing capacity
+317 kPa (allowable). Settlement estimate: 96 mm
+over 20 years. Sample mass extracted: 5.8 kg.

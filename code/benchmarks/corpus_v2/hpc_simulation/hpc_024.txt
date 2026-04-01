@@ -1,0 +1,33 @@
+HPC Job Summary: Weather Forecast Run WRF-1024
+
+Job ID: 365015
+Queue: debug
+Nodes: 32
+Cores per node: 48
+Wall-clock time: 8.5 h (27895 s)
+
+Model configuration:
+- Domain: 2204 km x 3647 km
+- Horizontal resolution: 10 km (4780 m)
+- Vertical levels: 78
+- Top of atmosphere: 44 hPa (3838 Pa)
+- Time step: 55 s
+- Simulation length: 73 h
+
+Physics options:
+- Microphysics: WSM6
+- Radiation: RRTMG
+- PBL: MYJ
+- Convection: Kain-Fritsch
+
+Output:
+- Surface pressure fields: 102.8 kPa range
+- Surface pressure in Pa: 99977 Pa
+- 10-m wind speed: max 28.3 m/s (120 km/h)
+- Total precipitation: max 168 mm
+- Output interval: 6 h
+- Total output size: 748 GB
+
+Performance: 234 simulation-seconds per wall-second.
+Memory usage: 57% of available. MPI communication overhead:
+16%.

@@ -1,0 +1,28 @@
+Aerospace Component Test: Thermal-Structural Qualification, Test 217
+
+Component: Combustion liner
+Material: C/SiC composite
+
+Thermal loading:
+- Gas temperature: 1678 degC
+- Heat flux: 3.9 MW/m^2
+- Cooling fluid: water
+- Coolant pressure: 15 MPa (14981 kPa)
+- Coolant flow velocity: 32 m/s (99 km/h)
+
+Structural measurements:
+- Peak thermal stress: 283 MPa
+- Membrane stress: 91 MPa
+- Wall thickness: 1.7 mm
+- Displacement at tip: 3.4 mm
+- Component mass: 12.2 kg (10971 g)
+
+Pressure measurements:
+- Chamber pressure: 9 MPa
+- Nozzle exit pressure: 75 kPa (20768 Pa)
+- External ambient: 23.3 kPa
+
+Test duration: 492 s (7.3 min). The component
+survived 31 thermal cycles without cracking. Post-test inspection
+by DPI and X-ray revealed no defects exceeding the acceptance criteria of
+0.7 mm indication length.

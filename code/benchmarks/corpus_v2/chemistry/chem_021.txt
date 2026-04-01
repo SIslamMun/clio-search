@@ -1,0 +1,27 @@
+Calorimetry Report: Mixing Enthalpy
+
+Experiment: CAL-421
+Calorimeter type: differential scanning (DSC)
+
+Sample: 591.7 mg (0.255 g) of
+urea
+in 193 mL of water
+
+Measurement:
+- Initial temperature: 22.067 degC
+- Final temperature: 24.743 degC
+- Temperature rise: 3.360 degC
+- Calorimeter constant: 408.0 J/degC
+- Measured heat: 1.54 kJ
+- Molar enthalpy: -144.8 kJ/mol
+
+Using the relation q = m * c * Delta_T and correcting for heat losses, the
+enthalpy of neutralization was determined.
+The ideal gas law PV = nRT was used to correct for gas-phase products where
+applicable. At the reaction pressure of 100.1 kPa, the molar
+volume correction is negligible.
+
+Uncertainty analysis: the combined standard uncertainty is 2.3%
+(k=2), dominated by the temperature measurement uncertainty of 0.017 degC.
+Replicate measurements (n=6): mean = -184.2 kJ/mol,
+s.d. = 1.7 kJ/mol. Duration of each run: 18 min.
