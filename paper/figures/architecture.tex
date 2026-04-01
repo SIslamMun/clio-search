@@ -1,0 +1,124 @@
+% Architecture diagram for clio-agentic-search
+% Usage: \input{figures/architecture.tex}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  % --- global style ---
+  >=Stealth,
+  node distance=0.45cm and 0.25cm,
+  every node/.style={font=\scriptsize},
+  box/.style={
+    draw, rounded corners=2pt, minimum height=0.55cm,
+    text centered, inner sep=2pt, fill=white,
+    minimum width=2.0cm
+  },
+  scibox/.style={
+    box, fill=black!8
+  },
+  connbox/.style={
+    draw, rounded corners=2pt, minimum height=0.45cm,
+    text centered, inner sep=2pt, fill=white,
+    minimum width=1.5cm, font=\tiny
+  },
+  sciconn/.style={
+    connbox, fill=black!8
+  },
+  arr/.style={->, thick},
+  darr/.style={->, densely dashed, thick},
+]
+
+% ====== Main pipeline (centred) ======
+\node[box, minimum width=2.8cm] (query) {Query Interface};
+\node[below=of query, font=\tiny] (querysub) {FastAPI\,/\,CLI};
+
+\node[box, minimum width=2.8cm, below=0.55cm of query] (ns) {Namespace Registry};
+
+\node[box, minimum width=2.8cm, below=of ns] (rc) {Retrieval Coordinator};
+
+% --- four parallel branches ---
+\node[box, below=0.7cm of rc, xshift=-1.55cm, minimum width=1.15cm]
+  (lex) {Lexical};
+\node[below=0pt of lex, font=\tiny] (lexsub) {BM25};
+
+\node[box, below=0.7cm of rc, xshift=-0.5cm, minimum width=1.15cm]
+  (vec) {Vector};
+\node[below=0pt of vec, font=\tiny] (vecsub) {Dense};
+
+\node[box, below=0.7cm of rc, xshift=0.55cm, minimum width=1.15cm]
+  (gra) {Graph};
+\node[below=0pt of gra, font=\tiny] (grasub) {BFS};
+
+\node[scibox, below=0.7cm of rc, xshift=1.6cm, minimum width=1.15cm]
+  (sci) {Scientific};
+\node[below=0pt of sci, font=\tiny] (scisub) {SI\,+\,Formula};
+
+% --- merge + rerank ---
+\node[box, minimum width=2.8cm, below=1.15cm of rc, yshift=-0.95cm]
+  (merge) {Merge + Rerank};
+
+% --- citations ---
+\node[box, minimum width=2.8cm, below=of merge]
+  (cite) {Citations + Traces};
+
+% ====== Arrows: main pipeline ======
+\draw[arr] (query) -- (ns);
+\draw[arr] (ns) -- (rc);
+
+% fan-out
+\draw[arr] (rc.south) -- ++(0,-0.25) -| (lex.north);
+\draw[arr] (rc.south) -- ++(0,-0.25) -| (vec.north);
+\draw[arr] (rc.south) -- ++(0,-0.25) -| (gra.north);
+\draw[arr] (rc.south) -- ++(0,-0.25) -| (sci.north);
+
+% fan-in
+\draw[arr] (lex.south) ++(0,-0.15) -- ++(0,-0.15) -| (merge.north -| lex.south) -- (merge.north);
+\draw[arr] (vec.south) ++(0,-0.15) -- ++(0,-0.15) -| (merge.north -| vec.south) -- (merge.north);
+\draw[arr] (gra.south) ++(0,-0.15) -- ++(0,-0.15) -| (merge.north -| gra.south) -- (merge.north);
+\draw[arr] (sci.south) ++(0,-0.15) -- ++(0,-0.15) -| (merge.north -| sci.south) -- (merge.north);
+
+\draw[arr] (merge) -- (cite);
+
+% ====== Right side: connectors ======
+\node[connbox, right=1.1cm of ns, yshift=0.65cm]  (fs)   {Filesystem};
+\node[connbox, below=0.12cm of fs]                 (s3)   {S3 Object Store};
+\node[connbox, below=0.12cm of s3]                 (qd)   {Qdrant};
+\node[connbox, below=0.12cm of qd]                 (neo)  {Neo4j};
+\node[sciconn, below=0.12cm of neo]                (hdf)  {HDF5};
+\node[sciconn, below=0.12cm of hdf]                (nc)   {NetCDF};
+
+% label
+\node[above=0.08cm of fs, font=\tiny\bfseries] {Connectors};
+
+% arrows from connectors to namespace registry
+\draw[arr] (fs.west)  -- (ns.east |- fs.west);
+\draw[arr] (s3.west)  -- (ns.east |- s3.west);
+\draw[arr] (qd.west)  -| ([xshift=0.15cm]ns.east) -- (ns.east);
+\draw[arr] (neo.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
+\draw[arr] (hdf.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
+\draw[arr] (nc.west)  -| ([xshift=0.15cm]ns.east) -- (ns.east);
+
+% ====== Left side: agentic loop ======
+\node[box, left=1.0cm of rc, minimum width=1.6cm, fill=white]
+  (llm) {\parbox{1.4cm}{\centering LLM Query\\[-1pt] Rewriter}};
+
+% agentic loop arrows
+\draw[darr] (cite.west) -- ++(-0.35,0) |- (llm.south);
+\draw[darr] (llm.east) -- (rc.west);
+
+% loop label
+\node[left=0.04cm of llm, font=\tiny\bfseries, rotate=90, anchor=south]
+  {Agentic Loop};
+
+% background highlight for agentic loop
+\begin{pgfonlayer}{background}
+  \node[draw=black!30, dashed, rounded corners=3pt, fill=black!3,
+        inner sep=4pt,
+        fit=(llm)(rc)(merge)(cite)] {};
+\end{pgfonlayer}
+
+\end{tikzpicture}
+\caption{System architecture of \textsc{clio-agentic-search}. Science-aware
+components (shaded) execute alongside standard retrieval branches. The agentic
+loop iteratively refines queries via LLM rewriting.}
+\label{fig:architecture}
+\end{figure}

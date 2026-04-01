@@ -1,0 +1,72 @@
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in aiscientistv2_2025
+Warning--empty booktitle in mcp_hpc2025
+Warning--empty booktitle in cone2026
+Warning--empty booktitle in ncretriever2025
+Warning--empty booktitle in ragroute2025
+Warning--empty booktitle in arag2026
+Warning--empty booktitle in numbers_not_continuous2025
+Warning--empty booktitle in embedding_limits2025
+Warning--empty booktitle in mirb2025
+Warning--empty booktitle in pangaeagpt2026
+Warning--empty booktitle in datum2024
+Warning--empty booktitle in hdfclinic2025
+Warning--empty booktitle in sok_agentic_rag2026
+Warning--empty booktitle in sciagent2025
+Warning--empty booktitle in scienceclaw2026
+
+Done.
+You've used 43 entries,
+            4087 wiz_defined-function locations,
+            1004 strings with 14419 characters,
+and the built_in function-call counts, 20971 in all, are:
+= -- 1504
+> -- 454
+< -- 24
++ -- 224
+- -- 106
+* -- 888
+:= -- 3409
+add.period$ -- 86
+call.type$ -- 43
+change.case$ -- 64
+chr.to.int$ -- 48
+cite$ -- 58
+duplicate$ -- 1776
+empty$ -- 2275
+format.name$ -- 129
+if$ -- 4870
+int.to.chr$ -- 0
+int.to.str$ -- 43
+missing$ -- 365
+newline$ -- 152
+num.names$ -- 43
+pop$ -- 1010
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1697
+stack$ -- 0
+substring$ -- 197
+swap$ -- 959
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 43
+warning$ -- 15
+while$ -- 51
+width$ -- 45
+write$ -- 377
+(There were 15 warnings)
