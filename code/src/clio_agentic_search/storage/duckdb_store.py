@@ -580,6 +580,14 @@ class DuckDBStorage:
         minimum: float | None,
         maximum: float | None,
     ) -> list[ChunkRecord]:
+        # Support both legacy unit strings ("pa") and dimension keys ("1|-1|-2|0|0|0|0").
+        # If the caller passes a short unit name, convert it to the dimension key.
+        if "," not in canonical_unit:
+            from clio_agentic_search.indexing.scientific import canonicalize_measurement
+            try:
+                _, canonical_unit = canonicalize_measurement(0.0, canonical_unit)
+            except ValueError:
+                pass  # keep original string if unit is unknown
         conditions = ["sm.namespace = ?", "sm.canonical_unit = ?"]
         params: list[Any] = [namespace, canonical_unit]
         if minimum is not None:
