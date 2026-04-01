@@ -1,0 +1,676 @@
+{
+  "description": "Hard benchmark queries designed to differentiate LLM providers. 30 queries in 3 categories: ambiguous (LLM must infer ranges/units), multi-hop (requires iterative retrieval), and imprecise (natural language with no structured operators).",
+  "corpus": "corpus_v2 (210 documents, 7 domains)",
+  "ambiguous_queries": [
+    {
+      "id": "amb_01",
+      "query": "high pressure experiments in the combustion lab",
+      "type": "ambiguous",
+      "hint": "LLM should expand to specific pressure ranges (>300 kPa). No explicit units given.",
+      "gold_unit": "kPa",
+      "gold_range": "300:1000:kPa",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_025.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_030.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_002.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_013.txt",
+        "hpc_simulation/hpc_019.txt",
+        "hpc_simulation/hpc_025.txt"
+      ]
+    },
+    {
+      "id": "amb_02",
+      "query": "fast flow rates in pipe testing",
+      "type": "ambiguous",
+      "hint": "LLM should infer 'fast' means >50 m/s or >180 km/h in fluid dynamics context.",
+      "gold_unit": "m/s",
+      "gold_range": "50:500:m/s",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_005.txt",
+        "hpc_simulation/hpc_011.txt",
+        "hpc_simulation/hpc_017.txt",
+        "hpc_simulation/hpc_023.txt",
+        "hpc_simulation/hpc_029.txt"
+      ]
+    },
+    {
+      "id": "amb_03",
+      "query": "lightweight material samples for chemical analysis",
+      "type": "ambiguous",
+      "hint": "LLM should map 'lightweight' to small mass range, e.g. <100 mg or <0.1 g.",
+      "gold_unit": "mg",
+      "gold_range": "0:100:mg",
+      "relevant_docs": [
+        "chemistry/chem_000.txt",
+        "chemistry/chem_002.txt",
+        "chemistry/chem_004.txt",
+        "chemistry/chem_006.txt",
+        "chemistry/chem_008.txt",
+        "chemistry/chem_009.txt",
+        "chemistry/chem_012.txt",
+        "chemistry/chem_014.txt",
+        "chemistry/chem_015.txt",
+        "chemistry/chem_018.txt",
+        "chemistry/chem_020.txt",
+        "chemistry/chem_024.txt",
+        "chemistry/chem_026.txt"
+      ]
+    },
+    {
+      "id": "amb_04",
+      "query": "short duration chemical reactions",
+      "type": "ambiguous",
+      "hint": "LLM should infer 'short' means seconds to minutes, not hours. Need reaction time data.",
+      "gold_unit": "s",
+      "gold_range": "0:3600:s",
+      "relevant_docs": [
+        "chemistry/chem_001.txt",
+        "chemistry/chem_002.txt",
+        "chemistry/chem_007.txt",
+        "chemistry/chem_008.txt",
+        "chemistry/chem_013.txt",
+        "chemistry/chem_014.txt",
+        "chemistry/chem_019.txt",
+        "chemistry/chem_020.txt",
+        "chemistry/chem_025.txt",
+        "chemistry/chem_026.txt"
+      ]
+    },
+    {
+      "id": "amb_05",
+      "query": "large scale simulations with fine mesh resolution",
+      "type": "ambiguous",
+      "hint": "LLM should infer fine mesh means <1 mm spacing. Also relates to HPC.",
+      "gold_unit": "mm",
+      "gold_range": "0:1:mm",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_013.txt",
+        "hpc_simulation/hpc_019.txt",
+        "hpc_simulation/hpc_022.txt"
+      ]
+    },
+    {
+      "id": "amb_06",
+      "query": "low vacuum experiments in a controlled environment",
+      "type": "ambiguous",
+      "hint": "LLM should interpret 'low vacuum' as low pressure range 5-50 kPa.",
+      "gold_unit": "kPa",
+      "gold_range": "5:50:kPa",
+      "relevant_docs": [
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_037.txt",
+        "chemistry/chem_005.txt",
+        "chemistry/chem_011.txt",
+        "chemistry/chem_017.txt",
+        "chemistry/chem_023.txt",
+        "chemistry/chem_029.txt",
+        "fluid_dynamics/fluid_013.txt",
+        "fluid_dynamics/fluid_018.txt",
+        "fluid_dynamics/fluid_033.txt",
+        "fluid_dynamics/fluid_038.txt"
+      ]
+    },
+    {
+      "id": "amb_07",
+      "query": "strong wind events in atmospheric monitoring",
+      "type": "ambiguous",
+      "hint": "LLM should infer strong wind means >80 km/h or >22 m/s.",
+      "gold_unit": "km/h",
+      "gold_range": "80:300:km/h",
+      "relevant_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_002.txt",
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_011.txt",
+        "atmospheric_science/atmo_012.txt",
+        "atmospheric_science/atmo_016.txt",
+        "atmospheric_science/atmo_017.txt",
+        "atmospheric_science/atmo_021.txt",
+        "atmospheric_science/atmo_022.txt",
+        "atmospheric_science/atmo_026.txt",
+        "atmospheric_science/atmo_027.txt",
+        "atmospheric_science/atmo_031.txt",
+        "atmospheric_science/atmo_032.txt",
+        "atmospheric_science/atmo_036.txt",
+        "atmospheric_science/atmo_037.txt"
+      ]
+    },
+    {
+      "id": "amb_08",
+      "query": "metals tested under extreme stress conditions",
+      "type": "ambiguous",
+      "hint": "LLM should map 'extreme stress' to high MPa or kPa range for materials tests.",
+      "gold_unit": "MPa",
+      "gold_range": "300:2000:MPa",
+      "relevant_docs": [
+        "materials_science/mat_006.txt",
+        "materials_science/mat_007.txt",
+        "materials_science/mat_011.txt",
+        "materials_science/mat_014.txt",
+        "materials_science/mat_015.txt",
+        "materials_science/mat_022.txt",
+        "materials_science/mat_023.txt",
+        "materials_science/mat_030.txt",
+        "materials_science/mat_031.txt",
+        "materials_science/mat_038.txt",
+        "materials_science/mat_039.txt"
+      ]
+    },
+    {
+      "id": "amb_09",
+      "query": "highly turbulent flow simulations",
+      "type": "ambiguous",
+      "hint": "LLM should relate high turbulence to high Reynolds number or high velocity flows.",
+      "gold_unit": "m/s",
+      "gold_range": "30:500:m/s",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_003.txt",
+        "fluid_dynamics/fluid_005.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_008.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_005.txt",
+        "hpc_simulation/hpc_011.txt",
+        "hpc_simulation/hpc_017.txt"
+      ]
+    },
+    {
+      "id": "amb_10",
+      "query": "long running creep tests on superalloys",
+      "type": "ambiguous",
+      "hint": "LLM should infer 'long running' means >1000 hours for creep testing.",
+      "gold_unit": "h",
+      "gold_range": "1000:50000:h",
+      "relevant_docs": [
+        "materials_science/mat_006.txt",
+        "materials_science/mat_007.txt",
+        "materials_science/mat_014.txt",
+        "materials_science/mat_015.txt",
+        "materials_science/mat_022.txt",
+        "materials_science/mat_023.txt",
+        "materials_science/mat_030.txt",
+        "materials_science/mat_031.txt",
+        "materials_science/mat_038.txt",
+        "materials_science/mat_039.txt"
+      ]
+    }
+  ],
+  "multi_hop_queries": [
+    {
+      "id": "mh_01",
+      "query": "Find all experiments from the project that measured pressures above 300 kPa in nozzle tests",
+      "type": "multi_hop",
+      "hint": "First hop finds nozzle test docs, second hop should find related pressure data across domains.",
+      "hop1_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt"
+      ],
+      "relevant_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_013.txt",
+        "hpc_simulation/hpc_025.txt"
+      ]
+    },
+    {
+      "id": "mh_02",
+      "query": "What materials were tested under similar conditions to sample MS-1000?",
+      "type": "multi_hop",
+      "hint": "First hop finds MS-1000 (mat_000.txt), then searches for similar tensile test conditions.",
+      "hop1_docs": [
+        "materials_science/mat_000.txt"
+      ],
+      "relevant_docs": [
+        "materials_science/mat_000.txt",
+        "materials_science/mat_001.txt",
+        "materials_science/mat_002.txt",
+        "materials_science/mat_008.txt",
+        "materials_science/mat_009.txt",
+        "materials_science/mat_016.txt",
+        "materials_science/mat_024.txt",
+        "materials_science/mat_032.txt"
+      ]
+    },
+    {
+      "id": "mh_03",
+      "query": "Compare pressure readings across all turbulence simulations",
+      "type": "multi_hop",
+      "hint": "Must gather turbulence docs from fluid_dynamics AND hpc_simulation, then extract pressure data.",
+      "hop1_docs": [
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_005.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt"
+      ],
+      "relevant_docs": [
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_005.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_005.txt",
+        "hpc_simulation/hpc_011.txt"
+      ]
+    },
+    {
+      "id": "mh_04",
+      "query": "Find chemistry experiments that used the same synthesis method as batch SYN-100",
+      "type": "multi_hop",
+      "hint": "First find SYN-100 (chem_000.txt, sol-gel method), then find other sol-gel batches.",
+      "hop1_docs": [
+        "chemistry/chem_000.txt"
+      ],
+      "relevant_docs": [
+        "chemistry/chem_000.txt",
+        "chemistry/chem_006.txt",
+        "chemistry/chem_012.txt",
+        "chemistry/chem_018.txt",
+        "chemistry/chem_024.txt"
+      ]
+    },
+    {
+      "id": "mh_05",
+      "query": "Gather all fluid dynamics data from simulations that ran on more than 32 compute nodes",
+      "type": "multi_hop",
+      "hint": "First find HPC jobs with >32 nodes, then find related fluid dynamics data.",
+      "hop1_docs": [
+        "hpc_simulation/hpc_000.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_002.txt",
+        "hpc_simulation/hpc_003.txt",
+        "hpc_simulation/hpc_004.txt",
+        "hpc_simulation/hpc_005.txt"
+      ],
+      "relevant_docs": [
+        "hpc_simulation/hpc_000.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_005.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_011.txt",
+        "hpc_simulation/hpc_013.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt"
+      ]
+    },
+    {
+      "id": "mh_06",
+      "query": "Which weather stations recorded wind events concurrent with high-pressure atmospheric systems?",
+      "type": "multi_hop",
+      "hint": "First find high-pressure atmospheric docs, then correlate with wind speed readings.",
+      "hop1_docs": [
+        "atmospheric_science/atmo_000.txt",
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_005.txt",
+        "atmospheric_science/atmo_006.txt"
+      ],
+      "relevant_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_002.txt",
+        "atmospheric_science/atmo_006.txt",
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_011.txt",
+        "atmospheric_science/atmo_012.txt",
+        "atmospheric_science/atmo_016.txt",
+        "atmospheric_science/atmo_017.txt",
+        "atmospheric_science/atmo_021.txt",
+        "atmospheric_science/atmo_022.txt"
+      ]
+    },
+    {
+      "id": "mh_07",
+      "query": "Find tensile test results for alloys that also underwent creep testing",
+      "type": "multi_hop",
+      "hint": "First find creep tests, then cross-reference with tensile test docs for the same material families.",
+      "hop1_docs": [
+        "materials_science/mat_006.txt",
+        "materials_science/mat_007.txt",
+        "materials_science/mat_014.txt",
+        "materials_science/mat_015.txt"
+      ],
+      "relevant_docs": [
+        "materials_science/mat_004.txt",
+        "materials_science/mat_005.txt",
+        "materials_science/mat_006.txt",
+        "materials_science/mat_007.txt",
+        "materials_science/mat_012.txt",
+        "materials_science/mat_013.txt",
+        "materials_science/mat_014.txt",
+        "materials_science/mat_015.txt",
+        "materials_science/mat_022.txt",
+        "materials_science/mat_023.txt"
+      ]
+    },
+    {
+      "id": "mh_08",
+      "query": "Correlate nanoparticle synthesis yields with precursor masses across all chemistry batches",
+      "type": "multi_hop",
+      "hint": "First find synthesis docs with yield data, then correlate precursor mass info.",
+      "hop1_docs": [
+        "chemistry/chem_000.txt",
+        "chemistry/chem_006.txt",
+        "chemistry/chem_012.txt"
+      ],
+      "relevant_docs": [
+        "chemistry/chem_000.txt",
+        "chemistry/chem_001.txt",
+        "chemistry/chem_006.txt",
+        "chemistry/chem_007.txt",
+        "chemistry/chem_012.txt",
+        "chemistry/chem_013.txt",
+        "chemistry/chem_018.txt",
+        "chemistry/chem_019.txt",
+        "chemistry/chem_024.txt",
+        "chemistry/chem_025.txt"
+      ]
+    },
+    {
+      "id": "mh_09",
+      "query": "Find all experiments that report both pressure in kPa and velocity in m/s",
+      "type": "multi_hop",
+      "hint": "Cross-domain: need docs containing BOTH pressure and velocity measurements.",
+      "hop1_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt"
+      ],
+      "relevant_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "fluid_dynamics/fluid_036.txt",
+        "mixed/mixed_000.txt",
+        "mixed/mixed_004.txt",
+        "mixed/mixed_008.txt",
+        "mixed/mixed_012.txt"
+      ]
+    },
+    {
+      "id": "mh_10",
+      "query": "Identify the atmospheric stations with the most extreme temperature swings and their pressure profiles",
+      "type": "multi_hop",
+      "hint": "First find temperature data in atmo docs, then cross-reference pressure data.",
+      "hop1_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_006.txt",
+        "atmospheric_science/atmo_011.txt"
+      ],
+      "relevant_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_002.txt",
+        "atmospheric_science/atmo_003.txt",
+        "atmospheric_science/atmo_006.txt",
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_008.txt",
+        "atmospheric_science/atmo_011.txt",
+        "atmospheric_science/atmo_012.txt",
+        "atmospheric_science/atmo_013.txt",
+        "atmospheric_science/atmo_016.txt"
+      ]
+    }
+  ],
+  "imprecise_queries": [
+    {
+      "id": "imp_01",
+      "query": "experiments where things got really hot and pressurized",
+      "type": "imprecise",
+      "hint": "LLM should extract: temperature (high) + pressure (high kPa). Colloquial language.",
+      "relevant_docs": [
+        "materials_science/mat_006.txt",
+        "materials_science/mat_007.txt",
+        "materials_science/mat_014.txt",
+        "materials_science/mat_015.txt",
+        "materials_science/mat_022.txt",
+        "materials_science/mat_023.txt",
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_007.txt"
+      ]
+    },
+    {
+      "id": "imp_02",
+      "query": "stuff measured in thousandths of a meter",
+      "type": "imprecise",
+      "hint": "LLM should know thousandths of a meter = millimeters, and search for mm measurements.",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_002.txt",
+        "fluid_dynamics/fluid_003.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_007.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "fluid_dynamics/fluid_031.txt",
+        "materials_science/mat_000.txt",
+        "materials_science/mat_008.txt",
+        "materials_science/mat_016.txt"
+      ]
+    },
+    {
+      "id": "imp_03",
+      "query": "really fast wind speeds, like highway driving",
+      "type": "imprecise",
+      "hint": "LLM should map highway speed to ~100 km/h or ~28 m/s. Search atmospheric/fluid docs.",
+      "relevant_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_002.txt",
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_011.txt",
+        "atmospheric_science/atmo_012.txt",
+        "atmospheric_science/atmo_016.txt",
+        "atmospheric_science/atmo_017.txt",
+        "atmospheric_science/atmo_021.txt",
+        "atmospheric_science/atmo_022.txt",
+        "atmospheric_science/atmo_026.txt",
+        "atmospheric_science/atmo_027.txt",
+        "atmospheric_science/atmo_031.txt",
+        "atmospheric_science/atmo_032.txt",
+        "atmospheric_science/atmo_036.txt",
+        "atmospheric_science/atmo_037.txt"
+      ]
+    },
+    {
+      "id": "imp_04",
+      "query": "tiny amounts of chemicals, barely visible",
+      "type": "imprecise",
+      "hint": "LLM should map to milligram or microgram range. Search chemistry docs.",
+      "relevant_docs": [
+        "chemistry/chem_002.txt",
+        "chemistry/chem_004.txt",
+        "chemistry/chem_008.txt",
+        "chemistry/chem_009.txt",
+        "chemistry/chem_014.txt",
+        "chemistry/chem_015.txt",
+        "chemistry/chem_020.txt",
+        "chemistry/chem_021.txt",
+        "chemistry/chem_026.txt",
+        "chemistry/chem_027.txt"
+      ]
+    },
+    {
+      "id": "imp_05",
+      "query": "the pressure you'd feel deep underwater in a submarine",
+      "type": "imprecise",
+      "hint": "LLM should know deep underwater is hundreds of kPa (100m = ~1000 kPa). Search high-pressure docs.",
+      "relevant_docs": [
+        "fluid_dynamics/fluid_000.txt",
+        "fluid_dynamics/fluid_001.txt",
+        "fluid_dynamics/fluid_006.txt",
+        "fluid_dynamics/fluid_011.txt",
+        "fluid_dynamics/fluid_016.txt",
+        "fluid_dynamics/fluid_021.txt",
+        "fluid_dynamics/fluid_025.txt",
+        "fluid_dynamics/fluid_026.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_002.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_013.txt"
+      ]
+    },
+    {
+      "id": "imp_06",
+      "query": "those tests where metal bars get pulled apart until they snap",
+      "type": "imprecise",
+      "hint": "LLM should recognize this describes tensile testing. Search materials science.",
+      "relevant_docs": [
+        "materials_science/mat_000.txt",
+        "materials_science/mat_001.txt",
+        "materials_science/mat_002.txt",
+        "materials_science/mat_003.txt",
+        "materials_science/mat_004.txt",
+        "materials_science/mat_005.txt",
+        "materials_science/mat_008.txt",
+        "materials_science/mat_009.txt",
+        "materials_science/mat_010.txt",
+        "materials_science/mat_016.txt",
+        "materials_science/mat_017.txt",
+        "materials_science/mat_024.txt",
+        "materials_science/mat_025.txt",
+        "materials_science/mat_032.txt",
+        "materials_science/mat_033.txt"
+      ]
+    },
+    {
+      "id": "imp_07",
+      "query": "computer runs that needed a whole supercomputer cluster",
+      "type": "imprecise",
+      "hint": "LLM should map to HPC simulation jobs. Should search hpc_simulation domain.",
+      "relevant_docs": [
+        "hpc_simulation/hpc_000.txt",
+        "hpc_simulation/hpc_001.txt",
+        "hpc_simulation/hpc_002.txt",
+        "hpc_simulation/hpc_003.txt",
+        "hpc_simulation/hpc_004.txt",
+        "hpc_simulation/hpc_005.txt",
+        "hpc_simulation/hpc_006.txt",
+        "hpc_simulation/hpc_007.txt",
+        "hpc_simulation/hpc_008.txt",
+        "hpc_simulation/hpc_009.txt",
+        "hpc_simulation/hpc_010.txt",
+        "hpc_simulation/hpc_011.txt"
+      ]
+    },
+    {
+      "id": "imp_08",
+      "query": "mixing gold particles in liquid at room temperature",
+      "type": "imprecise",
+      "hint": "LLM should map to nanoparticle synthesis, sol-gel or colloidal chemistry methods.",
+      "relevant_docs": [
+        "chemistry/chem_000.txt",
+        "chemistry/chem_006.txt",
+        "chemistry/chem_012.txt",
+        "chemistry/chem_018.txt",
+        "chemistry/chem_024.txt"
+      ]
+    },
+    {
+      "id": "imp_09",
+      "query": "weather data from mountain stations when it was stormy",
+      "type": "imprecise",
+      "hint": "LLM should look for atmospheric stations with high wind + low pressure (storm signals).",
+      "relevant_docs": [
+        "atmospheric_science/atmo_001.txt",
+        "atmospheric_science/atmo_002.txt",
+        "atmospheric_science/atmo_006.txt",
+        "atmospheric_science/atmo_007.txt",
+        "atmospheric_science/atmo_011.txt",
+        "atmospheric_science/atmo_012.txt",
+        "atmospheric_science/atmo_016.txt",
+        "atmospheric_science/atmo_017.txt",
+        "atmospheric_science/atmo_021.txt",
+        "atmospheric_science/atmo_022.txt",
+        "atmospheric_science/atmo_026.txt",
+        "atmospheric_science/atmo_027.txt"
+      ]
+    },
+    {
+      "id": "imp_10",
+      "query": "data from experiments that combined multiple types of measurements in one report",
+      "type": "imprecise",
+      "hint": "LLM should look for mixed/cross-domain reports with multiple measurement types.",
+      "relevant_docs": [
+        "mixed/mixed_000.txt",
+        "mixed/mixed_001.txt",
+        "mixed/mixed_002.txt",
+        "mixed/mixed_003.txt",
+        "mixed/mixed_004.txt",
+        "mixed/mixed_005.txt",
+        "mixed/mixed_006.txt",
+        "mixed/mixed_007.txt",
+        "mixed/mixed_008.txt",
+        "mixed/mixed_009.txt",
+        "mixed/mixed_010.txt",
+        "mixed/mixed_011.txt",
+        "mixed/mixed_012.txt",
+        "mixed/mixed_013.txt",
+        "mixed/mixed_014.txt",
+        "mixed/mixed_015.txt",
+        "mixed/mixed_016.txt",
+        "mixed/mixed_017.txt",
+        "mixed/mixed_018.txt",
+        "mixed/mixed_019.txt"
+      ]
+    }
+  ]
+}
