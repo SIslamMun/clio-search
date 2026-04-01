@@ -1,6 +1,6 @@
 # 3. System Design
 
-This section presents the design of clio-agentic-search. We describe the pipeline architecture (Sec. 3.1), dimensional conversion operators (Sec. 3.2), formula normalization (Sec. 3.3), the four-branch hybrid retrieval pipeline (Sec. 3.4), federated multi-namespace search (Sec. 3.5), and the multi-hop agentic retrieval loop (Sec. 3.6).
+To address the three failures identified in Section 1, we design clio-agentic-search around a central principle: science-aware operators must execute as first-class retrieval branches, not post-processing filters. The architecture comprises a staged pipeline with four parallel branches (Sec. 3.1), dimensional conversion operators that perform explicit SI arithmetic (Sec. 3.2), deterministic formula normalization (Sec. 3.3), a hybrid fusion strategy (Sec. 3.4), federated multi-namespace search (Sec. 3.5), and an LLM-driven multi-hop retrieval loop (Sec. 3.6).
 
 ## 3.1 Architecture Overview
 

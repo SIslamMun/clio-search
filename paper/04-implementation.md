@@ -1,6 +1,6 @@
 # 4. Implementation
 
-This section describes the implementation of clio-agentic-search, covering the software stack and storage schema, connectors for binary scientific formats, and the experimental platform used for evaluation.
+clio-agentic-search is implemented as a single-binary Python system with no external service dependencies beyond an optional LLM endpoint. We cover the software stack and storage schema (Sec. 4.1), connectors for binary scientific formats (Sec. 4.2), and the experimental platform (Sec. 4.3).
 
 ## 4.1 System Implementation
 
