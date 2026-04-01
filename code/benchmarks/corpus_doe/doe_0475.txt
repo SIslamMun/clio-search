@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Measurement of particulated matter (PM1, PM2.5, PM10) using a PM sensor during the SAIL campaign in Gothic, CO and Mt. Crested Butte, CO
+Authors: ['Shawon, Abu Sayeed Md [ORNL] (ORCID:0000000293095701)', 'Aiken, Allison (ORCID:0000000157497626)', 'Benedict, Katherine (ORCID:0000000205308835)']
+Date: 2023-12-11T04:00:00Z
+DOI: https://doi.org/10.5439/2229368
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmosphere', 'Mass Concentration of Aerosol Particles', 'Number size distribution']
+
+We deployed another PM sensor (Modulair-PM, QuantAQ) to measure the mass concentration of particulate matter (PM) for three size cuts at both the main site (M1) and supplementary site (S2) of the SAIL from 14 June 2022 to 14 June 2023. The instruments provide the mass concentration of PM1, PM2.5 and PM10. Mass concentrations were calculated based on measurements made with a nephelometer and an OPC. We used Quant-AQ's algorithm [please see their documentation here and the references within] to determine the mass concentrations reported. Here, we present the time series of sample relative humidity, temperature, pressure, and the mass concentration of PM1, PM2.5 and PM10. We also present the size distribution of the aerosol particles within a diameter range of 0.35 - 40 micron, measured by the OPC of the pm-modulair. However, we encourage caution while using the size distribution data, since it is operated only with the factory calibration. Abstract and description of the campaign can be found here : https://www.arm.gov/research/campaigns/amf2022ssb.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

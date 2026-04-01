@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Solar Resource & Meteorological Assessment Project (SOLRMAP): Rotating Shadowband Radiometer (RSR); Kalaeloa Oahu, Hawaii (Data)
+Authors: ['Wilcox, S. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 2010-03-16T00:00:00Z
+DOI: https://doi.org/10.7799/1052228
+Organization: ['National Renewable Energy Laboratory (NREL), Golden, CO (United States)']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'diffuse', 'direct', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'radiometer', 'rotating', 'rsp', 'rsr', 'shadowband', 'silicon', 'solar', 'solar calendar', 'temperature', 'weather', 'wind', 'wind rose']
+
+The U.S. Department of Energy's National Renewable Energy Laboratory collaborates with the solar industry to establish high quality solar and meteorological measurements. This Solar Resource and Meteorological Assessment Project (SOLRMAP) provides high quality measurements to support deployment of power projects in the United States. The no-funds-exchanged collaboration brings NREL solar resource assessment expertise together with industry needs for measurements. The end result is high quality data sets to support the financing, design, and monitoring of large scale solar power projects for industry in addition to research-quality data for NREL model development. NREL provides consultation for instrumentation and station deployment, along with instrument calibrations, data acquisition, quality assessment, data distribution, and summary reports. Industry participants provide equipment, infrastructure, and station maintenance.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice and sea ice drift from autonomous measurements from buoy 2023S124, deployed during expedition PS138 (ArcWatch-1)
+Year: 2024
+DOI: https://doi.org/10.1594/PANGAEA.973301
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[40.8778, 88.063], [135.8764, 84.6574]]}
+Position: {'lat': 86.33692431742008, 'lon': 92.55750694555331}
+Topics: Environmental Sciences, Ecology, Geosciences, Multidisciplinary, Lithosphere
+Data Points: 100208
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

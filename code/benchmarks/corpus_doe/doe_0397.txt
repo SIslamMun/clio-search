@@ -1,0 +1,13 @@
+DOE Scientific Dataset Record
+Title: Geoanalytical Evaluation of Saline Storage (GEESS) Geodatabase v2.0
+Authors: ['Mathews, Austin [National Energy Technology Laboratory]', 'Eppink, Jeffrey [National Energy Technology Laboratory]']
+Date: 2025-08-29T04:00:00Z
+DOI: https://doi.org/10.18141/2584199
+Organization: ['NETL']
+Subjects: ['CO2 plume', 'GEESS', 'Geoanalytical Economic Evaluation of Saline Storage', 'Geologic Sequestrion', 'IM', 'Lithology', 'Saline Storage', 'Thickness', 'United States', 'carbon', 'depositional environment', 'depth', 'first-year break-even', 'fracture pressure', 'geoanalytical', 'geodatabase', 'geologic', 'geologic carbon storage', 'geology', 'plume diameter', 'porosity', 'pressure', 'salinity', 'technoeconomic', 'temperature']
+
+The Geoanalytical Economic Evaluation of Saline Storage (GEESS) geodatabase was developed to support the United States Department of Energy (DOE) and National Energy Technology Laboratory (NETL) in their geologic carbon storage efforts by characterizing saline geologic formations present in the FECM/NETL CO2 Saline Storage Cost Model (CO2_S_COM) [1]. Using publicly available literature and data, the GEESS geodatabase characterizes 57 geologic formations across the lower-48 U.S. states in what are called Fully Integrated Geodatabases (FIGs). The FIG is a vector polygon feature containing thousands or tens of thousands of individual polygons, which each contain discrete geologic parameter values. A list of the critical geologic parameters that are characterized in the GEESS geodatabase are described in the “Processing Steps and Workflow” part of the ReadMe file, as well as the Data Catalog accompanying the GEESS geodatabase.
+
+The FIG is the basis of the GEESS geodatabase and is the direct representation of the collected geologic data. In addition to the FIG, the GEESS system contains grid files. Due to the complexity of the FIGs, grids are used to sample the geologic data so they can be exercised within CO2_S_COM. The grid files contain the geologic data sampled from the FIG, as well as estimates of “Plume Uncertainty Diameter” and “First-year Break-even Price of CO2” derived from CO2_S_COM based on the GEESS grid data. 
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

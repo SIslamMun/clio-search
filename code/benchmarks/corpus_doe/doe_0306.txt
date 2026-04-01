@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Effective Elastic and Neutron Capture Cross Section Calculations Corresponding to Simulated Fluid Properties from CO2 Push-Pull Simulations
+Authors: ['Chugunov, Nikita [Lawrence Berkeley National Laboratory] (ORCID:0000000327487632)', 'Altundas, Bilgin (ORCID:0000000288208193)']
+Date: 2018-03-07T04:00:00Z
+DOI: https://doi.org/10.15121/1452749
+Organization: ['DOE Geothermal Data Repository', 'Lawrence Berkeley National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', 'CO2', 'EGS', 'SNUPAR', 'active seismic', 'brine', 'carbon dioxide', 'characterization', 'energy', 'fault', 'fluid', 'fracture', 'geothermal', 'neutron capture', 'push-pull', 'sensitivity analysis', 'stimulation', 'well logging']
+
+The submission contains a .xls files consisting of 10 excel sheets, which contain combined list of pressure, saturation, salinity, temperature profiles from the simulation of CO2 push-pull using Brady reservoir model and the corresponding effective compressional and shear velocity, bulk density, and fluid and time-lapse neutron capture cross section profiles of rock at times 0 day (baseline) through 14 days. First 9 sheets (each named after the corresponding CO2 push-pull simulation time) contains simulated pressure, saturation, temperature, salinity profiles and the corresponding effective elastic and neutron capture cross section profiles of rock matrix at the time of CO2 injection. Each sheet contains two sets of effective compressional velocity profiles of the rock, one based on Gassmann and the other based on Patchy saturation model. Effective neutron capture cross section calculations are done using a proprietary neutron cross-section simulator (SNUPAR) whereas for the thermodynamic properties of CO2 and bulk density of rock matrix filled with fluid, a standalone fluid substitution tool by Schlumberger is used. Last sheet in the file contains the bulk modulus of solid rock, which is inverted from the rock properties (porosity, sound speed etc) based on Gassmann model. Bulk modulus of solid rock in turn is used in the fluid substitution.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

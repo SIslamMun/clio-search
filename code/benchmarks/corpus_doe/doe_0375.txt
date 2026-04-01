@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Process and control variables from the mercury loop at the SNSâs mercury target
+Authors: ['Maldonado, Bryan [ORNL-OLCF]', 'Winder, Drew', 'Ramuhalli, Pradeep', 'Blokland, Willem']
+Date: 2024-10-16T04:00:00Z
+DOI: https://doi.org/10.13139/OLCF/2441154
+Organization: ['Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)', 'Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['neutron science, time-series, mercury loop']
+
+Set of process and control variables corresponding to the mercury process loop at the Spallation Neutron Source's (SNS) mercury target. The data corresponds to 36 measurement signals (pressure, temperature, flows, valve position, etc.) spanning from 2017/01/01 to 2023/12/31. Each signal is broken intro three-month intervals, resulting in a total of 28 files per signal during the aforementioned period of time.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

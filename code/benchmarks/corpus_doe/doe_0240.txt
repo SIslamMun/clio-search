@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: 180iopsndgv21vartiwi (c1)
+Authors: ['Xie, Shaocheng [ORNL]', 'Tao, Cheng']
+Date: 2006-01-19T04:00:00Z
+DOI: https://doi.org/10.5439/1987815
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Advective tendency', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Cloud fraction', 'Cloud size', 'Cloud top height', 'Geopotential Height', 'Horizontal wind', 'Ice water content', 'Latent heat flux', 'Liquid water content', 'Liquid water path', 'Longwave broadband downwelling irradiance', 'Longwave broadband net irradiance', 'Longwave broadband upwelling irradiance', 'Net broadband total irradiance', 'Precipitable water', 'Precipitation', 'Sensible heat flux', 'Shortwave broadband direct downwelling irradiance', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total net irradiance', 'Shortwave broadband total upwelling irradiance', 'Soil heat flux', 'Soil moisture', 'Soil moisture flux', 'Soil temperature', 'Surface albedo', 'Surface condition', 'Surface moisture flux', 'Surface skin temperature', 'Vertical velocity']
+
+180iopsndgv21vartiwi
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

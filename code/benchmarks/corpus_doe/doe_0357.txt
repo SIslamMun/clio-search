@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Paisley Oregon Geothermal Plant Operated by Surprise Valley Electrification - 2016 Operational Information
+Authors: ['Culp, E. Lynn [Surprise Valley Electrification Corp. (SVEC)]']
+Date: 2017-01-01T04:00:00Z
+DOI: https://doi.org/10.15121/1441456
+Organization: ['DOE Geothermal Data Repository', 'Surprise Valley Electrification Corp. (SVEC)']
+Subjects: ['15 GEOTHERMAL ENERGY', 'ARRA', 'Electrification corporation', 'OM', 'Oregon', 'Paisley', 'SVEC', 'binary cycle', 'cost', 'data', 'electricity', 'electricity generation', 'energy', 'equipment', 'flow rates', 'geothermal', 'maintenance', 'operating', 'operations', 'overview', 'pressure', 'summary', 'surprise valley', 'temperature', 'weather']
+
+This submission includes an Electricity Generation Summary, Maintenance Logs, Detailed Operations Data, Operating Cost Summary, and an Operations overview at the Paisley Oregon Geothermal Plant. Data uploaded for SVEC by Tom Williams, NREL
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

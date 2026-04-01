@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Data for 3-D Model Development - Lithology, Temperature, Pressure, and Stress
+Authors: ['Podgorney, Robert [Idaho National Laboratory]']
+Date: 2020-03-17T04:00:00Z
+DOI: https://doi.org/10.15121/1605155
+Organization: ['DOE Geothermal Data Repository', 'Idaho National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', '3-D modelling', '3D', 'EGS', 'FORGE', 'Milford', 'Roosevelt Hot Springs', 'Utah', 'Utah FORGE', 'basin fill', 'characterization', 'earth model', 'energy', 'geothermal', 'granitoid', 'initial conditions', 'lithologic contacts', 'lithology', 'mesh file', 'model', 'modeling', 'numerical', 'preprocessed', 'pressure', 'raw data', 'reservoir', 'resource', 'stress', 'temperature', 'temperature data']
+
+This submission comprises two downloadable .zip archives. Each archive contains spreadsheets with 3-D data and a .txt document describing the data. The Mesh Files .zip download contains data regarding the lithologic contacts of the granitoid and overlying sedimentary basin fill. The Initial Conditions .zip download contains data regarding temperature, pressure, and stress. These data were generated during Utah FORGE Phase 2 and exported from Seequent Leapfrog Geothermal. They are intended for use in 3-D earth modeling.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

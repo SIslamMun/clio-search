@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 52-21 Logs and Data: Roosevelt Hot Spring Area
+Authors: ['Moore, Joe [Energy and Geoscience Institute at the University of Utah]']
+Date: 2016-03-03T04:00:00Z
+DOI: https://doi.org/10.15121/1409674
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '52-21', 'BHT', 'EGS', 'FORGE', 'Milford', 'Roosevelt Hot Spring', 'Roosevelt Hot Springs', 'Utah', 'Utah EGS', 'Utah FORGE', 'Utah geothermal', 'Utah geothermal wells', 'Utah well logs', 'borehole', 'caliper', 'casing schematic', 'characterization', 'compensated neutron', 'compensated sonic', 'downhole', 'dual induction', 'electro-magnetic', 'electromagnetic', 'flow sample', 'formation density', 'fracture identification', 'geochemical', 'geochemistry', 'geophysical', 'geophysics', 'geothermal', 'geothermal well logs', 'gradient', 'history', 'hydrothermal alteration', 'laterlog', 'mud log', 'porosity', 'pressure survey', 'resource', 'site map', 'subsurface', 'survey', 'temperature survey', 'thickness tool', 'water analysis', 'water quality', 'well completion', 'well data', 'well locations', 'well log', 'well logs', 'well schematic', 'wireline sample']
+
+This is a compilation of logs and data from Well 52-21 in the Roosevelt Hot Springs area in Utah. This well is also in the Utah FORGE study area. The file is in a compressed .zip format and there is a data inventory table (Excel spreadsheet) in the root folder that is a guide to the data that is accessible in subfolders.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

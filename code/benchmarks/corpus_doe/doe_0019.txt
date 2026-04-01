@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Program Developed for CO2 System Calculations
+Authors: ['Lewis, E. R. [Brookhaven National Laboratory, Department of Applied Science; ESS-DIVE]', 'Wallace, D. W. R. [Institut fuer Meereskunde, Abteilung Meereschemie]']
+Date: 1998-01-01T04:00:00Z
+DOI: https://doi.org/10.15485/1464255
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Aragonite', 'CO2 system parameters', 'Calcite', 'Freshwater', 'Fugacity', 'Inorganic Carbon', 'Partial Pressure of CO2', 'Phosphate', 'Pressure', 'Salinity', 'Salt Water', 'Silicate', 'Temperature', 'Total Alkalinity', 'Total Inorganic CO2', 'pH', 'phosphate', 'pressure', 'salinity', 'silicate', 'temperature']
+
+The program CO2SYS performs calculations relating parameters of the carbon dioxide (CO2) system in seawater and freshwater. The program uses two of the four measurable parameters of the CO2 system [total alkalinity (TA), total inorganic CO2 (TCO2), pH, and either fugacity (fCO2) or partial pressure of CO2 (pCO2)] to calculate the other two parameters at a set of input conditions (temperature and pressure) and a set of output conditions chosen by the user. It replaces and extends the programs CO2SYSTM.EXE, FCO2TCO2.EXE, PHTCO2.EXE, and CO2BTCH.EXE, which were released in May 1995. It may be run in single-input mode or batch-input mode and has a variety of options for the various constants and parameters used. An on-screen information section is available that includes documentation on various topics relevant to the program. This program may be run on any 80 x 86 computer equipped with the DOS operating system by simply typing CO2SYS at the prompt after loading the executable file CO2SYS.EXE.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

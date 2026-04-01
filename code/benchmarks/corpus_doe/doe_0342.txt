@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Forcing data (CESM2/CMIP6) for projection of drought impacts (2015-2100) at the K34 site in Manaus, Brazil
+Authors: ['Meng, Lin [Lawrence Berkeley National Laboratory; Lawrence Berkeley National Lab]', 'Koven, Charlie [Lawrence Berkeley National Laboratory]', 'Pastorello, Gilberto [Lawrence Berkeley National Laboratory]', 'Chambers, Jeff [Lawrence Berkeley National Laboratory]']
+Date: 2024-01-01T04:00:00Z
+DOI: https://doi.org/10.15486/ngt/1923910
+Organization: ['Next-Generation Ecosystem Experiments Tropics', 'Lawrence Berkeley National Laboratory (LBNL)', 'National Center for Atmospheric Research (NCAR)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES']
+
+Historical and projected output data variables extracted and derived from Community Earth System Model 2 (CESM2) runs from the Coupled Model Intercomparison Project Phase 6 (CMIP6) archive. CESM2 is a fully coupled Earth system model used in simulations of Earth's past, present, and future climates (Danabasoglu et al., 2020). Variables in this dataset are in six-hourly resolution, and include air temperature (both in K and ℃), specific humidity (kg kg-1), air pressure (Pa), relative humidity (%), and vapor pressure deficit (kPa). CESM2 was the only CMIP6 model that provided VPD at the high temporal resolution required for this analysis. Data are included in .csv files, and the text file CESM2-CMIP6_forcing_K34-Manaus_headers.txt provides descriptions of data file headers.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

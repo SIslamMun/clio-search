@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Physical oceanography during ISLANDIA cruise ISL_00314
+Year: 2016
+DOI: https://doi.org/10.1594/PANGAEA.865176
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-24.40173333, 19.26293333], [-24.19935, 18.58751667]]}
+Position: {'lat': 19.067487999999997, 'lon': -24.291244998999996}
+Topics: Ecology, Geosciences, Multidisciplinary, Lithosphere
+Data Points: 35981
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: aosptrh.b1
+Authors: ['Salwen, Cynthia [ORNL]', 'Shi, Yan', 'Smith, Scott']
+Date: 2022-03-30T04:00:00Z
+DOI: https://doi.org/10.5439/1879095
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'aosptrh']
+
+aos auxilary measurements (pressure, temperature, relative humidity, etc)
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

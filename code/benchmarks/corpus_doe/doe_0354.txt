@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: EGS Collab Experiment 1: Circulation Testing Processed data
+Authors: ['Fu, Pengcheng [Lawrence Livermore National Laboratory] (ORCID:0000000274083350)', 'Knox, Hunter', 'Schwering, Paul', 'Strickland, Christopher', 'Linneman, Dorothy', 'Johnson, Sallie', 'Hong, Shaye']
+Date: 2021-04-01T04:00:00Z
+DOI: https://doi.org/10.15121/1780911
+Organization: ['DOE Geothermal Data Repository', 'Lawrence Livermore National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'EGS Collab', 'Python', 'SURF', 'Sanford Underground Research Facility', 'circulation', 'code', 'data processing', 'energy', 'experiment', 'flow', 'geothermal', 'injection pressure', 'injection rate', 'injection test', 'pressure', 'processed data', 'stimulation', 'temperature', 'thermal drawdown']
+
+This submission includes processed and reduced data for circulation testing that was conducted at the 164' fracture on the 4850 ft level of the Sanford Underground Research Facility. The circulation tests were done to test the flow through the 164' fracture in the EGS Collab Experiment 1 testbed on the 4850 ft level of the Sanford Underground Research Facility in order to validate computer models concerned with flow processes and heat exchange processes in EGS. This data was processed from raw data that is available in the GDR submission linked below: "EGS Collab Circulation Testing Raw Data and Documentation." Python scripts used to process and reduce the data are included. The scripts also serve as "documentation" as well as examples for data processing. More information about the test itself as well as the rationale and process of data processing is available at wiki page linked below.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

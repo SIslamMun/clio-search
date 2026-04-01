@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Nevada Power: Clark Station; Las Vegas, Nevada (Data)
+Authors: ['Stoffel, T. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 2006-03-27T00:00:00Z
+DOI: https://doi.org/10.7799/1052547
+Organization: ['National Renewable Energy Laboratory (NREL), Golden, CO (United States)']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'diffuse', 'direct', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'pyrheliometer', 'radiometer', 'solar', 'solar calendar', 'temperature', 'thermopile', 'tracker', 'weather', 'wind', 'wind rose']
+
+A partnership with the University of Nevada and U.S. Department of Energy's National Renewable Energy Laboratory (NREL) to collect solar data to support future solar power generation in the United States.  The measurement station monitors global horizontal, direct normal, and diffuse horizontal irradiance to define the amount of solar energy that hits this particular location. The solar measurement instrumentation is also accompanied by meteorological monitoring equipment to provide scientists with a complete picture of the solar power possibilities.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

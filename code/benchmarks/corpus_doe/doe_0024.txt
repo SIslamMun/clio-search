@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Brady's Geothermal Field - Analysis of Pressure Data
+Authors: ['Lim, David [University of Wisconsin]']
+Date: 2017-03-17T04:00:00Z
+DOI: https://doi.org/10.15121/1367912
+Organization: ['DOE Geothermal Data Repository', 'University of Wisconsin']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Brady Hot Springs', 'PoroTomo', 'Poroelastic Tomography', 'borehole', 'brady', 'bradys geothermal field', 'deployment data', 'downhole', 'egs', 'energy', 'engineered geothermal systems', 'enhanced geothermal systems', 'flow rate', 'geothermal', 'hydrogeology', 'hydrology', 'injection flow rate data', 'observation well', 'observation wells', 'pressure', 'pressure data', 'pressure sensor', 'production flow rate data', 'pumping test', 'water pressure', 'well data']
+
+*This submission provides corrections to GDR Submissions 844 and 845* Poroelastic Tomography (PoroTomo) by Adjoint Inverse Modeling of Data from Hydrology. The 3 *csv files containing pressure data are the corrected versions of the pressure dataset found in Submission 844. The dataset has been corrected in the sense that the atmospheric pressure has been subtracted from the total pressure measured in the well. Also, the transducers used at wells 56A-1 and SP-2 are sensitive to surface temperature fluctuations. These temperature effects have been removed from the corrected datasets. The 4th *csv file contains corrected version of the pumping data found in Submission 845. The data has been corrected in the sense that the data from several wells that were used during the PoroTomo deployment pumping tests that were not included in the original dataset has been added. In addition, several other minor changes have been made to the pumping records due to flow rate instrument calibration issues that were discovered.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

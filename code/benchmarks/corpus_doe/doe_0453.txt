@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Bluefield State College: Bluefield, West Virginia (Data)
+Authors: ['Stoffel, T. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 1985-11-06T00:00:00Z
+DOI: https://doi.org/10.7799/1052561
+Organization: ['National Renewable Energy Laboratory (NREL), Golden, CO (United States)']
+Subjects: ['14 SOLAR ENERGY', 'data', 'diffuse', 'direct', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'pyrheliometer', 'radiometer', 'solar', 'solar calendar', 'temperature', 'thermopile', 'tracker', 'weather', 'wind', 'wind rose']
+
+The Historically Black Colleges and Universities (HBCU) Solar Radiation Monitoring Network operated from July 1985 through December 1996. Funded by DOE, the six-station network provided 5-minute averaged measurements of direct normal, global, and diffuse horizontal solar irradiance. The data were processed at NREL to improve the assessment of the solar radiation resources in the southeastern United States. Historical HBCU data available online include quality assessed 5-min data, monthly reports, and plots. In January 1997 the HBCU sites became part of the CONFRRM solar monitoring network and data from the two remaining active stations, Bluefield State College and Elizabeth City State University, are collected by the NREL Measurement & Instrumentation Data Center (MIDC).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Meteorological tower with 2 sampling heights (2 and 5 m)
+Authors: ['Ritsche, Michael [ORNL]', 'Cook, David', 'Prell, Jenni']
+Date: 2003-11-06T04:00:00Z
+DOI: https://doi.org/10.5439/1025222
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Precipitation', 'Visibility']
+
+Meteorological tower with 2 sampling heights (2 and 5 m)
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

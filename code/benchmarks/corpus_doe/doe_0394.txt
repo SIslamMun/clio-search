@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE 5-2557: Fluid and Temperature in Fracture Mechanics and Coupled THMC Processes - Workshop Presentation
+Authors: ['Pyrak-Nolte, Laura [Purdue University]']
+Date: 2023-09-08T04:00:00Z
+DOI: https://doi.org/10.15121/2005173
+Organization: ['DOE Geothermal Data Repository', 'Purdue University']
+Subjects: ['15 GEOTHERMAL ENERGY', '2023', 'EGS', 'FALCON', 'Joint Inversion', 'Machine Learning', 'Simulator', 'THMC', 'UFALCON', 'Utah FORGE', 'annual workshop', 'dynamic crack evolution', 'energy', 'fracturing', 'geophysics', 'geothermal', 'injection', 'permeability evolution', 'pore pressure diffusion', 'presentation', 'rupture alogorithm', 'shearing', 'slip', 'wave generation', 'wave motion algorithm']
+
+This is a presentation on the Role of Fluid and Temperature in Fracture Mechanics and Coupled Thermo-Hydro-Mechanical-Chemical (THMC) Processes for Enhanced Geothermal Systems project by Purdue University, presented by Distinguished Professor of Physics & Astronomy, Laura J. Pyrak-Nolte. The project's objective was to develop and validate a macroscopic model that accounts for local deformation/frictional behavior, seismic/aseismic behavior, chemical reactions, and determine the adequacy of classic Coulomb failure vs. rate-and-state friction. This presentation was featured in the Utah FORGE R&D Annual Workshop on September 8, 2023. The workshop provided a valuable opportunity to explore the progress made in each of the 17 Research and Development projects funded under Solicitation 2020-1 which aim to enhance our understanding of the crucial factors influencing the development of Enhanced Geothermal Systems (EGS) reservoirs and resources.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

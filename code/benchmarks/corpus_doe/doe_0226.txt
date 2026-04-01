@@ -1,0 +1,12 @@
+DOE Scientific Dataset Record
+Title: Rheology Investigations with Sludges from Metro Vancouver
+Authors: ['Schmidt, Andrew [Pacific Northwest National Laboratory (PNNL), Richland, WA (United States); Battelle Memorial Institute]']
+Date: 2024-05-15T04:00:00Z
+DOI: https://doi.org/10.25584/2476482
+Organization: ['Pacific Northwest National Laboratory (PNNL), Richland, WA (United States)']
+Subjects: ['sludge\r\nwastewater treatment plant\r\nsludge characterization\r\nrheology\r\nMetro Vancouver\r\nprimary sludge\r\nSecondary sewage effluent']
+
+Rheological investigation were performed with primary and secondary waste water treatment sludge.   Using a rheometer equipped with a high pressure/temperature cell, flow curves were generated over shear rate at 0 to 1000 s-1.  Temperature sweeps spanning 25 to 300 C were also performed are are reported here.
+The original release, PNNL-SA-185826, is being revised.   The revision include a revision table, a disclaimer, and the underlying data set is being added.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

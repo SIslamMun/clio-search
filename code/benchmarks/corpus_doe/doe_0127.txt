@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Foam Fracturing Fluid Half-life Experimental Data
+Authors: ['Thakor, Viren [Temple University] (ORCID:0000000321736386)', 'Ren, Fei', 'Wang, Hong']
+Date: 2022-05-20T04:00:00Z
+DOI: https://doi.org/10.15121/1869257
+Organization: ['DOE Geothermal Data Repository', 'Temple University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'Enhanced Geothermal System EGS', 'Foam Fracturing Fluid', 'Foam Stability', 'Half-life', 'Pressure', 'Temperature', 'data', 'energy', 'enhanced geothermal systems', 'foam', 'fracturing fluid', 'geothermal', 'half life', 'test', 'test data', 'testing data', 'thermal stability']
+
+Foam thermal stability was studies at Temple University in collaboration with Oak Ridge National Lab (ORNL). The goal of this project is to explore thermally stable foams as hydrofracking fluid media for potential applications in enhanced geothermal system (EGS). Data generated from this project will allow researchers to explore foam as potential fracturing fluid. More than 800 data points on the half-life of foams are recorded in Excel files in the included archive resource (Half-life of Foams with Different Surfactants and Stabilizing Agents). The Excel file within each surfactant folder contains half-life data of the respective surfactant with different stabilizing agents, pressure, and temperature. The respective folders also contains Word files describing the details of the data included in the respective Excel sheet.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Nancy-Essey, 1954-06-16 to 1958-12-31, ERA-CLIM ID 6013A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.823000
+Geographic Coverage: {'type': 'point', 'coordinates': [6.221, 48.687]}
+Position: {'lat': 48.687, 'lon': 6.221}
+Data Points: 200401
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

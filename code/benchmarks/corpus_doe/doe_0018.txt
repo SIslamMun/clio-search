@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: The Global Historical Climatology Network: Long-Term Monthly Temperature, Precipitation, Sea Level Pressure, and Station Pressure Data (NDP-041)
+Authors: ['Vose, R. S. [Oak Ridge National Laboratory, Carbon Dioxide Information Analysis Center; OSTI]', 'Schmoyer, R. L. [Oak Ridge National Laboratory, Statistical Computing Office]', 'Steurer, P. M. [National Oceanic and Atmospheric Administration, National Climatic Data Center]', 'Peterson, T. C. [National Oceanic and Atmospheric Administration, National Climatic Data Center]', 'Heim, R. [National Oceanic and Atmospheric Administration, National Climatic Data Center]', 'Karl, T. R. [National Oceanic and Atmospheric Administration, National Climatic Data Center]', 'Eischeid, J. K. [Cooperative Institute for Research in Environmental Sciences]']
+Date: 1992-01-01T04:00:00Z
+DOI: https://doi.org/10.3334/CDIAC/CLI.NDP041
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Eischeid', 'GHCN Database', 'Global Historical Climatology Network', 'Heim', 'Karl', 'Monthly Temperature', 'NDP-041', 'Peterson', 'Precipitation', 'Precipitation Amount', 'Schmoyer', 'Sea Level Pressure', 'See Level Pressure', 'Station Pressure', 'Steurer', 'Temperature', 'Vose']
+
+The GHCN data base contains mean monthly temperature data (in tenths of degrees celsius) for 6039 stations throughout the world. The majority (61%) have records for fewer than 50 years, but a significant proportion (10%) have records in excess of 100 years. It also contains total monthly precipitation data (in tenths of millimeters) for 7533 stations throughout the world. A slight majority (55%) have records in excess of 50 years, and a significant proportion (13%) have records in excess of 100 years. Also in this content is mean monthly sea level pressure data (in tenths of millibars) for 1883 stations throughout the world. The monthly station pressure data from those stations is also available here. For access to the data files, click this link to the CDIAC data transition website: http://cdiac.ess-dive.lbl.gov/ftp/ndp041/
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,14 @@
+DOE Scientific Dataset Record
+Title: Evapotranspiration partitioning estimates from 8 methods from 47 NEON sites, 2019-2021
+Authors: ['Chen, Han [Oregon State University]', 'Good, Stephen [Oregon State University] (ORCID:0000000343631577)', 'Caylor, Kelly [University of California Santa Barbara] (ORCID:0000000264666448)', 'Fiorella, Richard [Los Alamos National Laboratory] (ORCID:0000000208244777)', 'Wang, Lixin [Indiana University Indianapolis] (ORCID:0000000309681247)']
+Date: 2026-01-01T00:00:00Z
+DOI: https://doi.org/10.15485/3017661
+Organization: ['Improving ESS Approaches to Evapotranspiration Partitioning Through Data Fusion']
+Subjects: ['EARTH SCIENCE > ATMOSPHERE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WATER VAPOR > WATER VAPOR PROCESSES > EVAPOTRANSPIRATION', 'EARTH SCIENCE > BIOSPHERE > VEGETATION', 'EARTH SCIENCE > LAND SURFACE', 'ESS-DIVE CSV File Formatting Guidelines Reporting Format', 'ESS-DIVE File Level Metadata Reporting Format', 'transpiration_evapotranspiration_ratio', 'transpiration_flux']
+
+This dataset provides daily estimates of evapotranspiration (ET) and the transpiration-to-evapotranspiration ratio (T/ET) across 47 terrestrial National Ecological Observatory Network (NEON) sites spanning diverse environmental and biome conditions in the United States across three years of data (2019-2021). Daily ET is reported in both energy units (MJ m⁻² day⁻¹) and equivalent water depth (mm day⁻¹), assuming a constant latent heat of vaporization of 2.45 MJ/kg.
+The primary method uses a hybrid recurrent neural network–Penman–Monteith framework (RNN-PM), which integrates physically based surface energy balance constraints with data-driven learning to partition ET into transpiration and evaporation components. Model inputs include in situ meteorological observations (air temperature, vapor pressure deficit, wind speed, and radiation) combined with satellite-derived land surface temperature, leaf area index, and soil moisture.
+For benchmarking and uncertainty assessment, T/ET estimates from seven additional models are included: Priestley-Taylor Jet Propulsion Laboratory (PT-JPL), Penman-Monteith (P-M), Two-Source Energy Balance (TSEB), Support Vector Regression (SVR), and Categorical Boosting (CatBoost), among others—spanning empirical, machine-learning, and process-based approaches (see methods section or linked publication for detailed descriptions).
+Data Package Contents: The dataset a csv files containing daily ET and T/ET estimates for each site and model, along with associated metadata files these variables. Data can be accessed using common spreadsheet software (e.g., Microsoft Excel, LibreOffice) or programming environments such as R or Python. Together, these data support cross-site comparisons of ecosystem water use, evaluation of ET partitioning methods, and development of improved land–atmosphere exchange models.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

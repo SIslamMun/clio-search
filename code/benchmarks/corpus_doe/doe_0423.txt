@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Natural Energy Laboratory of Hawaii Authority (NELHA): Hawaii Ocean Science & Technology Park; Kailua-Kona, Hawaii
+Authors: ['Olson, K. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 2012-11-01T00:00:00Z
+DOI: https://doi.org/10.7799/1183461
+Organization: ['NREL-DATA (National Renewable Energy Laboratory - Data (NREL-DATA), Golden, CO (United States))']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'PAR', 'precipitation', 'pressure', 'pyranometer', 'radiometer', 'solar', 'solar calendar', 'temperature', 'thermopile', 'weather', 'wind', 'wind rose']
+
+A partnership with the Natural Energy Laboratory of Hawaii Authority and U.S. Department of Energy's National Renewable Energy Laboratory (NREL) to collect solar data to support future solar power generation in the United States.  The measurement station monitors global horizontal horizontal irradiance to define the amount of solar energy that hits this particular location. The solar measurement instrumentation is also accompanied by meteorological monitoring equipment to provide scientists with a complete picture of the solar power possibilities.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

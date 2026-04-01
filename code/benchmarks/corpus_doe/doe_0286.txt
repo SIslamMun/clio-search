@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Optical Rain Gauge measurements: precipitation rate and accumulation
+Authors: ['Cook, David [ORNL]', 'Bartholomew, Mary Jane', 'Kyrouac, Jenni']
+Date: 1998-03-20T04:00:00Z
+DOI: https://doi.org/10.5439/1046212
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Precipitation', 'Visibility']
+
+Optical Rain Gauge measurements: precipitation rate and accumulation
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

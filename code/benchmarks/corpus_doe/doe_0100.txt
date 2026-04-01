@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: CalWave - Open Water Demonstration - Field Testing Content Models (10/21 - 7/22)
+Authors: ['Boerner, Thomas [CalWave Power Technologies Inc.]', 'Kojimoto, Nigel', 'Petcovic, Dan', 'Lehmann, Marcus']
+Date: 2022-07-31T04:00:00Z
+DOI: https://doi.org/10.15473/1974057
+Organization: ['Marine and Hydrokinetic Data Repository (MHKDR)', 'CalWave Power Technologies Inc.']
+Subjects: ['16 TIDAL AND WAVE POWER', 'CalWave', 'Excel', 'Hydrokinetic', 'MHK', 'Marine', 'Mooring load', 'WEC', 'WEP', 'characterization', 'content model', 'demonstration', 'energy', 'field test', 'model', 'power', 'processed data', 'resource', 'standardized data', 'submerged pressure differential', 'technology', 'water density', 'water temperature', 'wave', 'wave direction', 'wave energy converter', 'wave height', 'wave speed']
+
+Data for the CalWave - Open Water Demonstration, a submerged pressure differential Wave Energy Converter (WEC) Device. Device is moored to the seabed, and the motion of the waves causes the sea level to rise and fall above the device, inducing a pressure differential in the device. The alternating pressure pumps fluid through a system to generate electricity, which is transmitted to shore via bidirectional cables. Documentation and data here includes: Open Water Demonstration, including field testing content models for nearly 10 months of continuous ocean operation, from October 2021 through July 2022.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

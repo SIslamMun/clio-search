@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: NREL National Wind Technology Center (NWTC): M2 Tower; Boulder, Colorado (Data)
+Authors: ['Jager, D. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 1996-09-24T00:00:00Z
+DOI: https://doi.org/10.7799/1052222
+Organization: ['National Renewable Energy Laboratory (NREL), Golden, CO (United States)']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'm2', 'measurement', 'meterological', 'midc', 'nrel', 'nwtc', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'real-time', 'research', 'solar', 'solar calendar', 'temperature', 'thermopile', 'tower', 'weather', 'wind', 'wind rose']
+
+The National Wind Technology Center (NWTC), located at the foot of the Rocky Mountains near Boulder, Colorado, is a world-class research facility managed by NREL for the U.S. Department of Energy. NWTC researchers work with members of the wind energy industry to advance wind power technologies that lower the cost of wind energy through research and development of state-of-the-art wind turbine designs.  NREL's Measurement and Instrument Data Center provides data from NWTC's M2 tower which are derived from instruments mounted on or near an 82 meter (270 foot) meteorological tower located at the western edge of the NWTC site and about 11 km (7 miles) west of Broomfield, and approximately 8 km (5 miles) south of Boulder, Colorado.  The data represent the mean value of readings taken every two seconds and averaged over one minute. The wind speed and direction are measured at six heights on the tower and air temperature is measured at three heights.  The dew point temperature, relative humidity, barometric pressure, totalized liquid precipitation, and global solar radiation are also available.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

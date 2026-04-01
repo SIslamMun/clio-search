@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Base Dumont d'Urville, 1951-02-07 to 1958-12-31, ERA-CLIM ID 6017A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.823002
+Geographic Coverage: {'type': 'point', 'coordinates': [140.001, -66.663]}
+Position: {'lat': -66.663, 'lon': 140.001}
+Data Points: 95215
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

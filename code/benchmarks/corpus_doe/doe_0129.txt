@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Fallon FORGE: Well 21-31 Wireline Logs
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2018-03-14T04:00:00Z
+DOI: https://doi.org/10.15121/1452767
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', 'DLIS', 'Drill Logs', 'EGS', 'FMI', 'FORGE', 'Fallon', 'LAS', 'MSCT', 'Nevada', 'Resistivity', 'Sonic', 'TrippleCombo', 'Wireline', 'caliper', 'compressional', 'drill', 'energy', 'geothermal', 'log', 'pressure', 'shear', 'slowness', 'stoneley', 'temperature', 'triple combo', 'well', 'well log']
+
+Included are the following wireline logs from the Fallon FORGE Well 21-31: Ormat_Forge 21-31_8.5 inch section: FMI data in PDF and DLIS formats; MSCT data in PDF format; Pressure and Temperature data in PDF, LAS, and DLIS formats; Sonic Scanner data in PDF, DLIS, and LAS formats (LAS format contains Stoneley Slowness, Shear Slowness, and Compressional Slowness logs); Triple Combo in PDF, DLIS, and LAS formats; and USIT data in DLIS and PDF formats. Ormat_Forge_21-31_12.25 inch section: Resistivity data in PDF and LAS formats; Sonic Scanner data in PDF, DLIS, and LAS formats (LAS format contains Stoneley Slowness, Shear Slowness, and Compressional Slowness logs); Triple Combo in PDF and LAS formats; and Caliper data in PDF format (DLIS format for caliper data is included in the Sonic Scanner DLIS).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

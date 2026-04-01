@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Sea ice drift, surface temperature, and barometric pressure from autonomous measurements from buoy 2015C3, deployed during the Norwegian Young sea ICE cruise N-ICE 2015
+Year: 2017
+DOI: https://doi.org/10.1594/PANGAEA.875310
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[5.4074, 83.0618], [16.9772, 80.467]]}
+Position: {'lat': 81.59070009425061, 'lon': 11.292373232799225}
+Data Points: 2122
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

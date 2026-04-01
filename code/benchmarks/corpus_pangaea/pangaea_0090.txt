@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Underway carbon dioxide measurements during Benguela Stream cruise 642B20110528
+DOI: https://doi.pangaea.de/10.1594/PANGAEA.842747
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-71.64049999999997, 50.513372000000004], [-1.0984300000000076, 20.316543]]}
+Position: {'lat': 35.99864127564513, 'lon': -38.98289765007871}
+Topics: Organic Chemistry, Chemistry
+Data Points: 116140
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

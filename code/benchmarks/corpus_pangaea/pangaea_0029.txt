@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: CTD profiles from oceanographic expedition IAOOS with RV JAN MAYEN in the Fram Strait in 2008
+Year: 2022
+DOI: https://doi.org/10.1594/PANGAEA.941539
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-1.708333, 79.05], [9.5, 77.996667]]}
+Position: {'lat': 78.44450586217197, 'lon': 1.5475331455431414}
+Topics: Biodiversity Conservation, Ecology, Environmental Sciences
+Data Points: 35962
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

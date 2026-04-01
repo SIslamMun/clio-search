@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Hydrochemistry measured on water bottle samples during Bjarni Saemundsson cruise B8/2008
+DOI: https://doi.pangaea.de/10.1594/PANGAEA.844802
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-27.97120000000001, 68.0], [-12.665700000000015, 64.3397]]}
+Position: {'lat': 66.66898181818182, 'lon': -18.231336363636103}
+Topics: Inorganic Chemistry, Chemistry, Organic Chemistry
+Data Points: 296
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

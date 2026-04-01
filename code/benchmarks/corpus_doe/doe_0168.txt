@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Design and measurement methods for a lithium vapor box similarity experiment
+Authors: ['Schwartz, J A [OSTI]', 'Emdee, E D', 'Jaworski, M A', 'Goldston, R J']
+Date: 2018-08-01T04:00:00Z
+DOI: https://doi.org/10.11578/1562010
+Organization: ['Princeton Plasma Physics Laboratory (PPPL), Princeton, NJ (United States)']
+Subjects: ['lithium vapor']
+
+The lithium vapor box divertor is a concept for handling the extreme divertor heat fluxes in magnetic fusion devices. In a baffled slot divertor, plasma interacts with a dense cloud of Li vapor which radiates and cools the plasma, leading to recombination and detachment. Before testing on a tokamak the concept should be validated: we plan to study detachment and heat redistribution by a Li vapor cloud in laboratory experiments.Mass changes and temperatures are measured to validate a Direct Simulation Monte Carlo model of neutral Li.The initial experiment involves a 5 cm diameter steel box containing 10g of Li held at 650 degrees C as vapor flows out a wide nozzle into a similarly-sized box at a lower temperature. Diagnosis is made challenging by the required material compatibility with lithium vapor. Vapor pressure is a steep function of temperature, so to validate mass flow models to within 10%, absolute temperature to within 4.5K is required. The apparatus is designed to be used with an analytical balance to determine mass transport. Details of the apparatus and methods of temperature and mass flow measurements are presented.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

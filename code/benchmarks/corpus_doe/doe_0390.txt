@@ -1,0 +1,19 @@
+DOE Scientific Dataset Record
+Title: NCAR-RAL Surface Hydrometeorological Observation Network Data for LASSO-CACTI Overview Paper
+Authors: ['Gochis, David (ORCID:0000000186684850)', 'Lentz, Justin', 'Dominguez, Francina (ORCID:0000000326743382)', 'Marcelo, Carlos (ORCID:0000000240916756)']
+Date: 2025-12-11T04:00:00Z
+DOI: https://doi.org/10.5439/3007293
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['air temperature', 'atmosphere: surface', 'downwelling shortwave radiation', 'geosphere: soil', 'leaf characteristics', 'precipitation rate', 'relative humidity', 'soil moisture', 'soil temperature', 'surface pressure', 'wind direction', 'wind speed']
+
+This data set contains the 15 minute resolution surface meteorology and soils data from the 15 NCAR/RAL weather stations that were operated around central Argentina during the RELAMPAGO (Remote sensing of Electrification, Lightning, And Meso-scale/micro-scale Processes with Adaptive Ground Observations) Extended Observing Period (EOP).
+
+Data providence, citation, and acknowledgement
+
+This ARM data set is a copy of v1.0 of the NCAR data set obtained in June 2024 from https://doi.org/10.26023/KW8Z-F2WX-H0Y. The citation for the original data source is:
+
+Gochis, D., et al. 2019. NCAR-RAL Surface Hydrometeorological Observation Network Data. Version 1.0. UCAR/NCAR - Earth Observing Laboratory. https://doi.org/10.26023/KW8Z-F2WX-H0Y Accessed June 2024.
+
+In addition to the citation reference and any other acknowledgements, please acknowledge NCAR/EOL in your publications with text such as: “Data provided by NCAR/EOL under the sponsorship of the National Science Foundation. https://data.eol.ucar.edu/”
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Gridded Sub-daily Climate Forcings for North America Based on Daymet and GSWP3 (Daymet-GSWP3)
+Authors: ['Kao, Shih-Chieh [ORNL-OLCF]', 'Thornton, Michele', 'Thornton, Peter E.', 'Shrestha, Rupesh']
+Date: 2024-06-20T04:00:00Z
+DOI: https://doi.org/10.13139/OLCF/2373121
+Organization: ['Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)', 'Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', '58 GEOSCIENCES', '97 MATHEMATICS AND COMPUTING', 'Daymet, GSWP3, Earth System Modeling, Subdaily Forcings, Surface Weather']
+
+To support high spatial and temporal resolution land surface modeling, this dataset provides 3-hourly time step historic weather forcing at 1-km spatial resolution for the entire North America. The latest Daymet V4 data provides gridded historic daily weather observations at 1-km spatial resolution from 1980 to 2014. Using sub-daily temporal information from the Global Soil Wetness Project Phase 3 (GSWP3), Daymet was further temporally downscaled to 3-hourly time steps and provided in the format required for land surface model simulations. The process of temporal downscaling preserves the relative magnitude in each sub-daily time step from GSWP3 while maintaining the total and average values from Daymet for each day. This results in a blended 1980-2014 Daymet-GSWP3 dataset. Available variables include surface air temperature, precipitation, specific humidity, shortwave and longwave radiation, wind speed, and pressure. These data can be used as a high-resolution meteorological forcing dataset to support high-resolution land surface modeling where accurate meteorological forcing datasets built from historic observations and/or reanalysis datasets are desirable.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

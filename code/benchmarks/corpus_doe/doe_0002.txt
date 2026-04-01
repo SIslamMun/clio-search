@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Temperature and Pressure Data Brady Monitoring Well SP-2
+Authors: ['Akerley, John [University of Wisconsin]']
+Date: 2015-01-01T04:00:00Z
+DOI: https://doi.org/10.15121/1176860
+Organization: ['DOE Geothermal Data Repository', 'University of Wisconsin']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Brady', 'Nevada', 'POOH', 'Pressure Log', 'RIH', 'SP-2', 'Temperature Log', 'borehole', 'depth', 'geothermal', 'pressure', 'temperature', 'well', 'well data']
+
+Static Pressure and Temperature Log for Brady monitor well SP-2. This data was taken from Well SP-2 which is part of the Brady Hot Springs Geothermal Site. The data contains pressure and temperature vs depth data for RIH (run in hole) Static conditions and POOH (pull out of hole) Static conditions. The data was recorded on 2/18/2015 and measurements reach a depth of 4392 feet.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

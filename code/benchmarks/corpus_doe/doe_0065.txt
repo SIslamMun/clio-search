@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 16A(78)-32/Well16B(78)-32 Circulation Test Data
+Authors: ['Mclennan, John [Energy and Geoscience Institute at the University of Utah]', 'Xing, Pengju']
+Date: 2023-07-19T04:00:00Z
+DOI: https://doi.org/10.15121/2283227
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A', '16A78-32', '16B', '16B78-32', 'EGS', 'Pason', 'SLB', 'Schlumberger', 'Utah FORGE', 'circulation', 'circulation test', 'energy', 'geothermal', 'injection', 'injection pressure', 'injection rate', 'low-rate injection', 'processed data', 'produced fluid', 'raw data', 'well 16A78-32', 'well 16B78-32']
+
+This dataset encompasses the collected data and associated reports from the low-rate injection circulation test conducted on wells 16A(78)-32 and 16B(78)-32 in July 2023 at Utah FORGE. It includes comprehensive raw circulation data, captured by Pason and Schlumberger (SLB). The dataset details various parameters recorded during circulation testing such as produced fluid, injection pressure, injection rate, produced rate, temperature, downhole pressure difference, bottom hole pressure in the well, and surface treating pressure. Note that the Pason data is presented in Mountain Time, whereas the SLB data is in Pacific Time.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

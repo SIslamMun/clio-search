@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Historical and Future Extreme Event Indices for the Colorado River Basin
+Authors: ['Bennett, Katrina [Los Alamos National Laboratory; Los Alamos National Laboratory] (ORCID:0000000324338607)', 'Talsma, Carl (ORCID:0000000255581354)', 'Stachelek, Jemma [Los Alamos National Laboratory] (ORCID:0000000259242464)', 'Schwenk, Jon [Los Alamos National Laboratory] (ORCID:0000000158039686)']
+Date: 2022-03-23T04:00:00Z
+DOI: https://doi.org/10.15485/1862040
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem', 'A Global, High-Resolution River Network Model for Improved Flood Risk Prediction']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Colorado River Basin', 'Extreme', 'Hydrology', 'Indices', 'SWE', 'Variable Infiltration Capacity (VIC) Model', 'evapotranspiration', 'precipitation', 'pressure', 'runoff', 'soil moisture', 'temperature', 'wind speed']
+
+Extremes events are occurring more frequently and are projected to increase in the future. This data set includes extreme event indices that were generated for the Colorado River basin using data from the Variable Infiltration Capacity hydrologic model. VIC simulations were run using six CMIP5 earth system models (ESMs), two different time periods, (historical, 1970-1999) and future (2070-2099), and for one Representative Concentration Pathway (RCP 8.5). ESMs available are MPI-ESM-LR, MIROC-ESM, IPSL-CM5A-LR, GFDL-ESM2M, and GFDL-ESM2G. The different indicators include temperature (min/max, freezing days, heating days), precipitation (dry days, max), runoff (min, max), soil moisture (min, max), evapotranspiration (max), snow water equivalent (SWE, max), wind speeds (max), and pressure (min). Detailed information on the indicators, file names, and how they were calculated is included in the README.txt document. Data sets were used to calculate results are in related references Bennett et al. 2020 and Talsma et al. 2021. Details on the VIC model configuration is described in related references Bennett et al. 2018 and Bennett et al. 2017.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 16B(78)-32 Distributed Temperature Sensing Data from April and May 2024
+Authors: ['Jurick, Dana [Energy and Geoscience Institute at the University of Utah]', 'Guzik, Artur']
+Date: 2024-07-08T04:00:00Z
+DOI: https://doi.org/10.15121/2407047
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16B78-32', 'DTS', 'EGS', 'HDF5', 'Neubrex', 'Utah FORGE', 'circulation test', 'distributed temperature sensing', 'energy', 'fiber optic', 'fiber optic distributed temperature sensing', 'fiberoptic temperature', 'fracing', 'geothermal', 'stimulation', 'temperature data']
+
+This dataset includes Neubrex Energy Services fiber optic distributed temperature sensing (DTS) data from well 16B(78)-32 during stimulation and circulation, including interaction with well 16A(78)-32, during April and May 2024. The DTS data are stored in HDF5 file format and are accompanied by a PowerPoint report on the study. All times in this dataset are in UTC. Depths are in MD relative to Kelly Bushing Height, and temperatures are in degrees Fahrenheit. All DTS measurements were made using a Yokogawa 3000DTSX Distributed Temperature Sensing Interrogator Unit, with a spatial sampling interval of 3.28 feet and a temporal sampling rate of 129 seconds. The third-party Pressure-Temperature Gauge data should be used with caution after April 20, 2024, as its performance is not considered reliable beyond this date.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

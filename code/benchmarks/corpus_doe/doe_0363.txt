@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Fallon FORGE: Well Data, Geophysical Data, and Geologic Maps
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2016-03-31T04:00:00Z
+DOI: https://doi.org/10.15121/1287550
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['13-36', '14-1', '15 GEOTHERMAL ENERGY', '17-16', '34-33', '35A-11', '47A-11', '51A-20', '56A-14', '58A-9', '61-36', '62-15', '78-36', '82-36', '84-31', '86-15', '86-25', '86A-15', '88-24', 'Basin and Range', 'Bell and House 2010', 'Bell et. al. 2010', 'Carson Sink', 'DEM', 'EGS', 'FOH 3', 'FOH-3', 'FORGE', 'Fallon', 'Flow test', 'Gamma', 'Geologic Map', 'Heat Flow', 'Highways', 'Hinz et. al. 2011', 'MT', 'Magnetotelluric', 'Maurer and Welch 2001', 'Mudlog', 'NDOT', 'NV', 'Navy GPO', 'Neada', 'Nevada', 'Pressure', 'Radiogenic Heat Measurements', 'Seismic', 'Semblance', 'Stewart and Carlson 1978', 'Temperature', 'Temperature Gradient', 'Well', 'acoustilog', 'borehole', 'boundary', 'characterization', 'data', 'drilling', 'dro', 'earthquakes', 'exploration', 'gamma ray', 'geologic', 'geology', 'geophysics', 'geospatial data', 'geothermal', 'gravity', 'heat', 'lease', 'map', 'mud log', 'radiogenic', 'seismicity', 'site', 'subsurface', 'survey', 'well data', 'well drilling', 'x-multipole array']
+
+The data is associated to the Fallon FORGE project and includes mudlogs for all wells used to characterize the subsurface, as wells as gravity, magnetotelluric, earthquake seismicity, and temperature data from the Navy GPO and Ormat. Also included are geologic maps from the USGS and Nevada Bureau of Mines and Geology for the Fallon, NV area.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

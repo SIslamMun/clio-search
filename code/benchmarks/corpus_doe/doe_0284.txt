@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: maws
+Authors: ['Keeler, Evan [ORNL]', 'Kyrouac, Jenni', 'Ermold, Brian']
+Date: 2014-09-08T04:00:00Z
+DOI: https://doi.org/10.5439/1162061
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Automatic Weather Station', 'Horizontal wind', 'Surface Meteorolog', 'Surface Meteorology', 'atmospheric_dew_point', 'atmospheric_pressure', 'atmospheric_relative_humidity', 'atmospheric_temperature', 'maws', 'wind_direction', 'wind_speed']
+
+ARM Instrument: Automatic Weather Station
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

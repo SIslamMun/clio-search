@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: griddedsonde
+Authors: ['Jensen, Mike [ORNL]', 'Giangrande, Scott', 'Fairless, Tami', 'Zhou, Aifang']
+Date: 1999-07-20T04:00:00Z
+DOI: https://doi.org/10.5439/1350631
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'bar_pres', 'dp', 'rh', 'son', 'sondegrid', 'temp', 'u_wind', 'v_wind', 'wdir', 'wspd']
+
+ARM Instrument: Gridded Sonde VAP Product
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

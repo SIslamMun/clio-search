@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Data Products from ECMWF (European Centre for Medium Range Weather Forecasts) Covering the MAGIC AMF2 Deployment
+Authors: ['Ahlgrimm, Maike [ORNL]']
+Date: 2015-04-02T04:00:00Z
+DOI: https://doi.org/10.5439/1251610
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'AMF2', 'ECMWF', 'MAGIC', 'advective tendency', 'atmospheric moisture', 'atmospheric pressure', 'atmospheric temperature', 'atmospheric turbulence', 'cloud fraction', 'horizontal wind', 'ice water content', 'latent heat flux', 'liquid water content', 'longwave broadband downwelling irradiance', 'longwave broadband net irradiance', 'precipitation', 'sensible heat flux', 'shortwave broadband total downwelling irradiance', 'shortwave broadband total net irradiance', 'soil heat flux', 'soil moisture', 'soil moisture flux', 'soil surface temperature', 'surface albedo', 'surface condition', 'surface skin temperature', 'vertical velocity']
+
+ECMWF derived diagnostic variables over MAGIC's ship path from Los Angeles, CA and Honolulu, HI. Two dimensional (time and height) slices were extracted once the ship's exact positions were known.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

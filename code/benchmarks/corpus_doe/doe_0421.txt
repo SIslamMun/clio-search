@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Injection and Production Test results and Reports from August 2024
+Authors: ['Kolomytsev, Leonid [Energy and Geoscience Institute at the University of Utah]', 'Chadwick, Casey']
+Date: 2024-09-24T04:00:00Z
+DOI: https://doi.org/10.15121/2473673
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A78-32', '16B78-32', 'EGS', 'SLB', 'Utah FORGE', 'energy', 'geothermal', 'injection', 'injection profile', 'injection reports', 'interpretations', 'logging', 'processed data', 'production', 'production log', 'production profile', 'production reports', 'reports', 'survey', 'well log data', 'well log interpretations']
+
+This dataset includes results and reports from the injection/production test for wells 16A(78)-32 and 16B(78)-32 in August, 2024 at Utah FORGE. Materials include injection, post stimulation production, flow rate, gamma, temperature and pressure survey results. For the respective wells, injection and production profile results and interpretations are provided in .xlsx and .las file formats. Additionally, for both wells, preliminary and final reports are included and provide logging procedures and visualizations of the results.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

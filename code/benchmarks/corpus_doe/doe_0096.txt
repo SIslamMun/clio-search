@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: AIMMS 20 Hz ACE-ENA
+Authors: ['Matthews, Alyssa [ORNL]', 'Mei, Fan', 'Hubbe, John']
+Date: 2018-08-28T04:00:00Z
+DOI: https://doi.org/10.5439/1467445
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric pressure, Atmospheric temperature, Horizontal wind, Vertical velocity, ACE-ENA, ENA, ARM, DOE']
+
+The AIMMS-20 probe is manufactured by Aventech Research Inc. (http://www.aventech.com) and measures platform position, velocity, attitude, and ambient temperature, static pressure, and the differential pressures from a 5-port hemispheric gust probe, and combines all these measured data into a calculation of the ambient winds. A detailed description of the AIMMS-20 specifications is available on (http://aventech.com/documents/PMS%20CANISTER/PMS%20Canister%20Technical%20Specifications.pdf). The data provided here are originally communicated as raw measurements over the CAN bus to the ODMS data module and stored in flight in binary .rXX files. These files are combined in post processing using the Aventech program asmbl.exe in to .raw files, one for each flight. The .raw files are subsequently processed using the Aventech program ekf553_oemv.exe, which regenerates the wind estimates, in this case at an output rate of 20 Hz.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

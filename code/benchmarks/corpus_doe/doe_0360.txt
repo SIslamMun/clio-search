@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Oak Ridge National Laboratory (ORNL); Rotating Shadowband Radiometer (RSR); Oak Ridge, Tennessee (Data)
+Authors: ['Maxey, C. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 2007-09-12T00:00:00Z
+DOI: https://doi.org/10.7799/1052553
+Organization: ['National Renewable Energy Laboratory (NREL), Golden, CO (United States)']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'diffuse', 'direct', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'radiometer', 'rotating', 'rsp', 'rsr', 'shadowband', 'silicon', 'solar', 'solar calendar', 'temperature', 'weather', 'wind', 'wind rose']
+
+This measurement station monitors global horizontal, direct normal, and diffuse horizontal irradiance to define the amount of solar energy that hits this particular location.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

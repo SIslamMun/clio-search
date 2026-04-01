@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Fractional abundances and concentrations of branched glycerol dialkyl glycerol tetraethers (brGDGT) of core SO201-2-12KL
+Year: 2017
+DOI: https://doi.org/10.1594/PANGAEA.870592
+Geographic Coverage: {'type': 'point', 'coordinates': [162.37582999999998, 53.99266]}
+Position: {'lat': 53.99266, 'lon': 162.37582999999998}
+Topics: Geosciences, Multidisciplinary, Lithosphere, Meteorology & Atmospheric Sciences, Atmosphere
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

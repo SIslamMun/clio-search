@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Faaa, 1957-07-10 to 1958-12-31, ERA-CLIM ID 6018A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.823003
+Geographic Coverage: {'type': 'point', 'coordinates': [-149.614, -17.555]}
+Position: {'lat': -17.555, 'lon': -149.614}
+Data Points: 49705
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

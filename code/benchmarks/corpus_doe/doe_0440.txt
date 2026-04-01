@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Project HOTSPOT: Mountain Home Well Borehole Geophysics Database
+Authors: ['Shervais, John [Utah State University]']
+Date: 2012-11-11T04:00:00Z
+DOI: https://doi.org/10.15121/1148779
+Organization: ['DOE Geothermal Data Repository', 'Utah State University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Idaho', 'Mountain Home', 'Project HOTSPOT', 'SRP', 'Snake River Plain', 'Yellowstone Hotspot', 'borehole', 'borehole geophysics', 'borehole log', 'dowhnhole geophysics', 'gamma ray', 'geochemistry', 'geophysics', 'geothermal', 'image log', 'magnetic susceptibility', 'neutron', 'potassium', 'pressure', 'resistivity', 'temperature', 'thorium', 'uranium', 'well data']
+
+The Snake River Plain (SRP), Idaho, hosts potential geothermal resources due to elevated groundwater temperatures associated with the thermal anomaly Yellowstone-Snake River hotspot. Project HOTSPOT has coordinated international institutions and organizations to understand subsurface stratigraphy and assess geothermal potential. Over 5.9km of core were drilled from three boreholes within the SRP in an attempt to acquire continuous core documenting the volcanic and sedimentary record of the hotspot: (1) Kimama, (2) Kimberly, and (3) Mountain Home. The Mountain Home drill hole is located along the western plain and documents older basalts overlain by sediment. Data submitted by project collaborator Doug Schmitt, University of Alberta
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

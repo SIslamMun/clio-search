@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 14-2 Logs and Data from Roosevelt Hot Spring Area
+Authors: ['Moore, Joe [Energy and Geoscience Institute at the University of Utah]']
+Date: 2016-03-03T04:00:00Z
+DOI: https://doi.org/10.15121/1409673
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['14-2', '15 GEOTHERMAL ENERGY', 'EGS', 'FORGE', 'Milford', 'Roosevelt Hot Spring', 'Roosevelt Hot Springs', 'Utah', 'Utah EGS', 'Utah FORGE', 'Utah geothermal wells', 'Utah well logs', 'borehole', 'caliper', 'characterization', 'compensated', 'compensated neutron', 'density', 'downhole', 'electric', 'flowmeter', 'flowmeter test', 'formation', 'formation density', 'gamma', 'gamma ray', 'geochemistry', 'geophysics', 'geothermal', 'geothermal well logs', 'geothermal wells', 'induction', 'injection test', 'mud log', 'neutron', 'porosity', 'pressure', 'resource', 'sonic', 'spinner', 'spinner survey', 'steam injection', 'subsurface', 'survey', 'temperature', 'well data', 'well log', 'well logs']
+
+This is a compilation of logs and data from Well 14-2 in the Roosevelt Hot Springs area in Utah. This well is also in the Utah FORGE study area. Data includes: flowmeter survey (1989), geochemistry (1977-1978, 1977-1983), injection test data (1979, 1982), and spinner surveys (1989, 1985-1986). Logs include: borehole compensated sonic and gamma ray (600'-6112'), borehole geometry and gamma ray (50'-4829'), caliper (0'-1720'), compensated neutron formation density (600'-6121'), induction electric (650'-6118'), mud log (79'-6100'), steam injection survey (50'-1175'), subsurface pressure surveys (0'-6087'), and subsurface temperature surveys (0'-6106'). The file is in a compressed .zip format and there is a data inventory table (Excel spreadsheet) in the root folder that is a guide to the data that is accessible in subfolders.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

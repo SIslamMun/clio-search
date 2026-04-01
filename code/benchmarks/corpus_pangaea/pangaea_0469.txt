@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice and sea ice drift from autonomous measurements from buoy 2020S55, deployed during Antarctic Fast Ice Network 2020 (AFIN 2020)
+Year: 2024
+DOI: https://doi.org/10.1594/PANGAEA.964913
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-39.2026, -69.9482], [-7.668, -74.2656]]}
+Position: {'lat': -71.79674288767971, 'lon': -17.353664616480238}
+Data Points: 134752
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

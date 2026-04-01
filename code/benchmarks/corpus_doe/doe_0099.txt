@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Logs and Data from Deep Well 58-32 (MU-ESW1)
+Authors: ['Nash, Greg [Energy and Geoscience Institute at the University of Utah]', 'Moore, Joe']
+Date: 2018-04-11T04:00:00Z
+DOI: https://doi.org/10.15121/1452735
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '58-32', 'DSI logs', 'EGS', 'EOWR', 'FMI logs', 'FORGE', 'MU-ESW1', 'Milford', 'PT reports', 'Pressure', 'Roosevelt Hot Springs', 'Temperature', 'Temperature logs', 'Utah', 'Utah FORGE', 'borehole stress', 'caliper', 'caliper logs', 'characterization', 'daily reports', 'data', 'deep well', 'depp', 'directional survey', 'drilling', 'drilling data', 'end of well report', 'energy', 'gamma logs', 'geothermal', 'geothermal drilling', 'geothermal well', 'isolation scanner', 'log', 'mud logs', 'pason data', 'pason logs', 'porosity', 'pressure logs', 'resource', 'sonic logs', 'test well', 'testing', 'well', 'well data', 'well log', 'well logs', 'well test data', 'well testing']
+
+Data, logs, and graphics associated with the drilling and testing of Utah FORGE deep test well 58-32 (MU-ESW1) near Roosevelt Hot Springs.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

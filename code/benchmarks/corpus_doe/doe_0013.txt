@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Sixty Meter Tower: temperature, humidity, and vapor pressure, 30-min avg
+Authors: ['Kyrouac, Jenni [ORNL]', 'Cook, David']
+Date: 1997-09-12T04:00:00Z
+DOI: https://doi.org/10.5439/1025342
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric temperature']
+
+Sixty Meter Tower: temperature, humidity, and vapor pressure, 30-min avg
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

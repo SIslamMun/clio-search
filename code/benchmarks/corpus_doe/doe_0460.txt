@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: University of Illinois Campus Deep Direct-Use Feasibility Study - Long-Term Meteorological Data
+Authors: ['Lin, Yu-Feng [University of Illinois]']
+Date: 2018-03-30T04:00:00Z
+DOI: https://doi.org/10.15121/1458558
+Organization: ['DOE Geothermal Data Repository', 'University of Illinois']
+Subjects: ['15 GEOTHERMAL ENERGY', 'DDU', 'Deep Direct-Use', 'National Weather Service', 'University of Illinois', 'Willard Airport', 'energy', 'geothermal', 'meteorological', 'weather']
+
+This submission includes meteorological data recorded by National Weather Service at University of Illinois Willard Airport, Savoy IL for period 1972 to 2018. This data is for use in parameterizing the demand and life-cycle assessments associated with the project, and provides information about energy loads for the buildings being included in the DDU applications. This includes how energy demand fluctuates with seasonal changes in climate, which is used to model expected demand for the DDU system. *Note: All times are reported in local standard time. NC: Wind Chill/Heat Index do not meet the required thresholds to be calculated. cli-MATE: MRCC Application Tools Environment Generated at: 2/7/2018 8:52:33 AM CST m = missing data Date = year-month-day Time = 24 hour clock Temp_F = temperature (deg. fahrenheit) RH_pct = relative humidity (percent) Dewpt_F = dew point (deg. fahrenheit) WindSpeed_mph = wind speed (miles/hour) WindDir_deg = wind direction (deg. from north) PeakWindGust_mph = peak wind gust (miles/hour) Visibility_mi = visibility (miles) AtmPress_hPa = atmospheric pressure (hectopascals) Precip_in = precipitation (inches)
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,10 @@
+DOE Scientific Dataset Record
+Title: NREL Renewable Energy Resource Data
+Authors: ['Rossol, Michael [National Renewable Energy Laboratory (NREL)]', 'Hodge, Bri-Mathias', 'Draxl, Caroline', 'Clifton, Andrew', 'McCaa, Jim', 'Elgindy, Tarek', 'Sengupta, Manajit', 'Xie, Yu', 'Lopez, Anthony', 'Habte, Aron']
+Date: 2018-09-21T04:00:00Z
+DOI: https://doi.org/10.17041/drp/1473618
+Organization: ['Data Repository for Power system Open models With Evolving Resources (DR POWER)', 'National Renewable Energy Laboratory (NREL)']
+
+This data is derived from the Wind Integration National Dataset (WIND) Toolkit and the Solar Integration National Dataset (SIND). The WIND Toolkit provides meteorological conditions and turbine power for more than 126,000 land-based and offshore wind sites across the continental United States, and the SIND Toolkit provides subhourly solar power data designed to assist researchers and utilities in solar generation integration studies This data set includes meteorological variables, including wind speed, direction, temperature, pressure, air density, irradiance, and surface temperature. Parameters such as wind profiles, atmospheric stability, and solar radiation data are also included.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

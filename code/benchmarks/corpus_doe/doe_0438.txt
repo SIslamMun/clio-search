@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Tropical Cloud Properties and Radiative Heating Profiles
+Authors: ['Mather, James [ORNL]']
+Date: 2008-01-15T04:00:00Z
+DOI: https://doi.org/10.5439/1171945
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Cloud droplet size', 'Cloud optical depth', 'Ice water content', 'Liquid water content', 'Longwave broadband downwelling irradiance', 'Longwave broadband upwelling irradiance', 'Ozone Concentration', 'Radiative heating rate', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total upwelling irradiance', 'Surface albedo']
+
+We have generated a suite of products that includes merged soundings, cloud microphysics, and radiative fluxes and heating profiles. The cloud microphysics is strongly based on the ARM Microbase value added product (Miller et al., 2003).  We have made a few changes to the microbase parameterizations to address issues we observed in our initial analysis of the tropical data. The merged sounding product is not directly related to the product developed by ARM but is similar in that it uses the microwave radiometer to scale the radiosonde column water vapor. The radiative fluxes also differ from the ARM BBHRP (Broadband Heating Rate Profile) product in terms of the radiative transfer model and the sampling interval.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

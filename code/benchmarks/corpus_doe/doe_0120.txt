@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: SCM Forcing Data Derived from NWP Analyses
+Authors: ['Jakob, Christian [ORNL]']
+Date: 2008-01-15T04:00:00Z
+DOI: https://doi.org/10.5439/1169512
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Advective tendency', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Soil surface temperature', 'Vertical velocity']
+
+Forcing data, suitable for use with single column models (SCMs) and cloud resolving models (CRMs), have been derived from NWP analyses for the ARM (Atmospheric Radiation Measurement) Tropical Western Pacific (TWP) sites of Manus Island and Nauru.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

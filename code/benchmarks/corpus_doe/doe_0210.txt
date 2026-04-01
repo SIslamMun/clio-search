@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Surface Meteorological Observation Station (SMOS): 1-minute averaged data
+Authors: ['Ermold, Brian [ORNL]', 'Kyrouac, Jenni']
+Date: 1993-07-01T04:00:00Z
+DOI: https://doi.org/10.5439/1025034
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Extreme event time', 'Horizontal wind', 'Precipitation']
+
+Surface Meteorological Observation Station (SMOS): 1-minute averaged data
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

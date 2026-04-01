@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE Core Material Friction Experiments
+Authors: ['Marone, Chris [The Pennsylvania State University] (ORCID:0000000245154500)', 'Affinito, Raphael (ORCID:0000000257998620)', 'Eijsink, Aagje (ORCID:0000000182750822)']
+Date: 2023-03-15T04:00:00Z
+DOI: https://doi.org/10.15121/1989382
+Organization: ['DOE Geothermal Data Repository', 'The Pennsylvania State University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Utah FORGE', 'drained boundary conditions', 'energy', 'friction experiments', 'geothermal', 'gouge samples', 'healing', 'high temperature', 'intact samples', 'permeability', 'pore fluid pressure', 'processed data', 'raw data', 'velocity steps']
+
+The following folders contain 3 friction experiments on Utah FORGE core material from depths of 6735 - 8533ft. The experiment conditions range from 100% relative humidity at room temperature to fluid-saturated at 110C. Experiments were done on both intact samples in a single-direct shear configuration, double-direct shear, and gouge.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

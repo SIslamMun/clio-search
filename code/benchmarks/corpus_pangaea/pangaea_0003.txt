@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Climate Data Rescue: Digitisation of 5 meteorological variables recorded at Glenam, Clonmel Station (WSI : 0-372-7-10112) Tipperary between 1867-1911, Version 2
+Year: 2026
+DOI: https://doi.org/10.1594/PANGAEA.990371
+Geographic Coverage: {'type': 'point', 'coordinates': [-7.68388, 52.3505]}
+Position: {'lat': 52.3505, 'lon': -7.68388}
+Data Points: 225517
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

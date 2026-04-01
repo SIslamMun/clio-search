@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: WFIP3 - NREL ASSIST Barge / Thermodynamic retrievals TROPoe
+Authors: ['Letizia, Stefano [NREL; Pacific Northwest National Laboratory]']
+Date: 2024-10-24T04:00:00Z
+DOI: https://doi.org/10.21947/2473243
+Organization: ['Atmosphere to Electrons (A2e) Data Archive and Portal, Pacific Northwest National Laboratory', 'PNNL']
+Subjects: ['17 WIND ENERGY']
+
+This dataset contains daily files with thermodynamic profiles retrieved with the optimal estimation physical retrieval TROPoe (Turner and Löhnert, 2014; Turner and Blumberg, 2019; Turner and Löhnert, 2021). The profiles are retrieved every 10 minutes from instantaneous observations from the NREL ASSIST-II (SN 12) infrared spectrometer. Observations are noise-filtered but not averaged in time to minimize errors due to non-uniform clouds. Additional input data in TROPoe are cloud base height from a collocated NREL Vaisala CL51 ceilometer and surface temperature, relative humidity, and pressure from the collocated Oregon State University met tower. The full pipeline to run the retrieval is available at https://github.com/StefanoWind/TROPoe_processor. In addition to these temporally resolved input data, TROPoe requires an a priori dataset (prior) which provides mean climatological estimates of thermodynamic profiles and specifies how temperature and humidity covary with height as an input (for details see, e.g., Djalalova et al., 2022). The prior is a key component of the retrieval and provides a constraint on the ill-posed inversion problem. A monthly prior was computed from operational radiosonde launches at Upton, NY.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

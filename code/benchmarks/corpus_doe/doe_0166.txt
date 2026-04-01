@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: UNL M600P data
+Authors: ['Houston, Adam [ORNL]']
+Date: 2021-03-31T04:00:00Z
+DOI: https://doi.org/10.5439/1825271
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Intermet Systems XQ-2,Atmospheric temperature,Atmospheric moisture,Atmospheric pressure, ARM, DOE.']
+
+These data were collected a DJI M600-P hexcopter UAS operated by the University of Nebraska-Lincoln.&nbsp; The M600-P includes housings, described by Islam et al. (2019), for the temperature/humidity sensors.&nbsp; Data were collected via profiles to ~120 m AGL along with loiters near 60 m AGL.&nbsp;&nbsp;
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

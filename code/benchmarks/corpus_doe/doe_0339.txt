@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Forty Meter Tower: meteorological data, 2, 10, 20, and 40 m, 1-min avg
+Authors: ['Cook, David [ORNL]', 'Kyrouac, Jenni']
+Date: 1998-03-20T04:00:00Z
+DOI: https://doi.org/10.5439/1046207
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Precipitation', 'Visibility']
+
+Forty Meter Tower: meteorological data, 2, 10, 20, and 40 m, 1-min avg
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

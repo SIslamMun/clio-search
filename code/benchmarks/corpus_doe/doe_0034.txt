@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Weather data at The Morton Arboretum 2017-2023
+Authors: ['Lo, Marvin [The Morton Arboretum] (ORCID:0000000279288494)', 'McCormack, M. Luke [The Morton Arboretum] (ORCID:0000000283005215)', 'Stoycheva, Teodora [The Morton Arboretum] (ORCID:000000029512967X)', 'Tran, Newton [The Morton Arboretum] (ORCID:0000000338565480)']
+Date: 2024-01-01T00:00:00Z
+DOI: https://doi.org/10.15485/2345682
+Organization: ['ORNL Terrestrial Ecosystem Science SFA']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'EARTH SCIENCE > AGRICULTURE > SOILS > SOIL MOISTURE/WATER CONTENT', 'EARTH SCIENCE > AGRICULTURE > SOILS > SOIL TEMPERATURE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC RADIATION > SOLAR RADIATION', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC TEMPERATURE > SURFACE TEMPERATURE > AIR TEMPERATURE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WATER VAPOR > WATER VAPOR INDICATORS > HUMIDITY > RELATIVE HUMIDITY', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WATER VAPOR > WATER VAPOR INDICATORS > SATURATION VAPOR PRESSURE', 'EARTH SCIENCE > ATMOSPHERE > PRECIPITATION > LIQUID PRECIPITATION > RAIN', 'ESS-DIVE CSV File Formatting Guidelines Reporting Format', 'ESS-DIVE File Level Metadata Reporting Format', 'long-term weather', 'weather']
+
+We have been monitoring long-term weather patterns using two weather stations at The Morton Arboretum to link environmental conditions to tree growth and other tree responses. This data package contains weather data at The Morton Arboretum from 2017-08-23 to 2023-12-31; data is located in the "MortonWeatherData2017_2023.csv" file. The two weather stations are located on each side of The Arboretum (e.g., the Nursery station on the East side and the Ware Field station on the West side; the two weather stations are 3.23 km apart and coordinates are included in the "Location_metadata.csv" file). Measured variables include rain accumulation, air temperature, relative humidity, three soil moisture/temperature measurements at various depths (10, 30, and 50 cm for the Nursery weather station, and 10, 25, and 50 cm for the Ware Field), solar radiation, saturation vapor pressure, and vapor pressure deficit.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

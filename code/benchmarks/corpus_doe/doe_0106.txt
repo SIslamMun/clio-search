@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Wister, CA Downhole and Seismic Data
+Authors: ['Akerley, John [Ormat Nevada Inc]']
+Date: 2010-12-18T04:00:00Z
+DOI: https://doi.org/10.15121/1441453
+Organization: ['DOE Geothermal Data Repository', 'Ormat Nevada Inc']
+Subjects: ['12-27', '15 GEOTHERMAL ENERGY', '3C', '3D Seismic', '85-20', 'AIT', 'Array Induction', 'California', 'Drilling', 'GR', 'Imperial County', 'Imperial Valley', 'Kirchhoff Pre Stack', 'NPOR', 'P-Wave', 'PTS', 'Pressure', 'SP', 'Seismic', 'Spinner', 'Temperature', 'Well Data', 'Wister', 'borehole', 'circulation', 'downhole', 'exploration', 'gamma ray', 'gas analysis', 'geophysical survey', 'geophysics', 'geothermal', 'injection test', 'lithology', 'mineral composition', 'mud log', 'multi-component', 'neutron porosity', 'reflection', 'refraction', 'resistivity', 'risk reduction', 'shear wave', 'spontaneous potential', 'well log']
+
+This submission contains Downhole geophysical logs associated with Wister, CA Wells 12-27 and 85-20. The logs include Spontaneous Potential (SP), HILT Caliper (HCAL), Gamma Ray (GR), Array Induction (AIT), and Neutron Porosity (NPOR) data. Also included are a well log, Injection Test, Pressure Temperature Spinner log, shut in temperature survey, a final well schematic, and files about the well's location and drilling history. This submission also contains data from a three-dimensional (3D) multi-component (3C) seismic reflection survey on the Wister Geothermal prospect area in the northern portion of the Imperial Valley, California. The Wister seismic survey area was 13.2 square miles. (Resistivity image logs (Schlumberger FMI) in 85-20 indicate that maximum horizontal stress (Shmax) is oriented NNE but that open fractures are oriented suboptimally).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

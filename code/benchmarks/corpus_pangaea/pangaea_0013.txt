@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice, meteorological conditions and drift of sea ice from autonomous measurements from buoy 2019S79, deployed during MOSAiC 2019/20
+Year: 2020
+DOI: https://doi.org/10.1594/PANGAEA.923187
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[117.9114, 86.006], [137.639, 84.5482]]}
+Position: {'lat': 85.36640860557776, 'lon': 126.99088159362539}
+Data Points: 8453
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: TAMU TRACER Upper Air Radiosonde Data June-September 2022 Southeast Texas
+Authors: ['Sharma, Milind [ORNL] (ORCID:0000000333187601)', 'Rapp, Anita (ORCID:0000000151062760)', 'Nowotarski, Christopher (ORCID:0000000347397810)']
+Date: 2023-04-10T04:00:00Z
+DOI: https://doi.org/10.5439/1968819
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric dew point temperature', 'Atmospheric pressure', 'Atmospheric relative humidity', 'Atmospheric temperature', 'Wind direction, relative to true North', 'Wind speed']
+
+<p>The following dataset relates to the TAMU TRACER radiosonde IOP, which involved launching iMet-4 and iMet-4C radiosonde models from various locations in southeast Texas. The radiosondes were launched between June and September 2022 during the TRACER IOP. Telemetry data for all IOPs were copied using the iMet-OS II software provided by radiosonde manufacturer, Intermet Systems.&nbsp;</p>
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

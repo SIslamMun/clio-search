@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Black Swift Technologies S0 Uncrewed Aircraft System Data
+Authors: ['Elston, Jack [ORNL]', 'Stachura, Maciej']
+Date: 2021-03-30T04:00:00Z
+DOI: https://doi.org/10.5439/1824862
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'ARM', 'Aircraft Position', 'Aircraft airspeed', 'Airflow over aircraft', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Black Swift Technologies Autopilot', 'Black Swift Technologies Multihole Probe', 'DOE.', 'Horizontal wind', 'Vaisala RSS-421', 'aircraft attitude', 'aircraft movement', 'flight state', 'time']
+
+This dataset includes atmospheric measurements obtained with the Black Swift Technologies S0 uncrewed aircraft system at the ARM SGP facility and a nearby mesonet site (Marshall). &nbsp;Flights were conducted over a one-week period, alongside platforms deployed by the University of Nebraska - Lincoln.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

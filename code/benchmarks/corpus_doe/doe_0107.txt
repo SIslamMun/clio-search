@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Compressive and Tensile Strength of Class H Cement Exposed to High Pressure and Temperature Storage Conditions
+Authors: ['Verba, C [National Energy Technology Laboratory]', 'Reed, M', 'Ideker, J', "O'Connor, W"]
+Date: 2017-03-28T04:00:00Z
+DOI: https://doi.org/10.18141/1433146
+Organization: ['National Energy Technology Laboratory - Energy Data eXchange', 'NETL']
+Subjects: ['TRS']
+
+NRAP TRS
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

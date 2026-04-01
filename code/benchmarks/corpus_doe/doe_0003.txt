@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: West Flank Coso FORGE: Well 74-2TCH Temperature, Pressure, Well History, Well Bore Schematic
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2016-05-13T04:00:00Z
+DOI: https://doi.org/10.15121/1287565
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', '74-2TCH', 'Coso', 'EGS', 'FORGE', 'daily reports', 'drill rig', 'geothermal', 'history', 'log', 'mud log', 'pressure', 'pressure gradient', 'schematic', 'static survey', 'sundry notice', 'survey plots', 'temperature', 'temperature gradient', 'temperature log', 'thin sections', 'well', 'well completion', 'well history', 'well schematic', 'wellbore schematic']
+
+Temperature logs, pressure logs, directional survey, well history, well bore schematic, and other reports for well 74-2TCH at West Flank FORGE
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

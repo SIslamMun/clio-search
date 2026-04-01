@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: GreenSight WxHive Unmanned Aerial System (UAS) Atmospheric Profiling at the SGP Central Facility
+Authors: ['Roman, Jacola']
+Date: 2025-12-15T04:00:00Z
+DOI: https://doi.org/10.5439/3008286
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['Air pressure', 'Altitude above mean sea level', 'Latitude in decimal degrees', 'Longitude in decimal degrees', 'Planetary Boundary Layer', 'Temperature, air, at altitude', 'WeatherHive drone network for atmospheric modeling', 'Wind direction, at altitude', 'Wind speed, at altitude', 'altitude', 'latitude', 'longitude', 'pressure', 'relative humidity', 'temperature', 'wind direction', 'wind speed']
+
+The GreenSight WxHive is capable of flying multiple nanodrones simultaneously to provide spatiotemporal atmospheric sampling. During the WH2yMSIE campaign, the WxHive would fly up to 5 nanodrones at once, performing profiling within the planetary boundary layer over the ARM SGP Central Facility site. The measurements provided by the WxHive include latitude, longitude, altitude, pressure, temperature, humidity, and wind speed and direction. See the attached WeatherHive User Guide for more details about the instrument and measurements.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

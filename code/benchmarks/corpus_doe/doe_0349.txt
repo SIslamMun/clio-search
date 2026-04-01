@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Atmospheric State, Cloud Microphysics and Radiative Flux
+Authors: ['Mace, Gerald [ORNL]']
+Date: 2008-01-15T04:00:00Z
+DOI: https://doi.org/10.5439/1169517
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Cloud base height', 'Cloud fraction', 'Cloud optical depth', 'Cloud top height', 'Hydrometeor optical properties', 'Ice water content', 'Liquid water content', 'Liquid water path', 'Longwave broadband downwelling irradiance', 'Longwave broadband upwelling irradiance', 'Precipitable water', 'Precipitation', 'Radar Doppler', 'Radar reflectivity', 'Shortwave broadband diffuse downwelling irradiance', 'Shortwave broadband direct downwelling irradiance', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total upwelling irradiance', 'Surface skin temperature']
+
+Atmospheric thermodynamics, cloud properties, radiative fluxes and radiative heating rates for the ARM Southern Great Plains (SGP) site. The data represent a characterization of the physical state of the atmospheric column compiled on a five-minute temporal and 90m vertical grid. Sources for this information include raw measurements, cloud property and radiative retrievals, retrievals and derived variables from other third-party sources, and radiative calculations using the derived quantities.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

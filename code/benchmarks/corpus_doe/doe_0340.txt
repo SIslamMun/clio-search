@@ -1,0 +1,15 @@
+DOE Scientific Dataset Record
+Title: NPFTURBULENCE: Fast Response Temperature by Airborne Measurements
+Authors: ['Pekour, Mikhail (ORCID:0000000298210078)']
+Date: 2025-06-10T04:00:00Z
+DOI: https://doi.org/10.5439/2569126
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['Air temperature', 'Atmosphere:Troposphere', 'Fine wire thermocouple probe', 'LiCor H2O/CO2 non-dispersive infrared gas analyzer (LI-840A)']
+
+The original data were collected during the field campaign of the “Turbulent layers promoting New Particle Formation” experiment (NPFTURBULENCE; https://www.arm.gov/research/campaigns/aaf2024npfturbulence; https://www.arm.gov/publications/programdocs/doe-sc-arm-25-004.pdf ) over the Atmospheric Radiation Measurement (ARM) Southern Great Plains (SGP) Atmospheric Observatory (https://www.arm.gov/capabilities/observatories/sgp ) in north-central Oklahoma. The ARM Aerial Facility ArcticShark uncrewed aerial system (UAS, https://www.arm.gov/capabilities/observatories/aaf/uas) was based at Blackwell–Tonkawa Municipal Airport (IATA: BWL, ICAO: KBKN, FAA LID: BKN, 36.74475° N, 97.34918° W, 313.9 m MSL), for the field campaign from May 5 through May 29, 2024. The ArcticShark UAS performed 11 flights, including 10 research flights over the Central Facility of the ARM SGP to measure atmospheric state, turbulence, surface IR temperature and imagery, aerosol number concentration and size distribution.
+
+The current dataset presents fast response temperature in the atmospheric boundary layer and lower free troposphere measured on the airborne platform throughout the field campaign. The primary instruments used to create the current dataset were the fine wire thermocouple probe, Pitot-static system (part of the UAS control), and infrared gas analyzer sensor for H2O and CO2 (LI-840A).
+
+All parameters used in the temperature calculations (static and dynamic pressure, absolute humidity in form of dew point temperature) were included in the data set. For user convenience, one additional parameter was also included: the type of flight flag (level, up, down, turn, and combination of thereof).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.
