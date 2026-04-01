@@ -457,31 +457,42 @@ We illustrate the rewriting behavior with representative examples. Consider the 
 
 For deployments where LLM inference is unavailable or latency-constrained, the system falls back to a deterministic rewriting strategy that expands queries with SI unit variants. On our benchmark, the non-LLM fallback achieves comparable P@5 and MRR, confirming that the deterministic fallback is sufficient when science-aware operators are the primary source of retrieval gains.
 
-We further evaluate the agentic loop across four LLM providers spanning cloud and local inference (Table~\ref{tab:llm_providers}).
+We further evaluate the agentic loop across 11 LLM configurations spanning four inference backends: Ollama (local GPU), Google Gemini (cloud API), Claude Agent SDK (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
 
-\begin{table}[!t]
+\begin{table*}[!t]
 \centering
-\caption{LLM provider comparison for query rewriting. Latency and retrieval quality measured on 10 representative queries.}
+\caption{LLM provider benchmark for agentic query rewriting. 11 configurations across 4 backends, evaluated on 10 representative queries. Retrieval P@5 and MRR measure end-to-end quality after rewriting. The system additionally supports LM~Studio, vLLM, OpenAI, Together~AI, and Groq via a unified OpenAI-compatible interface.}
 \label{tab:llm_providers}
-\footnotesize
+\small
 \renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l l c c c c@{}}
+\begin{tabular}{l l l c c c c c}
 \toprule
-\textbf{Provider} & \textbf{Type} & \textbf{Lat.(s)} & \textbf{P@5} & \textbf{MRR} & \textbf{Cost} \\
+\textbf{Backend} & \textbf{Model} & \textbf{Inference} & \textbf{Params} & \textbf{Lat.(s)} & \textbf{P@5} & \textbf{MRR} & \textbf{Cost/q} \\
 \midrule
-Ollama (Gemma) & Local  & 0.76 & 0.90 & 1.00 & \$0 \\
+\multirow{4}{*}{Ollama (local)} & Llama 3.2          & GPU & 3B  & 4.93  & 0.90 & 0.95 & \$0 \\
+                                & Llama 3.1          & GPU & 8B  & 10.84 & 0.90 & 0.95 & \$0 \\
 \rowcolor{gray!5}
-Gemini 1.5 Flash & Cloud  & 0.11 & 0.90 & 1.00 & \$0 \\
-Claude Sonnet & Session & 8.24 & 0.86 & 0.88 & \$0.008 \\
+                                & Mistral 7B         & GPU & 7B  & 10.52 & 0.90 & 0.95 & \$0 \\
+                                & Qwen 2.5           & GPU & 14B & 18.08 & 0.90 & 1.00 & \$0 \\
+\midrule
+\multirow{3}{*}{Google Gemini}  & Gemini 2.0 Flash   & Cloud API & --- & 0.09 & 0.90 & 1.00 & $\sim$\$0 \\
 \rowcolor{gray!5}
-Fallback (SI exp.) & None & 0.00 & 0.86 & 0.88 & \$0 \\
+                                & Gemini 1.5 Flash   & Cloud API & --- & 0.06 & 0.90 & 1.00 & $\sim$\$0 \\
+                                & Gemini 1.5 Pro     & Cloud API & --- & 0.05 & 0.90 & 1.00 & $\sim$\$0 \\
+\midrule
+\multirow{3}{*}{Claude (SDK)}   & Claude Sonnet      & Session   & --- & 8.56 & 0.86 & 0.88 & \$0.008 \\
+\rowcolor{gray!5}
+                                & Claude Haiku       & Session   & --- & 8.79 & 0.86 & 0.88 & \$0.003 \\
+                                & Claude Opus        & Session   & --- & 9.34 & 0.86 & 0.88 & \$0.015 \\
+\midrule
+\rowcolor{gray!10}
+No LLM                          & SI expansion       & None      & 0   & 0.00 & 0.86 & 0.88 & \$0 \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
-\end{table}
+\end{table*}
 
-Ollama (local, zero cost) and Gemini Flash (cloud, sub-second latency) both achieve P@5 of 0.90 with perfect MRR, outperforming both the Claude Agent SDK (8.2s latency, session-based) and the no-LLM fallback. The system supports nine additional providers---Llama~3.1, Qwen~2.5, DeepSeek-R1, Mistral, Gemini~Pro, Claude Haiku/Opus, LM~Studio, and vLLM---through a unified OpenAI-compatible interface, enabling users to select the latency--quality--cost trade-off appropriate to their deployment. The key finding is that local inference via Ollama matches cloud quality at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted.
+Three findings emerge. First, local Ollama inference matches cloud quality (P@5 = 0.90 across all four models) at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted. Qwen~2.5~(14B) achieves perfect MRR despite higher latency. Second, Gemini Flash models achieve sub-100ms rewriting latency with perfect MRR---an order of magnitude faster than local inference---suitable for interactive deployments. Third, the no-LLM fallback (deterministic SI unit expansion) achieves 96\% of the best LLM-assisted P@5, confirming that the science-aware operators are the primary source of retrieval gains; the LLM provides incremental improvement through query expansion rather than fundamental capability.
 
 \subsection{Indexing Performance}
 

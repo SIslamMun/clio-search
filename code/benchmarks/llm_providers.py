@@ -732,7 +732,7 @@ def discover_providers(
     # 1. Ollama — multiple models (prefer llama, qwen, mistral, deepseek)
     _OLLAMA_PREFERRED = [
         "llama3.1:8b", "llama3.2:latest", "qwen2.5:14b",
-        "deepseek-r1:14b", "mistral:latest", "mistral-small3.2:24b",
+        "mistral:latest",
     ]
     try:
         import ollama as _ollama  # type: ignore[import-untyped]
