@@ -234,16 +234,7 @@ where the weights $w_l, w_v, w_m, w_s$ are configurable per deployment. The top-
 
 Scientific data at HPC facilities spans heterogeneous backends. A single experimental campaign may deposit raw output on a parallel filesystem, preprocessed arrays in HDF5, derived features in a vector database, and annotations in a knowledge graph. Rather than require data migration, we bring the retrieval operators to the data.
 
-Every storage backend is wrapped by a connector that implements the \texttt{NamespaceConnector} protocol and declares a \texttt{RetrievalCapabilities} object specifying which retrieval branches it supports. The capability matrix is as follows:
-
-\begin{itemize}
-\item \textbf{Filesystem}: lexical, vector, scientific
-\item \textbf{S3}: lexical, vector, scientific
-\item \textbf{Qdrant}: vector
-\item \textbf{Neo4j}: graph
-\item \textbf{HDF5}: metadata, scientific
-\item \textbf{NetCDF}: metadata, scientific
-\end{itemize}
+Every storage backend is wrapped by a connector that implements the \texttt{NamespaceConnector} protocol and declares a \texttt{RetrievalCapabilities} object specifying which retrieval branches it supports. The capability matrix is: Filesystem and S3 connectors support lexical, vector, and scientific search; Qdrant supports vector search; Neo4j supports graph traversal; HDF5 and NetCDF connectors support metadata and scientific search.
 
 The Retrieval Coordinator consults this matrix before dispatching. When a query spans multiple namespaces, the coordinator executes the single-namespace pipeline independently for each namespace, activating only the branches that the namespace's connector supports. Results from all namespaces are collected into a global candidate pool, sorted by composite score, deduplicated by chunk\_id (since the same document may appear in multiple backends), and truncated to the final top-$K$.
 
@@ -255,7 +246,7 @@ Single-pass retrieval often fails for complex scientific questions that require 
 
 The loop proceeds as follows. The initial query executes the full hybrid pipeline described in Section~3.4 across all federated namespaces. The retrieved results, along with the original query and the retrieval trace, are passed to an LLM (Anthropic API) that evaluates result quality and selects one of four strategies: \textbf{expand} (broaden the query to increase recall), \textbf{narrow} (add constraints to increase precision), \textbf{pivot} (reformulate the query to pursue a different aspect), or \textbf{done} (terminate the loop). If the strategy is not done, the LLM generates a rewritten query, which re-enters the pipeline for another full retrieval pass. Results from all hops are merged, deduplicated, and re-ranked. The loop terminates when the LLM selects done, when results stabilize across consecutive hops (no new unique chunk\_ids appear), or when a configurable maximum hop count is reached.
 
-Each hop constitutes a full pipeline execution: all four retrieval branches, all eligible namespaces, merge and rerank. This ensures that every rewritten query benefits from the same dimensional conversion, formula normalization, and federated search capabilities as the original. The LLM's role is strictly query rewriting and termination decision---it does not score or filter results, preserving the deterministic correctness guarantees of the science-aware operators (within supported units). When the Anthropic API is unavailable, the system falls back to an offline strategy that expands queries with SI unit variants (e.g., appending ``Pa'' and ``MPa'' to a query containing ``kPa''), providing degraded but functional multi-pass retrieval without LLM dependency. We emphasize that the LLM's role is strictly advisory---it selects rewriting strategies and generates query refinements but never scores, filters, or overrides the deterministic science-aware operators. This separation preserves the correctness guarantees of the arithmetic branch (within supported units) regardless of LLM availability or quality.
+Each hop constitutes a full pipeline execution: all four retrieval branches, all eligible namespaces, merge and rerank. This ensures that every rewritten query benefits from the same dimensional conversion, formula normalization, and federated search capabilities as the original. The LLM's role is strictly advisory---it selects rewriting strategies and generates query refinements but never scores, filters, or overrides the deterministic science-aware operators, preserving correctness guarantees regardless of LLM availability. When the LLM is unavailable, the system falls back to deterministic SI unit expansion.
 
 %% ===================================================================
 %% Section 4: Implementation
@@ -266,7 +257,7 @@ clio-agentic-search is implemented as a single-binary Python system with no exte
 
 \subsection{System Implementation}
 
-The system is implemented in Python 3.11+ and exposes both a CLI and an async HTTP API via FastAPI. The CLI provides five primary commands---\texttt{clio query}, \texttt{clio index}, \texttt{clio serve}, \texttt{clio list}, and \texttt{clio seed}---with flags that control retrieval behavior: \texttt{--agentic} and \texttt{--max-hops} enable multi-hop retrieval, \texttt{--llm-rewrite} activates LLM query reformulation, and \texttt{--numeric-range} and \texttt{--formula} engage the science-aware operator branches. The HTTP API mirrors the CLI surface and serves as the entry point for programmatic and agent-driven access.
+The system is implemented in Python 3.11+ and exposes both a CLI and an async HTTP API via FastAPI. The CLI (\texttt{clio}) and HTTP API expose all retrieval modes including \texttt{--agentic}, \texttt{--numeric-range}, and \texttt{--formula} flags.
 
 Dense retrieval uses sentence-transformers with the all-MiniLM-L6-v2 model (22.7M parameters, 384-dimensional embeddings, Apache 2.0 license). Two ANN backends are supported behind a common \texttt{ANNAdapter} protocol: \texttt{ExactANNAdapter}, which partitions vectors across 16 shards and computes exact cosine similarity, and \texttt{HnswANNAdapter}, which delegates to hnswlib for approximate search on larger corpora. Write safety on shared filesystems is enforced via \texttt{fcntl} file locking. Observability is provided by OpenTelemetry instrumentation with Prometheus-compatible \texttt{/metrics} endpoints; all retrieval branches and agentic hops emit structured trace events.
 
@@ -453,44 +444,38 @@ We evaluate the agentic retrieval loop (Section~3.6) on the 80 benchmark queries
 
 All three configurations achieve P@5 of 0.98 and MRR of 0.94, confirming that the science-aware operators resolve cross-unit matching in a single pass with minimal room for agentic improvement. The agentic loop converges at hop 1--2 on this benchmark.
 
-We illustrate the rewriting behavior with representative examples. Consider the query ``What simulation used pressures around 200 kPa with a velocity of 50 km/h?'' In the first hop, the system retrieves documents matching the dimensional constraints. The agentic rewriter examines these results, identifies a referenced simulation identifier, and reformulates the query for the second hop to include the identifier as a lexical constraint, recovering additional documents linked by that identifier but not by the original numeric constraints.
+In practice, the rewriter identifies referenced identifiers in first-hop results and reformulates the query to recover additional linked documents in subsequent hops. For deployments without LLM access, a deterministic fallback expands queries with SI unit variants and achieves comparable P@5 and MRR.
 
-For deployments where LLM inference is unavailable or latency-constrained, the system falls back to a deterministic rewriting strategy that expands queries with SI unit variants. On our benchmark, the non-LLM fallback achieves comparable P@5 and MRR, confirming that the deterministic fallback is sufficient when science-aware operators are the primary source of retrieval gains.
+We further evaluate the agentic loop across 8 configurations spanning four inference backends: Ollama (local GPU), Gemini (cloud API), Claude (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
 
-We further evaluate the agentic loop across 11 LLM configurations spanning four inference backends: Ollama (local GPU), Google Gemini (cloud API), Claude Agent SDK (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
-
-\begin{table*}[!t]
+\begin{table}[!t]
 \centering
-\caption{LLM provider benchmark for agentic query rewriting. 11 configurations across 4 backends, evaluated on 10 representative queries. Retrieval P@5 and MRR measure end-to-end quality after rewriting. The system additionally supports LM~Studio, vLLM, OpenAI, Together~AI, and Groq via a unified OpenAI-compatible interface.}
+\caption{LLM provider benchmark for agentic rewriting (8 configurations, 10 queries). Additional backends (LM~Studio, vLLM, OpenAI, Together~AI, Groq) supported via unified OpenAI-compatible interface.}
 \label{tab:llm_providers}
-\small
+\footnotesize
+\setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.15}
-\begin{tabular}{l l l c c c c c}
+\begin{tabular}{@{}l l c c c c c@{}}
 \toprule
-\textbf{Backend} & \textbf{Model} & \textbf{Inference} & \textbf{Params} & \textbf{Lat.(s)} & \textbf{P@5} & \textbf{MRR} & \textbf{Cost/q} \\
+\textbf{Backend} & \textbf{Model} & \textbf{Params} & \textbf{Lat.(s)} & \textbf{P@5} & \textbf{MRR} & \textbf{Cost/q} \\
 \midrule
-\multirow{4}{*}{Ollama (local)} & Llama 3.2          & GPU & 3B  & 4.93  & 0.90 & 0.95 & \$0 \\
-                                & Llama 3.1          & GPU & 8B  & 10.84 & 0.90 & 0.95 & \$0 \\
+Ollama  & Llama 3.2    & 3B  & 4.93  & 0.90 & 0.95 & \$0 \\
 \rowcolor{gray!5}
-                                & Mistral 7B         & GPU & 7B  & 10.52 & 0.90 & 0.95 & \$0 \\
-                                & Qwen 2.5           & GPU & 14B & 18.08 & 0.90 & 1.00 & \$0 \\
-\midrule
-\multirow{3}{*}{Google Gemini}  & Gemini 2.0 Flash   & Cloud API & --- & 0.09 & 0.90 & 1.00 & $\sim$\$0 \\
+Ollama  & Qwen 2.5     & 14B & 18.08 & 0.90 & 1.00 & \$0 \\
+Ollama  & Mistral      & 7B  & 10.52 & 0.90 & 0.95 & \$0 \\
 \rowcolor{gray!5}
-                                & Gemini 1.5 Flash   & Cloud API & --- & 0.06 & 0.90 & 1.00 & $\sim$\$0 \\
-                                & Gemini 1.5 Pro     & Cloud API & --- & 0.05 & 0.90 & 1.00 & $\sim$\$0 \\
-\midrule
-\multirow{3}{*}{Claude (SDK)}   & Claude Sonnet      & Session   & --- & 8.56 & 0.86 & 0.88 & \$0.008 \\
+Gemini  & 2.0 Flash    & --- & 0.09  & 0.90 & 1.00 & $\sim$\$0 \\
+Gemini  & 1.5 Pro      & --- & 0.05  & 0.90 & 1.00 & $\sim$\$0 \\
 \rowcolor{gray!5}
-                                & Claude Haiku       & Session   & --- & 8.79 & 0.86 & 0.88 & \$0.003 \\
-                                & Claude Opus        & Session   & --- & 9.34 & 0.86 & 0.88 & \$0.015 \\
-\midrule
+Claude  & Sonnet       & --- & 8.56  & 0.86 & 0.88 & \$0.008 \\
+Claude  & Opus         & --- & 9.34  & 0.86 & 0.88 & \$0.015 \\
+\rowcolor{gray!5}
 \rowcolor{gray!10}
-No LLM                          & SI expansion       & None      & 0   & 0.00 & 0.86 & 0.88 & \$0 \\
+No LLM  & SI exp.      & 0   & 0.00  & 0.86 & 0.88 & \$0 \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
-\end{table*}
+\end{table}
 
 Three findings emerge. First, local Ollama inference matches cloud quality (P@5 = 0.90 across all four models) at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted. Qwen~2.5~(14B) achieves perfect MRR despite higher latency. Second, Gemini Flash models achieve sub-100ms rewriting latency with perfect MRR---an order of magnitude faster than local inference---suitable for interactive deployments. Third, the no-LLM fallback (deterministic SI unit expansion) achieves 96\% of the best LLM-assisted P@5, confirming that the science-aware operators are the primary source of retrieval gains; the LLM provides incremental improvement through query expansion rather than fundamental capability.
 
@@ -511,8 +496,6 @@ We catalog the failure modes of our science-aware operators to characterize thei
 \textbf{Unit ambiguity.} Some abbreviations are overloaded: ``m'' may denote meters or the variable $m$ (mass) in a formula context; ``s'' may denote seconds or a generic variable. Our system resolves ambiguity by requiring the unit token to appear immediately after a numeric literal, but edge cases remain---particularly in equation-heavy documents where variables and units intermix.
 
 \textbf{Unsupported units.} Queries involving units outside our 13-unit conversion table (e.g., temperature in Rankine, force in dynes, or compound units such as N/m$^2$) produce no dimensional matches and fall back to lexical and vector retrieval only. The system degrades gracefully---it does not produce incorrect matches for unsupported units---but the science-aware advantage is lost. On the v2 benchmark, 32 atmospheric documents contain hPa (unsupported unit) and 25 materials documents contain degC. The system correctly falls back to lexical and vector retrieval for these documents, producing no false positive dimensional matches.
-
-\textbf{Floating-point precision.} Canonical values are stored as IEEE 754 double-precision floats. For extreme conversion factors (e.g., nanometers to meters, $10^{-9}$), accumulated rounding may cause near-miss failures in exact-match queries. Range queries with tolerance (default $\pm$1\%) mitigate this, but exact value matching on very large or very small canonical values should be used with awareness of precision limits.
 
 %% ===================================================================
 %% Section 6: Conclusion
