@@ -32,7 +32,7 @@ Scientific data at HPC facilities is scattered across filesystems, object stores
 
 We present clio-agentic-search, a retrieval engine that introduces \emph{science-aware operators}---deterministic retrieval primitives that execute as first-class branches alongside BM25 and dense vector search. A dimensional-conversion operator canonicalizes physical quantities to base SI units via explicit arithmetic (kPa~$\times$~$10^3$~=~Pa), guaranteeing correctness by construction across 16 supported units spanning pressure, temperature (°C/°F~$\to$~K), velocity, length, mass, and time. A formula-normalization operator matches equations across notation variants. These operators run within a federated architecture that queries six backend types through per-backend capability negotiation, with an LLM-driven agentic loop for iterative multi-hop refinement.
 
-We evaluate on two benchmarks. On a controlled corpus of 210 documents across seven scientific domains with 80 queries, the dimensional operator achieves 0.99 P@5 and 0.99 MRR where the strongest text baseline scores 0.43 P@5. An ablation study confirms the science-aware branch contributes the largest marginal gain (+0.63 P@5). We further validate on 288 real documents from the NOAA GHCN-Daily observatory dataset---documents report only metric units while queries use imperial units---where our pipeline achieves 0.70 P@5 against 0.38 for hybrid baselines (+87\%). Formula normalization and federated search provide complementary gains. All code and benchmarks are open-source.
+We evaluate on two benchmarks. On a controlled corpus of 210 documents across seven scientific domains with 80 queries, the dimensional operator achieves 0.99 P@5 and 0.99 MRR where the strongest text baseline scores 0.40 P@5. An ablation study confirms the science-aware branch contributes the largest marginal gain (+0.63 P@5). We further validate on 288 real documents from the NOAA GHCN-Daily observatory dataset---documents report only metric units while queries use imperial units---where our pipeline achieves 0.70 P@5 against 0.38 for hybrid baselines (+87\%). Formula normalization and federated search provide complementary gains. All code and benchmarks are open-source.
 \end{abstract}
 
 %% ===================================================================
@@ -364,11 +364,10 @@ We address the question: \emph{does dimensional conversion improve retrieval acc
 \midrule
 BM25-only          & 0.40 & 0.07 & 0.11 & 0.45 \\
 \rowcolor{gray!5}
-Dense-only         & 0.30 & 0.05 & 0.07 & 0.43 \\
-Hybrid             & 0.43 & 0.07 & 0.10 & 0.49 \\
+Dense-only         & 0.36 & 0.05 & 0.08 & 0.50 \\
+Hybrid             & 0.36 & 0.07 & 0.10 & 0.47 \\
 \rowcolor{gray!5}
-String norm.       & 0.38 & 0.04 & 0.07 & 0.42 \\
-LLM-assisted       & 0.40 & 0.08 & 0.12 & 0.47 \\
+String norm.       & 0.32 & 0.04 & 0.07 & 0.39 \\
 \midrule
 \rowcolor{gray!15}
 \textbf{Ours}      & \textbf{0.99} & \textbf{0.19} & \textbf{0.29} & \textbf{0.99} \\
@@ -377,9 +376,9 @@ LLM-assisted       & 0.40 & 0.08 & 0.12 & 0.47 \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-Table~\ref{tab:crossunit} reports results on cross-unit queries. R@5 is low across all methods because the 210-document corpus produces a high average number of relevant documents per query (approximately 42), making recall at $K{=}5$ structurally bounded. P@5 and MRR are the more meaningful metrics for this evaluation. The three text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. The strongest text baseline (Hybrid) achieves P@5 of 0.43 and MRR of 0.49.
+Table~\ref{tab:crossunit} reports results on cross-unit queries. R@5 is low across all methods because the 210-document corpus produces a high average number of relevant documents per query (approximately 42), making recall at $K{=}5$ structurally bounded. P@5 and MRR are the more meaningful metrics for this evaluation. The text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. The strongest text baseline (BM25) achieves P@5 of 0.40 and MRR of 0.45; hybrid search adds semantic matching but does not improve on cross-unit queries (P@5 = 0.36), confirming that dense embeddings cannot bridge SI prefixes.
 
-String normalization cannot perform the arithmetic required to recognize that 200~kPa equals 200000~Pa, yielding only P@5 of 0.38. Our full pipeline converts all measurements to canonical SI base units at index time and issues direct range predicates at query time, achieving P@5 of 0.99 and MRR of 0.99---an absolute improvement of 0.56 P@5 and 0.50 MRR over the strongest text baseline.
+String normalization cannot perform the arithmetic required to recognize that 200~kPa equals 200000~Pa, yielding only P@5 of 0.32. Our full pipeline converts all measurements to canonical SI base units at index time and issues direct range predicates at query time, achieving P@5 of 0.99 and MRR of 0.99---an absolute improvement of 0.59 P@5 and 0.54 MRR over the strongest text baseline.
 
 On the same-unit control set, all baselines achieve comparable performance (P@5 within 0.05 points of each other, range 0.30--0.45), confirming that the observed gains are attributable specifically to cross-unit matching rather than general retrieval quality differences.
 
@@ -388,7 +387,7 @@ On the same-unit control set, all baselines achieve comparable performance (P@5 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig4_crossunit_p5.pdf}
-\caption{Cross-unit retrieval P@5 across six configurations. Science-aware operators (rightmost) nearly triple the best text baseline.}
+\caption{Cross-unit retrieval P@5 across five configurations. Science-aware operators (rightmost) achieve 0.99 vs.\ 0.40 for the best text baseline.}
 \label{fig:crossunit}
 \end{figure}
 
@@ -539,7 +538,14 @@ String Norm.    & 0.375 & 0.021 & 0.388 & 0.708 \\
 \end{tabular}
 \end{table}
 
-Results in Table~\ref{tab:real_world} confirm that the findings from the controlled benchmark generalize to real observatory data. Baselines achieve 0.375 P@5---near the random baseline for queries with $\sim$38\% relevant documents---because no text-based method can match the query token ``86~degrees~Fahrenheit'' against the document token ``30.0~degC'' without unit conversion. Our full pipeline reaches 0.700~P@5 (+87\%) and 0.725~P@10 by canonicalizing both query and document measurements to Kelvin, then applying the numeric-range filter. The MRR gap (+7\%) is narrower because BM25 occasionally ranks a station record first based on geographic or temporal terms; the operator advantage is clearest on precision metrics where unit conversion determines which documents appear in the top-5.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig8_real_world.pdf}
+\caption{Real-world NOAA GHCN-Daily benchmark P@5 (288 docs, metric-only documents vs.\ imperial queries). Clio achieves 0.70 P@5 where baselines score $\le$0.38.}
+\label{fig:real_world}
+\end{figure}
+
+Results in Table~\ref{tab:real_world} and Fig.~\ref{fig:real_world} confirm that the findings from the controlled benchmark generalize to real observatory data. Baselines achieve 0.375 P@5---near the random baseline for queries with $\sim$38\% relevant documents---because no text-based method can match the query token ``86~degrees~Fahrenheit'' against the document token ``30.0~degC'' without unit conversion. Our full pipeline reaches 0.700~P@5 (+87\%) and 0.725~P@10 by canonicalizing both query and document measurements to Kelvin, then applying the numeric-range filter. The MRR gap (+7\%) is narrower because BM25 occasionally ranks a station record first based on geographic or temporal terms; the operator advantage is clearest on precision metrics where unit conversion determines which documents appear in the top-5.
 
 %% ===================================================================
 %% Section 6: Conclusion
@@ -548,7 +554,7 @@ Results in Table~\ref{tab:real_world} confirm that the findings from the control
 
 Scientific data retrieval at HPC facilities fails not because retrieval algorithms are weak, but because they are blind to the physical semantics of the data they index. When a scientist asks for pressures between 190 and 360~kPa, no existing system recognizes that ``200000~Pa'' in an HDF5 attribute and ``0.2~MPa'' in an S3-hosted dataset both satisfy the query. We addressed this gap with clio-agentic-search, a retrieval system built around science-aware operators---deterministic, pluggable primitives that perform arithmetic SI conversion, formula normalization, and federated multi-backend search as first-class retrieval branches alongside standard BM25 and dense vector pipelines.
 
-The results validate the core hypothesis across two benchmarks. On a controlled corpus of 210 documents across seven scientific domains, dimensional-conversion operators achieve P@5 of 0.99 and MRR of 0.99 on cross-unit queries, where the strongest text baseline (Hybrid) scores only 0.43 P@5. The ablation study isolates this gain: adding science-aware operators produces a +0.63 jump in P@5 (from 0.36 to 0.99). On 288 real documents from the NOAA GHCN-Daily observatory network---where documents use only metric units but queries are expressed in imperial units---the full pipeline achieves 0.70~P@5 against 0.38 for hybrid baselines (+87\%), demonstrating that the findings generalize beyond synthetic data. Formula normalization provides complementary value; the two operators compose independently. Federated search nearly doubles coverage from 24.4\% to 47.2\% across namespaces. Multi-hop agentic retrieval achieves P@5 of 0.98 and MRR of 0.94. These gains matter because AI agents are now orchestrating scientific workflows end-to-end, yet their retrieval layers treat measurements as opaque strings.
+The results validate the core hypothesis across two benchmarks. On a controlled corpus of 210 documents across seven scientific domains, dimensional-conversion operators achieve P@5 of 0.99 and MRR of 0.99 on cross-unit queries, where the strongest text baseline (BM25) scores only 0.40 P@5. The ablation study isolates this gain: adding science-aware operators produces a +0.63 jump in P@5 (from 0.36 to 0.99). On 288 real documents from the NOAA GHCN-Daily observatory network---where documents use only metric units but queries are expressed in imperial units---the full pipeline achieves 0.70~P@5 against 0.38 for hybrid baselines (+87\%), demonstrating that the findings generalize beyond synthetic data. Formula normalization provides complementary value; the two operators compose independently. Federated search nearly doubles coverage from 24.4\% to 47.2\% across namespaces. Multi-hop agentic retrieval achieves P@5 of 0.98 and MRR of 0.94. These gains matter because AI agents are now orchestrating scientific workflows end-to-end, yet their retrieval layers treat measurements as opaque strings.
 
 Our current prototype covers 16 units across 6 SI domains, far fewer than the 531 units in CQE~\cite{cqe2023} or the thousands in the QUDT ontology; derived and compound units remain unsupported. Measurement extraction relies on regular expressions rather than dependency parsing, which limits robustness on syntactically complex scientific prose. The composite fusion score uses hand-tuned weights rather than learned reranking via cross-encoders or late-interaction models. All experiments run on a single-node benchmark corpus, not a petabyte-scale parallel filesystem---the federated architecture is designed for scale, but we have not yet validated it at ALCF or OLCF production workloads.
 
