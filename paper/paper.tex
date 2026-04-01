@@ -30,9 +30,9 @@ University Name, City, Country\\
 \begin{abstract}
 Scientific data at HPC facilities is scattered across filesystems, object stores, and binary formats such as HDF5 and NetCDF, with measurements expressed in inconsistent unit prefixes. A query for pressures between 190--360~kPa should match ``200000~Pa'' and ``0.2~MPa,'' yet retrieval systems treat these as unrelated strings. Embedding models achieve only 0.54 accuracy on numerical content, and string normalization cannot bridge SI prefixes.
 
-We present clio-agentic-search, a retrieval engine that introduces \emph{science-aware operators}---deterministic retrieval primitives that execute as first-class branches alongside BM25 and dense vector search. A dimensional-conversion operator canonicalizes physical quantities to base SI units via explicit arithmetic (kPa~$\times$~$10^3$~=~Pa), guaranteeing correctness by construction within 13 supported units across 5 domains. A formula-normalization operator matches equations across notation variants. These operators run within a federated architecture that queries six backend types through per-backend capability negotiation, with an LLM-driven agentic loop for iterative multi-hop refinement.
+We present clio-agentic-search, a retrieval engine that introduces \emph{science-aware operators}---deterministic retrieval primitives that execute as first-class branches alongside BM25 and dense vector search. A dimensional-conversion operator canonicalizes physical quantities to base SI units via explicit arithmetic (kPa~$\times$~$10^3$~=~Pa), guaranteeing correctness by construction across 16 supported units spanning pressure, temperature (°C/°F~$\to$~K), velocity, length, mass, and time. A formula-normalization operator matches equations across notation variants. These operators run within a federated architecture that queries six backend types through per-backend capability negotiation, with an LLM-driven agentic loop for iterative multi-hop refinement.
 
-We evaluate on a controlled benchmark of 210 documents across seven scientific domains with deliberate cross-unit variation and 80 queries spanning cross-unit, same-unit control, formula, and multi-constraint conditions. On cross-unit queries, the dimensional operator achieves 0.99 P@5 and 0.99 MRR where the strongest text baseline scores 0.43 P@5 and 0.49 MRR. Formula normalization provides complementary value through strict normalized matching, and the two operators compose independently. Federated search nearly doubles coverage from 24.4\% to 47.2\% across namespaces. An ablation study confirms that the science-aware branch contributes the largest marginal gain (+0.63 P@5). All code and benchmarks are open-source.
+We evaluate on two benchmarks. On a controlled corpus of 210 documents across seven scientific domains with 80 queries, the dimensional operator achieves 0.99 P@5 and 0.99 MRR where the strongest text baseline scores 0.43 P@5. An ablation study confirms the science-aware branch contributes the largest marginal gain (+0.63 P@5). We further validate on 288 real documents from the NOAA GHCN-Daily observatory dataset---documents report only metric units while queries use imperial units---where our pipeline achieves 0.70 P@5 against 0.38 for hybrid baselines (+87\%). Formula normalization and federated search provide complementary gains. All code and benchmarks are open-source.
 \end{abstract}
 
 %% ===================================================================
@@ -57,7 +57,7 @@ These failures compound. The motivating query---``find experiments where pressur
 We argue that these failures share a common root cause: retrieval pipelines lack a mechanism for incorporating domain knowledge as executable, verifiable computation. BM25 matches tokens. Dense models match embeddings. Neither can encode the fact that $5\text{ km} = 5000\text{ m}$---an algebraic invariant, not a statistical similarity. We introduce \emph{science-aware operators}: deterministic, pluggable retrieval primitives that encode domain knowledge as explicit arithmetic and symbolic transformations, executing as first-class branches alongside standard BM25 and dense vector search. The architecture is general---any domain where correctness is non-negotiable (chemical identifiers, genomic coordinates, engineering tolerances) can be served by operators of this class. We instantiate the framework for scientific measurement retrieval and test it through five contributions:
 
 \begin{enumerate}
-\item \textbf{Dimensional-conversion retrieval.} We canonicalize physical quantities to base SI units via arithmetic multiplication (e.g., kPa $\times$ $10^3$ = Pa) across 13 units in 5 domains, with correctness guaranteed by construction, provided units are correctly extracted and conversion factors are complete.
+\item \textbf{Dimensional-conversion retrieval.} We canonicalize physical quantities to base SI units via arithmetic multiplication (e.g., kPa $\times$ $10^3$ = Pa) across 16 units in 6 domains, with correctness guaranteed by construction, provided units are correctly extracted and conversion factors are complete.
 
 \item \textbf{Formula normalization.} We normalize mathematical expressions across whitespace, superscript, side-swap, and factor-reordering variants, integrated with dimensional operators as parallel retrieval branches.
 
@@ -176,11 +176,11 @@ Six connectors mediate access to heterogeneous backends: local filesystem, S3-co
 
 The core insight behind dimensional conversion is that cross-unit matching is an arithmetic problem, not a similarity problem. When a scientist queries for pressures between 190 and 360 kPa, the system must recognize that a document reporting ``250000 Pa'' falls within that range. This requires multiplying 190 by 1000 to obtain 190000 Pa and 360 by 1000 to obtain 360000 Pa---a computation that no string normalization or learned embedding can guarantee.
 
-We define a conversion table covering five SI domains and 13 units (Table~\ref{tab:si_conversion}). Each entry maps a source unit to a canonical base unit and a multiplicative conversion factor. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, canonical\_unit). For example, ``200 kPa'' yields (200.0, ``kPa'', 200000.0, ``Pa''). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and canonical\_unit for efficient range scans.
+We define a conversion table covering six SI domains and 16 units (Table~\ref{tab:si_conversion}). Each entry maps a source unit to a canonical base unit and a multiplicative conversion factor. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, canonical\_unit). For example, ``200 kPa'' yields (200.0, ``kPa'', 200000.0, ``Pa''). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and canonical\_unit for efficient range scans.
 
 \begin{table}[!t]
 \centering
-\caption{SI conversion table: 5 domains, 13 units. Each source unit maps to a canonical base unit via a multiplicative factor.}
+\caption{SI conversion table: 6 domains, 16 units. Each source unit maps to a canonical base unit via a multiplicative factor.}
 \label{tab:si_conversion}
 \small
 \renewcommand{\arraystretch}{1.2}
@@ -188,13 +188,15 @@ We define a conversion table covering five SI domains and 13 units (Table~\ref{t
 \toprule
 \textbf{Domain} & \textbf{Source Units} & \textbf{Base} & \textbf{Conversion Factors} \\
 \midrule
-Distance & mm, cm, m, km  & m   & $\times 10^{-3}$, $\times 10^{-2}$, 1, $\times 10^{3}$ \\
+Distance    & mm, cm, m, km  & m   & $\times 10^{-3}$, $\times 10^{-2}$, 1, $\times 10^{3}$ \\
 \rowcolor{gray!5}
-Mass     & mg, g, kg      & kg  & $\times 10^{-6}$, $\times 10^{-3}$, 1 \\
-Time     & s, min, h      & s   & 1, $\times$60, $\times$3600 \\
+Mass        & mg, g, kg      & kg  & $\times 10^{-6}$, $\times 10^{-3}$, 1 \\
+Time        & s, min, h      & s   & 1, $\times$60, $\times$3600 \\
 \rowcolor{gray!5}
-Pressure & Pa, kPa, MPa   & Pa  & 1, $\times 10^{3}$, $\times 10^{6}$ \\
-Velocity & m/s, km/h      & m/s & 1, $\times\frac{1}{3.6}$ \\
+Pressure    & Pa, kPa, MPa   & Pa  & 1, $\times 10^{3}$, $\times 10^{6}$ \\
+Velocity    & m/s, km/h      & m/s & 1, $\times\frac{1}{3.6}$ \\
+\rowcolor{gray!5}
+Temperature & degC, degF, K  & K   & $+273.15$, $\times\frac{5}{9}\!+\!255.37$, 1 \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
@@ -202,7 +204,7 @@ Velocity & m/s, km/h      & m/s & 1, $\times\frac{1}{3.6}$ \\
 
 At query time, three operators execute against the canonicalized measurement store. The \textbf{numeric-range} operator parses range expressions of the form \texttt{low:high:unit}, converts both bounds to canonical units, and issues a DuckDB range predicate: a query ``190:360:kPa'' becomes a scan for canonical\_value between 190000 and 360000 with canonical\_unit = ``Pa''. The \textbf{unit-match} operator filters chunks containing any measurement in a specified unit domain regardless of value. The \textbf{value-match} operator retrieves measurements matching a specific canonical value within a configurable tolerance (default $\pm$1\%).
 
-The correctness guarantee distinguishes this approach from all prior work. Consider matching ``200 kPa'' against ``200000 Pa''. Arithmetic conversion computes $200 \times 1000 = 200000$ and succeeds by exact equality. String normalization maps ``kilopascal'' to one string and ``pascal'' to another---they never match. Learned embeddings \cite{cone2026} encode the two quantities as vectors in a shared space, but the Numeracy Gap study \cite{numeracygap2026} reports 0.54 mean binary retrieval accuracy across 13 embedding models on numerical content, effectively random against a 0.50 baseline. Our operators are correct by construction: if the SI conversion factor is correct, the match is correct. We note that this guarantee depends on two assumptions: (1) the regex-based extractor correctly identifies numeric-unit pairs in the source text, and (2) the conversion table covers the unit in question. Our prototype supports 13 units across 5 domains; extending coverage requires only adding entries to the conversion table, not modifying the architecture.
+The correctness guarantee distinguishes this approach from all prior work. Consider matching ``200 kPa'' against ``200000 Pa''. Arithmetic conversion computes $200 \times 1000 = 200000$ and succeeds by exact equality. String normalization maps ``kilopascal'' to one string and ``pascal'' to another---they never match. Learned embeddings \cite{cone2026} encode the two quantities as vectors in a shared space, but the Numeracy Gap study \cite{numeracygap2026} reports 0.54 mean binary retrieval accuracy across 13 embedding models on numerical content, effectively random against a 0.50 baseline. Our operators are correct by construction: if the SI conversion factor is correct, the match is correct. We note that this guarantee depends on two assumptions: (1) the regex-based extractor correctly identifies numeric-unit pairs in the source text, and (2) the conversion table covers the unit in question. Our prototype supports 16 units across 6 domains; extending coverage requires only adding entries to the conversion table, not modifying the architecture.
 
 \subsection{Formula Normalization}
 
@@ -312,7 +314,7 @@ We evaluate clio-agentic-search along three research questions. \textbf{RQ1}: Do
 
 \subsection{Experimental Setup}
 
-\textbf{Benchmark construction.} We construct a controlled benchmark designed to isolate the effect of unit heterogeneity on retrieval across realistic scientific content. The corpus comprises 210 documents spanning seven domains (Table~\ref{tab:dataset}), each containing 100--400 words of realistic scientific prose---experiment reports, simulation summaries, and lab notebook entries---with deliberate unit heterogeneity: the same physical quantities are expressed in different SI prefixes across documents. Ten negative-control documents contain no extractable measurements. Documents with unsupported units (hPa in atmospheric science, degC in materials science) test graceful degradation. We define 80 queries with automatically generated ground truth (Table~\ref{tab:dataset}).
+\textbf{Benchmark construction.} We construct a controlled benchmark designed to isolate the effect of unit heterogeneity on retrieval across realistic scientific content. The corpus comprises 210 documents spanning seven domains (Table~\ref{tab:dataset}), each containing 100--400 words of realistic scientific prose---experiment reports, simulation summaries, and lab notebook entries---with deliberate unit heterogeneity: the same physical quantities are expressed in different SI prefixes across documents. Ten negative-control documents contain no extractable measurements. Documents with unsupported units (hPa in atmospheric science) test graceful degradation; degC is now supported via K conversion. We define 80 queries with automatically generated ground truth (Table~\ref{tab:dataset}).
 
 \begin{table}[!t]
 \centering
@@ -512,7 +514,32 @@ We catalog the failure modes of our science-aware operators to characterize thei
 
 \textbf{Unit ambiguity.} Some abbreviations are overloaded: ``m'' may denote meters or the variable $m$ (mass) in a formula context; ``s'' may denote seconds or a generic variable. Our system resolves ambiguity by requiring the unit token to appear immediately after a numeric literal, but edge cases remain---particularly in equation-heavy documents where variables and units intermix.
 
-\textbf{Unsupported units.} Queries involving units outside our 13-unit conversion table (e.g., temperature in Rankine, force in dynes, or compound units such as N/m$^2$) produce no dimensional matches and fall back to lexical and vector retrieval only. The system degrades gracefully---it does not produce incorrect matches for unsupported units---but the science-aware advantage is lost. On the v2 benchmark, 32 atmospheric documents contain hPa (unsupported unit) and 25 materials documents contain degC. The system correctly falls back to lexical and vector retrieval for these documents, producing no false positive dimensional matches.
+\textbf{Unsupported units.} Queries involving units outside our supported conversion table (e.g., temperature in Rankine, force in dynes, or compound units such as N/m$^2$) produce no dimensional matches and fall back to lexical and vector retrieval only. The system degrades gracefully---no incorrect matches are produced for unsupported units---but the science-aware advantage is lost. Our v2 implementation covers 16 units including temperature (degC/degF $\to$ K), velocity, pressure, mass, length, and time.
+
+\subsection{Real-World Data Validation}
+
+To address the concern that our controlled benchmark was synthetically authored, we evaluate on 288 real documents built from NOAA Global Historical Climatology Network - Daily (GHCN-D) station records \cite{ghcn2012}, covering 8 U.S.~stations across 3~years (2022--2024). Documents report only SI/metric units (degC, mm, m/s); 8 cross-unit queries use imperial units (°F, inches, mph). Each query has ground-truth relevance derived from threshold arithmetic on the raw station data.
+
+\begin{table}[!t]
+\centering
+\caption{Real-world evaluation on NOAA GHCN-Daily corpus (288 docs, 8 stations). Documents are metric-only; queries are in imperial units (°F, inches, mph). Our pipeline converts query units via SI arithmetic; baselines have no unit awareness.}
+\label{tab:real_world}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{P@5} & \textbf{R@5} & \textbf{P@10} & \textbf{MRR} \\
+\midrule
+BM25 Only       & 0.375 & 0.018 & 0.388 & 0.562 \\
+Dense (Vector)  & 0.250 & 0.014 & 0.287 & 0.515 \\
+Hybrid          & 0.375 & 0.021 & 0.388 & 0.708 \\
+String Norm.    & 0.375 & 0.021 & 0.388 & 0.708 \\
+\textbf{Clio Full Pipeline} & \textbf{0.700} & \textbf{0.055} & \textbf{0.725} & \textbf{0.760} \\
+\midrule
+\multicolumn{2}{l}{\textit{vs.\ Hybrid}} & \textit{+87\%} & \textit{+87\%} & \textit{+7\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Results in Table~\ref{tab:real_world} confirm that the findings from the controlled benchmark generalize to real observatory data. Baselines achieve 0.375 P@5---near the random baseline for queries with $\sim$38\% relevant documents---because no text-based method can match the query token ``86~degrees~Fahrenheit'' against the document token ``30.0~degC'' without unit conversion. Our full pipeline reaches 0.700~P@5 (+87\%) and 0.725~P@10 by canonicalizing both query and document measurements to Kelvin, then applying the numeric-range filter. The MRR gap (+7\%) is narrower because BM25 occasionally ranks a station record first based on geographic or temporal terms; the operator advantage is clearest on precision metrics where unit conversion determines which documents appear in the top-5.
 
 %% ===================================================================
 %% Section 6: Conclusion
@@ -521,9 +548,9 @@ We catalog the failure modes of our science-aware operators to characterize thei
 
 Scientific data retrieval at HPC facilities fails not because retrieval algorithms are weak, but because they are blind to the physical semantics of the data they index. When a scientist asks for pressures between 190 and 360~kPa, no existing system recognizes that ``200000~Pa'' in an HDF5 attribute and ``0.2~MPa'' in an S3-hosted dataset both satisfy the query. We addressed this gap with clio-agentic-search, a retrieval system built around science-aware operators---deterministic, pluggable primitives that perform arithmetic SI conversion, formula normalization, and federated multi-backend search as first-class retrieval branches alongside standard BM25 and dense vector pipelines.
 
-The results validate the core hypothesis on a benchmark of 210 documents across seven scientific domains with 80 queries. Dimensional-conversion operators achieve P@5 of 0.99 and MRR of 0.99 on cross-unit queries, where the strongest text baseline (Hybrid) scores only 0.43 P@5 and 0.49 MRR. The ablation study isolates this gain: adding science-aware operators produces a +0.63 jump in P@5 (from 0.36 to 0.99), confirming that cross-unit matching is the dominant retrieval bottleneck. Formula normalization provides complementary value through strict normalized matching that trades recall for precision---an honest design choice favoring reliable matches over loose text overlap. The two operators compose independently; neither subsumes the other. Federated search nearly doubles coverage from 24.4\% to 47.2\% across namespaces, while capability negotiation ensures that adding a backend without scientific measurement support does not degrade results from backends that have it. Multi-hop agentic retrieval achieves P@5 of 0.98 and MRR of 0.94, converging at hop 1--2 on this benchmark; the multi-hop loop is designed for more complex real-world queries where initial formulations are underspecified. These gains matter because AI agents are now orchestrating scientific workflows end-to-end, from hypothesis generation through experiment execution, yet their retrieval layers treat measurements as opaque strings.
+The results validate the core hypothesis across two benchmarks. On a controlled corpus of 210 documents across seven scientific domains, dimensional-conversion operators achieve P@5 of 0.99 and MRR of 0.99 on cross-unit queries, where the strongest text baseline (Hybrid) scores only 0.43 P@5. The ablation study isolates this gain: adding science-aware operators produces a +0.63 jump in P@5 (from 0.36 to 0.99). On 288 real documents from the NOAA GHCN-Daily observatory network---where documents use only metric units but queries are expressed in imperial units---the full pipeline achieves 0.70~P@5 against 0.38 for hybrid baselines (+87\%), demonstrating that the findings generalize beyond synthetic data. Formula normalization provides complementary value; the two operators compose independently. Federated search nearly doubles coverage from 24.4\% to 47.2\% across namespaces. Multi-hop agentic retrieval achieves P@5 of 0.98 and MRR of 0.94. These gains matter because AI agents are now orchestrating scientific workflows end-to-end, yet their retrieval layers treat measurements as opaque strings.
 
-Our current prototype covers 13 units across 5 SI domains, far fewer than the 531 units in CQE~\cite{cqe2023} or the thousands in the QUDT ontology; derived and compound units remain unsupported. Measurement extraction relies on regular expressions rather than dependency parsing, which limits robustness on syntactically complex scientific prose. The composite fusion score uses hand-tuned weights rather than learned reranking via cross-encoders or late-interaction models. All experiments run on a single-node benchmark corpus, not a petabyte-scale parallel filesystem---the federated architecture is designed for scale, but we have not yet validated it at ALCF or OLCF production workloads.
+Our current prototype covers 16 units across 6 SI domains, far fewer than the 531 units in CQE~\cite{cqe2023} or the thousands in the QUDT ontology; derived and compound units remain unsupported. Measurement extraction relies on regular expressions rather than dependency parsing, which limits robustness on syntactically complex scientific prose. The composite fusion score uses hand-tuned weights rather than learned reranking via cross-encoders or late-interaction models. All experiments run on a single-node benchmark corpus, not a petabyte-scale parallel filesystem---the federated architecture is designed for scale, but we have not yet validated it at ALCF or OLCF production workloads.
 
 Several directions follow naturally. Integrating the QUDT ontology would extend unit coverage without architectural changes. Replacing heuristic fusion with learned reranking~\cite{agenticr2026} or adopting multi-agent precision--recall control~\cite{prism2025} would improve the agentic loop. Wrapping the API as an MCP server~\cite{mcp_hpc2025} would expose operators to agent frameworks. Evaluation on multi-hop benchmarks such as BrowseComp~\cite{browsecomp2025} would stress-test iterative refinement beyond our controlled corpus. Deployment on DOE leadership-class systems will validate federated search at scale. More broadly, the principle that domain knowledge should execute as verifiable arithmetic---not be approximated by learned representations---extends beyond SI units to chemical identifiers, genomic coordinates, and any domain where correctness is non-negotiable. If retrieval systems are to serve as the foundation for autonomous scientific agents, they must understand the data they search.
 

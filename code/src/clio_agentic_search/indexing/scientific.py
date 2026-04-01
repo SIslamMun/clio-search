@@ -30,26 +30,35 @@ _PLAIN_EQUATION_PATTERN = re.compile(
 _MATH_INDICATOR_RE = re.compile(r"[\^{\\]")
 
 _MEASUREMENT_PATTERN = re.compile(
-    r"(?P<value>[+-]?\d+(?:\.\d+)?)\s*(?P<unit>km/h|m/s|km|cm|mm|m|kg|mg|g|h|min|s|mpa|kpa|pa)\b",
+    r"(?P<value>[+-]?\d+(?:\.\d+)?)\s*"
+    r"(?P<unit>km/h|m/s|degf|degc|°f|°c|kelvin|km|cm|mm|m|kg|mg|g|h|min|s|mpa|kpa|pa)\b",
     flags=re.IGNORECASE,
 )
 
-_UNIT_CANONICALIZATION: dict[str, tuple[str, float]] = {
-    "mm": ("m", 1e-3),
-    "cm": ("m", 1e-2),
-    "m": ("m", 1.0),
-    "km": ("m", 1e3),
-    "mg": ("kg", 1e-6),
-    "g": ("kg", 1e-3),
-    "kg": ("kg", 1.0),
-    "s": ("s", 1.0),
-    "min": ("s", 60.0),
-    "h": ("s", 3600.0),
-    "pa": ("pa", 1.0),
-    "kpa": ("pa", 1e3),
-    "mpa": ("pa", 1e6),
-    "m/s": ("m/s", 1.0),
-    "km/h": ("m/s", 1000.0 / 3600.0),
+# (canonical_unit, scale, offset) — canonical_value = raw_value * scale + offset
+# For most units offset = 0.0; temperature units require an offset.
+_UNIT_CANONICALIZATION: dict[str, tuple[str, float, float]] = {
+    "mm": ("m", 1e-3, 0.0),
+    "cm": ("m", 1e-2, 0.0),
+    "m": ("m", 1.0, 0.0),
+    "km": ("m", 1e3, 0.0),
+    "mg": ("kg", 1e-6, 0.0),
+    "g": ("kg", 1e-3, 0.0),
+    "kg": ("kg", 1.0, 0.0),
+    "s": ("s", 1.0, 0.0),
+    "min": ("s", 60.0, 0.0),
+    "h": ("s", 3600.0, 0.0),
+    "pa": ("pa", 1.0, 0.0),
+    "kpa": ("pa", 1e3, 0.0),
+    "mpa": ("pa", 1e6, 0.0),
+    "m/s": ("m/s", 1.0, 0.0),
+    "km/h": ("m/s", 1000.0 / 3600.0, 0.0),
+    # Temperature: canonical unit is Kelvin (K)
+    "kelvin": ("k", 1.0, 0.0),
+    "degc": ("k", 1.0, 273.15),        # °C → K: K = C + 273.15
+    "°c": ("k", 1.0, 273.15),
+    "degf": ("k", 5.0 / 9.0, 255.372),  # °F → K: K = (F - 32) × 5/9 + 273.15
+    "°f": ("k", 5.0 / 9.0, 255.372),
 }
 
 
@@ -81,8 +90,8 @@ def canonicalize_measurement(value: float, unit: str) -> tuple[float, str]:
     canonical = _UNIT_CANONICALIZATION.get(normalized_unit)
     if canonical is None:
         raise ValueError(f"Unsupported unit '{unit}'")
-    canonical_unit, multiplier = canonical
-    return value * multiplier, canonical_unit
+    canonical_unit, scale, offset = canonical
+    return value * scale + offset, canonical_unit
 
 
 def normalize_formula(formula: str) -> str:

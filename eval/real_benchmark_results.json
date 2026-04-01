@@ -1,0 +1,1269 @@
+{
+  "averages": {
+    "bm25_only": {
+      "P@1": 0.375,
+      "R@1": 0.0032,
+      "F1@1": 0.0064,
+      "P@5": 0.375,
+      "R@5": 0.0184,
+      "F1@5": 0.0345,
+      "P@10": 0.3875,
+      "R@10": 0.0511,
+      "F1@10": 0.0863,
+      "P@20": 0.4313,
+      "R@20": 0.1167,
+      "F1@20": 0.1708,
+      "MRR": 0.5625
+    },
+    "dense_only": {
+      "P@1": 0.375,
+      "R@1": 0.005,
+      "F1@1": 0.0098,
+      "P@5": 0.25,
+      "R@5": 0.014,
+      "F1@5": 0.0258,
+      "P@10": 0.2875,
+      "R@10": 0.0259,
+      "F1@10": 0.0462,
+      "P@20": 0.2687,
+      "R@20": 0.0479,
+      "F1@20": 0.0781,
+      "MRR": 0.5155
+    },
+    "hybrid": {
+      "P@1": 0.625,
+      "R@1": 0.0071,
+      "F1@1": 0.014,
+      "P@5": 0.375,
+      "R@5": 0.0212,
+      "F1@5": 0.0392,
+      "P@10": 0.3875,
+      "R@10": 0.0363,
+      "F1@10": 0.0646,
+      "P@20": 0.4188,
+      "R@20": 0.0852,
+      "F1@20": 0.134,
+      "MRR": 0.7075
+    },
+    "string_norm": {
+      "P@1": 0.625,
+      "R@1": 0.0071,
+      "F1@1": 0.014,
+      "P@5": 0.375,
+      "R@5": 0.0212,
+      "F1@5": 0.0392,
+      "P@10": 0.3875,
+      "R@10": 0.0363,
+      "F1@10": 0.0646,
+      "P@20": 0.4188,
+      "R@20": 0.0852,
+      "F1@20": 0.134,
+      "MRR": 0.7075
+    },
+    "full_pipeline": {
+      "P@1": 0.625,
+      "R@1": 0.0106,
+      "F1@1": 0.0206,
+      "P@5": 0.7,
+      "R@5": 0.0553,
+      "F1@5": 0.0994,
+      "P@10": 0.725,
+      "R@10": 0.1125,
+      "F1@10": 0.1852,
+      "P@20": 0.6438,
+      "R@20": 0.1749,
+      "F1@20": 0.255,
+      "MRR": 0.7604
+    }
+  },
+  "per_query": {
+    "bm25_only": [
+      {
+        "query_id": "real_001",
+        "query": "weather stations with maximum temperature exceeding 86 degrees Fahrenheit",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 109,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0092,
+          "F1@1": 0.0182,
+          "P@5": 0.6,
+          "R@5": 0.0275,
+          "F1@5": 0.0526,
+          "P@10": 0.6,
+          "R@10": 0.055,
+          "F1@10": 0.1008,
+          "P@20": 0.55,
+          "R@20": 0.1009,
+          "F1@20": 0.1705,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2022_09.txt",
+          "USC00050848_2023_06.txt",
+          "USC00050848_2024_12.txt",
+          "USC00050848_2024_06.txt",
+          "USC00050848_2023_01.txt"
+        ],
+        "latency_s": 0.0334
+      },
+      {
+        "query_id": "real_002",
+        "query": "stations where minimum temperature dropped below freezing (32\u00b0F) in the month",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 120,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.8,
+          "R@5": 0.0333,
+          "F1@5": 0.064,
+          "P@10": 0.7,
+          "R@10": 0.0583,
+          "F1@10": 0.1077,
+          "P@20": 0.75,
+          "R@20": 0.125,
+          "F1@20": 0.2143,
+          "MRR": 0.5
+        },
+        "top5": [
+          "USW00024157_2023_09.txt",
+          "USW00025501_2024_02.txt",
+          "USW00025501_2022_11.txt",
+          "USW00025501_2023_12.txt",
+          "USW00025501_2023_09.txt"
+        ],
+        "latency_s": 0.0391
+      },
+      {
+        "query_id": "real_003",
+        "query": "monthly observations with average high temperatures between 59\u00b0F and 77\u00b0F (mild climate)",
+        "type": "cross_unit_temperature_range",
+        "relevant_count": 112,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0089,
+          "F1@1": 0.0177,
+          "P@5": 0.2,
+          "R@5": 0.0089,
+          "F1@5": 0.0171,
+          "P@10": 0.2,
+          "R@10": 0.0179,
+          "F1@10": 0.0328,
+          "P@20": 0.2,
+          "R@20": 0.0357,
+          "F1@20": 0.0606,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00024157_2023_09.txt",
+          "USW00025501_2024_02.txt",
+          "USW00025501_2022_11.txt",
+          "USW00025501_2023_12.txt",
+          "USW00025501_2023_09.txt"
+        ],
+        "latency_s": 0.0326
+      },
+      {
+        "query_id": "real_004",
+        "query": "stations that received more than 2 inches of rainfall in a month",
+        "type": "cross_unit_precipitation",
+        "relevant_count": 173,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "F1@10": 0.0,
+          "P@20": 0.0,
+          "R@20": 0.0,
+          "F1@20": 0.0,
+          "MRR": 0.0
+        },
+        "top5": [],
+        "latency_s": 0.0125
+      },
+      {
+        "query_id": "real_005",
+        "query": "weather records showing single-day precipitation over 1 inch",
+        "type": "cross_unit_precipitation_daily",
+        "relevant_count": 138,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0072,
+          "F1@5": 0.014,
+          "P@10": 0.1,
+          "R@10": 0.0072,
+          "F1@10": 0.0135,
+          "P@20": 0.2,
+          "R@20": 0.029,
+          "F1@20": 0.0506,
+          "MRR": 0.5
+        },
+        "top5": [
+          "USC00050848_2022_09.txt",
+          "USC00050848_2023_06.txt",
+          "USC00050848_2024_12.txt",
+          "USC00050848_2024_06.txt",
+          "USC00050848_2023_01.txt"
+        ],
+        "latency_s": 0.0326
+      },
+      {
+        "query_id": "real_006",
+        "query": "monthly records with maximum average wind speed above 15 miles per hour",
+        "type": "cross_unit_wind",
+        "relevant_count": 132,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0076,
+          "F1@1": 0.015,
+          "P@5": 1.0,
+          "R@5": 0.0379,
+          "F1@5": 0.073,
+          "P@10": 0.8,
+          "R@10": 0.0606,
+          "F1@10": 0.1127,
+          "P@20": 0.9,
+          "R@20": 0.1364,
+          "F1@20": 0.2368,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00025501_2023_04.txt",
+          "USW00025501_2024_03.txt",
+          "USW00025501_2024_07.txt",
+          "USW00025501_2022_01.txt",
+          "USW00025501_2024_10.txt"
+        ],
+        "latency_s": 0.0328
+      },
+      {
+        "query_id": "real_007",
+        "query": "stations with more than 5 inches of snowfall accumulation",
+        "type": "cross_unit_snow",
+        "relevant_count": 31,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0323,
+          "F1@5": 0.0556,
+          "P@10": 0.4,
+          "R@10": 0.129,
+          "F1@10": 0.1951,
+          "P@20": 0.45,
+          "R@20": 0.2903,
+          "F1@20": 0.3529,
+          "MRR": 0.3333
+        },
+        "top5": [
+          "USC00050848_2023_05.txt",
+          "USC00050848_2024_05.txt",
+          "USC00050848_2022_05.txt",
+          "USC00050848_2024_06.txt",
+          "USC00050848_2022_08.txt"
+        ],
+        "latency_s": 0.034
+      },
+      {
+        "query_id": "real_008",
+        "query": "winter months with temperatures below 23\u00b0F and significant snowfall over 2 inches",
+        "type": "cross_unit_combined",
+        "relevant_count": 37,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.3,
+          "R@10": 0.0811,
+          "F1@10": 0.1277,
+          "P@20": 0.4,
+          "R@20": 0.2162,
+          "F1@20": 0.2807,
+          "MRR": 0.1667
+        },
+        "top5": [
+          "USC00050848_2023_05.txt",
+          "USC00050848_2024_05.txt",
+          "USC00050848_2022_05.txt",
+          "USC00050848_2024_06.txt",
+          "USC00050848_2022_08.txt"
+        ],
+        "latency_s": 0.0328
+      }
+    ],
+    "dense_only": [
+      {
+        "query_id": "real_001",
+        "query": "weather stations with maximum temperature exceeding 86 degrees Fahrenheit",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 109,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "F1@10": 0.0,
+          "P@20": 0.15,
+          "R@20": 0.0275,
+          "F1@20": 0.0465,
+          "MRR": 0.0909
+        },
+        "top5": [
+          "USW00094728_2024_01.txt",
+          "USW00094728_2023_03.txt",
+          "USW00024157_2024_12.txt",
+          "USW00024157_2022_02.txt",
+          "USW00094728_2024_12.txt"
+        ],
+        "latency_s": 0.0414
+      },
+      {
+        "query_id": "real_002",
+        "query": "stations where minimum temperature dropped below freezing (32\u00b0F) in the month",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 120,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.4,
+          "R@5": 0.0167,
+          "F1@5": 0.032,
+          "P@10": 0.4,
+          "R@10": 0.0333,
+          "F1@10": 0.0615,
+          "P@20": 0.3,
+          "R@20": 0.05,
+          "F1@20": 0.0857,
+          "MRR": 0.5
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00013723_2024_11.txt",
+          "USW00014732_2023_09.txt",
+          "USW00013723_2024_03.txt",
+          "USW00023174_2023_12.txt"
+        ],
+        "latency_s": 0.0394
+      },
+      {
+        "query_id": "real_003",
+        "query": "monthly observations with average high temperatures between 59\u00b0F and 77\u00b0F (mild climate)",
+        "type": "cross_unit_temperature_range",
+        "relevant_count": 112,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0089,
+          "F1@5": 0.0171,
+          "P@10": 0.3,
+          "R@10": 0.0268,
+          "F1@10": 0.0492,
+          "P@20": 0.3,
+          "R@20": 0.0536,
+          "F1@20": 0.0909,
+          "MRR": 0.2
+        },
+        "top5": [
+          "USC00050848_2023_01.txt",
+          "USC00050848_2022_08.txt",
+          "USC00050848_2022_12.txt",
+          "USC00050848_2023_07.txt",
+          "USC00050848_2024_05.txt"
+        ],
+        "latency_s": 0.0391
+      },
+      {
+        "query_id": "real_004",
+        "query": "stations that received more than 2 inches of rainfall in a month",
+        "type": "cross_unit_precipitation",
+        "relevant_count": 173,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0058,
+          "F1@1": 0.0115,
+          "P@5": 0.6,
+          "R@5": 0.0173,
+          "F1@5": 0.0337,
+          "P@10": 0.7,
+          "R@10": 0.0405,
+          "F1@10": 0.0765,
+          "P@20": 0.6,
+          "R@20": 0.0694,
+          "F1@20": 0.1244,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00013723_2024_04.txt",
+          "USC00050848_2023_05.txt",
+          "USW00024157_2023_09.txt",
+          "USW00013723_2023_06.txt"
+        ],
+        "latency_s": 0.0364
+      },
+      {
+        "query_id": "real_005",
+        "query": "weather records showing single-day precipitation over 1 inch",
+        "type": "cross_unit_precipitation_daily",
+        "relevant_count": 138,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0072,
+          "F1@1": 0.0144,
+          "P@5": 0.2,
+          "R@5": 0.0072,
+          "F1@5": 0.014,
+          "P@10": 0.2,
+          "R@10": 0.0145,
+          "F1@10": 0.027,
+          "P@20": 0.3,
+          "R@20": 0.0435,
+          "F1@20": 0.0759,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00023174_2024_01.txt",
+          "USW00024157_2023_03.txt",
+          "USW00025501_2024_07.txt",
+          "USW00012960_2023_02.txt",
+          "USW00094728_2022_08.txt"
+        ],
+        "latency_s": 0.0389
+      },
+      {
+        "query_id": "real_006",
+        "query": "monthly records with maximum average wind speed above 15 miles per hour",
+        "type": "cross_unit_wind",
+        "relevant_count": 132,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0076,
+          "F1@5": 0.0146,
+          "P@10": 0.5,
+          "R@10": 0.0379,
+          "F1@10": 0.0704,
+          "P@20": 0.35,
+          "R@20": 0.053,
+          "F1@20": 0.0921,
+          "MRR": 0.25
+        },
+        "top5": [
+          "USC00050848_2024_03.txt",
+          "USW00094728_2023_01.txt",
+          "USC00050848_2024_10.txt",
+          "USW00023174_2022_02.txt",
+          "USC00050848_2023_03.txt"
+        ],
+        "latency_s": 0.0405
+      },
+      {
+        "query_id": "real_007",
+        "query": "stations with more than 5 inches of snowfall accumulation",
+        "type": "cross_unit_snow",
+        "relevant_count": 31,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "F1@10": 0.0,
+          "P@20": 0.05,
+          "R@20": 0.0323,
+          "F1@20": 0.0392,
+          "MRR": 0.0833
+        },
+        "top5": [
+          "USW00024157_2023_10.txt",
+          "USW00094728_2023_07.txt",
+          "USW00094728_2023_06.txt",
+          "USW00013723_2023_11.txt",
+          "USW00012960_2024_08.txt"
+        ],
+        "latency_s": 0.0372
+      },
+      {
+        "query_id": "real_008",
+        "query": "winter months with temperatures below 23\u00b0F and significant snowfall over 2 inches",
+        "type": "cross_unit_combined",
+        "relevant_count": 37,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.027,
+          "F1@1": 0.0526,
+          "P@5": 0.4,
+          "R@5": 0.0541,
+          "F1@5": 0.0952,
+          "P@10": 0.2,
+          "R@10": 0.0541,
+          "F1@10": 0.0851,
+          "P@20": 0.1,
+          "R@20": 0.0541,
+          "F1@20": 0.0702,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00094728_2022_01.txt",
+          "USW00024157_2024_08.txt",
+          "USW00012960_2023_10.txt",
+          "USW00014732_2023_09.txt",
+          "USW00024157_2022_12.txt"
+        ],
+        "latency_s": 0.0397
+      }
+    ],
+    "hybrid": [
+      {
+        "query_id": "real_001",
+        "query": "weather stations with maximum temperature exceeding 86 degrees Fahrenheit",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 109,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0092,
+          "F1@1": 0.0182,
+          "P@5": 0.2,
+          "R@5": 0.0092,
+          "F1@5": 0.0175,
+          "P@10": 0.2,
+          "R@10": 0.0183,
+          "F1@10": 0.0336,
+          "P@20": 0.35,
+          "R@20": 0.0642,
+          "F1@20": 0.1085,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_06.txt",
+          "USC00050848_2023_11.txt",
+          "USC00050848_2024_12.txt",
+          "USC00050848_2024_11.txt",
+          "USC00050848_2023_02.txt"
+        ],
+        "latency_s": 0.0732
+      },
+      {
+        "query_id": "real_002",
+        "query": "stations where minimum temperature dropped below freezing (32\u00b0F) in the month",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 120,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0083,
+          "F1@5": 0.016,
+          "P@10": 0.5,
+          "R@10": 0.0417,
+          "F1@10": 0.0769,
+          "P@20": 0.5,
+          "R@20": 0.0833,
+          "F1@20": 0.1429,
+          "MRR": 0.25
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00014732_2023_09.txt",
+          "USW00014732_2022_09.txt",
+          "USW00013723_2023_11.txt",
+          "USW00013723_2022_09.txt"
+        ],
+        "latency_s": 0.0647
+      },
+      {
+        "query_id": "real_003",
+        "query": "monthly observations with average high temperatures between 59\u00b0F and 77\u00b0F (mild climate)",
+        "type": "cross_unit_temperature_range",
+        "relevant_count": 112,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0089,
+          "F1@5": 0.0171,
+          "P@10": 0.3,
+          "R@10": 0.0268,
+          "F1@10": 0.0492,
+          "P@20": 0.3,
+          "R@20": 0.0536,
+          "F1@20": 0.0909,
+          "MRR": 0.3333
+        },
+        "top5": [
+          "USC00050848_2023_01.txt",
+          "USC00050848_2023_07.txt",
+          "USW00013723_2023_11.txt",
+          "USC00050848_2023_09.txt",
+          "USW00025501_2023_06.txt"
+        ],
+        "latency_s": 0.066
+      },
+      {
+        "query_id": "real_004",
+        "query": "stations that received more than 2 inches of rainfall in a month",
+        "type": "cross_unit_precipitation",
+        "relevant_count": 173,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0058,
+          "F1@1": 0.0115,
+          "P@5": 0.6,
+          "R@5": 0.0173,
+          "F1@5": 0.0337,
+          "P@10": 0.7,
+          "R@10": 0.0405,
+          "F1@10": 0.0765,
+          "P@20": 0.6,
+          "R@20": 0.0694,
+          "F1@20": 0.1244,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00013723_2024_04.txt",
+          "USC00050848_2023_05.txt",
+          "USW00024157_2023_09.txt",
+          "USW00013723_2023_06.txt"
+        ],
+        "latency_s": 0.0696
+      },
+      {
+        "query_id": "real_005",
+        "query": "weather records showing single-day precipitation over 1 inch",
+        "type": "cross_unit_precipitation_daily",
+        "relevant_count": 138,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0072,
+          "F1@1": 0.0144,
+          "P@5": 0.4,
+          "R@5": 0.0145,
+          "F1@5": 0.028,
+          "P@10": 0.3,
+          "R@10": 0.0217,
+          "F1@10": 0.0405,
+          "P@20": 0.35,
+          "R@20": 0.0507,
+          "F1@20": 0.0886,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2024_03.txt",
+          "USW00024157_2023_09.txt",
+          "USC00050848_2023_06.txt",
+          "USC00050848_2023_11.txt",
+          "USC00050848_2024_12.txt"
+        ],
+        "latency_s": 0.071
+      },
+      {
+        "query_id": "real_006",
+        "query": "monthly records with maximum average wind speed above 15 miles per hour",
+        "type": "cross_unit_wind",
+        "relevant_count": 132,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0076,
+          "F1@1": 0.015,
+          "P@5": 0.8,
+          "R@5": 0.0303,
+          "F1@5": 0.0584,
+          "P@10": 0.8,
+          "R@10": 0.0606,
+          "F1@10": 0.1127,
+          "P@20": 0.85,
+          "R@20": 0.1288,
+          "F1@20": 0.2237,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00025501_2023_04.txt",
+          "USW00025501_2022_07.txt",
+          "USW00025501_2024_06.txt",
+          "USW00025501_2022_04.txt",
+          "USW00025501_2023_08.txt"
+        ],
+        "latency_s": 0.0744
+      },
+      {
+        "query_id": "real_007",
+        "query": "stations with more than 5 inches of snowfall accumulation",
+        "type": "cross_unit_snow",
+        "relevant_count": 31,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "F1@10": 0.0,
+          "P@20": 0.15,
+          "R@20": 0.0968,
+          "F1@20": 0.1176,
+          "MRR": 0.0769
+        },
+        "top5": [
+          "USW00024157_2023_10.txt",
+          "USW00094728_2023_06.txt",
+          "USW00024157_2023_05.txt",
+          "USW00024157_2024_03.txt",
+          "USW00012960_2022_06.txt"
+        ],
+        "latency_s": 0.0672
+      },
+      {
+        "query_id": "real_008",
+        "query": "winter months with temperatures below 23\u00b0F and significant snowfall over 2 inches",
+        "type": "cross_unit_combined",
+        "relevant_count": 37,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.027,
+          "F1@1": 0.0526,
+          "P@5": 0.6,
+          "R@5": 0.0811,
+          "F1@5": 0.1429,
+          "P@10": 0.3,
+          "R@10": 0.0811,
+          "F1@10": 0.1277,
+          "P@20": 0.25,
+          "R@20": 0.1351,
+          "F1@20": 0.1754,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_02.txt",
+          "USC00050848_2024_11.txt",
+          "USW00024157_2022_12.txt",
+          "USW00012960_2023_05.txt",
+          "USW00012960_2023_12.txt"
+        ],
+        "latency_s": 0.0637
+      }
+    ],
+    "string_norm": [
+      {
+        "query_id": "real_001",
+        "query": "weather stations with maximum temperature exceeding 86 degrees Fahrenheit",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 109,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0092,
+          "F1@1": 0.0182,
+          "P@5": 0.2,
+          "R@5": 0.0092,
+          "F1@5": 0.0175,
+          "P@10": 0.2,
+          "R@10": 0.0183,
+          "F1@10": 0.0336,
+          "P@20": 0.35,
+          "R@20": 0.0642,
+          "F1@20": 0.1085,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_06.txt",
+          "USC00050848_2023_11.txt",
+          "USC00050848_2024_12.txt",
+          "USC00050848_2024_11.txt",
+          "USC00050848_2023_02.txt"
+        ],
+        "latency_s": 0.2846
+      },
+      {
+        "query_id": "real_002",
+        "query": "stations where minimum temperature dropped below freezing (32\u00b0F) in the month",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 120,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0083,
+          "F1@5": 0.016,
+          "P@10": 0.5,
+          "R@10": 0.0417,
+          "F1@10": 0.0769,
+          "P@20": 0.5,
+          "R@20": 0.0833,
+          "F1@20": 0.1429,
+          "MRR": 0.25
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00014732_2023_09.txt",
+          "USW00014732_2022_09.txt",
+          "USW00013723_2023_11.txt",
+          "USW00013723_2022_09.txt"
+        ],
+        "latency_s": 0.0731
+      },
+      {
+        "query_id": "real_003",
+        "query": "monthly observations with average high temperatures between 59\u00b0F and 77\u00b0F (mild climate)",
+        "type": "cross_unit_temperature_range",
+        "relevant_count": 112,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0089,
+          "F1@5": 0.0171,
+          "P@10": 0.3,
+          "R@10": 0.0268,
+          "F1@10": 0.0492,
+          "P@20": 0.3,
+          "R@20": 0.0536,
+          "F1@20": 0.0909,
+          "MRR": 0.3333
+        },
+        "top5": [
+          "USC00050848_2023_01.txt",
+          "USC00050848_2023_07.txt",
+          "USW00013723_2023_11.txt",
+          "USC00050848_2023_09.txt",
+          "USW00025501_2023_06.txt"
+        ],
+        "latency_s": 0.0723
+      },
+      {
+        "query_id": "real_004",
+        "query": "stations that received more than 2 inches of rainfall in a month",
+        "type": "cross_unit_precipitation",
+        "relevant_count": 173,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0058,
+          "F1@1": 0.0115,
+          "P@5": 0.6,
+          "R@5": 0.0173,
+          "F1@5": 0.0337,
+          "P@10": 0.7,
+          "R@10": 0.0405,
+          "F1@10": 0.0765,
+          "P@20": 0.6,
+          "R@20": 0.0694,
+          "F1@20": 0.1244,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00013723_2023_09.txt",
+          "USW00013723_2024_04.txt",
+          "USC00050848_2023_05.txt",
+          "USW00024157_2023_09.txt",
+          "USW00013723_2023_06.txt"
+        ],
+        "latency_s": 0.0668
+      },
+      {
+        "query_id": "real_005",
+        "query": "weather records showing single-day precipitation over 1 inch",
+        "type": "cross_unit_precipitation_daily",
+        "relevant_count": 138,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0072,
+          "F1@1": 0.0144,
+          "P@5": 0.4,
+          "R@5": 0.0145,
+          "F1@5": 0.028,
+          "P@10": 0.3,
+          "R@10": 0.0217,
+          "F1@10": 0.0405,
+          "P@20": 0.35,
+          "R@20": 0.0507,
+          "F1@20": 0.0886,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2024_03.txt",
+          "USW00024157_2023_09.txt",
+          "USC00050848_2023_06.txt",
+          "USC00050848_2023_11.txt",
+          "USC00050848_2024_12.txt"
+        ],
+        "latency_s": 0.0751
+      },
+      {
+        "query_id": "real_006",
+        "query": "monthly records with maximum average wind speed above 15 miles per hour",
+        "type": "cross_unit_wind",
+        "relevant_count": 132,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0076,
+          "F1@1": 0.015,
+          "P@5": 0.8,
+          "R@5": 0.0303,
+          "F1@5": 0.0584,
+          "P@10": 0.8,
+          "R@10": 0.0606,
+          "F1@10": 0.1127,
+          "P@20": 0.85,
+          "R@20": 0.1288,
+          "F1@20": 0.2237,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00025501_2023_04.txt",
+          "USW00025501_2022_07.txt",
+          "USW00025501_2024_06.txt",
+          "USW00025501_2022_04.txt",
+          "USW00025501_2023_08.txt"
+        ],
+        "latency_s": 0.0682
+      },
+      {
+        "query_id": "real_007",
+        "query": "stations with more than 5 inches of snowfall accumulation",
+        "type": "cross_unit_snow",
+        "relevant_count": 31,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.0,
+          "R@5": 0.0,
+          "F1@5": 0.0,
+          "P@10": 0.0,
+          "R@10": 0.0,
+          "F1@10": 0.0,
+          "P@20": 0.15,
+          "R@20": 0.0968,
+          "F1@20": 0.1176,
+          "MRR": 0.0769
+        },
+        "top5": [
+          "USW00024157_2023_10.txt",
+          "USW00094728_2023_06.txt",
+          "USW00024157_2023_05.txt",
+          "USW00024157_2024_03.txt",
+          "USW00012960_2022_06.txt"
+        ],
+        "latency_s": 0.069
+      },
+      {
+        "query_id": "real_008",
+        "query": "winter months with temperatures below 23\u00b0F and significant snowfall over 2 inches",
+        "type": "cross_unit_combined",
+        "relevant_count": 37,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.027,
+          "F1@1": 0.0526,
+          "P@5": 0.6,
+          "R@5": 0.0811,
+          "F1@5": 0.1429,
+          "P@10": 0.3,
+          "R@10": 0.0811,
+          "F1@10": 0.1277,
+          "P@20": 0.25,
+          "R@20": 0.1351,
+          "F1@20": 0.1754,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_02.txt",
+          "USC00050848_2024_11.txt",
+          "USW00024157_2022_12.txt",
+          "USW00012960_2023_05.txt",
+          "USW00012960_2023_12.txt"
+        ],
+        "latency_s": 0.0704
+      }
+    ],
+    "full_pipeline": [
+      {
+        "query_id": "real_001",
+        "query": "weather stations with maximum temperature exceeding 86 degrees Fahrenheit",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 109,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0092,
+          "F1@1": 0.0182,
+          "P@5": 1.0,
+          "R@5": 0.0459,
+          "F1@5": 0.0877,
+          "P@10": 1.0,
+          "R@10": 0.0917,
+          "F1@10": 0.1681,
+          "P@20": 1.0,
+          "R@20": 0.1835,
+          "F1@20": 0.3101,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_06.txt",
+          "USC00050848_2022_07.txt",
+          "USC00050848_2022_06.txt",
+          "USC00050848_2024_09.txt",
+          "USC00050848_2022_05.txt"
+        ],
+        "latency_s": 0.1534
+      },
+      {
+        "query_id": "real_002",
+        "query": "stations where minimum temperature dropped below freezing (32\u00b0F) in the month",
+        "type": "cross_unit_temperature_F",
+        "relevant_count": 120,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0083,
+          "F1@1": 0.0165,
+          "P@5": 1.0,
+          "R@5": 0.0417,
+          "F1@5": 0.08,
+          "P@10": 1.0,
+          "R@10": 0.0833,
+          "F1@10": 0.1538,
+          "P@20": 1.0,
+          "R@20": 0.1667,
+          "F1@20": 0.2857,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00013723_2023_11.txt",
+          "USW00013723_2023_12.txt",
+          "USW00025501_2022_01.txt",
+          "USW00013723_2023_01.txt",
+          "USW00025501_2024_10.txt"
+        ],
+        "latency_s": 0.1646
+      },
+      {
+        "query_id": "real_003",
+        "query": "monthly observations with average high temperatures between 59\u00b0F and 77\u00b0F (mild climate)",
+        "type": "cross_unit_temperature_range",
+        "relevant_count": 112,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0089,
+          "F1@5": 0.0171,
+          "P@10": 0.3,
+          "R@10": 0.0268,
+          "F1@10": 0.0492,
+          "P@20": 0.35,
+          "R@20": 0.0625,
+          "F1@20": 0.1061,
+          "MRR": 0.3333
+        },
+        "top5": [
+          "USC00050848_2023_01.txt",
+          "USC00050848_2023_07.txt",
+          "USW00013723_2023_11.txt",
+          "USW00025501_2023_06.txt",
+          "USC00050848_2024_06.txt"
+        ],
+        "latency_s": 0.2714
+      },
+      {
+        "query_id": "real_004",
+        "query": "stations that received more than 2 inches of rainfall in a month",
+        "type": "cross_unit_precipitation",
+        "relevant_count": 173,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.4,
+          "R@5": 0.0116,
+          "F1@5": 0.0225,
+          "P@10": 0.4,
+          "R@10": 0.0231,
+          "F1@10": 0.0437,
+          "P@20": 0.4,
+          "R@20": 0.0462,
+          "F1@20": 0.0829,
+          "MRR": 0.5
+        },
+        "top5": [
+          "USW00024157_2023_09.txt",
+          "USW00014732_2023_09.txt",
+          "USW00024157_2024_11.txt",
+          "USW00024157_2024_05.txt",
+          "USC00050848_2024_06.txt"
+        ],
+        "latency_s": 0.288
+      },
+      {
+        "query_id": "real_005",
+        "query": "weather records showing single-day precipitation over 1 inch",
+        "type": "cross_unit_precipitation_daily",
+        "relevant_count": 138,
+        "metrics": {
+          "P@1": 0.0,
+          "R@1": 0.0,
+          "F1@1": 0.0,
+          "P@5": 0.2,
+          "R@5": 0.0072,
+          "F1@5": 0.014,
+          "P@10": 0.3,
+          "R@10": 0.0217,
+          "F1@10": 0.0405,
+          "P@20": 0.4,
+          "R@20": 0.058,
+          "F1@20": 0.1013,
+          "MRR": 0.25
+        },
+        "top5": [
+          "USW00024157_2023_09.txt",
+          "USC00050848_2024_06.txt",
+          "USW00094728_2022_03.txt",
+          "USW00094728_2023_04.txt",
+          "USW00094728_2023_01.txt"
+        ],
+        "latency_s": 0.3678
+      },
+      {
+        "query_id": "real_006",
+        "query": "monthly records with maximum average wind speed above 15 miles per hour",
+        "type": "cross_unit_wind",
+        "relevant_count": 132,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0076,
+          "F1@1": 0.015,
+          "P@5": 0.8,
+          "R@5": 0.0303,
+          "F1@5": 0.0584,
+          "P@10": 0.8,
+          "R@10": 0.0606,
+          "F1@10": 0.1127,
+          "P@20": 0.7,
+          "R@20": 0.1061,
+          "F1@20": 0.1842,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00025501_2023_04.txt",
+          "USW00025501_2024_10.txt",
+          "USW00025501_2022_01.txt",
+          "USW00025501_2022_06.txt",
+          "USW00025501_2024_07.txt"
+        ],
+        "latency_s": 0.2734
+      },
+      {
+        "query_id": "real_007",
+        "query": "stations with more than 5 inches of snowfall accumulation",
+        "type": "cross_unit_snow",
+        "relevant_count": 31,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.0323,
+          "F1@1": 0.0625,
+          "P@5": 1.0,
+          "R@5": 0.1613,
+          "F1@5": 0.2778,
+          "P@10": 1.0,
+          "R@10": 0.3226,
+          "F1@10": 0.4878,
+          "P@20": 0.7,
+          "R@20": 0.4516,
+          "F1@20": 0.549,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USW00024157_2023_01.txt",
+          "USW00024157_2023_03.txt",
+          "USW00024157_2022_12.txt",
+          "USC00050848_2023_11.txt",
+          "USC00050848_2023_02.txt"
+        ],
+        "latency_s": 0.2772
+      },
+      {
+        "query_id": "real_008",
+        "query": "winter months with temperatures below 23\u00b0F and significant snowfall over 2 inches",
+        "type": "cross_unit_combined",
+        "relevant_count": 37,
+        "metrics": {
+          "P@1": 1.0,
+          "R@1": 0.027,
+          "F1@1": 0.0526,
+          "P@5": 1.0,
+          "R@5": 0.1351,
+          "F1@5": 0.2381,
+          "P@10": 1.0,
+          "R@10": 0.2703,
+          "F1@10": 0.4255,
+          "P@20": 0.6,
+          "R@20": 0.3243,
+          "F1@20": 0.4211,
+          "MRR": 1.0
+        },
+        "top5": [
+          "USC00050848_2023_02.txt",
+          "USW00024157_2022_12.txt",
+          "USW00024157_2023_03.txt",
+          "USW00024157_2023_02.txt",
+          "USC00050848_2023_11.txt"
+        ],
+        "latency_s": 0.2776
+      }
+    ]
+  },
+  "meta": {
+    "corpus": "NOAA GHCN-Daily",
+    "stations": [
+      "USW00014732",
+      "USW00094728",
+      "USW00023174",
+      "USW00012960",
+      "USW00013723",
+      "USW00025501",
+      "USC00050848",
+      "USW00024157"
+    ],
+    "doc_count": 288,
+    "query_count": 8,
+    "indexing_time_s": 154.75,
+    "years": [
+      2022,
+      2023,
+      2024
+    ],
+    "doc_units": "degC, mm, m/s",
+    "query_units": "\u00b0F, inches, mph",
+    "note": "Documents contain ONLY metric/SI units. Queries expressed in imperial units. Cross-unit matching requires SI conversion operators."
+  }
+}
