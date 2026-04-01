@@ -36,7 +36,7 @@ netcdf = [
   "xarray>=2024.1.0",
   "netCDF4>=1.6.0",
 ]
-llm = ["anthropic>=0.40.0"]
+llm = ["anthropic>=0.40.0", "openai>=1.0.0"]
 telemetry = [
   "opentelemetry-api>=1.20.0",
   "opentelemetry-sdk>=1.20.0",
@@ -92,5 +92,6 @@ module = [
   "xarray",
   "netCDF4",
   "anthropic",
+  "openai",
 ]
 ignore_missing_imports = true

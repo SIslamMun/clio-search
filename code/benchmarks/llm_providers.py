@@ -1,6 +1,7 @@
 """Multi-provider LLM query rewriting for benchmark evaluation.
 
 Abstracts over Ollama, Google Gemini, Claude Agent SDK, llama-cpp-python,
+OpenAI-compatible servers (LM Studio, vLLM, OpenAI, Together AI, Groq),
 and a no-LLM fallback so that each can be benchmarked with the same
 scientific query-rewriting prompt.
 """
@@ -482,7 +483,194 @@ class LlamaCppProvider(LLMProvider):
 
 
 # ===================================================================
-# 5. Fallback (no LLM -- SI expansion only)
+# 5. OpenAI-compatible providers (LM Studio, vLLM, OpenAI, Together, Groq)
+# ===================================================================
+
+class OpenAICompatibleProvider(LLMProvider):
+    """Base for any OpenAI-compatible API (LM Studio, vLLM, OpenAI, Together, Groq)."""
+
+    def __init__(
+        self,
+        *,
+        provider_name: str,
+        model: str,
+        base_url: str | None = None,
+        api_key: str | None = None,
+        cost_input_per_m: float = 0.0,
+        cost_output_per_m: float = 0.0,
+    ) -> None:
+        from openai import OpenAI
+
+        kwargs: dict[str, Any] = {}
+        if base_url:
+            kwargs["base_url"] = base_url
+        if api_key:
+            kwargs["api_key"] = api_key
+        self._client = OpenAI(**kwargs)
+        self._provider_name = provider_name
+        self._model = model
+        self._cost_input = cost_input_per_m
+        self._cost_output = cost_output_per_m
+
+    def name(self) -> str:
+        return f"{self._provider_name}/{self._model}"
+
+    def rewrite_query(self, query: str, context: str) -> RewriteResponse:
+        user_msg = _build_user_message(query, context)
+        t0 = time.perf_counter()
+        error: str | None = None
+        rewritten = query
+        strategy = "done"
+        reasoning = ""
+        prompt_tokens = 0
+        completion_tokens = 0
+
+        try:
+            response = self._client.chat.completions.create(
+                model=self._model,
+                messages=[
+                    {"role": "system", "content": _SYSTEM_PROMPT},
+                    {"role": "user", "content": user_msg},
+                ],
+                temperature=0.3,
+            )
+            latency = time.perf_counter() - t0
+
+            raw_text = response.choices[0].message.content or ""
+            rewritten, strategy, reasoning = _parse_raw_response(
+                raw_text, original_query=query
+            )
+
+            usage = response.usage
+            if usage is not None:
+                prompt_tokens = usage.prompt_tokens or 0
+                completion_tokens = usage.completion_tokens or 0
+        except Exception as exc:  # noqa: BLE001
+            latency = time.perf_counter() - t0
+            error = str(exc)
+            strategy = "done"
+            reasoning = f"{self._provider_name} error: {exc}"
+
+        total_tokens = prompt_tokens + completion_tokens
+        cost = (
+            prompt_tokens * self._cost_input / 1_000_000
+            + completion_tokens * self._cost_output / 1_000_000
+        )
+
+        return RewriteResponse(
+            original_query=query,
+            rewritten_query=rewritten,
+            strategy=strategy,
+            reasoning=reasoning,
+            metrics=LLMMetrics(
+                provider=self._provider_name,
+                model=self._model,
+                latency_seconds=round(latency, 4),
+                prompt_tokens=prompt_tokens,
+                completion_tokens=completion_tokens,
+                total_tokens=total_tokens,
+                cost_usd=round(cost, 8),
+                error=error,
+            ),
+        )
+
+
+class LMStudioProvider(OpenAICompatibleProvider):
+    """LM Studio local server (OpenAI-compatible API at localhost:1234)."""
+
+    def __init__(
+        self, model: str = "local-model", base_url: str = "http://localhost:1234/v1"
+    ) -> None:
+        super().__init__(
+            provider_name="lmstudio",
+            model=model,
+            base_url=base_url,
+            api_key="lm-studio",
+            cost_input_per_m=0.0,
+            cost_output_per_m=0.0,
+        )
+
+
+class VLLMProvider(OpenAICompatibleProvider):
+    """vLLM server (OpenAI-compatible API, typically at localhost:8000)."""
+
+    def __init__(
+        self, model: str = "default", base_url: str = "http://localhost:8000/v1"
+    ) -> None:
+        super().__init__(
+            provider_name="vllm",
+            model=model,
+            base_url=base_url,
+            api_key="vllm",
+            cost_input_per_m=0.0,
+            cost_output_per_m=0.0,
+        )
+
+
+class OpenAIProvider(OpenAICompatibleProvider):
+    """OpenAI API (requires OPENAI_API_KEY environment variable)."""
+
+    # Pricing per 1M tokens (USD) -- GPT-4o-mini
+    _DEFAULT_INPUT_COST = 0.15
+    _DEFAULT_OUTPUT_COST = 0.60
+
+    def __init__(self, model: str = "gpt-4o-mini") -> None:
+        api_key = os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY environment variable is not set.")
+        super().__init__(
+            provider_name="openai",
+            model=model,
+            api_key=api_key,
+            cost_input_per_m=self._DEFAULT_INPUT_COST,
+            cost_output_per_m=self._DEFAULT_OUTPUT_COST,
+        )
+
+
+class TogetherProvider(OpenAICompatibleProvider):
+    """Together AI (requires TOGETHER_API_KEY). OpenAI-compatible."""
+
+    # Pricing per 1M tokens (USD) -- Llama-3-8B
+    _DEFAULT_INPUT_COST = 0.20
+    _DEFAULT_OUTPUT_COST = 0.20
+
+    def __init__(self, model: str = "meta-llama/Llama-3-8b-chat-hf") -> None:
+        api_key = os.environ.get("TOGETHER_API_KEY")
+        if not api_key:
+            raise RuntimeError("TOGETHER_API_KEY environment variable is not set.")
+        super().__init__(
+            provider_name="together",
+            model=model,
+            base_url="https://api.together.xyz/v1",
+            api_key=api_key,
+            cost_input_per_m=self._DEFAULT_INPUT_COST,
+            cost_output_per_m=self._DEFAULT_OUTPUT_COST,
+        )
+
+
+class GroqProvider(OpenAICompatibleProvider):
+    """Groq (requires GROQ_API_KEY). OpenAI-compatible."""
+
+    # Pricing per 1M tokens (USD) -- Llama3-8B
+    _DEFAULT_INPUT_COST = 0.05
+    _DEFAULT_OUTPUT_COST = 0.08
+
+    def __init__(self, model: str = "llama3-8b-8192") -> None:
+        api_key = os.environ.get("GROQ_API_KEY")
+        if not api_key:
+            raise RuntimeError("GROQ_API_KEY environment variable is not set.")
+        super().__init__(
+            provider_name="groq",
+            model=model,
+            base_url="https://api.groq.com/openai/v1",
+            api_key=api_key,
+            cost_input_per_m=self._DEFAULT_INPUT_COST,
+            cost_output_per_m=self._DEFAULT_OUTPUT_COST,
+        )
+
+
+# ===================================================================
+# 10. Fallback (no LLM -- SI expansion only)
 # ===================================================================
 
 class FallbackProvider(LLMProvider):
@@ -603,7 +791,57 @@ def discover_providers(
             except ImportError:
                 print("  [--] llama-cpp not installed")
 
-    # 5. Fallback -- always available
+    # 5. LM Studio (localhost:1234)
+    try:
+        import urllib.request
+        req = urllib.request.Request("http://localhost:1234/v1/models", method="GET")
+        urllib.request.urlopen(req, timeout=2)
+        providers.append(LMStudioProvider())
+        print(f"  [OK] LM Studio detected: {providers[-1].name()}")
+    except Exception as exc:
+        print(f"  [--] LM Studio not available: {exc}")
+
+    # 6. vLLM (localhost:8000)
+    try:
+        import urllib.request
+        req = urllib.request.Request("http://localhost:8000/v1/models", method="GET")
+        urllib.request.urlopen(req, timeout=2)
+        providers.append(VLLMProvider())
+        print(f"  [OK] vLLM detected: {providers[-1].name()}")
+    except Exception as exc:
+        print(f"  [--] vLLM not available: {exc}")
+
+    # 7. OpenAI
+    try:
+        if os.environ.get("OPENAI_API_KEY"):
+            providers.append(OpenAIProvider())
+            print(f"  [OK] OpenAI detected: {providers[-1].name()}")
+        else:
+            print("  [--] OpenAI not available: OPENAI_API_KEY not set")
+    except Exception as exc:
+        print(f"  [--] OpenAI not available: {exc}")
+
+    # 8. Together AI
+    try:
+        if os.environ.get("TOGETHER_API_KEY"):
+            providers.append(TogetherProvider())
+            print(f"  [OK] Together AI detected: {providers[-1].name()}")
+        else:
+            print("  [--] Together AI not available: TOGETHER_API_KEY not set")
+    except Exception as exc:
+        print(f"  [--] Together AI not available: {exc}")
+
+    # 9. Groq
+    try:
+        if os.environ.get("GROQ_API_KEY"):
+            providers.append(GroqProvider())
+            print(f"  [OK] Groq detected: {providers[-1].name()}")
+        else:
+            print("  [--] Groq not available: GROQ_API_KEY not set")
+    except Exception as exc:
+        print(f"  [--] Groq not available: {exc}")
+
+    # 10. Fallback -- always available
     providers.append(FallbackProvider())
     print(f"  [OK] Fallback provider: {providers[-1].name()}")
 
