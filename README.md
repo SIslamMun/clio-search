@@ -1,33 +1,24 @@
 # clio-search
 
-**Science-Aware Hybrid Retrieval with Dimensional Conversion for HPC Data Discovery**
+**Science-Aware Retrieval Operators for AI-Driven HPC Data Discovery**
 
-Research workspace and implementation for a paper submitted to **SC2026** (Data Analytics, Visualization & Storage track).
-
----
-
-## Abstract
-
-Scientific corpora encode structured knowledge — dimensional quantities, mathematical formulas, and heterogeneous storage provenance — that general-purpose retrieval systems cannot exploit. AI agents searching HPC data face three compounding failures: retrieval systems cannot match measurements across unit prefixes ("200 kPa" vs "200000 Pa"), cannot match formulas across formatting variations ("F=ma" vs "F = m · a"), and cannot query across the heterogeneous storage backends where scientific data resides. Embedding models achieve only 0.54 accuracy on numerical content, and existing quantity-aware systems normalize unit strings without performing dimensional conversion across SI prefixes.
-
-We present **clio-agentic-search**, a hybrid retrieval engine that introduces *science-aware retrieval operators* for HPC data discovery:
-
-1. **Dimensional-conversion measurement retrieval** — canonicalizes quantities to base SI units via explicit multiplication (kPa × 10³ = Pa), enabling cross-prefix numeric comparison guaranteed correct by construction.
-2. **Formula normalization** — matches mathematical expressions regardless of formatting, whitespace, or factor ordering, unified with measurement operators in a single pipeline.
-3. **Federated multi-namespace search** — queries heterogeneous HPC storage backends (filesystems, S3, vector databases, graph databases) through a connector architecture with per-backend capability negotiation.
+Research implementation and paper for **SC2026** (Data Analytics, Visualization & Storage track).
 
 ---
 
-## Key Differentiator
+## The Problem
 
-| Capability | Numbers Matter! [2024] | CONE [2026] | Context-1 [2026] | HiPerRAG [2025] | **Ours** |
-|---|---|---|---|---|---|
-| Dimensional conversion (kPa×10³=Pa) | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Formula matching | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Cross-unit range queries | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Federated multi-backend | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Searches scientific data (not papers) | ✗ | ✗ | ✗ | ✗ | **✓** |
-| BM25 + vector hybrid | ✗ | ✗ | ✓ | ✓ | ✓ |
+When a scientist asks an AI agent *"Find experiments where pressure was between 190 and 360 kPa"*, no retrieval system can answer reliably. The measurements exist across storage tiers in different unit representations — "200 kPa" on a filesystem, "200000 Pa" in an HDF5 attribute, "0.2 MPa" in an S3 dataset. These describe identical pressure. Every retrieval system treats them as unrelated strings. Embedding models achieve only 0.54 accuracy on numerical content (Deng et al., EACL 2026). String normalization cannot bridge SI prefixes. Learned embeddings cannot guarantee equivalence.
+
+## Our Approach
+
+**clio-agentic-search** introduces *science-aware retrieval operators* — deterministic, pluggable primitives that execute as first-class branches alongside standard BM25 and dense vector search:
+
+1. **Dimensional-conversion retrieval** — Canonicalizes quantities to base SI units via arithmetic multiplication (kPa x 10^3 = Pa). Correctness guaranteed by construction across 13 units in 5 SI domains.
+2. **Formula normalization** — Matches mathematical expressions across whitespace, superscript, side-swap, and factor-reordering variants.
+3. **Federated multi-namespace search** — Unified retrieval across filesystem, S3, Qdrant, Neo4j, HDF5, and NetCDF backends with per-backend capability negotiation.
+4. **HDF5/NetCDF metadata indexing** — Extracts measurements from scientific file formats through the same SI canonicalization pipeline.
+5. **Multi-hop agentic retrieval** — LLM-driven query rewriting (expand/narrow/pivot) with iterative search refinement, converging in 2-3 hops.
 
 ---
 
@@ -35,14 +26,13 @@ We present **clio-agentic-search**, a hybrid retrieval engine that introduces *s
 
 **Query**: *"Find experiments where pressure was between 190 and 360 kPa"*
 
-Corpus spread across filesystem, S3, and vector DB:
-- Doc A: "measured pressure was **250 kPa**" (filesystem)
-- Doc B: "chamber pressure reached **200000 Pa**" (S3 archive)
-- Doc C: "peak pressure: **0.3 MPa**" (Qdrant)
+| Document | Value | Backend | Standard Retrieval | clio-agentic-search |
+|---|---|---|---|---|
+| Doc A | 250 kPa | Filesystem | Found (string match) | Found (250000 Pa in range) |
+| Doc B | 200000 Pa | S3 | Missed | Found (200000 Pa in range) |
+| Doc C | 0.3 MPa | HDF5 | Missed | Found (300000 Pa in range) |
 
-**BM25 / string normalization**: finds only Doc A (kPa token match).
-**Learned embeddings**: uncertain — 0.54 accuracy on numbers.
-**clio-agentic-search**: converts all to Pa (250000, 200000, 300000), range-checks against 190000–360000 Pa, finds **all three** across all backends.
+clio-agentic-search converts all values to canonical Pa, range-checks against 190000-360000, and finds **all three** across all backends.
 
 ---
 
@@ -50,40 +40,46 @@ Corpus spread across filesystem, S3, and vector DB:
 
 ```
 clio-search/
-├── intro/
-│   ├── abstract.md            # SC2026 abstract (v0.5, 250 words)
-│   └── introduction.md        # Paper introduction (v0.5)
-├── background/
-│   ├── background.md          # Full background section (hybrid retrieval, numerical crisis,
-│   │                          #   quantity-aware retrieval, agentic science narrative)
-│   └── papers/
-│       ├── 01_prior_art_and_competitors.md   # 16 papers, threat levels, differentiation
-│       ├── 02_gaps_and_evidence.md           # Three failures + supporting infrastructure papers
-│       ├── 03_agentic_gaps_evidence.md       # Evidence agents fail at data (stats table)
-│       └── 04_agentic_science_papers.md      # 4-act narrative: agents doing science
-├── design/
-│   ├── architecture.md        # System design with ASCII diagrams, BM25 formula, SI conversion
-│   ├── hypothesis.md          # 3 RQs, 3 hypotheses, comparison table
-│   ├── novelty.md             # Core novelty argument, gap validation
-│   └── figures.md             # Figure descriptions and captions
-├── codebases/
-│   └── related_repos_analysis.md   # 17 GitHub repos analyzed: threat matrix, differentiation
-└── code/                      # clio-agentic-search implementation
-    ├── src/clio_agentic_search/
-    │   ├── api/               # FastAPI server
-    │   ├── cli/               # CLI (clio query/index/serve)
-    │   ├── connectors/        # filesystem, S3, Qdrant, Neo4j, Redis
-    │   ├── retrieval/         # coordinator, BM25, vector, scientific operators
-    │   ├── storage/           # DuckDB store (Okapi BM25 SQL)
-    │   └── indexing/          # lexical, vector, scientific indexing
-    └── tests/                 # 136/138 tests passing
+├── paper/                          # SC2026 paper (LaTeX + PDF)
+│   ├── paper.tex                   # Full paper (11 pages, IEEE CS format)
+│   ├── paper.pdf                   # Compiled PDF
+│   ├── references.bib              # 44 BibTeX entries
+│   └── figures/
+│       └── architecture.tex        # TikZ architecture diagram (Fig. 1)
+├── code/                           # clio-agentic-search implementation
+│   ├── src/clio_agentic_search/
+│   │   ├── api/                    # FastAPI server (/query, /documents, /jobs, /health)
+│   │   ├── cli/                    # CLI (clio query/index/serve/list/seed)
+│   │   ├── connectors/
+│   │   │   ├── filesystem/         # Full — lexical, vector, scientific
+│   │   │   ├── object_store/       # Full — S3-compatible (MinIO, AWS)
+│   │   │   ├── hdf5/              # Full — h5py, attribute extraction, SI canonicalization
+│   │   │   ├── netcdf/            # Full — xarray, CF conventions, SI canonicalization
+│   │   │   ├── vector_store/      # Stub — in-memory Qdrant protocol
+│   │   │   └── graph_store/       # Stub — in-memory Neo4j protocol
+│   │   ├── retrieval/
+│   │   │   ├── coordinator.py     # 4-branch hybrid retrieval pipeline
+│   │   │   ├── agentic.py         # Multi-hop iterative retrieval loop
+│   │   │   ├── query_rewriter.py  # LLM + fallback query rewriting
+│   │   │   ├── scientific.py      # Science-aware scoring operators
+│   │   │   └── capabilities.py    # Protocol-based capability negotiation
+│   │   ├── indexing/
+│   │   │   └── scientific.py      # SI conversion (13 units), formula normalization
+│   │   └── storage/
+│   │       └── duckdb_store.py    # 8-table schema, SQL-native BM25
+│   └── tests/                     # 169 automated tests
+├── .planning/                     # WTF-P paper planning infrastructure
+│   ├── PROJECT.md                 # Project brief and requirements
+│   ├── ROADMAP.md                 # 6 sections, 11 writing plans, 3 waves
+│   ├── STATE.md                   # Current writing state
+│   ├── GAP-VALIDATION.md          # Independent novelty audit (55 papers)
+│   └── sources/literature.md      # Verified literature index
+└── background/                    # Research notes and paper analyses
 ```
 
 ---
 
-## Running the Code
-
-### Setup
+## Quick Start
 
 ```bash
 cd code
@@ -93,38 +89,47 @@ uv sync --all-extras --dev
 ### Query
 
 ```bash
-# Dimensional conversion query (cross-unit)
-uv run clio query --namespace local_fs --q "pressure between 190 and 360 kPa"
+# Dimensional conversion (cross-unit range query)
+uv run clio query --q "pressure between 190 and 360 kPa" --numeric-range "190:360:kPa"
 
 # Formula query
-uv run clio query --namespace local_fs --q "F = ma"
+uv run clio query --q "F = ma" --formula "F=ma"
 
-# Standard semantic query
-uv run clio query --namespace local_fs --q "turbulence simulation results"
+# Multi-hop agentic retrieval with LLM rewriting
+uv run clio query --q "high pressure turbulence simulations" --agentic --max-hops 3
+
+# Agentic with LLM query rewriting (requires ANTHROPIC_API_KEY)
+uv run clio query --q "find velocity data above 100 km/h" --agentic --llm-rewrite
+
+# Multi-namespace federated search
+uv run clio query --namespaces "local_fs,object_s3,hdf5_data" --q "temperature measurements"
 ```
 
 ### Index and Serve
 
 ```bash
-uv run clio index --namespace local_fs      # Index local filesystem
-uv run clio serve                           # Start FastAPI at localhost:8000
+uv run clio index --namespace local_fs          # Index local filesystem
+uv run clio index --namespace hdf5_data         # Index HDF5 files
+uv run clio index --namespace netcdf_data       # Index NetCDF files
+uv run clio serve                               # Start FastAPI at localhost:8000
 ```
 
-### API
+### API Endpoints
 
 ```
-POST /query          — run retrieval, returns citations + trace
-GET  /documents      — list indexed documents
-POST /jobs/index     — async indexing job
-GET  /health         — liveness probe
+POST /query          — Hybrid retrieval with science-aware operators
+GET  /documents      — List indexed documents
+POST /jobs/index     — Async indexing job
+GET  /health         — Liveness probe
 GET  /metrics        — Prometheus metrics
 ```
 
 ### Tests
 
 ```bash
-uv run pytest --ignore=tests/benchmarks -v
-uv run python -m clio_agentic_search.evals.quality_gate   # full quality gate
+uv run pytest tests/ -v                         # All 169 tests
+uv run pytest tests/unit/ -v                    # Unit tests only
+uv run pytest tests/scientific/ -v              # Scientific retrieval tests
 ```
 
 ---
@@ -133,22 +138,41 @@ uv run python -m clio_agentic_search.evals.quality_gate   # full quality gate
 
 | Milestone | Date | Status |
 |---|---|---|
-| Abstract submission | April 1, 2026 | Target |
-| Full paper submission | April 8, 2026 | Target |
+| Abstract submission | April 1, 2026 | Submitted |
+| Full paper draft | April 1, 2026 | Complete (eval [TBD]) |
+| Full paper submission | April 8, 2026 | In progress |
 | Venue | SC2026 — Data Analytics, Visualization & Storage | — |
+
+**Paper**: 11 pages, IEEE CS double-column, 44 references, architecture figure. Evaluation results pending benchmark execution.
 
 ---
 
-## Related Work Summary
+## Capability Comparison
 
-~54 unique papers surveyed across:
-- Quantity-aware retrieval: QFinder, CQE, Numbers Matter!, CONE, NC-Retriever
-- Hybrid retrieval foundations: BM25 fusion, BGE-M3, SPLADE, Rank1
-- Scientific RAG: HiPerRAG, OpenScholar, MCP for HPC (arXiv:2508.18489)
-- Agentic science: AI Scientist v1/v2, Coscientist, ChemCrow, ALS beamline agents
-- Benchmarks: ScienceAgentBench (32%), MLAgentBench, Numeracy Gap (0.54)
+| Capability | Numbers Matter! | CONE | PANGAEA-GPT | HiPerRAG | OpenScholar | **Ours** |
+|---|---|---|---|---|---|---|
+| SI dimensional conversion | - | - | - | - | - | **Yes** |
+| Formula normalization | - | - | - | - | - | **Yes** |
+| Science-aware retrieval branches | - | - | - | - | - | **Yes** |
+| Federated multi-backend | - | - | - | - | - | **Yes** |
+| HDF5/NetCDF indexing | - | - | - | - | - | **Yes** |
+| Agentic multi-hop | - | - | Yes | - | - | **Yes** |
+| Quantity extraction | Yes | Yes | Partial | - | - | **Yes** |
+| Data search (not papers) | - | - | Yes | - | - | **Yes** |
+| Paper search | - | - | - | Yes | Yes | - |
 
-Full analysis in [`background/papers/`](background/papers/) and [`codebases/related_repos_analysis.md`](codebases/related_repos_analysis.md).
+---
+
+## Key Citations
+
+- **Numeracy Gap** (Deng et al., EACL 2026): 0.54 embedding accuracy on numerical content
+- **ScienceAgentBench** (Chen et al., ICLR 2025): Best agent achieves 32.4% on scientific tasks
+- **Numbers Matter!** (Almasian et al., EMNLP 2024): Quantity-aware retrieval via string normalization
+- **CONE** (Shrestha et al., 2026): Learned embeddings for numbers+units
+- **PANGAEA-GPT** (2026): Multi-agent geoscientific data search with post-hoc unit validation
+- **Theoretical Limits of Embedding Retrieval** (Weller et al., 2025): Formal bounds on embedding fidelity
+
+Full literature index: [`.planning/sources/literature.md`](.planning/sources/literature.md) (55 papers verified)
 
 ---
 
