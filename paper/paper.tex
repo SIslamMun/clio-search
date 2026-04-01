@@ -15,7 +15,7 @@
 
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
-\renewcommand{\arraystretch}{1.1}
+\renewcommand{\arraystretch}{1.15}
 
 \title{Science-Aware Retrieval Operators for AI-Driven HPC Data Discovery}
 
@@ -113,30 +113,44 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \begin{table*}[!t]
 \centering
-\caption{Capability comparison across retrieval and scientific data systems.}
+\caption{Capability comparison across retrieval and scientific data systems. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
 \label{tab:comparison}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}l ccccc ccccc@{}}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{l c c c c c c c c c c}
 \toprule
- & \multicolumn{5}{c}{\textit{Our Contributions}} & \multicolumn{5}{c}{\textit{General}} \\
+ & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
 \cmidrule(lr){2-6} \cmidrule(lr){7-11}
-\textbf{System} & \rotatebox{65}{SI conv.} & \rotatebox{65}{Formula} & \rotatebox{65}{Sci. branch} & \rotatebox{65}{Federated} & \rotatebox{65}{HDF5/NC} & \rotatebox{65}{Agentic} & \rotatebox{65}{Qty. extr.} & \rotatebox{65}{Papers} & \rotatebox{65}{Data} & \rotatebox{65}{LLM} \\
+\textbf{System}
+  & \rotatebox{60}{\small SI Conversion}
+  & \rotatebox{60}{\small Formula Norm.}
+  & \rotatebox{60}{\small Sci.\ Branches}
+  & \rotatebox{60}{\small Federated}
+  & \rotatebox{60}{\small HDF5/NetCDF}
+  & \rotatebox{60}{\small Agentic}
+  & \rotatebox{60}{\small Qty.\ Extract.}
+  & \rotatebox{60}{\small Paper Search}
+  & \rotatebox{60}{\small Data Search}
+  & \rotatebox{60}{\small LLM Integr.} \\
 \midrule
-\rowcolor{gray!10}
-\textbf{Ours}   & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
-PANGAEA-GPT     & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
-OpenScholar     & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-HiPerRAG        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-Numbers Matter! & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CONE            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CLADD           & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-SciAgent        & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-Context-1       & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+\rowcolor{gray!15}
+\textbf{Ours (clio)}  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+PANGAEA-GPT            & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
+\rowcolor{gray!5}
+OpenScholar            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+HiPerRAG               & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+\rowcolor{gray!5}
+Numbers Matter!        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CONE                   & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+\rowcolor{gray!5}
+CLADD                  & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciAgent               & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+\rowcolor{gray!5}
+Context-1              & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
 \end{tabular}
-\\[2pt]
-{\scriptsize \cmark{} = supported, \xmark{} = not supported, $\circ$ = partial.}
+\renewcommand{\arraystretch}{1.15}
 \end{table*}
 
 Table~\ref{tab:comparison} summarizes the landscape. To our knowledge, no prior system supports the combination of our first five capabilities: arithmetic SI conversion, formula normalization, science-aware retrieval branches, federated multi-backend search, and HDF5/NetCDF indexing. Individual capabilities may exist in isolation. We honestly mark capabilities we lack---we do not index papers. PANGAEA-GPT receives partial credit for quantity extraction (unit scale validation, but post-hoc rather than at retrieval time).
@@ -166,20 +180,24 @@ We define a conversion table covering five SI domains and 13 units (Table~\ref{t
 
 \begin{table}[!t]
 \centering
-\caption{SI conversion table (5 domains, 13 units).}
+\caption{SI conversion table: 5 domains, 13 units. Each source unit maps to a canonical base unit via a multiplicative factor.}
 \label{tab:si_conversion}
-\footnotesize
-\begin{tabular}{l l l l}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l c l}
 \toprule
-\textbf{Domain} & \textbf{Source units} & \textbf{Canonical} & \textbf{Factors} \\
+\textbf{Domain} & \textbf{Source Units} & \textbf{Base} & \textbf{Conversion Factors} \\
 \midrule
-Distance & mm, cm, m, km & m & $10^{-3}$, $10^{-2}$, 1, $10^{3}$ \\
-Mass     & mg, g, kg     & kg & $10^{-6}$, $10^{-3}$, 1 \\
-Time     & s, min, h     & s  & 1, 60, 3600 \\
-Pressure & Pa, kPa, MPa  & Pa & 1, $10^{3}$, $10^{6}$ \\
-Velocity & m/s, km/h     & m/s & 1, $\frac{1}{3.6}$ \\
+Distance & mm, cm, m, km  & m   & $\times 10^{-3}$, $\times 10^{-2}$, 1, $\times 10^{3}$ \\
+\rowcolor{gray!5}
+Mass     & mg, g, kg      & kg  & $\times 10^{-6}$, $\times 10^{-3}$, 1 \\
+Time     & s, min, h      & s   & 1, $\times$60, $\times$3600 \\
+\rowcolor{gray!5}
+Pressure & Pa, kPa, MPa   & Pa  & 1, $\times 10^{3}$, $\times 10^{6}$ \\
+Velocity & m/s, km/h      & m/s & 1, $\times\frac{1}{3.6}$ \\
 \bottomrule
 \end{tabular}
+\renewcommand{\arraystretch}{1.15}
 \end{table}
 
 At query time, three operators execute against the canonicalized measurement store. The \textbf{numeric-range} operator parses range expressions of the form \texttt{low:high:unit}, converts both bounds to canonical units, and issues a DuckDB range predicate: a query ``190:360:kPa'' becomes a scan for canonical\_value between 190000 and 360000 with canonical\_unit = ``Pa''. The \textbf{unit-match} operator filters chunks containing any measurement in a specified unit domain regardless of value. The \textbf{value-match} operator retrieves measurements matching a specific canonical value within a configurable tolerance (default $\pm$1\%).
@@ -256,26 +274,28 @@ All persistent state resides in a single DuckDB database file. DuckDB was select
 
 \begin{table}[!t]
 \centering
-\caption{DuckDB schema (8 tables).}
+\caption{DuckDB storage schema (8 tables). Science-aware tables (shaded) enable dimensional and formula retrieval.}
 \label{tab:schema}
-\scriptsize
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}l l l@{}}
 \toprule
 \textbf{Table} & \textbf{Purpose} & \textbf{Key Columns} \\
 \midrule
-documents       & Corpus membership  & URI, namespace, SHA-256 \\
-chunks          & Text segments      & text, doc FK, position \\
-embeddings      & Dense vectors      & 384-dim float, chunk FK \\
-metadata        & Annotations        & key-value per doc/chunk \\
-file\_index     & Change detection   & path, SHA-256, mtime \\
-lexical\_post.  & BM25 retrieval     & token$\to$chunk, TF \\
-\rowcolor{gray!5}
-sci\_meas.      & Dimensional search & raw/canon. value+unit \\
-\rowcolor{gray!5}
-sci\_formulas   & Formula matching   & raw, normalized form \\
+documents         & Corpus records    & URI, namespace, SHA-256 \\
+chunks            & Text segments     & text, doc FK, offset \\
+embeddings        & Dense vectors     & 384-dim vec, chunk FK \\
+metadata          & Key-value store   & key, value per doc \\
+file\_index       & Change detect.    & path, SHA-256, mtime \\
+lexical\_post.    & BM25 retrieval    & token, chunk FK, TF \\
+\rowcolor{gray!10}
+sci\_meas.        & SI dim.\ search   & raw/canon.\ value+unit \\
+\rowcolor{gray!10}
+sci\_formulas     & Formula match     & raw, normalized form \\
 \bottomrule
 \end{tabular}
+\renewcommand{\arraystretch}{1.15}
 \end{table}
 
 The \texttt{scientific\_measurements} and \texttt{scientific\_formulas} tables are the storage-level counterpart of the science-aware operators described in Section~3. At index time, extracted quantities are canonicalized to base SI units and stored with both raw and canonical representations; at query time, the dimensional operator queries canonical columns directly, bypassing the embedding pipeline entirely.
@@ -317,24 +337,27 @@ We address the question: \emph{does dimensional conversion improve retrieval acc
 
 \begin{table}[!t]
 \centering
-\caption{Cross-unit retrieval ($K{=}5$).}
+\caption{Retrieval performance on cross-unit queries at $K{=}5$. Best results in bold.}
 \label{tab:crossunit}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lcccc@{}}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l c c c c}
 \toprule
 \textbf{Method} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
 \midrule
-BM25             & .35 & .60 & .42 & .73 \\
-Dense            & .36 & .66 & .44 & .66 \\
-Hybrid           & .37 & .68 & .45 & .69 \\
-String norm.     & .34 & .79 & .46 & .70 \\
-LLM-assisted     & .38 & .70 & .47 & .71 \\
+BM25-only          & 0.35 & 0.60 & 0.42 & 0.73 \\
+\rowcolor{gray!5}
+Dense-only         & 0.36 & 0.66 & 0.44 & 0.66 \\
+Hybrid             & 0.37 & 0.68 & 0.45 & 0.69 \\
+\rowcolor{gray!5}
+String norm.       & 0.34 & 0.79 & 0.46 & 0.70 \\
+LLM-assisted       & 0.38 & 0.70 & 0.47 & 0.71 \\
 \midrule
-\rowcolor{gray!10}
-\textbf{Ours}    & \textbf{.97} & \textbf{1.00} & \textbf{.98} & \textbf{1.00} \\
+\rowcolor{gray!15}
+\textbf{Ours}      & \textbf{0.97} & \textbf{1.00} & \textbf{0.98} & \textbf{1.00} \\
 \bottomrule
 \end{tabular}
+\renewcommand{\arraystretch}{1.15}
 \end{table}
 
 Table~\ref{tab:crossunit} reports results on cross-unit queries. The three text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. Consequently, these baselines are limited to retrieving same-unit documents that happen to appear in the cross-unit corpus, resulting in P@5, R@5, and MRR scores of 0.37, 0.68, and 0.69 respectively for the strongest text baseline (Hybrid).
@@ -371,24 +394,28 @@ To isolate the marginal contribution of each pipeline component, we evaluate six
 
 \begin{table}[!t]
 \centering
-\caption{Ablation on cross-unit queries.}
+\caption{Ablation study on cross-unit queries. The science-aware operator transition (B$\to$C) produces the largest gain.}
 \label{tab:ablation}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}llcc@{}}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l c c}
 \toprule
-\textbf{Config.} & \textbf{Components} & \textbf{F1@5} & \textbf{$\Delta$} \\
+ & \textbf{Components} & \textbf{F1@5} & \textbf{$\Delta$F1} \\
 \midrule
 A & BM25 only                  & 0.42 & --- \\
-B & A + dense vectors          & 0.45 & +.03 \\
+\rowcolor{gray!5}
+B & A + dense vectors          & 0.45 & +0.03 \\
 \midrule
-\rowcolor{gray!10}
-C & B + sci.\ operators        & \textbf{0.98} & \textbf{+.53} \\
-D & C + graph traversal        & 0.98 & +.00 \\
-E & D + agentic rewriting      & 0.98 & +.00 \\
-F & Full pipeline              & 0.98 & +.00 \\
+\rowcolor{gray!15}
+\textbf{C} & \textbf{B + science operators} & \textbf{0.98} & \textbf{+0.53} \\
+\rowcolor{gray!5}
+D & C + graph traversal        & 0.98 & +0.00 \\
+E & D + agentic rewriting      & 0.98 & +0.00 \\
+\rowcolor{gray!5}
+F & Full pipeline              & 0.98 & +0.00 \\
 \bottomrule
 \end{tabular}
+\renewcommand{\arraystretch}{1.15}
 \end{table}
 
 Fig.~5 plots F1@5 for each configuration. The transition from B to C---adding scientific operators---produces the largest marginal gain (+0.53 absolute F1@5 improvement), confirming that cross-unit matching is the dominant bottleneck for this query class. Adding vector retrieval to the lexical baseline (A to B) provides moderate improvement (+0.03 points), consistent with the known complementarity of sparse and dense retrieval. Graph traversal (C to D) contributes +0.00 points on this benchmark, as the scientific operators already resolve the cross-unit queries. Agentic rewriting (D to E) likewise yields +0.00 additional points; on our controlled benchmark, single-pass retrieval with scientific operators already achieves F1@5 of 0.98, leaving no room for agentic improvement. The multi-hop loop is designed for more complex real-world queries where initial formulations are underspecified.
