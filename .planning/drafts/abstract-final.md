@@ -1,4 +1,4 @@
-# SC2026 Abstract Submission — FINAL
+# SC2026 Abstract Submission — FINAL (Gap-Validated)
 
 **Title**: Pluggable Science-Aware Operators for Agentic Retrieval over Federated HPC Data
 
@@ -8,12 +8,12 @@
 
 ---
 
-AI agents are transforming scientific computing — orchestrating experiments, writing papers, and querying workflow provenance across national facilities. Yet these agents consistently fail at data retrieval: the best agent achieves only 32% on scientific tasks, with failures traced to data handling, not reasoning. The root cause is that retrieval systems treat scientific content as plain text. Agentic RAG systems (Context-1, A-RAG) improve search orchestration but remain domain-agnostic. Scientific RAG systems (HiPerRAG, OpenScholar) scale to millions of articles but search papers, not the data artifacts — HDF5 files, simulation outputs, experimental logs — where scientific knowledge resides. No retrieval system combines domain-aware scientific operators with agentic multi-hop search across federated HPC storage.
+AI agents are transforming scientific computing — orchestrating experiments across national facilities, writing research papers, and querying workflow provenance via MCP. Yet agents consistently fail at data retrieval: ScienceAgentBench (ICLR 2025) shows the best agent achieves only 32% on scientific tasks, with failures traced to data handling rather than reasoning. The root cause: retrieval systems treat scientific content as plain text. Agentic RAG systems improve search orchestration but remain domain-agnostic — none incorporate science-aware numerical retrieval operators. Scientific RAG systems scale to millions of articles but search papers, not the data artifacts where scientific knowledge resides. No retrieval system combines domain-aware scientific operators with agentic multi-hop search across federated HPC storage.
 
-We present clio-agentic-search, a retrieval engine that introduces pluggable science-aware operators as first-class retrieval primitives alongside standard BM25 and dense vector search. A dimensional-analysis operator canonicalizes physical quantities to base SI units via arithmetic conversion (kPa × 10³ = Pa), guaranteeing cross-prefix matching by construction. A formula-normalization operator matches mathematical expressions across notation variants. A scientific-metadata operator indexes HDF5 attributes and NetCDF variables directly. These operators execute as parallel branches within a federated multi-namespace architecture that searches across filesystems, object stores, vector databases, and scientific file formats through per-backend capability negotiation. An agentic retrieval loop with LLM-driven query rewriting orchestrates multi-hop search, refining queries across federated scientific data.
+We present clio-agentic-search, a retrieval engine that introduces pluggable science-aware operators as first-class retrieval branches alongside standard BM25 and dense vector search. A dimensional-analysis operator canonicalizes physical quantities to base SI units via explicit arithmetic conversion (kPa × 10³ = Pa), guaranteeing cross-prefix matching by construction — unlike string normalization, which cannot equate "kilopascal" with "pascal," or learned embeddings, which achieve only 0.54 accuracy on numerical content. A formula-normalization operator matches mathematical expressions across notation variants. These operators execute as parallel branches within a federated multi-namespace architecture that queries filesystems, object stores, vector databases, and scientific file formats through per-backend capability negotiation. An agentic loop with LLM-driven query rewriting enables iterative multi-hop search over federated scientific data.
 
-We evaluate on scientific retrieval tasks spanning five measurement domains. Science-aware operators recover results missed by all domain-agnostic baselines, establishing pluggable domain operators as a generalizable extension to agentic retrieval for HPC data discovery.
+We evaluate on scientific retrieval tasks spanning five measurement domains, demonstrating that science-aware operators recover results missed by all domain-agnostic baselines.
 
 ---
 
-**Word count**: 249
+**Word count**: 247
