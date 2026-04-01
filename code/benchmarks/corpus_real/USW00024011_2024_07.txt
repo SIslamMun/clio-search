@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024011 | GHCN Station USW00024011
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: July 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.15 degC, peak 36.7 degC, lowest-max 23.3 degC
+Minimum Temperature: avg 15.81 degC, warmest-min 20.6 degC, coldest-min 11.7 degC
+Precipitation: total 65.2 mm, daily avg 2.10 mm, daily max 25.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.29 m/s, maximum 7.00 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 17.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

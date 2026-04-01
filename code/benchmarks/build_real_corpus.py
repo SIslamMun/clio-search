@@ -479,8 +479,16 @@ def main() -> None:
         station_id = dly_path.stem
         meta = STATION_META.get(station_id)
         if meta is None:
-            print(f"  [skip] No metadata for {station_id}")
-            continue
+            # Auto-generate metadata for unknown stations
+            meta = {
+                "name": f"GHCN Station {station_id}",
+                "city": "Unknown",
+                "state": "US",
+                "country": "USA",
+                "lat": "0°N",
+                "lon": "0°W",
+                "elev_m": "0",
+            }
 
         print(f"  Parsing {station_id} ({meta['name']}) ...")
 

@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012919 | GHCN Station USW00012919
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: September 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 37.13 degC, peak 38.9 degC, lowest-max 34.4 degC
+Minimum Temperature: avg 25.69 degC, warmest-min 28.3 degC, coldest-min 23.9 degC
+Precipitation: total 0.5 mm, daily avg 0.02 mm, daily max 0.5 mm
+Average Wind Speed: 3.42 m/s, maximum 6.10 m/s
+2-min Fastest Wind: max 10.70 m/s
+5-sec Fastest Wind Gust: max 15.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

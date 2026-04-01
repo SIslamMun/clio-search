@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012916 | GHCN Station USW00012916
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: February 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 22.07 degC, peak 28.9 degC, lowest-max 12.8 degC
+Minimum Temperature: avg 13.45 degC, warmest-min 21.7 degC, coldest-min 5.0 degC
+Precipitation: total 69.5 mm, daily avg 2.48 mm, daily max 49.5 mm
+Average Wind Speed: 4.16 m/s, maximum 7.50 m/s
+2-min Fastest Wind: max 13.40 m/s
+5-sec Fastest Wind Gust: max 18.80 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

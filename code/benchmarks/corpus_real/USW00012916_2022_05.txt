@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012916 | GHCN Station USW00012916
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: May 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 31.15 degC, peak 33.9 degC, lowest-max 29.4 degC
+Minimum Temperature: avg 22.13 degC, warmest-min 25.6 degC, coldest-min 18.9 degC
+Precipitation: total 234.5 mm, daily avg 7.56 mm, daily max 62.5 mm
+Average Wind Speed: 3.30 m/s, maximum 5.50 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 17.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

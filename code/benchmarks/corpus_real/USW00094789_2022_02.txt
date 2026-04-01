@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094789 | GHCN Station USW00094789
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: February 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 6.8 degC, peak 20.6 degC, lowest-max -3.8 degC
+Minimum Temperature: avg -2.68 degC, warmest-min 5.0 degC, coldest-min -9.3 degC
+Precipitation: total 78.2 mm, daily avg 2.79 mm, daily max 19.8 mm
+Snowfall: total 82 mm, daily max 71 mm
+Snow Depth: max observed 200 mm
+Average Wind Speed: 5.75 m/s, maximum 10.60 m/s
+2-min Fastest Wind: max 18.30 m/s
+5-sec Fastest Wind Gust: max 22.80 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

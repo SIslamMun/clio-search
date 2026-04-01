@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014922 | GHCN Station USW00014922
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: May 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 23.7 degC, peak 32.2 degC, lowest-max 14.4 degC
+Minimum Temperature: avg 12.05 degC, warmest-min 18.9 degC, coldest-min 3.3 degC
+Precipitation: total 41.3 mm, daily avg 1.33 mm, daily max 12.7 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.08 m/s, maximum 9.50 m/s
+2-min Fastest Wind: max 13.90 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

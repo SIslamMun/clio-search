@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014764 | GHCN Station USW00014764
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: May 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 18.05 degC, peak 28.9 degC, lowest-max 8.9 degC
+Minimum Temperature: avg 8.62 degC, warmest-min 15.6 degC, coldest-min 1.1 degC
+Precipitation: total 43.1 mm, daily avg 1.39 mm, daily max 11.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.73 m/s, maximum 4.70 m/s
+2-min Fastest Wind: max 11.20 m/s
+5-sec Fastest Wind Gust: max 17.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

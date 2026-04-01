@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023169 | GHCN Station USW00023169
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: April 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 26.57 degC, peak 36.7 degC, lowest-max 13.3 degC
+Minimum Temperature: avg 13.64 degC, warmest-min 20.0 degC, coldest-min 4.4 degC
+Precipitation: total 0.0 mm, daily avg 0.00 mm, daily max 0.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.69 m/s, maximum 8.20 m/s
+2-min Fastest Wind: max 16.50 m/s
+5-sec Fastest Wind Gust: max 23.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

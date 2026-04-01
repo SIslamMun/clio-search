@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023050 | GHCN Station USW00023050
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: June 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 31.72 degC, peak 36.7 degC, lowest-max 25.0 degC
+Minimum Temperature: avg 15.67 degC, warmest-min 22.8 degC, coldest-min 10.6 degC
+Precipitation: total 0.0 mm, daily avg 0.00 mm, daily max 0.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.95 m/s, maximum 7.50 m/s
+2-min Fastest Wind: max 17.00 m/s
+5-sec Fastest Wind Gust: max 25.50 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

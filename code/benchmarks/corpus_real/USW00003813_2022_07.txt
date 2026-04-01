@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00003813 | GHCN Station USW00003813
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: July 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 33.52 degC, peak 36.1 degC, lowest-max 27.8 degC
+Minimum Temperature: avg 22.92 degC, warmest-min 24.4 degC, coldest-min 21.1 degC
+Precipitation: total 140.6 mm, daily avg 4.54 mm, daily max 37.6 mm
+Average Wind Speed: 1.92 m/s, maximum 3.10 m/s
+2-min Fastest Wind: max 11.60 m/s
+5-sec Fastest Wind Gust: max 16.50 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

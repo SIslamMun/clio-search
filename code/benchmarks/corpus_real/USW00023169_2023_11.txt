@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023169 | GHCN Station USW00023169
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: November 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 20.2 degC, peak 28.9 degC, lowest-max 13.9 degC
+Minimum Temperature: avg 9.3 degC, warmest-min 16.7 degC, coldest-min 2.8 degC
+Precipitation: total 2.0 mm, daily avg 0.07 mm, daily max 2.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.65 m/s, maximum 7.60 m/s
+2-min Fastest Wind: max 17.40 m/s
+5-sec Fastest Wind Gust: max 23.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

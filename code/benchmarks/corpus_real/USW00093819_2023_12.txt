@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00093819 | GHCN Station USW00093819
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: December 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 8.66 degC, peak 18.3 degC, lowest-max 2.2 degC
+Minimum Temperature: avg 1.15 degC, warmest-min 9.4 degC, coldest-min -8.8 degC
+Precipitation: total 32.1 mm, daily avg 1.04 mm, daily max 7.6 mm
+Snowfall: total 3 mm, daily max 3 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.93 m/s, maximum 8.20 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 19.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

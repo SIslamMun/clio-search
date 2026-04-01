@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013881 | GHCN Station USW00013881
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: July 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 32.99 degC, peak 35.0 degC, lowest-max 28.9 degC
+Minimum Temperature: avg 22.12 degC, warmest-min 24.4 degC, coldest-min 20.0 degC
+Precipitation: total 129.5 mm, daily avg 4.18 mm, daily max 62.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.23 m/s, maximum 3.30 m/s
+2-min Fastest Wind: max 12.50 m/s
+5-sec Fastest Wind Gust: max 17.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).
