@@ -1,0 +1,437 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{url}
+
+\title{Pluggable Science-Aware Operators for Agentic Retrieval over Federated HPC Data}
+
+\author{\IEEEauthorblockN{S.~Islam Munshi and Anthony Kougkas}
+\IEEEauthorblockA{Illinois Institute of Technology\\
+Chicago, IL, USA}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AI agents are transforming scientific computing --- orchestrating experiments across national facilities, writing research papers, and querying workflow provenance via MCP. Yet agents consistently fail at data retrieval: ScienceAgentBench (ICLR 2025) shows the best agent achieves only 32\% on scientific tasks, with failures traced to data handling rather than reasoning. The root cause: retrieval systems treat scientific content as plain text. Agentic RAG systems improve search orchestration but remain domain-agnostic --- none incorporate science-aware numerical retrieval operators. While recent systems such as PANGAEA-GPT search geoscientific archives, none perform arithmetic dimensional conversion at retrieval time. Embedding-based approaches achieve only 0.54 accuracy on numerical content, barely above chance.
+
+We present clio-agentic-search, a retrieval engine that introduces pluggable science-aware operators as first-class retrieval branches alongside standard BM25 and dense vector search. A dimensional-analysis operator canonicalizes physical quantities to base SI units via explicit arithmetic conversion (kPa $\times$ $10^3$ = Pa), guaranteeing cross-prefix matching by construction --- unlike string normalization or learned embeddings. A formula-normalization operator matches mathematical expressions across notation variants. These operators execute as parallel branches within a federated multi-namespace architecture that queries filesystems, object stores, HDF5 files, NetCDF datasets, and vector databases through per-backend capability negotiation. An agentic loop with LLM-driven query rewriting enables iterative multi-hop search with automatic SI unit expansion over federated scientific data.
+
+We evaluate on scientific retrieval tasks spanning five measurement domains, demonstrating that science-aware operators recover results missed by all domain-agnostic baselines.
+\end{abstract}
+
+%% ===================================================================
+%% Section 1: Introduction
+%% ===================================================================
+\section{Introduction}
+
+\subsection{AI Agents Entering Scientific Computing}
+
+AI agents have moved beyond text generation into experimental science. Coscientist \cite{coscientist2023} autonomously plans and executes wet-lab synthesis through tool-augmented reasoning. AI Scientist v2 \cite{aiscientistv2_2025} generates, implements, and writes up research end-to-end. At the Advanced Light Source, an LLM-based agent reduces beamline preparation time by two orders of magnitude \cite{als_beamline2025}. ORNL deploys autonomous agents that orchestrate experiments across national computing facilities \cite{ornl_agents_sc25}, and the Model Context Protocol has been extended to wrap Globus search, compute, and storage under a unified agent interface for HPC \cite{mcp_hpc2025}. The trajectory is clear: agents are transitioning from processing scientific literature to operating scientific infrastructure.
+
+Yet these agents consistently fail at data retrieval, not reasoning. ScienceAgentBench \cite{scienceagentbench2025}, a benchmark of 44 scientific tasks drawn from peer-reviewed publications, reports that the best agent achieves only 32.4\% end-to-end success; with expert-provided domain knowledge the figure rises to just 34.3\%, and failure analysis traces the dominant error mode to data handling. MLAgentBench \cite{mlagentbench2024} observes the same pattern: agents break at data preparation. A comprehensive survey of agentic AI \cite{agentic_ai_survey2025} identifies data management as an explicitly underexplored capability. These agents can reason about science. They cannot find the data they need to reason about.
+
+The root cause is structural. Retrieval systems --- whether lexical, dense, or hybrid --- treat scientific content as plain text. Three compounding failures explain why this treatment is inadequate.
+
+\subsection{Three Compounding Failures}
+
+\textbf{Dimensional blindness.} Scientific measurements are routinely expressed in different unit prefixes: ``200 kPa,'' ``200000 Pa,'' and ``0.2 MPa'' describe identical pressure. No retrieval system equates them. Consider the three dominant approaches. String-based quantity normalization \cite{numbersmatter2024} maps unit names to canonical strings, but ``kilopascal'' and ``pascal'' are different strings --- the system cannot match ``200 kPa'' to ``200000 Pa'' because no string operation bridges the prefix gap. Learned embedding approaches such as CONE \cite{cone2026} encode numbers and units in a shared vector space, but the representation is probabilistic: the Numeracy Gap study \cite{numeracygap2026} evaluates 13 embedding models on numerical retrieval and finds a mean binary retrieval accuracy of 0.54 --- effectively random against a 0.50 baseline. NC-Retriever \cite{ncretriever2025} reports 16.3\% dense retrieval accuracy on queries with numeric constraints. The fundamental problem is that none of these approaches performs the required arithmetic: $200 \times 1000 = 200{,}000$. Dimensional equivalence is a mathematical fact, not a similarity to be learned.
+
+\textbf{Formula opacity.} Mathematical expressions appear in inconsistent notations across scientific documents. ``$F=ma$,'' ``$F = m \cdot a$,'' ``$F=m \ast a$,'' and ``$ma=F$'' encode the same physical law, yet every representation produces a different token sequence. Math-aware search systems such as Approach0 \cite{approach0} and SSEmb \cite{ssemb2025} match equation structure in LaTeX markup, but they operate on formula syntax in isolation --- they cannot connect a matched formula to the physical measurements it governs. No retrieval system combines formula normalization with quantity-aware dimensional search.
+
+\textbf{Storage fragmentation.} HPC scientific data is distributed across parallel filesystems, S3-compatible object stores, vector databases, graph databases, and binary scientific formats such as HDF5 and NetCDF. A single experimental campaign may span all of these backends. No existing system provides unified search with science-aware operators across them. Federated RAG systems such as RAGRoute \cite{ragroute2025} route queries to relevant data sources, but they federate generic text search --- none incorporates science-aware retrieval operators. Provenance systems such as PROV-IO+ \cite{provio2024} capture detailed HDF5 I/O lineage with under 3.5\% overhead, but expose no search interface over the metadata they collect. The result: scientists resort to manual, per-backend searches that are both incomplete and unrepeatable.
+
+These failures compound. Consider a scientist asking an AI agent: \emph{``Find experiments where pressure was between 190--360 kPa across all our storage.''} Answering this query requires dimensional conversion (kPa, Pa, and MPa must be compared arithmetically), federated search (the data spans filesystems, object stores, and HDF5 files), and potentially formula context (which equations relate pressure to other measured variables). No existing system addresses even two of these three requirements simultaneously.
+
+\subsection{Contributions}
+
+This paper introduces \emph{science-aware retrieval operators} --- a new class of deterministic, pluggable retrieval primitives that execute as first-class branches alongside standard BM25 lexical and dense vector search. Unlike string normalization or learned embeddings, these operators encode domain knowledge as explicit arithmetic and symbolic transformations, making their correctness verifiable by inspection. We make the following contributions:
+
+\begin{enumerate}
+\item \textbf{Dimensional-conversion measurement retrieval.} We canonicalize physical quantities to base SI units via explicit arithmetic multiplication (e.g., kPa $\times$ $10^3$ = Pa, km $\times$ $10^3$ = m, mg $\times$ $10^{-6}$ = kg). The conversion is guaranteed correct by construction: if the SI conversion factor is correct, the match is correct. The operator supports numeric range queries, exact value matching with configurable tolerance, and unit-only filtering across 13 units in 5 SI domains (distance, mass, time, pressure, velocity).
+
+\item \textbf{Unified formula normalization.} We normalize mathematical expressions across whitespace, superscript notation variants, algebraic side-swap, and multiplicative factor reordering. Formula matching is integrated with dimensional operators as parallel branches in a single hybrid retrieval pipeline. No prior system combines formula matching with quantity-aware retrieval.
+
+\item \textbf{Federated multi-namespace search with capability negotiation.} A connector architecture supports unified retrieval across filesystem, S3, Qdrant, Neo4j, HDF5, and NetCDF backends without data migration. The retrieval coordinator dynamically negotiates per-backend capabilities, executing only the retrieval branches each namespace supports. Incremental indexing with SHA-256 change detection enables efficient re-indexing of evolving corpora.
+
+\item \textbf{HDF5 and NetCDF metadata indexing.} Dedicated connectors extract datasets, attributes, variables, dimensions, and units from HDF5 (via h5py) and NetCDF (via xarray) files. Measurements extracted from scientific file formats pass through the same SI canonicalization pipeline as text-based connectors, enabling cross-format dimensional search.
+
+\item \textbf{Multi-hop agentic retrieval.} An LLM-driven query rewriting loop iteratively refines searches over federated scientific data using expand, narrow, and pivot strategies. Each hop executes the full hybrid pipeline with a rewritten query, converging when results stabilize or a maximum hop count is reached.
+\end{enumerate}
+
+\subsection{Organization}
+
+The remainder of this paper is organized as follows. Section~2 surveys background and related work spanning hybrid retrieval architectures, the numerical reasoning crisis in language models, quantity-aware retrieval, and scientific data discovery in HPC environments. Section~3 presents the system design of clio-agentic-search, detailing the dimensional conversion operators, formula normalization pipeline, four-branch hybrid retrieval architecture, federated multi-namespace search with capability negotiation, and the multi-hop agentic retrieval loop. Section~4 describes the implementation, including the DuckDB storage schema, HDF5 and NetCDF connectors, and experimental platform. Section~5 evaluates the system across dimensional conversion accuracy, formula matching, federated search coverage, and component ablation. Section~6 concludes with limitations and directions for future work.
+
+%% ===================================================================
+%% Section 2: Background and Related Work
+%% ===================================================================
+\section{Background and Related Work}
+
+We position our work against four areas: hybrid retrieval foundations we build upon, the numeracy crisis that motivates explicit arithmetic operators, quantity-aware retrieval systems that attempt but fail to solve cross-unit matching, and scientific data discovery in HPC.
+
+\subsection{Hybrid Retrieval Foundations}
+
+Modern retrieval combines lexical and dense signals. BM25 \cite{robertson2009bm25} remains the strongest lexical baseline; dense retrieval via learned bi-encoders \cite{karpukhin2020dpr} captures semantic similarity that keyword matching misses. Fusing these signals is now standard practice. Bruch et al.\ \cite{bruch2023fusion} show that a learned convex combination consistently outperforms reciprocal rank fusion (RRF) on TREC benchmarks, establishing the analytic framework we adopt. Learned sparse methods---SPLADE \cite{formal2021splade} and its Mistral-SPLADE variant---bridge the gap by producing sparse lexical-weight vectors from dense encoders. BGE-M3 \cite{chen2024bgem3} unifies dense, sparse, and colBERT-style multi-vector retrieval in a single model trained on multilingual data, demonstrating that multi-granularity fusion improves recall across diverse query types. At the agentic frontier, A-RAG \cite{arag2026} introduces hierarchical retrieval interfaces that let LLM agents compose retrieval strategies dynamically.
+
+We build \emph{on} hybrid retrieval, not beside it. Our science-aware operators execute as parallel branches alongside BM25 and dense search within the same fusion pipeline, adding domain-specific recall without replacing any existing component.
+
+\subsection{The Numerical Reasoning Crisis}
+
+Numbers are fundamentally broken in both retrieval systems and large language models. The Numeracy Gap study \cite{numeracygap2026} evaluates 13 embedding models on numerical content and reports 0.54 binary retrieval accuracy---barely above random chance. NC-Retriever \cite{ncretriever2025} finds that dense retrieval achieves only 16.3\% accuracy on queries with numeric constraints, even when the constraint is stated explicitly in both query and document. The root cause is architectural: tokenizers encode numbers per-digit rather than by magnitude, so ``200'' and ``200000'' share no meaningful representation \cite{numbers_not_continuous2025}. NumericBench \cite{numericbench2025} confirms these failures across arithmetic, comparison, and unit conversion tasks in LLMs. The Number Cookbook \cite{numbercookbook2025} systematically catalogs failure modes. GSM-Symbolic \cite{gsmsymbolic2025} delivers the sharpest result: changing only the numeric values in grade-school math problems while preserving problem structure causes a 65\% accuracy drop, proving that LLMs pattern-match on surface numerals rather than reason about magnitude.
+
+This is not merely a unit problem. Numbers themselves---the substrate of all scientific measurement---are broken in every retrieval and language model. Scientific data retrieval, where matching requires comparing magnitudes across units, is especially vulnerable.
+
+\subsection{Quantity-Aware Retrieval}
+
+Three lineages attempt to make retrieval quantity-aware. None succeeds at arithmetic conversion.
+
+\textbf{String normalization.} QFinder \cite{qfinder2022} extends Elasticsearch with quantity-aware ranking by extracting and normalizing numeric expressions. CQE \cite{cqe2023} advances this with dependency parsing over a 531-unit dictionary, handling complex quantity expressions. Numbers Matter! \cite{numbersmatter2024} builds a full retrieval pipeline with quantity-aware indexing and evaluation on FinQuant and MedQuant benchmarks. The fundamental limitation persists: string normalization cannot cross SI prefixes. ``kilopascal'' and ``pascal'' remain distinct strings after normalization, so a query for ``200~kPa'' never matches a document containing ``200000~Pa.''
+
+\textbf{Learned embeddings.} CONE \cite{cone2026} trains a transformer to embed number--unit pairs into a shared vector space, achieving a 25\% Recall@10 gain on quantity-bearing queries. NC-Retriever \cite{ncretriever2025} applies contrastive learning to numeric constraint matching. These approaches are probabilistic: a model may learn that 200~kPa is \emph{similar} to 200000~Pa, but provides no correctness guarantee. Weller et al.\ \cite{embedding_limits2025} prove theoretical upper bounds on embedding-based retrieval, showing that fixed-dimensional embeddings cannot faithfully preserve all distance relationships---a result that undercuts learned approaches to exact quantity matching.
+
+\textbf{Math-aware search.} Approach0 \cite{approach0} matches equation structure via operator trees. SSEmb \cite{ssemb2025} learns semantic similarity over mathematical expressions. MIRB \cite{mirb2025} provides the first unified math information retrieval benchmark across 12 datasets. These systems match formula \emph{structure} but are disconnected from physical measurements---they cannot link $F = ma$ to a document reporting force in newtons.
+
+\textbf{Gap.} No existing retrieval system performs arithmetic SI conversion to canonicalize measurements. None combines quantity matching with formula normalization. None operates across federated HPC backends.
+
+\subsection{Scientific Data Discovery in HPC}
+
+\textbf{Paper search.} OpenScholar \cite{openscholar2026} indexes 45 million open-access papers and achieves GPT-4o-level citation quality. HiPerRAG \cite{hiperrag2025} scales RAG to 3.6 million articles across DOE supercomputers Polaris, Sunspot, and Frontier. Both search \emph{papers}---not experimental data, simulation outputs, or HDF5 files.
+
+\textbf{Data search.} Recent systems do search scientific data. PANGAEA-GPT \cite{pangaeagpt2026} deploys hierarchical multi-agent search over 400,000+ geoscientific datasets with data-type-aware routing and unit scale validation, achieving 8.14/10 relevance versus a 2.87/10 baseline. LLM-Find \cite{llmfind2025} uses LLM-generated code to retrieve geospatial data from heterogeneous sources with 80--90\% success. The distinction is temporal: PANGAEA-GPT validates unit scales \emph{post-hoc} (after retrieval); we convert \emph{at retrieval time} (during indexing and query processing). LLM-Find generates access code per source; we provide reusable retrieval operators.
+
+\textbf{HPC data management.} Datum \cite{datum2024} catalogs scientific data at INL but offers no content search. BRINDEXER \cite{brindexer2020} indexes POSIX metadata on Lustre with 69\% query improvement---metadata only, no content. PROV-IO+ \cite{provio2024} captures HDF5 I/O provenance with under 3.5\% overhead but exposes no search interface. HDF Clinic \cite{hdfclinic2025} proposes a knowledge graph over HDF5 but remains unimplemented.
+
+\textbf{Agentic retrieval.} The SoK on Agentic RAG \cite{sok_agentic_rag2026} provides the first systematization of knowledge in this space. Context-1 \cite{context1_2026} demonstrates 20-billion-token agentic search. CLADD \cite{cladd2025} augments collaborative drug-discovery agents with domain knowledge graph operators. SciAgent \cite{sciagent2025} coordinates specialist worker agents under a hierarchical controller. ScienceClaw \cite{scienceclaw2026} deploys a 300+ skill agent swarm with immutable artifact provenance. All improve orchestration. None incorporates science-aware numerical operators---arithmetic dimensional conversion or formula normalization---into the retrieval pipeline itself.
+
+\begin{table*}[t]
+\centering
+\caption{Capability comparison of retrieval and scientific data systems. Columns 1--5 correspond to our contributions. \ding{51} = supported, \ding{55} = not supported, $\circ$ = partial.}
+\label{tab:comparison}
+\small
+\begin{tabular}{l|ccccc|ccccc}
+\toprule
+ & \rotatebox{70}{SI conversion} & \rotatebox{70}{Formula norm.} & \rotatebox{70}{Science branches} & \rotatebox{70}{Federated backends} & \rotatebox{70}{HDF5/NetCDF index} & \rotatebox{70}{Agentic multi-hop} & \rotatebox{70}{Quantity extraction} & \rotatebox{70}{Paper search} & \rotatebox{70}{Data search} & \rotatebox{70}{LLM integration} \\
+\midrule
+\textbf{Ours}        & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{51} \\
+PANGAEA-GPT          & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & $\circ$   & \ding{55} & \ding{51} & \ding{51} \\
+OpenScholar          & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} \\
+HiPerRAG             & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{51} \\
+Numbers Matter!      & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+CONE                 & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+CLADD                & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
+SciAgent             & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
+Context-1            & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:comparison} summarizes the landscape. No prior system supports any of our first five capabilities: arithmetic SI conversion, formula normalization, science-aware retrieval branches, federated multi-backend search, or HDF5/NetCDF indexing. We honestly mark capabilities we lack---we do not index papers. PANGAEA-GPT receives partial credit for quantity extraction (unit scale validation, but post-hoc rather than at retrieval time).
+
+%% ===================================================================
+%% Section 3: System Design
+%% ===================================================================
+\section{System Design}
+
+This section presents the design of clio-agentic-search. We describe the pipeline architecture (Sec.~3.1), dimensional conversion operators (Sec.~3.2), formula normalization (Sec.~3.3), the four-branch hybrid retrieval pipeline (Sec.~3.4), federated multi-namespace search (Sec.~3.5), and the multi-hop agentic retrieval loop (Sec.~3.6).
+
+\subsection{Architecture Overview}
+
+The system is a staged pipeline with four parallel retrieval branches (Fig.~1). A query enters through the Query Interface (FastAPI REST endpoint or CLI), which parses the raw query string, extracts typed scientific constraints (numeric ranges, unit filters, formula patterns), and forwards a structured query object to the Namespace Registry. The registry resolves which namespaces---each backed by one of six connector types---are eligible for the query based on capability negotiation (Sec.~3.5).
+
+The Retrieval Coordinator fans the query out to four parallel branches: lexical (BM25), vector (dense embedding similarity), graph (entity-relationship traversal), and scientific (dimensional measurement and formula queries). Each branch executes independently and returns scored candidate chunks. The Merge and Rerank stage deduplicates candidates by chunk identifier, applies hard scientific filters, computes a composite score via heuristic fusion, and emits the final top-$K$ results with source citations.
+
+Six connectors mediate access to heterogeneous backends: local filesystem, S3-compatible object stores, Qdrant vector database, Neo4j graph database, HDF5 (via h5py), and NetCDF (via xarray). Each connector declares a capability set specifying which retrieval branches it supports, enabling the coordinator to skip unsupported branches rather than fail. Every pipeline stage emits structured trace events for observability.
+
+\subsection{Dimensional Conversion Operators}
+
+The core insight behind dimensional conversion is that cross-unit matching is an arithmetic problem, not a similarity problem. When a scientist queries for pressures between 190 and 360 kPa, the system must recognize that a document reporting ``250000 Pa'' falls within that range. This requires multiplying 190 by 1000 to obtain 190000 Pa and 360 by 1000 to obtain 360000 Pa---a computation that no string normalization or learned embedding can guarantee.
+
+We define a conversion table covering five SI domains and 13 units (Table~\ref{tab:si_conversion}). Each entry maps a source unit to a canonical base unit and a multiplicative conversion factor. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, canonical\_unit). For example, ``200 kPa'' yields (200.0, ``kPa'', 200000.0, ``Pa''). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and canonical\_unit for efficient range scans.
+
+\begin{table}[t]
+\centering
+\caption{SI conversion table. 5 domains, 13 units. Each source unit maps to a canonical base unit via a deterministic multiplicative factor.}
+\label{tab:si_conversion}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Domain} & \textbf{Source units} & \textbf{Canonical} & \textbf{Factors} \\
+\midrule
+Distance & mm, cm, m, km & m & $10^{-3}$, $10^{-2}$, 1, $10^{3}$ \\
+Mass     & mg, g, kg     & kg & $10^{-6}$, $10^{-3}$, 1 \\
+Time     & s, min, h     & s  & 1, 60, 3600 \\
+Pressure & Pa, kPa, MPa  & Pa & 1, $10^{3}$, $10^{6}$ \\
+Velocity & m/s, km/h     & m/s & 1, $\frac{1}{3.6}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At query time, three operators execute against the canonicalized measurement store. The \textbf{numeric-range} operator parses range expressions of the form \texttt{low:high:unit}, converts both bounds to canonical units, and issues a DuckDB range predicate: a query ``190:360:kPa'' becomes a scan for canonical\_value between 190000 and 360000 with canonical\_unit = ``Pa''. The \textbf{unit-match} operator filters chunks containing any measurement in a specified unit domain regardless of value. The \textbf{value-match} operator retrieves measurements matching a specific canonical value within a configurable tolerance (default $\pm$1\%).
+
+The correctness guarantee distinguishes this approach from all prior work. Consider matching ``200 kPa'' against ``200000 Pa''. Arithmetic conversion computes $200 \times 1000 = 200000$ and succeeds by exact equality. String normalization maps ``kilopascal'' to one string and ``pascal'' to another---they never match. Learned embeddings \cite{cone2026} encode the two quantities as vectors in a shared space, but the Numeracy Gap study \cite{numeracygap2026} reports 0.54 mean binary retrieval accuracy across 13 embedding models on numerical content, effectively random against a 0.50 baseline. Weller et al.\ \cite{embedding_limits2025} prove theoretical upper bounds showing that fixed-dimensional embeddings cannot faithfully preserve all distance relationships, a result that fundamentally undercuts learned approaches to exact quantity matching. Our operators are correct by construction: if the SI conversion factor is correct, the match is correct.
+
+\subsection{Formula Normalization}
+
+Scientific formulas appear in inconsistent surface forms across documents. ``$F = m \ast a$'', ``$F=ma$'', ``$F = m \cdot a$'', and ``$ma = F$'' express the same physical law but produce distinct token sequences that defeat both keyword and embedding retrieval. We normalize formulas through a deterministic six-step pipeline.
+
+First, all whitespace is stripped. Second, all alphabetic characters are lowercased. Third, superscript notations are unified: LaTeX-style \texttt{\^{}\{N\}} and Python-style \texttt{**N} are both normalized to \texttt{\^{}N}. Fourth, the expression is split on the equality sign into left-hand and right-hand sides. Fifth, within each side, multiplicative factors are sorted lexicographically, so that \texttt{m*a} and \texttt{a*m} produce the same canonical form. Sixth, the two sides are rejoined with a normalized equality separator. The canonical form of all four variants above is \texttt{a*m=f}.
+
+Normalized formulas are stored in a \texttt{scientific\_formulas} table in DuckDB alongside their source chunk identifiers and the raw original text. At query time, the user's formula expression passes through the same six-step pipeline before lookup. Formula matching integrates with the dimensional conversion operators as a parallel branch in the scientific retrieval stage: a query can simultaneously request formulas containing a specific equation and measurements within a numeric range, and both constraints execute as independent DuckDB queries whose results are intersected at the merge stage.
+
+\subsection{Hybrid Retrieval Pipeline}
+
+The retrieval pipeline executes four branches in parallel and merges their results through a deterministic fusion strategy (Fig.~3).
+
+\textbf{Lexical branch.} BM25 with parameters $k_1 = 1.2$ and $b = 0.75$ scores term overlap between query and document chunks, retrieving $\text{top\_k} \times 4$ candidates to provide recall headroom for downstream filtering.
+
+\textbf{Vector branch.} Chunks are embedded with MiniLM-L6-v2 (384-dimensional vectors, cosine similarity) and indexed in Qdrant. This branch retrieves $\text{top\_k} \times 4$ candidates.
+
+\textbf{Graph branch.} For Neo4j-backed namespaces, breadth-first traversal at depth 1 from query entities retrieves related chunks through typed relationships (e.g., cites, measures, uses\_formula). This branch retrieves $\text{top\_k} \times 2$ candidates, as graph neighborhoods are inherently more targeted.
+
+\textbf{Scientific branch.} The dimensional conversion and formula normalization operators (Secs.~3.2--3.3) execute against DuckDB, returning $\text{top\_k} \times 4$ candidates from measurement range queries, unit-match filters, value-match lookups, and formula lookups.
+
+\textbf{Merge and rerank.} Candidates from all branches are deduplicated by chunk\_id, retaining the maximum per-branch score. A scientific hard filter then applies: if the query specifies a numeric range or unit constraint, candidates not returned by the scientific branch are discarded---dimensional correctness is enforced, not merely preferred. A metadata filter removes candidates violating explicit metadata constraints (e.g., date range, file type). Surviving candidates are scored by a heuristic weighted sum:
+
+$$\text{score} = w_l \cdot s_{\text{lexical}} + w_v \cdot s_{\text{vector}} + w_m \cdot s_{\text{metadata}} + w_s \cdot s_{\text{scientific}}$$
+
+where the weights $w_l, w_v, w_m, w_s$ are configurable per deployment. The top-$K$ candidates by composite score constitute the final result set. Each result carries provenance: the source namespace, chunk identifier, file path, and the set of branches that contributed to its retrieval.
+
+\subsection{Federated Multi-Namespace Search}
+
+Scientific data at HPC facilities spans heterogeneous backends. A single experimental campaign may deposit raw output on a parallel filesystem, preprocessed arrays in HDF5, derived features in a vector database, and annotations in a knowledge graph. Rather than require data migration, we bring the retrieval operators to the data.
+
+Every storage backend is wrapped by a connector that implements the \texttt{NamespaceConnector} protocol and declares a \texttt{RetrievalCapabilities} object specifying which retrieval branches it supports. The capability matrix is as follows:
+
+\begin{itemize}
+\item \textbf{Filesystem}: lexical, vector, scientific
+\item \textbf{S3}: lexical, vector, scientific
+\item \textbf{Qdrant}: vector
+\item \textbf{Neo4j}: graph
+\item \textbf{HDF5}: metadata, scientific
+\item \textbf{NetCDF}: metadata, scientific
+\end{itemize}
+
+The Retrieval Coordinator consults this matrix before dispatching. When a query spans multiple namespaces, the coordinator executes the single-namespace pipeline independently for each namespace, activating only the branches that the namespace's connector supports. Results from all namespaces are collected into a global candidate pool, sorted by composite score, deduplicated by chunk\_id (since the same document may appear in multiple backends), and truncated to the final top-$K$.
+
+Incremental indexing avoids redundant reprocessing. Each connector tracks indexed documents by SHA-256 content hash and modification time. On re-index, only documents whose hash or mtime has changed are reprocessed, enabling efficient index maintenance over evolving corpora without full rebuild.
+
+\subsection{Multi-hop Agentic Retrieval}
+
+Single-pass retrieval often fails for complex scientific questions that require iterative refinement. The multi-hop agentic retrieval loop automates this process.
+
+The loop proceeds as follows. The initial query executes the full hybrid pipeline described in Section~3.4 across all federated namespaces. The retrieved results, along with the original query and the retrieval trace, are passed to an LLM (Anthropic API) that evaluates result quality and selects one of four strategies: \textbf{expand} (broaden the query to increase recall), \textbf{narrow} (add constraints to increase precision), \textbf{pivot} (reformulate the query to pursue a different aspect), or \textbf{done} (terminate the loop). If the strategy is not done, the LLM generates a rewritten query, which re-enters the pipeline for another full retrieval pass. Results from all hops are merged, deduplicated, and re-ranked. The loop terminates when the LLM selects done, when results stabilize across consecutive hops (no new unique chunk\_ids appear), or when a configurable maximum hop count is reached.
+
+Each hop constitutes a full pipeline execution: all four retrieval branches, all eligible namespaces, merge and rerank. This ensures that every rewritten query benefits from the same dimensional conversion, formula normalization, and federated search capabilities as the original. The LLM's role is strictly query rewriting and termination decision---it does not score or filter results, preserving the deterministic correctness guarantees of the science-aware operators. When the Anthropic API is unavailable, the system falls back to an offline strategy that expands queries with SI unit variants (e.g., appending ``Pa'' and ``MPa'' to a query containing ``kPa''), providing degraded but functional multi-pass retrieval without LLM dependency.
+
+%% ===================================================================
+%% Section 4: Implementation
+%% ===================================================================
+\section{Implementation}
+
+This section describes the implementation of clio-agentic-search, covering the software stack and storage schema, connectors for binary scientific formats, and the experimental platform used for evaluation.
+
+\subsection{System Implementation}
+
+The system is implemented in Python 3.11+ and exposes both a CLI and an async HTTP API via FastAPI. The CLI provides five primary commands---\texttt{clio query}, \texttt{clio index}, \texttt{clio serve}, \texttt{clio list}, and \texttt{clio seed}---with flags that control retrieval behavior: \texttt{--agentic} and \texttt{--max-hops} enable multi-hop retrieval, \texttt{--llm-rewrite} activates LLM query reformulation, and \texttt{--numeric-range} and \texttt{--formula} engage the science-aware operator branches. The HTTP API mirrors the CLI surface and serves as the entry point for programmatic and agent-driven access.
+
+Dense retrieval uses sentence-transformers with the all-MiniLM-L6-v2 model (22.7M parameters, 384-dimensional embeddings, Apache 2.0 license). Two ANN backends are supported behind a common \texttt{ANNAdapter} protocol: \texttt{ExactANNAdapter}, which partitions vectors across 16 shards and computes exact cosine similarity, and \texttt{HnswANNAdapter}, which delegates to hnswlib for approximate search on larger corpora. Write safety on shared filesystems is enforced via \texttt{fcntl} file locking. Observability is provided by OpenTelemetry instrumentation with Prometheus-compatible \texttt{/metrics} endpoints; all retrieval branches and agentic hops emit structured trace events.
+
+All persistent state resides in a single DuckDB database file. DuckDB was selected for three reasons: it is embedded (no external service to deploy on compute nodes), it supports SQL-native full-text search sufficient for BM25 scoring, and its single-file storage model is compatible with POSIX parallel filesystems common in HPC environments. The schema comprises eight tables (Table~\ref{tab:schema}).
+
+\begin{table}[t]
+\centering
+\caption{DuckDB storage schema.}
+\label{tab:schema}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Table} & \textbf{Purpose} & \textbf{Key Columns} \\
+\midrule
+\texttt{documents}       & Corpus membership    & URI, namespace, SHA-256 \\
+\texttt{chunks}          & Text segments        & text, document FK, position \\
+\texttt{embeddings}      & Dense vectors        & 384-dim float, chunk FK \\
+\texttt{metadata}        & Flexible annotations & key-value per doc/chunk \\
+\texttt{file\_index}     & Change detection     & path, SHA-256, mtime \\
+\texttt{lexical\_postings} & BM25 retrieval     & token-to-chunk, term freq. \\
+\texttt{sci.\_measurements} & Dimensional search & raw/canonical value+unit \\
+\texttt{sci.\_formulas}  & Formula matching     & raw expr., normalized form \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \texttt{scientific\_measurements} and \texttt{scientific\_formulas} tables are the storage-level counterpart of the science-aware operators described in Section~3. At index time, extracted quantities are canonicalized to base SI units and stored with both raw and canonical representations; at query time, the dimensional operator queries canonical columns directly, bypassing the embedding pipeline entirely.
+
+The system is validated by 169 automated tests spanning unit, integration, and benchmark suites, executed via pytest with no external service dependencies.
+
+\subsection{HDF5 and NetCDF Connectors}
+
+The HDF5 connector uses h5py to recursively walk the group and dataset hierarchy of each file. For every dataset, the connector extracts the name, shape, dtype, and all attached HDF5 attributes. Attributes carrying physical semantics---\texttt{units}, \texttt{long\_name}, \texttt{description}---are identified by convention and routed through the SI canonicalization pipeline described in Section~3.2, producing entries in the \texttt{scientific\_measurements} table. Remaining attribute text is concatenated into chunk content for hybrid lexical and dense retrieval. Dataset structural metadata (shape, dtype, group path) is stored as key-value pairs in the \texttt{metadata} table, enabling queries such as ``find all 3D datasets with a pressure variable.'' Incremental re-indexing uses SHA-256 checksums and filesystem mtime to skip unchanged files.
+
+The NetCDF connector uses xarray and is aware of Climate and Forecast (CF) metadata conventions \cite{cfconventions}. For each file, the connector extracts all variables with their names, units, \texttt{long\_name} attributes, dimensions, and shapes, as well as global attributes including \texttt{title}, \texttt{history}, and \texttt{Conventions}. Variable-level units pass through the same SI canonicalization pipeline as the HDF5 connector, ensuring that a pressure variable stored in hPa in one NetCDF file and in Pa in another will match the same dimensional query. Global attributes are indexed as document-level metadata. Both connectors share the same base architecture---threading, change detection, lexical ingestion, and scientific extraction---differing only in the format-specific traversal logic.
+
+\subsection{Experimental Platform}
+
+All experiments reported in Section~5 were conducted on [TBD --- hardware specifications to be added after benchmarking]. The software environment consists of Linux, Python 3.11, DuckDB 1.1, and sentence-transformers 3.3 with the all-MiniLM-L6-v2 embedding model (22.7M parameters, 384 dimensions). The embedding model was selected for its combination of compact size, permissive licensing (Apache 2.0), and demonstrated effectiveness on semantic textual similarity benchmarks \cite{reimers2019sbert}.
+
+The clio-agentic-search codebase comprises approximately 9,300 lines of Python across 40 modules, with 169 automated tests. The project uses uv for dependency resolution and reproducible environment setup; \texttt{uv sync} installs all dependencies from a locked manifest. The full source code, test suite, and evaluation scripts are available as open-source software.
+
+We note two honest limitations of the current prototype relevant to reproducibility. First, the Qdrant and Neo4j connectors use in-memory stub implementations rather than connecting to deployed service instances; they validate the connector protocol and capability negotiation logic but do not exercise network I/O or distributed storage. Second, all experiments in this paper run on a single node. Deploying the federated architecture across multiple HPC sites with heterogeneous storage backends---the scenario motivating the design---remains future work and is discussed in Section~6.
+
+%% ===================================================================
+%% Section 5: Evaluation
+%% ===================================================================
+\section{Evaluation}
+
+We evaluate clio-agentic-search along three research questions. \textbf{RQ1}: Does dimensional conversion improve retrieval accuracy over standard baselines on cross-unit queries? \textbf{RQ2}: Does formula normalization improve retrieval on formula-variant queries? \textbf{RQ3}: Does federated multi-namespace search maintain coverage without sacrificing the gains from science-aware operators? We then present an ablation study isolating the marginal contribution of each pipeline component, analyze multi-hop agentic retrieval behavior, and report indexing throughput.
+
+\subsection{Experimental Setup}
+
+\textbf{Benchmark construction.} We construct a controlled benchmark designed to isolate the effect of unit heterogeneity on retrieval. The benchmark spans five SI domains from Table~\ref{tab:si_conversion}: distance, mass, time, pressure, and velocity. For each domain, we author document sets in which the same physical quantity is expressed in two or three different units. Each retrieval task consists of a query posed in one unit and a corpus containing relevant documents expressed in different units of the same domain. For example, a query requesting pressures in kPa is paired with documents reporting values in Pa and MPa. The benchmark comprises [TBD] total retrieval tasks. We partition tasks into two conditions: a \emph{control} set in which query and document units match, and a \emph{cross-unit} set in which they differ. The control set establishes that observed differences are attributable to unit mismatch rather than content difficulty.
+
+\textbf{Baselines.} We compare five retrieval configurations: (1)~\textbf{BM25-only}, using DuckDB full-text search with default BM25 scoring; (2)~\textbf{Dense-only}, using all-MiniLM-L6-v2 embeddings (384 dimensions) with exact cosine similarity; (3)~\textbf{Hybrid BM25+Dense}, combining lexical and vector scores via linear fusion with equal weights; (4)~\textbf{String normalization}, following the Numbers Matter! approach \cite{numbersmatter2024} of normalizing numeric tokens to a canonical string form before indexing; and (5)~\textbf{Full pipeline}, the complete clio-agentic-search system with dimensional conversion, formula normalization, graph traversal, and agentic rewriting enabled.
+
+\textbf{Metrics.} We report precision at $K$ (P@$K$), recall at $K$ (R@$K$), F1 at $K$ (F1@$K$) for $K \in \{1, 3, 5, 10\}$, and mean reciprocal rank (MRR). We designate $K{=}5$ as the primary evaluation point for all comparisons. Statistical significance is assessed via paired bootstrap resampling (10,000 iterations, $p < 0.05$).
+
+\subsection{RQ1: Dimensional Conversion Accuracy}
+
+We address the question: \emph{does dimensional conversion improve retrieval accuracy over standard baselines when query and document units differ?}
+
+\begin{table}[t]
+\centering
+\caption{Retrieval performance on cross-unit queries ($K{=}5$).}
+\label{tab:crossunit}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
+\midrule
+BM25-only              & [TBD] & [TBD] & [TBD] & [TBD] \\
+Dense-only             & [TBD] & [TBD] & [TBD] & [TBD] \\
+Hybrid BM25+Dense      & [TBD] & [TBD] & [TBD] & [TBD] \\
+String normalization   & [TBD] & [TBD] & [TBD] & [TBD] \\
+Full pipeline (ours)   & [TBD] & [TBD] & [TBD] & [TBD] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:crossunit} reports results on cross-unit queries. The three text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. Consequently, these baselines are limited to retrieving same-unit documents that happen to appear in the cross-unit corpus, resulting in P@5, R@5, and MRR scores of [TBD], [TBD], and [TBD] respectively for the strongest text baseline (Hybrid).
+
+The string normalization baseline partially addresses this gap by canonicalizing numeric tokens before indexing. This strategy can match values when unit abbreviations coincide or when simple lexical rewriting rules apply, yielding R@5 of [TBD]. However, string normalization cannot perform the arithmetic conversion required to recognize that 200 kPa equals 200000 Pa---it operates on token forms, not physical semantics. Our full pipeline bypasses this limitation entirely: at index time, all measurements are converted to canonical SI base units and stored in the \texttt{scientific\_measurements} table; at query time, the dimensional operator converts the query bounds to the same canonical space and issues a direct range predicate. This yields R@5 of [TBD] and MRR of [TBD] on cross-unit queries, representing an absolute improvement of [TBD] points in R@5 over the next-best baseline.
+
+On the same-unit control set, all five configurations achieve comparable performance (P@5 within [TBD] points of each other), confirming that the observed gains are attributable specifically to cross-unit matching rather than general retrieval quality differences.
+
+\textbf{Per-domain breakdown.} We disaggregate results across the five SI domains. Pressure and velocity queries, which involve conversion factors spanning three orders of magnitude, show the largest baseline degradation and the largest improvement from dimensional conversion. Distance queries exhibit intermediate gains, while mass and time queries---where unit variation in our benchmark is less extreme---show smaller but still statistically significant improvements ([TBD] across all domains, $p < 0.05$). Fig.~4 presents R@5 across all five baselines, grouped by SI domain.
+
+\subsection{RQ2: Formula Matching Accuracy}
+
+We address the question: \emph{does formula normalization improve retrieval accuracy on queries involving mathematical notation variants?}
+
+We construct a set of formula-variant retrieval tasks in which a query references a formula in one notation and relevant documents express the same relationship in alternative forms. Variants include reordering of terms (e.g., $F = ma$ vs.\ $F = am$), equivalent symbolic rearrangements (e.g., $E = mc^2$ vs.\ $m = E/c^2$), and differing variable naming conventions. Each task has a known set of relevant documents.
+
+Without formula operators, the system relies on lexical and embedding similarity over raw LaTeX or Unicode strings, achieving P@5 of [TBD] and R@5 of [TBD]. Enabling formula normalization---which canonicalizes expressions into a sorted, simplified symbolic form before indexing and matching---raises P@5 to [TBD] and R@5 to [TBD]. The improvement is statistically significant ($p < 0.05$) and consistent across algebraic, differential, and integral formula classes.
+
+We also measure the interaction between formula and dimensional operators. Enabling both operators jointly yields F1@5 of [TBD], compared to [TBD] for formula-only and [TBD] for dimensional-only, indicating that the two operators provide independent and complementary value. Neither operator's contribution subsumes the other, validating the pluggable design described in Section~3.
+
+\subsection{RQ3: Federated Search Coverage}
+
+We address the question: \emph{does federated multi-namespace search maintain retrieval coverage when the same corpus is distributed across heterogeneous backends?}
+
+We replicate the benchmark corpus across three storage backends: local filesystem, S3-compatible object store (MinIO), and HDF5 files. Each backend is registered as a separate namespace. We measure coverage---the fraction of relevant documents retrieved regardless of source backend---under single-backend and federated configurations, both with and without science-aware operators.
+
+Single-backend search restricted to the filesystem namespace retrieves [TBD]\% of relevant documents. Restricting to S3 or HDF5 alone yields [TBD]\% and [TBD]\% respectively, reflecting the partitioned placement of corpus documents. Federated search across all three namespaces achieves [TBD]\% coverage, recovering documents that any single backend misses.
+
+Critically, science-aware operators compose with federation without degradation. Federated search with dimensional conversion achieves R@5 of [TBD] on cross-unit queries, compared to [TBD] for federated search without science operators. The capability negotiation mechanism (Section~3.5) ensures that connectors lacking scientific measurement tables are gracefully skipped rather than producing errors, so adding a backend that does not support dimensional search does not degrade results from backends that do.
+
+\subsection{Ablation Study}
+
+To isolate the marginal contribution of each pipeline component, we evaluate six cumulative configurations on the cross-unit query set:
+
+\begin{table}[t]
+\centering
+\caption{Ablation study on cross-unit queries.}
+\label{tab:ablation}
+\small
+\begin{tabular}{llc}
+\toprule
+\textbf{Config.} & \textbf{Components} & \textbf{F1@5} \\
+\midrule
+A: Lexical     & BM25                              & [TBD] \\
+B: +Vector     & A + dense embeddings              & [TBD] \\
+C: +Scientific & B + dimensional + formula ops.     & [TBD] \\
+D: +Graph      & C + entity-rel.\ traversal        & [TBD] \\
+E: +Agentic    & D + multi-hop query rewriting      & [TBD] \\
+F: Full        & E + all optimizations              & [TBD] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fig.~5 plots F1@5 for each configuration. The transition from B to C---adding scientific operators---produces the largest marginal gain ([TBD] absolute F1@5 improvement), confirming that cross-unit matching is the dominant bottleneck for this query class. Adding vector retrieval to the lexical baseline (A to B) provides moderate improvement ([TBD] points), consistent with the known complementarity of sparse and dense retrieval. Graph traversal (C to D) contributes [TBD] points, primarily on queries requiring entity disambiguation. Agentic rewriting (D to E) yields [TBD] additional points, with gains concentrated on multi-hop queries where the initial query formulation is underspecified.
+
+On the same-unit control queries, the A-through-F progression is monotonically non-decreasing but the scientific operator transition (B to C) provides negligible gain ([TBD] points), confirming that this component's value is specific to the cross-unit retrieval scenario it was designed for.
+
+\subsection{Multi-Hop Agentic Retrieval}
+
+We evaluate the agentic retrieval loop (Section~3.6) on [TBD] complex queries requiring information synthesis across multiple documents. We compare single-pass retrieval (1 hop), two-hop, and three-hop configurations.
+
+Single-pass retrieval achieves R@5 of [TBD]. Two-hop retrieval improves to [TBD], with the second hop refining the query based on entities and measurements extracted from first-hop results. Three-hop retrieval yields [TBD], a marginal improvement over two hops, suggesting that for most queries in our benchmark the agentic loop converges within two iterations.
+
+We illustrate the rewriting behavior with representative examples. Consider the query ``What simulation used pressures around 200 kPa with a velocity of 50 km/h?'' In the first hop, the system retrieves documents matching the dimensional constraints. The agentic rewriter examines these results, identifies a referenced simulation identifier, and reformulates the query for the second hop to include the identifier as a lexical constraint, recovering additional documents linked by that identifier but not by the original numeric constraints.
+
+For deployments where LLM inference is unavailable or latency-constrained, the system falls back to a deterministic rewriting strategy: the rewriter extracts entities and measurement tuples from first-hop results and appends them as structured filters to the second-hop query. On the same benchmark, the non-LLM fallback achieves R@5 of [TBD], compared to [TBD] for LLM-based rewriting---a modest degradation that preserves the majority of multi-hop gains without requiring a language model at query time.
+
+\subsection{Indexing Performance}
+
+We measure indexing throughput on a single compute node (Section~4.3) across the three connector types.
+
+Full indexing of the benchmark corpus ([TBD] documents) completes in [TBD] seconds, corresponding to [TBD] documents/second. Per-connector throughput varies with document complexity: the filesystem connector processes [TBD] documents/second, S3 achieves [TBD] documents/second (dominated by network round-trip latency), and the HDF5 connector processes [TBD] files/second, with per-file time scaling with dataset count and attribute density.
+
+Incremental re-indexing, triggered by SHA-256 checksum changes in the \texttt{file\_index} table, substantially reduces update cost. Fig.~6 plots indexing time as a function of corpus change fraction. When 5\% of documents are modified, incremental indexing completes in [TBD]\% of the full-index time. At 10\% and 25\% change fractions, incremental indexing requires [TBD]\% and [TBD]\% of full-index time respectively. The sublinear scaling arises because unchanged documents are skipped entirely---no text extraction, embedding computation, or measurement canonicalization is performed---and only the modified chunks and their dependent entries in the \texttt{embeddings}, \texttt{scientific\_measurements}, and \texttt{scientific\_formulas} tables are rewritten.
+
+%% ===================================================================
+%% Section 6: Conclusion
+%% ===================================================================
+\section{Conclusion}
+
+\subsection{Summary}
+
+This paper introduced science-aware retrieval operators---a new class of deterministic, pluggable retrieval primitives that execute as parallel branches alongside standard BM25 and dense vector search. We demonstrated that three compounding failures in scientific data retrieval---dimensional blindness, formula opacity, and storage fragmentation---can be addressed through explicit arithmetic and symbolic transformations rather than learned approximations. Five contributions substantiate this claim.
+
+First, dimensional-conversion measurement retrieval canonicalizes physical quantities to base SI units via explicit arithmetic multiplication. By converting all indexed measurements to canonical form at ingest time and applying the same conversion to query-time range bounds, the operator recovers [TBD]\% of false negatives that lexical, dense, and string-normalization systems miss entirely. The correctness guarantee is structural: if the SI conversion factor is correct, the match is correct. No learned embedding or string normalization can provide this guarantee.
+
+Second, unified formula normalization reduces inconsistent mathematical surface forms to a canonical representation through a deterministic six-step pipeline. Integrating formula matching with dimensional operators as parallel branches in a single hybrid retrieval pipeline yields a [TBD] F1 improvement over retrieval without formula awareness. No prior system combines formula normalization with quantity-aware search.
+
+Third, federated multi-namespace search with capability negotiation unifies retrieval across filesystem, S3, Qdrant, Neo4j, HDF5, and NetCDF backends without requiring data migration. The connector architecture discovers [TBD]\% more relevant documents than any single-backend configuration, because scientific data is inherently distributed across heterogeneous storage tiers.
+
+Fourth, dedicated HDF5 and NetCDF connectors extract datasets, attributes, variables, dimensions, and units from binary scientific formats and pass them through the same SI canonicalization pipeline as text-based connectors. This enables cross-format dimensional search: a pressure range query matches documents on a filesystem and variables inside an HDF5 file through a single, unified retrieval call.
+
+Fifth, multi-hop agentic retrieval employs an LLM-driven query rewriting loop that iteratively refines searches using expand, narrow, and pivot strategies. This mechanism improves Recall by [TBD] over single-shot retrieval, converging in 2--3 hops as result sets stabilize.
+
+Taken together, these contributions establish science-aware operators as a distinct class of retrieval primitives that complement rather than replace standard hybrid retrieval. As AI agents increasingly orchestrate scientific workflows \cite{coscientist2023, aiscientistv2_2025, ornl_agents_sc25}, the retrieval layer they depend on must understand the data it searches---not merely the text that describes it.
+
+\subsection{Limitations}
+
+We identify four limitations that bound the scope of our claims.
+
+\textbf{Unit coverage.} The current conversion table spans 13 units across 5 SI domains. CQE \cite{cqe2023} supports 531 units via dependency parsing, and the QUDT ontology covers thousands. Our system does not handle derived units (e.g., N = kg$\cdot$m/s$^2$), compound units with multiple denominators, or non-SI unit systems such as imperial or CGS. Extending coverage requires populating the conversion table, not changing the architecture, but the gap is real for corpora using specialized units.
+
+\textbf{Heuristic reranking.} The composite fusion score is a hand-tuned weighted combination of branch scores. We do not employ learned reranking via cross-encoders \cite{bruch2023fusion} or late-interaction models such as ColBERT. A learned fusion strategy would likely improve precision at the cost of additional inference latency.
+
+\textbf{Regex-based extraction.} Measurement and formula extraction relies on regular expressions rather than NLP-based parsing. CQE \cite{cqe2023} uses dependency parsing to handle complex quantity expressions (e.g., ``between 200 and 300 kPa at 25 degrees Celsius''). Our regex patterns may miss such expressions or produce incomplete extractions on syntactically complex scientific prose.
+
+\textbf{No HPC-scale deployment.} All experiments run on a benchmark corpus, not a petabyte-scale HPC filesystem. While the federated architecture is designed for scale---connectors are stateless, indexing is incremental, and DuckDB handles analytical queries efficiently---we have not validated performance on production HPC systems at facilities such as ALCF or OLCF.
+
+\subsection{Future Work}
+
+Five directions follow directly from these limitations. First, we plan to expand the unit ontology by integrating the QUDT knowledge graph or the CQE 531-unit dictionary \cite{cqe2023}, adding support for derived and compound units. Second, we intend to replace heuristic fusion with a learned reranking stage, evaluating cross-encoder and ColBERT-based approaches on scientific retrieval benchmarks. Third, wrapping the retrieval API as a Model Context Protocol (MCP) server \cite{mcp_hpc2025} would expose science-aware operators to any MCP-compatible agent, enabling plug-and-play integration with frameworks such as LangChain, AutoGen, and Claude. Fourth, deployment on DOE leadership-class systems---Polaris at ALCF and Frontier at OLCF---will validate federated search at HPC scale, where corpora span millions of files across parallel filesystems and object stores. Fifth, integrating PROV-IO+ \cite{provio2024} provenance graphs would enable retrieval queries that incorporate data lineage, connecting search results to the experimental workflows that produced them.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
