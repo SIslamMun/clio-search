@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013723 | Hartsfield-Jackson Atlanta Airport
+Location: Atlanta, Georgia, USA (33.63°N, 84.44°W, elevation 313 m)
+Period: May 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 26.2 degC, peak 30.6 degC, lowest-max 17.8 degC
+Minimum Temperature: avg 15.21 degC, warmest-min 18.9 degC, coldest-min 9.4 degC
+Precipitation: total 221.6 mm, daily avg 7.15 mm, daily max 63.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.70 m/s, maximum 4.70 m/s
+2-min Fastest Wind: max 13.90 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

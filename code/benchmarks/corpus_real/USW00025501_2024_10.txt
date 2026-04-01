@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: October 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 9.06 degC, peak 14.4 degC, lowest-max 5.0 degC
+Minimum Temperature: avg 2.16 degC, warmest-min 7.8 degC, coldest-min -2.7 degC
+Precipitation: total 137.3 mm, daily avg 4.43 mm, daily max 28.7 mm
+Average Wind Speed: 4.92 m/s, maximum 14.60 m/s
+2-min Fastest Wind: max 23.70 m/s
+5-sec Fastest Wind Gust: max 34.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

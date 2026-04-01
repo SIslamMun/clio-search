@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023174 | Los Angeles International Airport
+Location: Los Angeles, California, USA (33.94°N, 118.40°W, elevation 30 m)
+Period: July 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 23.71 degC, peak 28.9 degC, lowest-max 20.6 degC
+Minimum Temperature: avg 17.06 degC, warmest-min 20.6 degC, coldest-min 14.4 degC
+Precipitation: total 0.0 mm, daily avg 0.00 mm, daily max 0.0 mm
+Average Wind Speed: 3.41 m/s, maximum 4.10 m/s
+2-min Fastest Wind: max 8.10 m/s
+5-sec Fastest Wind Gust: max 10.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

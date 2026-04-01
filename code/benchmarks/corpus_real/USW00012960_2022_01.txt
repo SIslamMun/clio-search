@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012960 | Miami International Airport
+Location: Miami, Florida, USA (25.82°N, 80.28°W, elevation 4 m)
+Period: January 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 18.07 degC, peak 29.4 degC, lowest-max 10.6 degC
+Minimum Temperature: avg 5.06 degC, warmest-min 18.9 degC, coldest-min -1.0 degC
+Precipitation: total 239.3 mm, daily avg 7.72 mm, daily max 98.3 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.59 m/s, maximum 8.00 m/s
+2-min Fastest Wind: max 16.10 m/s
+5-sec Fastest Wind Gust: max 20.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

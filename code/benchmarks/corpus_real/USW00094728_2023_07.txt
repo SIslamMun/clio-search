@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: July 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.2 degC, peak 33.9 degC, lowest-max 25.6 degC
+Minimum Temperature: avg 22.08 degC, warmest-min 25.0 degC, coldest-min 18.9 degC
+Precipitation: total 135.5 mm, daily avg 4.37 mm, daily max 33.5 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 1.16 m/s, maximum 2.30 m/s
+2-min Fastest Wind: max 12.50 m/s
+5-sec Fastest Wind Gust: max 18.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

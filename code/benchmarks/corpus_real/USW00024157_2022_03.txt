@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: March 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 10.47 degC, peak 20.0 degC, lowest-max 0.6 degC
+Minimum Temperature: avg 1.28 degC, warmest-min 7.2 degC, coldest-min -6.0 degC
+Precipitation: total 31.9 mm, daily avg 1.03 mm, daily max 10.7 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.08 m/s, maximum 7.90 m/s
+2-min Fastest Wind: max 15.70 m/s
+5-sec Fastest Wind Gust: max 18.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

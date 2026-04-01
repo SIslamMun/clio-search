@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: March 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 4.04 degC, peak 12.2 degC, lowest-max -2.7 degC
+Minimum Temperature: avg -3.34 degC, warmest-min 2.2 degC, coldest-min -9.9 degC
+Precipitation: total 45.3 mm, daily avg 1.46 mm, daily max 8.4 mm
+Average Wind Speed: 5.34 m/s, maximum 13.10 m/s
+2-min Fastest Wind: max 24.10 m/s
+5-sec Fastest Wind Gust: max 30.40 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

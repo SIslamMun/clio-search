@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: July 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 33.69 degC, peak 41.7 degC, lowest-max 26.1 degC
+Minimum Temperature: avg 17.69 degC, warmest-min 23.3 degC, coldest-min 10.6 degC
+Precipitation: total 0.3 mm, daily avg 0.01 mm, daily max 0.3 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.38 m/s, maximum 7.20 m/s
+2-min Fastest Wind: max 11.60 m/s
+5-sec Fastest Wind Gust: max 15.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

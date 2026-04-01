@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: January 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 1.92 degC, peak 7.2 degC, lowest-max -6.0 degC
+Minimum Temperature: avg -2.73 degC, warmest-min 2.8 degC, coldest-min -14.9 degC
+Precipitation: total 38.5 mm, daily avg 1.24 mm, daily max 8.1 mm
+Snowfall: total 155 mm, daily max 51 mm
+Snow Depth: max observed 180 mm
+Average Wind Speed: 2.73 m/s, maximum 6.80 m/s
+2-min Fastest Wind: max 11.60 m/s
+5-sec Fastest Wind Gust: max 15.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

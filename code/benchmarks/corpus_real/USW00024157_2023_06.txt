@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: June 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 25.89 degC, peak 32.8 degC, lowest-max 13.9 degC
+Minimum Temperature: avg 12.41 degC, warmest-min 17.2 degC, coldest-min 5.0 degC
+Precipitation: total 21.9 mm, daily avg 0.73 mm, daily max 9.7 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.46 m/s, maximum 8.50 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 19.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

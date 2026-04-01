@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012960 | Miami International Airport
+Location: Miami, Florida, USA (25.82°N, 80.28°W, elevation 4 m)
+Period: April 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 25.11 degC, peak 32.2 degC, lowest-max 15.0 degC
+Minimum Temperature: avg 15.04 degC, warmest-min 23.3 degC, coldest-min 10.0 degC
+Precipitation: total 149.0 mm, daily avg 4.97 mm, daily max 32.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.24 m/s, maximum 6.00 m/s
+2-min Fastest Wind: max 13.40 m/s
+5-sec Fastest Wind Gust: max 20.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

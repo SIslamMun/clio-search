@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: March 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 11.99 degC, peak 23.3 degC, lowest-max 0.6 degC
+Minimum Temperature: avg 2.81 degC, warmest-min 10.0 degC, coldest-min -6.0 degC
+Precipitation: total 60.7 mm, daily avg 1.96 mm, daily max 23.6 mm
+Snowfall: total 10 mm, daily max 10 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.98 m/s, maximum 5.50 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 21.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

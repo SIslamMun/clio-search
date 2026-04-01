@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: December 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 10.0 degC, peak 18.3 degC, lowest-max -1.7 degC
+Minimum Temperature: avg -3.01 degC, warmest-min 4.4 degC, coldest-min -12.8 degC
+Precipitation: total 21.2 mm, daily avg 0.68 mm, daily max 16.3 mm
+Snowfall: total 264 mm, daily max 191 mm
+Snow Depth: max observed 152 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

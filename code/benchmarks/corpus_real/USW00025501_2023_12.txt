@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: December 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 1.7 degC, peak 6.7 degC, lowest-max -5.5 degC
+Minimum Temperature: avg -6.47 degC, warmest-min 2.8 degC, coldest-min -14.3 degC
+Precipitation: total 155.4 mm, daily avg 5.01 mm, daily max 39.4 mm
+Average Wind Speed: 4.44 m/s, maximum 12.30 m/s
+2-min Fastest Wind: max 23.70 m/s
+5-sec Fastest Wind Gust: max 32.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

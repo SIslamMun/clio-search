@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014732 | Boston Logan International Airport
+Location: Boston, Massachusetts, USA (42.37°N, 70.99°W, elevation 6 m)
+Period: February 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 8.94 degC, peak 20.6 degC, lowest-max -3.2 degC
+Minimum Temperature: avg 0.82 degC, warmest-min 12.2 degC, coldest-min -14.9 degC
+Precipitation: total 34.4 mm, daily avg 1.23 mm, daily max 7.9 mm
+Snowfall: total 74 mm, daily max 41 mm
+Snow Depth: max observed 50 mm
+Average Wind Speed: 5.02 m/s, maximum 11.20 m/s
+2-min Fastest Wind: max 17.90 m/s
+5-sec Fastest Wind Gust: max 24.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

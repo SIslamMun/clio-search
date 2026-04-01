@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: December 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 9.83 degC, peak 16.7 degC, lowest-max 2.8 degC
+Minimum Temperature: avg 4.2 degC, warmest-min 10.0 degC, coldest-min -3.8 degC
+Precipitation: total 170.4 mm, daily avg 5.50 mm, daily max 56.1 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.28 m/s, maximum 4.00 m/s
+2-min Fastest Wind: max 9.80 m/s
+5-sec Fastest Wind Gust: max 16.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

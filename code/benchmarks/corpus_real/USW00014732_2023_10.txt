@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014732 | Boston Logan International Airport
+Location: Boston, Massachusetts, USA (42.37°N, 70.99°W, elevation 6 m)
+Period: October 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 20.22 degC, peak 28.9 degC, lowest-max 11.1 degC
+Minimum Temperature: avg 13.19 degC, warmest-min 19.4 degC, coldest-min 7.8 degC
+Precipitation: total 106.2 mm, daily avg 3.43 mm, daily max 23.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.94 m/s, maximum 7.60 m/s
+2-min Fastest Wind: max 13.40 m/s
+5-sec Fastest Wind Gust: max 17.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

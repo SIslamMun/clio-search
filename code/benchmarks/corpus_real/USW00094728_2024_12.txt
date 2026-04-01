@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: December 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 6.45 degC, peak 15.6 degC, lowest-max -6.0 degC
+Minimum Temperature: avg 0.55 degC, warmest-min 10.0 degC, coldest-min -10.5 degC
+Precipitation: total 115.1 mm, daily avg 3.71 mm, daily max 23.1 mm
+Snowfall: total 71 mm, daily max 46 mm
+Snow Depth: max observed 50 mm
+Average Wind Speed: 2.54 m/s, maximum 4.70 m/s
+2-min Fastest Wind: max 10.30 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

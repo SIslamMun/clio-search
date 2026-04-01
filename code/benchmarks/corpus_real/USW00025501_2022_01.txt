@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: January 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 2.4 degC, peak 7.8 degC, lowest-max -6.6 degC
+Minimum Temperature: avg -3.6 degC, warmest-min 2.8 degC, coldest-min -10.5 degC
+Precipitation: total 213.8 mm, daily avg 6.90 mm, daily max 52.6 mm
+Average Wind Speed: 5.55 m/s, maximum 11.70 m/s
+2-min Fastest Wind: max 17.90 m/s
+5-sec Fastest Wind Gust: max 26.80 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

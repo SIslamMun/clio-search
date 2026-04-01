@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: February 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 7.14 degC, peak 18.9 degC, lowest-max -11.7 degC
+Minimum Temperature: avg -8.63 degC, warmest-min 3.3 degC, coldest-min -23.9 degC
+Precipitation: total 55.1 mm, daily avg 1.97 mm, daily max 14.5 mm
+Snowfall: total 833 mm, daily max 234 mm
+Snow Depth: max observed 229 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

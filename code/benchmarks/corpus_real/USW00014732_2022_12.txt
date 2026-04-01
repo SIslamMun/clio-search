@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014732 | Boston Logan International Airport
+Location: Boston, Massachusetts, USA (42.37°N, 70.99°W, elevation 6 m)
+Period: December 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 7.03 degC, peak 15.6 degC, lowest-max -8.8 degC
+Minimum Temperature: avg 0.48 degC, warmest-min 12.8 degC, coldest-min -13.8 degC
+Precipitation: total 111.7 mm, daily avg 3.60 mm, daily max 24.1 mm
+Snowfall: total 11 mm, daily max 8 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 5.34 m/s, maximum 10.90 m/s
+2-min Fastest Wind: max 17.40 m/s
+5-sec Fastest Wind Gust: max 25.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

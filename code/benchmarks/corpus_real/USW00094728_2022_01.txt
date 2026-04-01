@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: January 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 2.85 degC, peak 15.0 degC, lowest-max -6.0 degC
+Minimum Temperature: avg -4.61 degC, warmest-min 10.0 degC, coldest-min -12.1 degC
+Precipitation: total 109.0 mm, daily avg 3.52 mm, daily max 29.5 mm
+Snowfall: total 387 mm, daily max 185 mm
+Snow Depth: max observed 180 mm
+Average Wind Speed: 3.03 m/s, maximum 5.60 m/s
+2-min Fastest Wind: max 10.70 m/s
+5-sec Fastest Wind Gust: max 16.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

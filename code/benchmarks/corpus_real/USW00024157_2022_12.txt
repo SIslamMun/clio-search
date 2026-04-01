@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: December 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg -2.0 degC, peak 7.2 degC, lowest-max -15.5 degC
+Minimum Temperature: avg -7.32 degC, warmest-min 1.1 degC, coldest-min -23.2 degC
+Precipitation: total 91.2 mm, daily avg 2.94 mm, daily max 21.6 mm
+Snowfall: total 430 mm, daily max 127 mm
+Snow Depth: max observed 380 mm
+Average Wind Speed: 2.91 m/s, maximum 7.60 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 19.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

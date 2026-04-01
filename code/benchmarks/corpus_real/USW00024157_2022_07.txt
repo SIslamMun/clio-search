@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: July 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.92 degC, peak 38.9 degC, lowest-max 18.9 degC
+Minimum Temperature: avg 15.83 degC, warmest-min 21.1 degC, coldest-min 10.0 degC
+Precipitation: total 8.8 mm, daily avg 0.28 mm, daily max 3.6 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.30 m/s, maximum 6.00 m/s
+2-min Fastest Wind: max 10.70 m/s
+5-sec Fastest Wind Gust: max 15.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

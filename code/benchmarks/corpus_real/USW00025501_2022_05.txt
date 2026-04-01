@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: May 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 12.28 degC, peak 23.3 degC, lowest-max 7.2 degC
+Minimum Temperature: avg 4.88 degC, warmest-min 10.0 degC, coldest-min 0.6 degC
+Precipitation: total 77.7 mm, daily avg 2.51 mm, daily max 13.5 mm
+Average Wind Speed: 4.68 m/s, maximum 9.60 m/s
+2-min Fastest Wind: max 19.20 m/s
+5-sec Fastest Wind Gust: max 25.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

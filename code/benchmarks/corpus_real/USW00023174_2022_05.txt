@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023174 | Los Angeles International Airport
+Location: Los Angeles, California, USA (33.94°N, 118.40°W, elevation 30 m)
+Period: May 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 20.95 degC, peak 27.2 degC, lowest-max 18.3 degC
+Minimum Temperature: avg 14.25 degC, warmest-min 16.1 degC, coldest-min 10.6 degC
+Precipitation: total 0.0 mm, daily avg 0.00 mm, daily max 0.0 mm
+Average Wind Speed: 3.66 m/s, maximum 6.70 m/s
+2-min Fastest Wind: max 15.70 m/s
+5-sec Fastest Wind Gust: max 18.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

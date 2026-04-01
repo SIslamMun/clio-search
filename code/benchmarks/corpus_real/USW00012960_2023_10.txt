@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012960 | Miami International Airport
+Location: Miami, Florida, USA (25.82°N, 80.28°W, elevation 4 m)
+Period: October 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 27.84 degC, peak 35.6 degC, lowest-max 11.7 degC
+Minimum Temperature: avg 16.86 degC, warmest-min 25.0 degC, coldest-min 7.8 degC
+Precipitation: total 103.4 mm, daily avg 3.34 mm, daily max 29.7 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.69 m/s, maximum 7.20 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 17.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).
