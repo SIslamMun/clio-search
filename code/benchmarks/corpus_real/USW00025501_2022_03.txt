@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: March 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 5.13 degC, peak 8.3 degC, lowest-max 1.1 degC
+Minimum Temperature: avg -0.31 degC, warmest-min 4.4 degC, coldest-min -7.1 degC
+Precipitation: total 264.1 mm, daily avg 8.52 mm, daily max 36.3 mm
+Average Wind Speed: 4.89 m/s, maximum 10.20 m/s
+2-min Fastest Wind: max 16.50 m/s
+5-sec Fastest Wind Gust: max 21.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

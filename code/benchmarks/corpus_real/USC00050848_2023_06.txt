@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: June 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 24.53 degC, peak 32.2 degC, lowest-max 16.1 degC
+Minimum Temperature: avg 10.23 degC, warmest-min 16.7 degC, coldest-min 5.6 degC
+Precipitation: total 128.2 mm, daily avg 4.27 mm, daily max 31.5 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

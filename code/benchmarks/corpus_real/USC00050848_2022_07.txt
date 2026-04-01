@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: July 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 32.69 degC, peak 37.8 degC, lowest-max 25.6 degC
+Minimum Temperature: avg 14.99 degC, warmest-min 21.7 degC, coldest-min 10.6 degC
+Precipitation: total 62.0 mm, daily avg 2.00 mm, daily max 28.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

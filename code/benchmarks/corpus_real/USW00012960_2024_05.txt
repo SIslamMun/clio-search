@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012960 | Miami International Airport
+Location: Miami, Florida, USA (25.82°N, 80.28°W, elevation 4 m)
+Period: May 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.77 degC, peak 35.6 degC, lowest-max 23.3 degC
+Minimum Temperature: avg 21.76 degC, warmest-min 27.2 degC, coldest-min 17.8 degC
+Precipitation: total 280.8 mm, daily avg 9.06 mm, daily max 60.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.09 m/s, maximum 6.20 m/s
+2-min Fastest Wind: max 24.10 m/s
+5-sec Fastest Wind Gust: max 33.50 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

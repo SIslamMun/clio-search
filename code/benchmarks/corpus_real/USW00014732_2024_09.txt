@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014732 | Boston Logan International Airport
+Location: Boston, Massachusetts, USA (42.37°N, 70.99°W, elevation 6 m)
+Period: September 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 24.26 degC, peak 29.4 degC, lowest-max 17.8 degC
+Minimum Temperature: avg 17.5 degC, warmest-min 23.3 degC, coldest-min 13.9 degC
+Precipitation: total 33.8 mm, daily avg 1.13 mm, daily max 18.5 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.19 m/s, maximum 6.00 m/s
+2-min Fastest Wind: max 11.20 m/s
+5-sec Fastest Wind Gust: max 16.50 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

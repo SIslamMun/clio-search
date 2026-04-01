@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: July 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 31.05 degC, peak 36.7 degC, lowest-max 21.7 degC
+Minimum Temperature: avg 14.03 degC, warmest-min 20.0 degC, coldest-min 8.9 degC
+Precipitation: total 36.8 mm, daily avg 1.19 mm, daily max 15.5 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

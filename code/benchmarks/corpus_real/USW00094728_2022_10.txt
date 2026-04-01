@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: October 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 17.43 degC, peak 24.4 degC, lowest-max 11.7 degC
+Minimum Temperature: avg 10.22 degC, warmest-min 16.1 degC, coldest-min 5.6 degC
+Precipitation: total 129.0 mm, daily avg 4.16 mm, daily max 47.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.17 m/s, maximum 5.50 m/s
+2-min Fastest Wind: max 10.30 m/s
+5-sec Fastest Wind Gust: max 16.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: August 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 15.83 degC, peak 21.1 degC, lowest-max 11.7 degC
+Minimum Temperature: avg 9.07 degC, warmest-min 11.7 degC, coldest-min 4.4 degC
+Precipitation: total 173.7 mm, daily avg 5.60 mm, daily max 96.8 mm
+Average Wind Speed: 3.75 m/s, maximum 7.60 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 20.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

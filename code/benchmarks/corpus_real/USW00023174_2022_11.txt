@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023174 | Los Angeles International Airport
+Location: Los Angeles, California, USA (33.94°N, 118.40°W, elevation 30 m)
+Period: November 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 20.88 degC, peak 25.6 degC, lowest-max 16.1 degC
+Minimum Temperature: avg 10.29 degC, warmest-min 15.0 degC, coldest-min 7.8 degC
+Precipitation: total 45.0 mm, daily avg 1.50 mm, daily max 36.6 mm
+Average Wind Speed: 2.91 m/s, maximum 6.10 m/s
+2-min Fastest Wind: max 15.70 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

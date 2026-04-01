@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013723 | Hartsfield-Jackson Atlanta Airport
+Location: Atlanta, Georgia, USA (33.63°N, 84.44°W, elevation 313 m)
+Period: September 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 26.35 degC, peak 31.7 degC, lowest-max 13.9 degC
+Minimum Temperature: avg 15.93 degC, warmest-min 21.7 degC, coldest-min 8.3 degC
+Precipitation: total 138.2 mm, daily avg 4.61 mm, daily max 55.1 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.77 m/s, maximum 9.10 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 22.80 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

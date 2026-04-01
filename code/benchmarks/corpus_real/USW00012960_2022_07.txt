@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00012960 | Miami International Airport
+Location: Miami, Florida, USA (25.82°N, 80.28°W, elevation 4 m)
+Period: July 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 36.94 degC, peak 40.6 degC, lowest-max 30.0 degC
+Minimum Temperature: avg 25.32 degC, warmest-min 28.3 degC, coldest-min 23.3 degC
+Precipitation: total 34.3 mm, daily avg 1.11 mm, daily max 10.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.25 m/s, maximum 4.50 m/s
+2-min Fastest Wind: max 13.90 m/s
+5-sec Fastest Wind Gust: max 17.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

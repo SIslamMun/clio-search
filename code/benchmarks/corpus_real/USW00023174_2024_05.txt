@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023174 | Los Angeles International Airport
+Location: Los Angeles, California, USA (33.94°N, 118.40°W, elevation 30 m)
+Period: May 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 19.09 degC, peak 21.1 degC, lowest-max 17.2 degC
+Minimum Temperature: avg 13.57 degC, warmest-min 14.4 degC, coldest-min 11.1 degC
+Precipitation: total 3.0 mm, daily avg 0.10 mm, daily max 2.5 mm
+Average Wind Speed: 3.70 m/s, maximum 6.90 m/s
+2-min Fastest Wind: max 14.80 m/s
+5-sec Fastest Wind Gust: max 17.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

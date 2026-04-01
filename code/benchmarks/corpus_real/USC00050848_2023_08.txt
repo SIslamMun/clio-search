@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: August 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.44 degC, peak 36.7 degC, lowest-max 22.8 degC
+Minimum Temperature: avg 13.87 degC, warmest-min 18.9 degC, coldest-min 9.4 degC
+Precipitation: total 54.0 mm, daily avg 1.74 mm, daily max 15.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

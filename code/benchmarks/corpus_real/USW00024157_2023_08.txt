@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024157 | Portland International Airport
+Location: Portland, Oregon, USA (45.60°N, 122.60°W, elevation 12 m)
+Period: August 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 29.21 degC, peak 38.9 degC, lowest-max 16.7 degC
+Minimum Temperature: avg 15.6 degC, warmest-min 20.6 degC, coldest-min 10.6 degC
+Precipitation: total 24.9 mm, daily avg 0.80 mm, daily max 9.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.40 m/s, maximum 7.50 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 17.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

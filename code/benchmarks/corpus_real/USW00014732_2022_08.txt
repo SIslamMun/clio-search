@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014732 | Boston Logan International Airport
+Location: Boston, Massachusetts, USA (42.37°N, 70.99°W, elevation 6 m)
+Period: August 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 31.03 degC, peak 36.7 degC, lowest-max 26.1 degC
+Minimum Temperature: avg 23.16 degC, warmest-min 26.7 degC, coldest-min 18.9 degC
+Precipitation: total 52.6 mm, daily avg 1.70 mm, daily max 15.5 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.94 m/s, maximum 5.50 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 17.00 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: March 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 10.83 degC, peak 17.2 degC, lowest-max 3.3 degC
+Minimum Temperature: avg 3.22 degC, warmest-min 8.9 degC, coldest-min -1.6 degC
+Precipitation: total 84.3 mm, daily avg 2.72 mm, daily max 25.1 mm
+Snowfall: total 3 mm, daily max 3 mm
+Snow Depth: max observed 30 mm
+Average Wind Speed: 2.91 m/s, maximum 5.80 m/s
+2-min Fastest Wind: max 10.70 m/s
+5-sec Fastest Wind Gust: max 18.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

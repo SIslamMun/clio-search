@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00025501 | Anchorage International Airport
+Location: Anchorage, Alaska, USA (61.17°N, 150.02°W, elevation 40 m)
+Period: December 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 3.64 degC, peak 7.2 degC, lowest-max -2.1 degC
+Minimum Temperature: avg -2.12 degC, warmest-min 2.8 degC, coldest-min -7.1 degC
+Precipitation: total 163.6 mm, daily avg 5.28 mm, daily max 41.7 mm
+Average Wind Speed: 6.02 m/s, maximum 14.30 m/s
+2-min Fastest Wind: max 22.80 m/s
+5-sec Fastest Wind Gust: max 28.20 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

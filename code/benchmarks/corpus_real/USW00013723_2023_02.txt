@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013723 | Hartsfield-Jackson Atlanta Airport
+Location: Atlanta, Georgia, USA (33.63°N, 84.44°W, elevation 313 m)
+Period: February 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 16.19 degC, peak 27.2 degC, lowest-max 5.0 degC
+Minimum Temperature: avg 4.72 degC, warmest-min 15.6 degC, coldest-min -6.0 degC
+Precipitation: total 79.8 mm, daily avg 2.85 mm, daily max 31.8 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.76 m/s, maximum 6.00 m/s
+2-min Fastest Wind: max 14.30 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

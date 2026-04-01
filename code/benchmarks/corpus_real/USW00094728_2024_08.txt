@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094728 | Central Park Weather Station
+Location: New York City, New York, USA (40.78°N, 73.97°W, elevation 42 m)
+Period: August 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 28.05 degC, peak 35.0 degC, lowest-max 21.1 degC
+Minimum Temperature: avg 19.84 degC, warmest-min 24.4 degC, coldest-min 13.9 degC
+Precipitation: total 178.2 mm, daily avg 5.75 mm, daily max 58.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 1.66 m/s, maximum 3.70 m/s
+2-min Fastest Wind: max 7.20 m/s
+5-sec Fastest Wind Gust: max 14.30 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

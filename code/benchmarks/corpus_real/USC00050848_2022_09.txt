@@ -1,0 +1,12 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USC00050848 | Boulder Weather Observing Station
+Location: Boulder, Colorado, USA (40.01°N, 105.25°W, elevation 1671 m)
+Period: September 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 28.38 degC, peak 36.1 degC, lowest-max 12.8 degC
+Minimum Temperature: avg 10.48 degC, warmest-min 16.1 degC, coldest-min 3.9 degC
+Precipitation: total 38.0 mm, daily avg 1.27 mm, daily max 23.1 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).
