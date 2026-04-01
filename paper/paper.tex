@@ -113,27 +113,30 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \begin{table*}[!t]
 \centering
-\caption{Capability comparison of retrieval and scientific data systems. Columns 1--5 correspond to our contributions. \cmark{} = supported, \xmark{} = not supported, $\circ$ = partial.}
+\caption{Capability comparison across retrieval and scientific data systems.}
 \label{tab:comparison}
-\small
-\begin{tabular}{l ccccc ccccc}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}l ccccc ccccc@{}}
 \toprule
- & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
+ & \multicolumn{5}{c}{\textit{Our Contributions}} & \multicolumn{5}{c}{\textit{General}} \\
 \cmidrule(lr){2-6} \cmidrule(lr){7-11}
- & \rotatebox{70}{\textbf{SI conversion}} & \rotatebox{70}{\textbf{Formula norm.}} & \rotatebox{70}{\textbf{Science branches}} & \rotatebox{70}{\textbf{Federated backends}} & \rotatebox{70}{\textbf{HDF5/NetCDF index}} & \rotatebox{70}{\textbf{Agentic multi-hop}} & \rotatebox{70}{\textbf{Quantity extraction}} & \rotatebox{70}{\textbf{Paper search}} & \rotatebox{70}{\textbf{Data search}} & \rotatebox{70}{\textbf{LLM integration}} \\
+\textbf{System} & \rotatebox{65}{SI conv.} & \rotatebox{65}{Formula} & \rotatebox{65}{Sci. branch} & \rotatebox{65}{Federated} & \rotatebox{65}{HDF5/NC} & \rotatebox{65}{Agentic} & \rotatebox{65}{Qty. extr.} & \rotatebox{65}{Papers} & \rotatebox{65}{Data} & \rotatebox{65}{LLM} \\
 \midrule
 \rowcolor{gray!10}
-\textbf{Ours}        & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
-PANGAEA-GPT          & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$   & \xmark & \cmark & \cmark \\
-OpenScholar          & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-HiPerRAG             & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-Numbers Matter!      & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CONE                 & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CLADD                & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-SciAgent             & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-Context-1            & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+\textbf{Ours}   & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+PANGAEA-GPT     & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
+OpenScholar     & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+HiPerRAG        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+Numbers Matter! & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CONE            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CLADD           & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciAgent        & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+Context-1       & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
 \end{tabular}
+\\[2pt]
+{\scriptsize \cmark{} = supported, \xmark{} = not supported, $\circ$ = partial.}
 \end{table*}
 
 Table~\ref{tab:comparison} summarizes the landscape. To our knowledge, no prior system supports the combination of our first five capabilities: arithmetic SI conversion, formula normalization, science-aware retrieval branches, federated multi-backend search, and HDF5/NetCDF indexing. Individual capabilities may exist in isolation. We honestly mark capabilities we lack---we do not index papers. PANGAEA-GPT receives partial credit for quantity extraction (unit scale validation, but post-hoc rather than at retrieval time).
@@ -163,7 +166,7 @@ We define a conversion table covering five SI domains and 13 units (Table~\ref{t
 
 \begin{table}[!t]
 \centering
-\caption{SI conversion table. 5 domains, 13 units. Each source unit maps to a canonical base unit via a deterministic multiplicative factor.}
+\caption{SI conversion table (5 domains, 13 units).}
 \label{tab:si_conversion}
 \footnotesize
 \begin{tabular}{l l l l}
@@ -253,21 +256,24 @@ All persistent state resides in a single DuckDB database file. DuckDB was select
 
 \begin{table}[!t]
 \centering
-\caption{DuckDB storage schema.}
+\caption{DuckDB schema (8 tables).}
 \label{tab:schema}
-\footnotesize
-\begin{tabular}{l l l}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Table} & \textbf{Purpose} & \textbf{Key Columns} \\
 \midrule
-\texttt{documents}       & Corpus membership    & URI, namespace, SHA-256 \\
-\texttt{chunks}          & Text segments        & text, document FK, position \\
-\texttt{embeddings}      & Dense vectors        & 384-dim float, chunk FK \\
-\texttt{metadata}        & Flexible annotations & key-value per doc/chunk \\
-\texttt{file\_index}     & Change detection     & path, SHA-256, mtime \\
-\texttt{lexical\_postings} & BM25 retrieval     & token-to-chunk, term freq. \\
-\texttt{sci.\_measurements} & Dimensional search & raw/canonical value+unit \\
-\texttt{sci.\_formulas}  & Formula matching     & raw expr., normalized form \\
+documents       & Corpus membership  & URI, namespace, SHA-256 \\
+chunks          & Text segments      & text, doc FK, position \\
+embeddings      & Dense vectors      & 384-dim float, chunk FK \\
+metadata        & Annotations        & key-value per doc/chunk \\
+file\_index     & Change detection   & path, SHA-256, mtime \\
+lexical\_post.  & BM25 retrieval     & token$\to$chunk, TF \\
+\rowcolor{gray!5}
+sci\_meas.      & Dimensional search & raw/canon. value+unit \\
+\rowcolor{gray!5}
+sci\_formulas   & Formula matching   & raw, normalized form \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -311,20 +317,22 @@ We address the question: \emph{does dimensional conversion improve retrieval acc
 
 \begin{table}[!t]
 \centering
-\caption{Retrieval performance on cross-unit queries ($K{=}5$).}
+\caption{Cross-unit retrieval ($K{=}5$).}
 \label{tab:crossunit}
-\small
-\begin{tabular}{l cccc}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Configuration} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
+\textbf{Method} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
 \midrule
-BM25-only              & 0.35 & 0.60 & 0.42 & 0.73 \\
-Dense-only             & 0.36 & 0.66 & 0.44 & 0.66 \\
-Hybrid BM25+Dense      & 0.37 & 0.68 & 0.45 & 0.69 \\
-String normalization   & 0.34 & 0.79 & 0.46 & 0.70 \\
+BM25             & .35 & .60 & .42 & .73 \\
+Dense            & .36 & .66 & .44 & .66 \\
+Hybrid           & .37 & .68 & .45 & .69 \\
+String norm.     & .34 & .79 & .46 & .70 \\
+LLM-assisted     & .38 & .70 & .47 & .71 \\
 \midrule
 \rowcolor{gray!10}
-Full pipeline (ours)   & \textbf{0.97} & \textbf{1.00} & \textbf{0.98} & \textbf{1.00} \\
+\textbf{Ours}    & \textbf{.97} & \textbf{1.00} & \textbf{.98} & \textbf{1.00} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -363,21 +371,22 @@ To isolate the marginal contribution of each pipeline component, we evaluate six
 
 \begin{table}[!t]
 \centering
-\caption{Ablation study on cross-unit queries.}
+\caption{Ablation on cross-unit queries.}
 \label{tab:ablation}
-\small
-\begin{tabular}{l l c}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llcc@{}}
 \toprule
-\textbf{Config.} & \textbf{Components} & \textbf{F1@5} \\
+\textbf{Config.} & \textbf{Components} & \textbf{F1@5} & \textbf{$\Delta$} \\
 \midrule
-A: Lexical     & BM25                              & 0.42 \\
-B: +Vector     & A + dense embeddings              & 0.45 \\
+A & BM25 only                  & 0.42 & --- \\
+B & A + dense vectors          & 0.45 & +.03 \\
 \midrule
 \rowcolor{gray!10}
-C: +Scientific & B + dimensional + formula ops.     & \textbf{0.98} \\
-D: +Graph      & C + entity-rel.\ traversal        & \textbf{0.98} \\
-E: +Agentic    & D + multi-hop query rewriting      & \textbf{0.98} \\
-F: Full        & E + all optimizations              & \textbf{0.98} \\
+C & B + sci.\ operators        & \textbf{0.98} & \textbf{+.53} \\
+D & C + graph traversal        & 0.98 & +.00 \\
+E & D + agentic rewriting      & 0.98 & +.00 \\
+F & Full pipeline              & 0.98 & +.00 \\
 \bottomrule
 \end{tabular}
 \end{table}
