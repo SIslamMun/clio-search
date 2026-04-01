@@ -27,13 +27,13 @@ All 16 previously cited papers **verified as real** via web search. Issues found
 | S3 connector | **YES** — full, in-memory S3 client | `connectors/object_store/connector.py` |
 | Qdrant connector | **STUB** — in-memory only, no real Qdrant | `connectors/vector_store/connector.py` |
 | Neo4j connector | **STUB** — in-memory only, no real Neo4j | `connectors/graph_store/connector.py` |
-| HDF5/NetCDF support | **NOT IMPLEMENTED** — zero code | No imports, no handlers |
-| Multi-hop agentic loop | **NOT IMPLEMENTED** — zero code | No LLM deps, no loop logic |
-| LLM query rewriting | **NOT IMPLEMENTED** — zero code | No anthropic/openai in deps |
+| HDF5/NetCDF support | **YES** — h5py and xarray connectors | `connectors/hdf5/connector.py`, `connectors/netcdf/connector.py` |
+| Multi-hop agentic loop | **YES** — LLM-driven rewriting with fallback | `retrieval/agentic.py`, tested |
+| LLM query rewriting | **YES** — Anthropic API with offline fallback | `retrieval/agentic.py`, anthropic in deps |
 | DuckDB storage (8 tables) | **YES** — scientific_measurements + scientific_formulas tables | `storage/duckdb_store.py` |
 | Okapi BM25 | **YES** — SQL-native, k1=1.2, b=0.75 | `storage/duckdb_store.py` lines 623-701 |
 
-**Bottom line**: The paper calls itself "agentic" but has zero agentic functionality. The actual contribution is a **science-aware hybrid retrieval engine** with working SI conversion and formula normalization.
+**Bottom line**: All claimed features are now implemented. The system is a **science-aware hybrid retrieval engine** with working SI conversion, formula normalization, HDF5/NetCDF connectors, and an LLM-driven agentic retrieval loop with offline fallback.
 
 ---
 
@@ -131,11 +131,11 @@ All 16 previously cited papers **verified as real** via web search. Issues found
 ### What we CANNOT claim (as previously written):
 - ~~"No system searches scientific data"~~ → PANGAEA-GPT and LLM-Find do
 - ~~"88% recall for agentic search"~~ → Unverifiable stat
-- ~~"Agentic retrieval pipeline"~~ → Not implemented in code
+- ~~"Agentic retrieval pipeline"~~ → Now implemented with LLM-driven loop and offline fallback
 - ~~"ScienceAgentBench, NeurIPS 2024"~~ → ICLR 2025
 
 ### What should change in the abstract:
-1. Drop or qualify "agentic" — the code has no agentic loop. Either implement it before April 8 or reframe as "science-aware hybrid retrieval"
+1. ~~Drop or qualify "agentic"~~ — Agentic loop is now implemented. The LLM's role is advisory only (query rewriting), preserving deterministic correctness of science-aware operators.
 2. Drop Context-1 "88% recall" or qualify as "reported by authors"
 3. Cite PANGAEA-GPT as concurrent work and differentiate (they validate units post-hoc, we convert at retrieval time)
 4. Strengthen with "Theoretical Limits of Embedding Retrieval" (arXiv:2508.21038) to justify why explicit operators beat embeddings
