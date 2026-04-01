@@ -96,12 +96,11 @@ def load_json(path: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 def generate_fig4(results: dict) -> None:
-    """Bar chart comparing 6 retrieval approaches on P@5."""
+    """Bar chart comparing retrieval approaches on cross-unit P@5."""
     print("  Generating Fig 4: Cross-unit retrieval comparison ...")
 
     baselines = results.get("baselines", {})
 
-    # Define the 6 approaches and their labels
     approaches = [
         ("bm25_only", "BM25"),
         ("dense_only", "Dense"),
@@ -109,29 +108,25 @@ def generate_fig4(results: dict) -> None:
         ("string_norm", "String\nnorm."),
     ]
 
-    # Extract P@5 values
     labels = []
     p5_values = []
     colors = []
 
     for key, label in approaches:
-        data = baselines.get(key, {}).get("overall", {})
+        # Use cross-unit specific results, not overall
+        cu = baselines.get(key, {}).get("by_type", {}).get("cross_unit", {})
+        if not cu:
+            cu = baselines.get(key, {}).get("overall", {})
         labels.append(label)
-        p5_values.append(data.get("P@5", 0))
+        p5_values.append(cu.get("P@5", 0))
         colors.append(C_GRAY)
 
-    # Add "LLM-assisted" from the LLM results (use best non-full provider)
-    # This represents using LLM rewriting with hybrid search only
-    labels.append("LLM-\nassisted")
-    # Use the hybrid baseline as LLM-assisted baseline approximation
-    # (the LLM providers all get ~0.90 P@5 on the standard benchmark)
-    p5_values.append(0.56)  # estimated from hybrid+LLM rewrite without sci operators
-    colors.append(C_ORANGE)
-
-    # Add "Ours" (full pipeline)
+    # Full pipeline on cross-unit queries
     labels.append("Ours\n(full)")
-    full_data = baselines.get("full_pipeline", {}).get("overall", {})
-    p5_values.append(full_data.get("P@5", 0))
+    cu_full = baselines.get("full_pipeline", {}).get("by_type", {}).get("cross_unit", {})
+    if not cu_full:
+        cu_full = baselines.get("full_pipeline", {}).get("overall", {})
+    p5_values.append(cu_full.get("P@5", 0))
     colors.append(C_BLUE)
 
     fig, ax = plt.subplots(figsize=(SINGLE_COL_WIDTH, FIG_HEIGHT))
@@ -395,6 +390,66 @@ def generate_fig7() -> None:
     print(f"    Saved: {outpath}")
 
 
+REAL_RESULTS_PATH = EVAL_DIR / "real_benchmark_results.json"
+
+
+# ---------------------------------------------------------------------------
+# Fig 8: Real-world NOAA benchmark comparison
+# ---------------------------------------------------------------------------
+
+def generate_fig8() -> None:
+    """Bar chart comparing baselines on NOAA GHCN-Daily real-world corpus."""
+    print("  Generating Fig 8: Real-world NOAA benchmark ...")
+
+    data = load_json(REAL_RESULTS_PATH)
+    if not data:
+        print("    SKIPPED: No real_benchmark_results.json")
+        return
+
+    avgs = data.get("averages", {})
+
+    approaches = [
+        ("bm25_only", "BM25"),
+        ("dense_only", "Dense"),
+        ("hybrid", "Hybrid"),
+        ("string_norm", "String\nnorm."),
+        ("full_pipeline", "Clio\n(ours)"),
+    ]
+
+    labels = []
+    p5_vals = []
+    colors = []
+    for key, label in approaches:
+        m = avgs.get(key, {})
+        labels.append(label)
+        p5_vals.append(m.get("P@5", 0))
+        if key == "full_pipeline":
+            colors.append(C_BLUE)
+        else:
+            colors.append(C_GRAY)
+
+    fig, ax = plt.subplots(figsize=(SINGLE_COL_WIDTH, FIG_HEIGHT))
+    x = np.arange(len(labels))
+    bars = ax.bar(x, p5_vals, width=0.65, color=colors, edgecolor="white",
+                  linewidth=0.5, zorder=3)
+
+    for bar, val in zip(bars, p5_vals):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
+                f"{val:.2f}", ha="center", va="bottom", fontsize=8)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=8)
+    ax.set_ylabel("P@5")
+    ax.set_ylim(0, 1.05)
+    ax.set_xlim(-0.5, len(labels) - 0.5)
+    ax.set_title("NOAA GHCN-Daily (288 docs, metric→imperial)", fontsize=9)
+
+    outpath = FIGURES_DIR / "fig8_real_world.pdf"
+    fig.savefig(outpath)
+    plt.close(fig)
+    print(f"    Saved: {outpath}")
+
+
 def _fallback_llm_data() -> dict:
     """Fallback LLM provider data from the 11-provider benchmark log."""
     return {
@@ -467,12 +522,14 @@ def main() -> None:
         print("           Run: cd code && python3 benchmarks/evaluate_v2.py")
 
     generate_fig7()
+    generate_fig8()
 
     print("\nAll figures generated successfully.")
     print(f"  {FIGURES_DIR}/fig4_crossunit_p5.pdf")
     print(f"  {FIGURES_DIR}/fig5_ablation.pdf")
     print(f"  {FIGURES_DIR}/fig6_indexing.pdf")
     print(f"  {FIGURES_DIR}/fig7_llm_providers.pdf")
+    print(f"  {FIGURES_DIR}/fig8_real_world.pdf")
 
 
 if __name__ == "__main__":
