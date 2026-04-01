@@ -122,7 +122,7 @@ class FallbackQueryRewriter:
 
 # Build a reverse map: canonical_unit -> set of raw units that share it.
 _CANONICAL_GROUPS: dict[str, set[str]] = {}
-for _raw, (_canon, _) in _UNIT_CANONICALIZATION.items():
+for _raw, (_canon, *_rest) in _UNIT_CANONICALIZATION.items():
     _CANONICAL_GROUPS.setdefault(_canon, set()).add(_raw)
 
 # Pattern that matches any known unit as a standalone token (case-insensitive).
