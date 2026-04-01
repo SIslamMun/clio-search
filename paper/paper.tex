@@ -446,7 +446,7 @@ All three configurations achieve P@5 of 0.98 and MRR of 0.94, confirming that th
 
 In practice, the rewriter identifies referenced identifiers in first-hop results and reformulates the query to recover additional linked documents in subsequent hops. For deployments without LLM access, a deterministic fallback expands queries with SI unit variants and achieves comparable P@5 and MRR.
 
-We further evaluate the agentic loop across 8 configurations spanning four inference backends: Ollama (local GPU), Gemini (cloud API), Claude (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
+We further evaluate the agentic loop across 8 configurations spanning four inference backends: Ollama (local CPU), Gemini (cloud API), Claude (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
 
 \begin{table}[!t]
 \centering
@@ -477,7 +477,7 @@ No LLM  & SI exp.      & 0   & 0.00  & 0.86 & 0.88 & \$0 \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-Three findings emerge. First, local Ollama inference matches cloud quality (P@5 = 0.90 across all four models) at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted. Qwen~2.5~(14B) achieves perfect MRR despite higher latency. Second, Gemini Flash models achieve sub-100ms rewriting latency with perfect MRR---an order of magnitude faster than local inference---suitable for interactive deployments. Third, the no-LLM fallback (deterministic SI unit expansion) achieves 96\% of the best LLM-assisted P@5, confirming that the science-aware operators are the primary source of retrieval gains; the LLM provides incremental improvement through query expansion rather than fundamental capability.
+Three findings emerge. First, local CPU inference via Ollama matches cloud quality (P@5 = 0.90 across all three models) at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted. Qwen~2.5~(14B) achieves perfect MRR despite higher latency on CPU. Second, Gemini Flash models achieve sub-100ms rewriting latency with perfect MRR---an order of magnitude faster than local CPU inference---suitable for interactive deployments. Third, the no-LLM fallback (deterministic SI unit expansion) achieves 96\% of the best LLM-assisted P@5, confirming that the science-aware operators are the primary source of retrieval gains; the LLM provides incremental improvement through query expansion rather than fundamental capability.
 
 \subsection{Indexing Performance}
 
