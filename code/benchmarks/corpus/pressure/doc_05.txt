@@ -1,0 +1,1 @@
+The hydraulic system maintained 500000 Pa working pressure throughout the test.

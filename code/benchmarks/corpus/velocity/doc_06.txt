@@ -1,0 +1,1 @@
+The conveyor belt operated at a steady 2880 km/h equivalent for the impact simulation.

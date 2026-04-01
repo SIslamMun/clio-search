@@ -1,0 +1,1 @@
+Microchip feature width was etched to 200 mm pitch between adjacent transistor gates.

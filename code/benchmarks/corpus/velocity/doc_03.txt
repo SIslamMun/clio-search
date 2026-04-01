@@ -1,0 +1,1 @@
+Projectile muzzle velocity was recorded at 800 m/s using the ballistic chronograph.

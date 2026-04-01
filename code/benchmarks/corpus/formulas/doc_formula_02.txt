@@ -1,0 +1,1 @@
+Newton's second law states that $F = m * a$, with acceleration 9.8 m/s for free fall.

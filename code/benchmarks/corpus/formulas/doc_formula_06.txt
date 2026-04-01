@@ -1,0 +1,1 @@
+Kinetic energy is given by $KE = 0.5 * m * v^{2}$ for a body of mass m moving at velocity v.

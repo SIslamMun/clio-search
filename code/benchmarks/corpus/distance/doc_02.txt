@@ -1,0 +1,1 @@
+Detector spacing was set to 50 cm for the diffraction experiment on the optical bench.

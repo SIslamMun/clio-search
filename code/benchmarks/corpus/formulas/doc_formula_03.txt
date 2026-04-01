@@ -1,0 +1,1 @@
+From $ma = F$, we derived the required thrust for the rocket stage.

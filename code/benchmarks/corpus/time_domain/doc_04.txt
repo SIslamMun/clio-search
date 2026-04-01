@@ -1,0 +1,1 @@
+Signal acquisition lasted 120 s per channel in the data logger configuration.

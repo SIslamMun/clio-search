@@ -1,0 +1,1 @@
+Payload mass for the CubeSat mission was constrained to 3 kg including all instrumentation.

@@ -1,0 +1,1 @@
+Wind tunnel airflow was calibrated at 50 m/s for the aerodynamic drag measurement.

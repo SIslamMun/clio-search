@@ -1,0 +1,1 @@
+The force was computed using F = ma where mass was 5 kg and acceleration was 9.8 m/s.
