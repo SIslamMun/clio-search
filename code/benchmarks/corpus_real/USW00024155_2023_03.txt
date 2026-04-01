@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024155 | GHCN Station USW00024155
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: March 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 11.38 degC, peak 18.9 degC, lowest-max 6.7 degC
+Minimum Temperature: avg 0.51 degC, warmest-min 6.1 degC, coldest-min -3.8 degC
+Precipitation: total 22.7 mm, daily avg 0.73 mm, daily max 4.3 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.18 m/s, maximum 7.10 m/s
+2-min Fastest Wind: max 16.50 m/s
+5-sec Fastest Wind Gust: max 21.50 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

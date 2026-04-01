@@ -1,0 +1,13 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023234 | GHCN Station USW00023234
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: December 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 13.42 degC, peak 17.8 degC, lowest-max 8.3 degC
+Minimum Temperature: avg 7.0 degC, warmest-min 13.3 degC, coldest-min 3.3 degC
+Precipitation: total 245.2 mm, daily avg 7.91 mm, daily max 93.2 mm
+Average Wind Speed: 2.94 m/s, maximum 7.90 m/s
+2-min Fastest Wind: max 18.30 m/s
+5-sec Fastest Wind Gust: max 24.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

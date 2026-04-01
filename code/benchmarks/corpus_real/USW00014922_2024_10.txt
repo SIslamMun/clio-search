@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014922 | GHCN Station USW00014922
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: October 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 20.09 degC, peak 29.4 degC, lowest-max 8.3 degC
+Minimum Temperature: avg 8.18 degC, warmest-min 17.8 degC, coldest-min 0.6 degC
+Precipitation: total 44.2 mm, daily avg 1.43 mm, daily max 32.0 mm
+Snowfall: total 5 mm, daily max 5 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 4.25 m/s, maximum 7.60 m/s
+2-min Fastest Wind: max 14.80 m/s
+5-sec Fastest Wind Gust: max 20.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

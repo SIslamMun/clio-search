@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094789 | GHCN Station USW00094789
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: March 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 10.59 degC, peak 17.2 degC, lowest-max 1.1 degC
+Minimum Temperature: avg 2.05 degC, warmest-min 8.9 degC, coldest-min -7.1 degC
+Precipitation: total 66.6 mm, daily avg 2.15 mm, daily max 23.6 mm
+Snowfall: total 13 mm, daily max 8 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 5.91 m/s, maximum 10.20 m/s
+2-min Fastest Wind: max 19.20 m/s
+5-sec Fastest Wind Gust: max 24.10 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

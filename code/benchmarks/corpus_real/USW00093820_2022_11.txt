@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00093820 | GHCN Station USW00093820
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: November 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 14.66 degC, peak 26.1 degC, lowest-max 0.6 degC
+Minimum Temperature: avg 2.8 degC, warmest-min 15.6 degC, coldest-min -7.7 degC
+Precipitation: total 53.3 mm, daily avg 1.78 mm, daily max 12.4 mm
+Snowfall: total 8 mm, daily max 8 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.66 m/s, maximum 6.90 m/s
+2-min Fastest Wind: max 16.50 m/s
+5-sec Fastest Wind Gust: max 23.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

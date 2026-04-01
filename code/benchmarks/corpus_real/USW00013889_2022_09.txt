@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013889 | GHCN Station USW00013889
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: September 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 30.4 degC, peak 35.0 degC, lowest-max 21.1 degC
+Minimum Temperature: avg 20.75 degC, warmest-min 23.3 degC, coldest-min 15.6 degC
+Precipitation: total 140.4 mm, daily avg 4.68 mm, daily max 41.1 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.78 m/s, maximum 10.10 m/s
+2-min Fastest Wind: max 17.00 m/s
+5-sec Fastest Wind Gust: max 23.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

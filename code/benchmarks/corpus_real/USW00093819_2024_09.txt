@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00093819 | GHCN Station USW00093819
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: September 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 27.44 degC, peak 34.4 degC, lowest-max 20.0 degC
+Minimum Temperature: avg 15.79 degC, warmest-min 20.6 degC, coldest-min 7.2 degC
+Precipitation: total 38.7 mm, daily avg 1.29 mm, daily max 27.2 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.49 m/s, maximum 9.60 m/s
+2-min Fastest Wind: max 21.00 m/s
+5-sec Fastest Wind Gust: max 30.40 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

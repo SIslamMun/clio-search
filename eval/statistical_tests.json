@@ -1,0 +1,108 @@
+{
+  "noaa_real": {
+    "full_pipeline_vs_bm25_only": {
+      "mean_a": 0.45,
+      "mean_b": 0.375,
+      "observed_diff": 0.075,
+      "p_value": 0.5361,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 8
+    },
+    "full_pipeline_vs_dense_only": {
+      "mean_a": 0.45,
+      "mean_b": 0.25,
+      "observed_diff": 0.2,
+      "p_value": 0.5208,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 8
+    },
+    "full_pipeline_vs_hybrid": {
+      "mean_a": 0.45,
+      "mean_b": 0.45,
+      "observed_diff": 0.0,
+      "p_value": 1.0,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 8
+    },
+    "full_pipeline_vs_string_norm": {
+      "mean_a": 0.45,
+      "mean_b": 0.4,
+      "observed_diff": 0.05,
+      "p_value": 0.6489,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 8
+    }
+  },
+  "doe": {
+    "full_pipeline_vs_bm25_only": {
+      "mean_a": 0.92,
+      "mean_b": 0.92,
+      "observed_diff": 0.0,
+      "p_value": 1.0,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 5
+    },
+    "full_pipeline_vs_dense_only": {
+      "mean_a": 0.92,
+      "mean_b": 0.6,
+      "observed_diff": 0.32,
+      "p_value": 0.534,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 5
+    },
+    "full_pipeline_vs_hybrid": {
+      "mean_a": 0.92,
+      "mean_b": 0.92,
+      "observed_diff": 0.0,
+      "p_value": 1.0,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 5
+    },
+    "full_pipeline_vs_string_norm": {
+      "mean_a": 0.92,
+      "mean_b": 0.92,
+      "observed_diff": 0.0,
+      "p_value": 1.0,
+      "significant": false,
+      "n_iterations": 10000,
+      "n_samples": 5
+    }
+  },
+  "scalability": {
+    "scalability": [
+      {
+        "doc_count": 100,
+        "index_time_s": 27.23,
+        "throughput_docs_per_s": 3.67
+      },
+      {
+        "doc_count": 250,
+        "index_time_s": 68.06,
+        "throughput_docs_per_s": 3.67
+      },
+      {
+        "doc_count": 500,
+        "index_time_s": 147.65,
+        "throughput_docs_per_s": 3.39
+      },
+      {
+        "doc_count": 1000,
+        "index_time_s": 375.57,
+        "throughput_docs_per_s": 2.66
+      },
+      {
+        "doc_count": 1728,
+        "index_time_s": 625.86,
+        "throughput_docs_per_s": 2.76
+      }
+    ],
+    "max_docs": 1728
+  }
+}

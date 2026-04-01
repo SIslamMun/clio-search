@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013889 | GHCN Station USW00013889
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: October 2023 (monthly aggregated observations)
+
+Maximum Temperature: avg 26.97 degC, peak 30.0 degC, lowest-max 19.4 degC
+Minimum Temperature: avg 15.68 degC, warmest-min 22.8 degC, coldest-min 8.3 degC
+Precipitation: total 67.3 mm, daily avg 2.17 mm, daily max 57.4 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.87 m/s, maximum 5.20 m/s
+2-min Fastest Wind: max 10.70 m/s
+5-sec Fastest Wind Gust: max 13.90 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00094846 | GHCN Station USW00094846
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: June 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 28.09 degC, peak 37.2 degC, lowest-max 20.6 degC
+Minimum Temperature: avg 16.58 degC, warmest-min 24.4 degC, coldest-min 11.1 degC
+Precipitation: total 67.8 mm, daily avg 2.26 mm, daily max 22.4 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.84 m/s, maximum 6.30 m/s
+2-min Fastest Wind: max 24.60 m/s
+5-sec Fastest Wind Gust: max 37.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

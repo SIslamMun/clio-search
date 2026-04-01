@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023050 | GHCN Station USW00023050
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: February 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 13.39 degC, peak 20.6 degC, lowest-max 4.4 degC
+Minimum Temperature: avg 0.24 degC, warmest-min 6.7 degC, coldest-min -4.3 degC
+Precipitation: total 10.5 mm, daily avg 0.36 mm, daily max 8.4 mm
+Snowfall: total 69 mm, daily max 69 mm
+Snow Depth: max observed 30 mm
+Average Wind Speed: 3.71 m/s, maximum 10.10 m/s
+2-min Fastest Wind: max 20.60 m/s
+5-sec Fastest Wind Gust: max 28.60 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00024233 | GHCN Station USW00024233
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: August 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 24.27 degC, peak 30.6 degC, lowest-max 15.0 degC
+Minimum Temperature: avg 14.05 degC, warmest-min 17.2 degC, coldest-min 10.0 degC
+Precipitation: total 42.0 mm, daily avg 1.35 mm, daily max 11.9 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 3.17 m/s, maximum 5.10 m/s
+2-min Fastest Wind: max 13.00 m/s
+5-sec Fastest Wind Gust: max 19.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

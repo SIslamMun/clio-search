@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00013957 | GHCN Station USW00013957
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: October 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 27.38 degC, peak 33.3 degC, lowest-max 18.3 degC
+Minimum Temperature: avg 11.86 degC, warmest-min 21.1 degC, coldest-min 1.7 degC
+Precipitation: total 52.9 mm, daily avg 1.71 mm, daily max 33.8 mm
+Snowfall: total 0 mm, daily max 0 mm
+Snow Depth: max observed 0 mm
+Average Wind Speed: 2.82 m/s, maximum 7.40 m/s
+2-min Fastest Wind: max 14.80 m/s
+5-sec Fastest Wind Gust: max 22.80 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

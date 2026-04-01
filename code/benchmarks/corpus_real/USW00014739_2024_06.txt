@@ -1,0 +1,14 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00014739 | GHCN Station USW00014739
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: June 2024 (monthly aggregated observations)
+
+Maximum Temperature: avg 26.72 degC, peak 36.7 degC, lowest-max 19.4 degC
+Minimum Temperature: avg 16.54 degC, warmest-min 22.8 degC, coldest-min 11.7 degC
+Precipitation: total 102.5 mm, daily avg 3.42 mm, daily max 50.0 mm
+Snowfall: total 0 mm, daily max 0 mm
+Average Wind Speed: 4.68 m/s, maximum 6.80 m/s
+2-min Fastest Wind: max 15.70 m/s
+5-sec Fastest Wind Gust: max 23.70 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).

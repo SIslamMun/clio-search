@@ -1,0 +1,15 @@
+NOAA GHCN-Daily Weather Station Report
+Station: USW00023047 | GHCN Station USW00023047
+Location: Unknown, US, USA (0°N, 0°W, elevation 0 m)
+Period: January 2022 (monthly aggregated observations)
+
+Maximum Temperature: avg 12.14 degC, peak 22.8 degC, lowest-max -4.3 degC
+Minimum Temperature: avg -5.83 degC, warmest-min 2.8 degC, coldest-min -13.8 degC
+Precipitation: total 8.6 mm, daily avg 0.28 mm, daily max 5.8 mm
+Snowfall: total 97 mm, daily max 56 mm
+Snow Depth: max observed 50 mm
+Average Wind Speed: 5.73 m/s, maximum 10.80 m/s
+2-min Fastest Wind: max 21.50 m/s
+5-sec Fastest Wind Gust: max 30.40 m/s
+
+Data source: NOAA Global Historical Climatology Network - Daily (GHCN-D). All measurements from certified instruments. Temperature in degrees Celsius (degC). Precipitation and snow in millimeters (mm). Wind speed in meters per second (m/s).
