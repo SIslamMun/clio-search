@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: EGS Collab Modeling and Simulation Working Group Teleconference Series (1-98)
+Authors: ['White, Mark [Pacific Northwest National Laboratory]']
+Date: 2020-02-04T04:00:00Z
+DOI: https://doi.org/10.15121/1642465
+Organization: ['DOE Geothermal Data Repository', 'Pacific Northwest National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', 'DTS', 'EGS', 'EGS Collab', 'SURF', 'Sanford Underground Research Facility', 'c-dots', 'energy', 'experiment', 'flow', 'fracturing', 'geothermal', 'heat flow', 'hydraulic', 'injection test', 'modeling', 'pressure', 'stimulation', 'temperature', 'tracer']
+
+This submission contains the presentation slides and recordings from the first 98 EGS Collab Modeling and Simulation Working Group teleconferences. These teleconferences served three objectives for the project: 1) share simulation results, 2) communicate field activities and results to the simulation teams, and 3) hold open scientific discussions on EGS topics.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

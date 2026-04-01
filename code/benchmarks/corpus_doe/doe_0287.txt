@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Balloon-borne Sounding System (BBSS): meterological data profile
+Authors: ['Coulter, Richard [ORNL]', 'Kyrouac, Jenni', 'Holdridge, Donna']
+Date: 1993-07-01T04:00:00Z
+DOI: https://doi.org/10.5439/1025284
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Horizontal wind', 'Ozone Concentration', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total upwelling irradiance']
+
+Balloon-borne Sounding System (BBSS): meterological data profile
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

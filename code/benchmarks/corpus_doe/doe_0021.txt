@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: TRACER UAS CopterSonde Profiles
+Authors: ['Lappin, Francesca [ORNL] (ORCID:0009000073734281)', 'Pillar-Little, Elizabeth', 'Segales, Antonio', 'Britt, Kelsey', 'Jordan, Arianna', 'Medina, Isaac', 'Otterstatter, Leia', 'Puxley, Bryony', 'Spencer, Michelle', 'Smith, Elizabeth']
+Date: 2023-04-11T04:00:00Z
+DOI: https://doi.org/10.5439/1969004
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Altitude above mean sea level', 'Atmospheric pressure', 'Horizontal wind direction', 'Horizontal wind speed', 'Potential temperature calculated from ambient temperature and pressure', 'Specific humidity', 'Temperature, air', 'Water vapor mixing ratio', 'alt', 'dir', 'mr', 'pres', 'q', 'tdry', 'theta', 'wspd']
+
+<p>This dataset comes from a rotary-wing, weather-sensing uncrewed aerial system called the CopterSonde. Temperature, pressure, humidity, wind speed, and direction are gathered during vertical profiles. The vertical resolution is 5 m up to 609 m above ground level and the temporal resolution is on average 30 minutes.&nbsp;</p>
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

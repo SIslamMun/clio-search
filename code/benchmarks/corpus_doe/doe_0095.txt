@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: TRACER-Sonde Ozonesonde and radiosonde data
+Authors: ['Walter, Paul [ORNL] (ORCID:0000000195676465)', 'Flynn, James', 'Wang, Yuxuan (ORCID:0000000216496974)', 'Partida, Nadia', 'Yoon, Subin (ORCID:0000000308210857)', 'Sheesley, Rebecca (ORCID:0000000281870571)', 'Usenko, Sascha (ORCID:0000000333032909)']
+Date: 2023-08-23T04:00:00Z
+DOI: https://doi.org/10.5439/1996194
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric Moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Ozone', 'column_ozone', 'frostpoint', 'ozone concentration', 'pressure', 'relativeHumidity', 'temperature']
+
+<p>The TRACER-Sonde campaign used electrochemical cell ozonesondes to measure vertical profiles of ozone, which can be a tracer for convective mixing, in conjunction with meteorological variables measured by a radiosonde. There were 32 days in which TRACER-Sonde had twice-daily ozonesondes from the TRACER M1 site at La Porte at ~11Z and ~15Z (6 am and 10 am LT). The ozonesonde profiles provide an additional method to validate boundary-layer height determinations and test assumptions about vertical mixing in pre-convective environments. There are six additional days with ~15Z radiosonde only (no ozone data) profiles.</p>
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

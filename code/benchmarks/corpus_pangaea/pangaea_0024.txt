@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Bordeaux-Mérignac, 1948-01-01 to 1958-12-31, ERA-CLIM ID 6010A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.822997
+Geographic Coverage: {'type': 'point', 'coordinates': [-0.691, 44.831]}
+Position: {'lat': 44.831, 'lon': -0.691}
+Data Points: 895000
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

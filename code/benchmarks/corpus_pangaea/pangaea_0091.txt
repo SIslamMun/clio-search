@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Time series of physical oceanography and pCO2 measurements at mooring site GIFT
+DOI: https://doi.pangaea.de/10.1594/PANGAEA.843269
+Geographic Coverage: {'type': 'point', 'coordinates': [-5.970200000000502, 35.86180000000564]}
+Position: {'lat': 35.86180000000564, 'lon': -5.970200000000502}
+Topics: Organic Chemistry, Chemistry
+Data Points: 27271
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

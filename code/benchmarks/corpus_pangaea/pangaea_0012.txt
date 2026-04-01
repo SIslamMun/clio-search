@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Cruise track, sea level pressure, and air temperature of midwinter, north polar cruises of icebreaker Kapitan Dranitsyn in 2019/20
+Year: 2021
+DOI: https://doi.org/10.1594/PANGAEA.932187
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[18.9912, 88.472], [122.5664, 69.678]]}
+Position: {'lat': 82.21539154175579, 'lon': 61.995387901498816}
+Data Points: 3736
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

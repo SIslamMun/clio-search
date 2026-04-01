@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Compiled TBS data from Oliktok Point from ICARUS, AVPOP, and POPEYE
+Authors: ['Telg, Hagen [ORNL]']
+Date: 2020-09-01T04:00:00Z
+DOI: https://doi.org/10.5439/1651201
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'ARM', 'Aerosol concentration', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Ceilometer', 'Cloud base height', 'Cloud top height', 'DOE.', 'Ka-Band ARM Zenith Radar', 'Liquid water content', 'Microwave radiometer', 'Precipitation', 'Printed optical particle counter', 'Tethered balloon system', 'Ultra-high-sensitivity aerosol spectrometer']
+
+The dataset encompasses QA/QC TBS data, including TBS altitude, atmospheric pressure, dew point, POPs number concentrations and mean aerosol size, relative humidity, temperature, equivalent potential temperature, equivalent temperature, and date and time. These data are provided per day for at least one TBS flight. Supporting data from the AMF3 aligned with the timestamps of the TBS data include cloud base distance from TBS, if the time corresponds to cloud base transit of the TBS, surface-based pressure, surface-based precipitation rate, surface-based UHSAS data, ceilometer cloud base height, KAZR cloud top height, and MWR liquid water content. Both POPS and UHSAS aerosol number concentrations are provided as: (1) absolute (i.e. concentrations for each instrument&#39;s total size range) and (2) the overlapping size range (i.e. the same size bins for both instruments).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

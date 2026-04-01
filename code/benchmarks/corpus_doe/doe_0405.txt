@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: UAE6 - Wind Tunnel Tests Data - UAE6 - Sequence 8 - Raw Data
+Authors: ['Fingersh, Lee [Pacific Northwest National Laboratory]']
+Date: 2022-11-28T04:00:00Z
+DOI: https://doi.org/10.21947/1483771
+Organization: ['Atmosphere to Electrons (A2e) Data Archive and Portal, Pacific Northwest National Laboratory', 'PNNL']
+Subjects: ['17 WIND ENERGY']
+
+Sequences 8 and 9: Downwind Sonics (F,P) and Downwind Sonics Parked (P) This test sequence used an upwind, rigid turbine with a 0° cone angle. The wind speed ranged from 5 m/s to 25 m/s. Yaw angles of 0° to 60° were achieved. The blade tip pitch was 3°. The rotor rotated at 72 RPM during Sequence 8, but it was parked during Sequence 9. Blade pressure measurements were collected. The five-hole probes were removed and the plugs were installed. Plastic tape 0.03-mm-thick was used to smooth the interface between the plugs and the blade. The teeter dampers were replaced with rigid links, and these two channels were flagged as not applicable by setting the measured values in the data file to –99999.99 Nm. The teeter link load cell was pre-tensioned to 40,000 N. During post-processing, the probe channels were set to read -99999.99. Sonic anemometers were mounted on a strut downwind of the turbine. The strut was mounted to the T-frame, which was rotated to align the anemometers aft of the 9% and 49% radius locations at hub height. Because of this configuration, the tunnel balance data are considered invalid. Sequence 9 was designed to compare the downwind sonic anemometer readings with the upwind sonic anemometers without interference from the turbine. The rotor was parked with the instrumented blade at 0° azimuth. All pressure measurements obtained in Sequence 9 are invalid because sufficient time for temperature stabilization did not occur, thus all associated data values were flagged as not applicable by setting the measured values in the data file to 0.0000 Pa. This test is further described in Appendix G.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

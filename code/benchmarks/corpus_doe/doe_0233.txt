@@ -1,0 +1,15 @@
+DOE Scientific Dataset Record
+Title: NANT Site - Microwave Radiometer Thermodynamic Retrievals TROPoe / Derived Data
+Authors: ['Adler, Bianca [NOAA PSL]', 'Bianco, Laura [NOAA PSL]']
+Date: 2025-11-24T04:00:00Z
+DOI: https://doi.org/10.21947/2293548
+Organization: ['Pacific Northwest National Laboratory']
+Subjects: ['17 WIND ENERGY']
+
+This dataset contains daily files with thermodynamic profiles retrieved with the optimal estimation physical retrieval TROPoe (Turner and Löhnert 2014; Turner and Blumberg 2019; Turner and Löhnert 2021). The profiles are retrieved every 10 minutes from instantaneous brightness temperature measurements at 35 channels observed with a microwave radiometer MP3000A operated by NOAA Physical Sciences Laboratory on Nantucket Island for WFIP3. 
+
+Additional input data in TROPoe are cloud base height from a collocated ceilometer operated by NOAA GML and temperature, water vapor mixing ratio, and pressure from a sensor attached to the MWR housing.
+
+In addition to these temporally resolved input data, TROPoe requires an a priori dataset (prior) that provides mean climatological estimates of thermodynamic profiles and specifies how temperature and humidity covary with height as an input (for details see, e.g., Djalalova et al. 2022). The prior is a key component of the retrieval and provides a constraint on the ill-posed inversion problem. A monthly prior was computed from operational radiosonde launches at Upton, NY.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

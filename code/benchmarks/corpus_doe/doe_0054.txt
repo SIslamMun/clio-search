@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: High pressure and low temperature diffraction data of polycrystalline Pyrazine-d4
+Authors: ['Molaison, Jamie (ORCID:0000000317718409)', 'Ridley, Chris (ORCID:0000000230609656)', 'Hinton, Jasmine (ORCID:000000034417462X)']
+Date: 2025-09-04T04:00:00Z
+DOI: https://doi.org/10.14461/oncat.data/2587282
+Organization: ['Spallation Neutron Source (SNS)']
+Subjects: ['36 MATERIALS SCIENCE']
+
+Raw data, and temperature correction file for pyrazine data.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

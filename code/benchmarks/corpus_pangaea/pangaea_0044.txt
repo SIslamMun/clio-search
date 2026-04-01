@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice and sea ice drift from autonomous measurements from buoy 2015S27, deployed during the Norwegian Young sea ICE cruise N-ICE 2015
+Year: 2017
+DOI: https://doi.org/10.1594/PANGAEA.875328
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[2.3624, 82.7944], [16.2662, 79.4548]]}
+Position: {'lat': 81.245234697509, 'lon': 9.55186049822064}
+Data Points: 7367
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

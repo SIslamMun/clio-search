@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Fault Reactivation Through Fluid Injection Induced Seismicity Laboratory Experiments
+Authors: ['Yu, Jiayi [Penn State University]', 'Eijsink, Agathe', 'Elsworth, Derek']
+Date: 2023-07-01T04:00:00Z
+DOI: https://doi.org/10.15121/1997264
+Organization: ['DOE Geothermal Data Repository', 'Penn State University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'Induced Seismicity', 'MATLAB', 'Utah FORGE', 'Westerly granite', 'code', 'energy', 'fault activation', 'flow rate', 'fluid', 'injection test', 'pressure', 'raw data', 'reactivation', 'shear']
+
+Included are results from shear reactivation experiments on laboratory faults pre-loaded close to failure and reactivated by the injection of fluid into the fault. The sample comprises a single-inclined-fracture (SIF) transecting a cylindrical sample of Westerly granite. All experiments are conducted at ambient temperature and follow a similar protocol: (i) application of confining stresses (3MPa) on the fault fully saturated with DI water, (ii) shear-mobilization through the increase of axial loading at a constant displacement rate until a post-peak steady-state condition is reached, (iii) reduction of axial loading and related shear stress to a prescribed fraction of the peak steady-state frictional strength (typically 60% to 90%, representing intermediate to high magnitudes) and (iv), fault reactivation triggered by a stepwise increase of pore pressure on the fault in 0.1 MPa increments held constant for 1-5 minutes. Mechanical data from three ISCO pumps connected to a Temco pressure vessel measure axial, confining, and fault-related parameters, including fluid pressure (kPa), fluid flow rate (mL/min), and axial displacement (mm). See included code for initial data analysis and visualization for select experiments. Resource names represent experiment numbers found in the "Read Me" file, which describes each experimental setup and parameters.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

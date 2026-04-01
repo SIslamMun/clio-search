@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Duke FACE Micrometeorological Data
+Authors: ['FACTS-I [Duke Forest FACE Experiment; ESS-DIVE]']
+Date: 2007-07-10T04:00:00Z
+DOI: https://doi.org/10.15485/1463813
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', '<T>', '<U>', '<V>', '<W>', '<WD>', '<wco2b>', 'DOY', 'Day/Time', 'Duke FACE', 'FACTS I', 'H', 'LEwq2b', 'Rn', 'Time', 'carbon dioxide', 'cc(x,y)', 'co2std', 'micrometeorology', 'q2std', 'rnstd', 'soil moisture', 'tstd', 'u*', 'ustd', 'v*', 'vegetation response', 'vstd', 'wdstd', 'wstd']
+
+Precipitation, Net radiation, and PAR data files (1998, rings 4 and 5):First four columns show precipitation (mm) and net radiation (W/m^2).Ring 4 measures overstory precipitation (po), and ring 5 measures throughfall (pt).The last data column shows PAR (millimol/m^2*s).Air temperature, Relative Humidity, SVP, and VPD (r1 - r6):Data columns are organised by ring number.For each ring there is:- Temperature (Degrees C)- Relative humidity (absolute values)- SVP (Saturated Vapor Pressure - kPa)- VPD (Vapor Pressure Deficit - kPa)measurements are done at 2/3 of canopy heightNote: gap-filled data are available for some variables and years.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

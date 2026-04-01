@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: CCPP-ARM Parameterization Testbed Model Forecast Data
+Authors: ['Klein, Stephen [ORNL]']
+Date: 2008-01-15T04:00:00Z
+DOI: https://doi.org/10.5439/1169523
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Cloud fraction', 'Horizontal wind', 'Latent heat flux', 'Longwave broadband downwelling irradiance', 'Longwave broadband net irradiance', 'Longwave broadband upwelling irradiance', 'Precipitation', 'Radiative heating rate', 'Sensible heat flux', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total net irradiance', 'Shortwave broadband total upwelling irradiance', 'Surface skin temperature', 'Vertical velocity']
+
+Dataset contains the NCAR CAM3 (Collins et al., 2004) and GFDL AM2 (GFDL GAMDT, 2004) forecast data at locations close to the ARM research sites.  These data are generated from a series of multi-day forecasts in which both CAM3 and AM2 are initialized at 00Z every day with the ECMWF reanalysis data (ERA-40), for the year 1997 and 2000 and initialized with both the NASA DAO Reanalyses and the NCEP GDAS data for the year 2004. The DOE CCPP-ARM Parameterization Testbed (CAPT) project assesses climate models using numerical weather prediction techniques in conjunction with high quality field measurements (e.g. ARM data).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

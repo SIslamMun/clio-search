@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 16A(78)-32 and 16B(78)-32 Stimulation Production Logging Tests
+Authors: ['Haroun, Fanny [Energy and Geoscience Institute at the University of Utah]']
+Date: 2024-05-13T04:00:00Z
+DOI: https://doi.org/10.15121/2350794
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A', '16B', 'EGS', 'PLT', 'Utah FORGE', 'circulation', 'circulation test', 'energy', 'flow', 'fracing', 'geothermal', 'line speed', 'pressure', 'processed data', 'production logging test', 'raw data', 'stimulation', 'stimulation production', 'technical report', 'temperature', 'well 16A78-32', 'well 16B78-32', 'well log']
+
+These are production logging tests (PLT) results from Halliburton collected during the nine hour circulation test performed at Utah FORGE on April 27th, 2024. The circulation test involved injecting into well 16A(78)-32 and producing out of well 16B(78)-32) and was carried out after the fracturing of both of those wells. Data attached here includes raw and processed PLT logs from both wells, as well as technical reports summarizing the data collection and results.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

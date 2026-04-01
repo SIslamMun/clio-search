@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: sondewrpr (a0)
+Authors: ['Keeler, Evan [ORNL]', 'Kyrouac, Jenni']
+Date: 1994-04-07T04:00:00Z
+DOI: https://doi.org/10.5439/1998240
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Horizontal wind', 'Ozone Concentration', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total upwelling irradiance']
+
+The balloon-borne sounding system (SONDE) provides in situ measurements (vertical profiles) of both the thermodynamic state of the atmosphere, and the wind speed and direction. Sonde operations can provide important constraints for model simulations if used during field campaigns where multiple stations are operated around a central location with baseline measurements, such as a mobile facility. When deployed, sondes are launched at scheduled intervals.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

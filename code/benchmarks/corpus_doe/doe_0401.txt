@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: University of Maryland Eastern Shore Common Garden
+Authors: ['Ftwi, Nahom [University of Maryland Eastern Shore]', 'Thorpe, Merle [University of Maryland Eastern Shore]', 'Li, Xuefeng [University of Maryland Eastern Shore]', 'Kleinsasser, Janna [University of Maryland Eastern Shore]', 'Cumming, Jonathan [University of Maryland Eastern Shore]']
+Date: 2024-10-28T04:00:00Z
+DOI: https://doi.org/10.25983/2474944
+Organization: ['Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['CBI, Populus, common garden, transgenic']
+
+Located at the University of Maryland Eastern Shore, an HBCU (Historically Black Colleges and Universities), this data set is composed of the geographic coordinates of four transgenic Populus tremula x alba INRA 717-IB4 lines (CHX20, XBAT35, EXO70, DIR18) as well as a wild type (WT), and Empty vector (EV)). Our site is monitored by an ATOMS 41 weather station, which collects solar radiation, air temperature, vapor and atmospheric pressure, precipitation, and other weather variables. We will assess a suite of variables reflecting growth and performance, focusing on root allocation and soil carbon sequestration.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

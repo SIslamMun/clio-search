@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Underway physical oceanography and carbon dioxide measurements in the South Atlantic and Southern Ocean during James Clark Ross cruise JR259_275_255B
+Year: 2016
+DOI: https://doi.org/10.1594/PANGAEA.858455
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-58.3543, -51.9488], [-22.6024, -70.2232]]}
+Position: {'lat': -59.47088706467662, 'lon': -47.537407960199026}
+Topics: Organic Chemistry, Chemistry
+Data Points: 2617
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

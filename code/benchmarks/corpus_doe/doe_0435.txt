@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Subsurface redox potential and water level at the Elkhorn Slough NERR
+Authors: ['Grande, Emilio [University of California Santa Cruz; University of California Santa Cruz] (ORCID:0000000339950380)']
+Date: 2022-03-05T04:00:00Z
+DOI: https://doi.org/10.15485/1846282
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem', 'Linking Nutrient Reactivity and Transport in Subsurface Flowpaths Along a Terrestrial-Estuarine Continuum']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Coastal Wetlands>Redox Potential', 'Earth Sciences>Hydrology>Water Levels', 'Earth Sciences>Hydrology>Wetlands']
+
+This resource contains various hydrological, and geochemical data from Elkhorn Slough National Estuarine Research Reserve from the years 2020 and 2021. These data have been used to assess how continuous measurements of environmental variables. The data can be used to understand processes at timescales over which biochemical transformations can happen. Especially, the data were used to explain the local subsurface hydrology, and its implication, in an experimental transect in a coasta estuary. Water level and water temperature were measured in-situ with Solinst pressure transducer loggers (Ontario, Canada). Redox potential was collected using in-situ, redox sensors (Paleoterra, The Netherlands) connected to CR1000X Campbell data loggers (Logan, Utah). Meteorological data was gathered from the Elkhorn Slough meteorological station.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

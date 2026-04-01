@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE Phase 3 Native State Model: 2022 Update
+Authors: ['Podgorney, Rob [Idaho National Laboratory]', 'Liu, R.']
+Date: 2022-07-29T04:00:00Z
+DOI: https://doi.org/10.15121/1879437
+Organization: ['DOE Geothermal Data Repository', 'Idaho National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A78-32', '56-32', '58-32', '78-32', '78B-32', 'Utah FORGE', 'energy', 'fractures', 'geothermal', 'input', 'input files', 'model', 'native state model', 'pore pressure', 'pressure', 'processed data', 'raw data', 'reservoir potential', 'simulation', 'stress', 'temperature', 'water']
+
+This is the Phase 3 native state model update. The Phase 3 numerical model represents a significant subsurface volume below the FORGE site footprint. The model domain of 4.0 km x 4.0 km x 4.2 km is located approximately between depths of 4000 to 4200 meters below land surface. This data archive consists of 10 files, 4 of which are simulation input files and the remaining 6 are simulation output files. There is an included readme.txt file that contains details on each of the data files. The input files include meshes, FALCON code inputs, tabulated data of water properties, temperature values, and model boundaries. The output files include simulation outfiles and point data of modeled material properties.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

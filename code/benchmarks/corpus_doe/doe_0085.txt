@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Trace Gases, Meteorological Parameters, and GPS data for TRACER-MAP
+Authors: ['Yoon, Subin [ORNL]', 'Flynn, James (ORCID:0000000236021458)', 'Alvarez, Sergio (ORCID:0000000308210857)']
+Date: 2023-03-05T04:00:00Z
+DOI: https://doi.org/10.5439/1959757
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Ambient pressure (press) in mbar', 'Ambient temperature (temp) in degrees Celsius', 'Carbon monoxide (CO) mixing ratio in ppbv', 'Latitude in decimal degrees', 'Longitude in decimal degrees', 'Nitric oxide (NO) mixing ratio in ppbv', 'Nitrogen dioxide (NO2) mixing ratio in ppbv', 'Ozone (O3) mixing ratio in ppbv', 'Reactive nitrogen compounds (NOy) mixing ratio in ppbv', 'Relative humidity (RH) in percent', 'Sulfuric dioxide (SO2) mixing ratio in ppbv', 'Wind direction (WD) in degrees', 'Wind speed (WS) in meters per second', 'photolysis rate of NO2 (jNO2) units in per second']
+
+<p>This dataset includes trace gas, meteorological, and GPS measurements made on Mobile Air Quality Laboratory 2 (MAQL2) for the TRACER-MAP sampling campaign. Trace gas measurements include nitric oxide (NO), nitrogen dioxide (NO2), reactive nitrogen compounds (NOy), ozone (O3), sulfur dioxide (SO2), and carbon monoxide (CO). All trace gases are in units of ppbv, excluding CO which is in ppmv. The dataset also includes the photolysis rate of NO2 (jNO2), latitude and longitude, wind speed (WS), wind direction (WD), ambient relative humidity (RH), ambient pressure (press), and ambient temperature (temp). Units for trace gases are in parts per billion (ppbv), latitude and longitude are in decimal degrees (dd), jNO2 is in per second (per sec), pressure is in millibar (mbar), relative humidity is in percent, the temperature is in degrees C, wind direction is in degrees, and wind speed is in meters per second. All data is 5 minutes averaged.</p>
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

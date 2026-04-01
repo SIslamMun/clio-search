@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Mean flows and blob velocities in scrape-off layer (SOLT) simulations of an L-mode discharge on Alcator C-Mod
+Authors: ['Russell, D. A. [OSTI]', 'Myra, J. R.', 'D’Ippolito, D. A.', 'LaBombard, B.', 'Hughes, J. W.', 'Terry, J. L.', 'Zweben, S. J.']
+Date: 2018-10-16T04:00:00Z
+DOI: https://doi.org/10.7910/DVN/4UNJMZ
+Organization: ['Massachusetts Inst. of Technology (MIT), Cambridge, MA (United States). Plasma Science and Fusion Center']
+Subjects: ['70 PLASMA PHYSICS AND FUSION TECHNOLOGY']
+
+Two-dimensional scrape-off layer turbulence (SOLT) code simulations are compared with an L-mode discharge on the Alcator C-Mod tokamak [M. Greenwald, et al., Phys. Plasmas 21, 110501 (2014)]. Density and temperature profiles for the simulations were obtained by smoothly fitting Thomson scattering and mirror Langmuir probe (MLP) data from the shot. Simulations differing in turbulence intensity were obtained by varying a dissipation parameter. Mean flow profiles and density fluctuation amplitudes are consistent with those measured by MLP in the experiment and with a Fourier space diagnostic designed to measure poloidal phase velocity. Blob velocities in the simulations were determined from the correlation function for density fluctuations, as in the analysis of gas-puff-imaging (GPI) blobs in the experiment. In the simulations, it was found that larger blobs moved poloidally with the ExB flow velocity, vE , in the near-SOL, while smaller fluctuations moved with the group velocity of the dominant linear (interchange) mode, vE + 1/2 vdi, where vdi is the ion diamagnetic drift velocity. Comparisons are made with the measured GPI correlation velocity for the discharge. The saturation mechanisms operative in the simulation of the discharge are also discussed. It is found that neither sheared flow nor pressure gradient modification can be excluded as saturation mechanisms.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Laboratory Evaluation of EGS Shear Stimulation-Test 001
+Authors: ['Bauer, Steve [Sandia National Laboratories]']
+Date: 2014-07-29T04:00:00Z
+DOI: https://doi.org/10.15121/1154908
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS lab simulation', 'geothermal', 'granite', 'hydroshearing', 'lab hydroshear']
+
+this is the results of an initial setup-shakedon test in order to develop the plumbing system for this test design. a cylinder of granite with offset holes was jacketed and subjected to confining pressure and low temperature (85C) and pore water pressure. flow through the sample was developed at different test stages.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

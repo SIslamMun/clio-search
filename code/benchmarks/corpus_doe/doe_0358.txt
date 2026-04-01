@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: United States Virgin Islands: St. Thomas (Bovoni) & St. Croix (Longford)
+Authors: ['Roberts, O. [National Renewable Energy Laboratory]', 'Andreas, A.']
+Date: 1997-01-01T00:00:00Z
+DOI: https://doi.org/10.7799/1183464
+Organization: ['NREL-DATA (National Renewable Energy Laboratory - Data (NREL-DATA), Golden, CO (United States))']
+Subjects: ['14 SOLAR ENERGY', '17 WIND ENERGY', 'data', 'display', 'global', 'humidity', 'instrumentation', 'irradiance', 'measurement', 'meterological', 'midc', 'nrel', 'outdoor', 'precipitation', 'pressure', 'pyranometer', 'radiometer', 'SODAR', 'solar', 'solar calendar', 'temperature', 'thermopile', 'weather', 'wind', 'wind rose']
+
+Two measurement stations to collect wind data to support future wind power generation in the U.S. Virgin Islands.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

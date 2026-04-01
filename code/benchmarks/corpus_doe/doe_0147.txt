@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Chilled Mirror Dew Point Hygrometer
+Authors: ['Cook, David [ORNL]', 'Kyrouac, Jenni']
+Date: 2001-03-31T04:00:00Z
+DOI: https://doi.org/10.5439/1025165
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Precipitation', 'Visibility']
+
+Chilled Mirror Dew Point Hygrometer
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

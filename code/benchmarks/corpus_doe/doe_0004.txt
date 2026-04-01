@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Milford Deep Test Well 58-32 (MU-ESW1) Pressure and Temperature Logs
+Authors: ['Moore, Joe [Energy and Geoscience Institute at the University of Utah]']
+Date: 2018-11-08T04:00:00Z
+DOI: https://doi.org/10.15121/1493769
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '58-32', 'Beaver County', 'EGS', 'FORGE', 'LAS', 'MU-ESW1', 'Milford', 'Pressure', 'Pressure log', 'Pressure/Temperature log', 'Roosevelt Hot Springs', 'Temperature', 'Temperature log', 'Utah', 'Utah FORGE', 'Wel 58-32', 'Well MU-ESW1', 'characterization', 'deep', 'energy', 'geothermal', 'log', 'resource', 'test', 'well', 'well data', 'well log']
+
+This archive consists of a pdf graphic log and a LAS text file representing the results of the pressure and temperature logs measured on Nov. 8th, 2018 from the Utah FORGE deep test well 58-32 (MU-ESW1). The logs were taken by DI Drill Survey Services.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

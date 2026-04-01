@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Super-Resolution for Renewable Energy Resource Data with Climate Change Impacts (Sup3rCC)
+Authors: ['Buster, Grant [National Renewable Energy Lab (NREL)] (ORCID:0000000186168100)', 'Benton, Brandon', 'Glaws, Andrew', 'King, Ryan']
+Date: 2023-04-19T04:00:00Z
+DOI: https://doi.org/10.25984/1970814
+Organization: ['DOE Open Energy Data Initiative (OEDI)', 'National Renewable Energy Lab (NREL)']
+Subjects: ['Array', 'DNI', 'GAN', 'GHI', 'Sup3rCC', 'climate', 'climate change', 'contiguous United States', 'energy', 'energy planning', 'energy systems', 'generative adversarial learning', 'generative adversarial network', 'generative machine learning', 'high-resolution', 'irradiance', 'machine learning', 'power', 'power systems', 'renewable energy', 'resource data', 'solar', 'temperature', 'weather', 'wind', 'windspeed']
+
+The Super-Resolution for Renewable Energy Resource Data with Climate Change Impacts (Sup3rCC) data is a collection of 4km hourly wind, solar, temperature, humidity, and pressure fields for the contiguous United States under various climate change scenarios. Sup3rCC is downscaled Global Climate Model (GCM) data. The downscaling process was performed using a generative machine learning approach called sup3r: Super-Resolution for Renewable Energy Resource Data (linked below as "Sup3r GitHub Repo"). The data includes both historical and future weather years, although the historical years represent the historical climate, not the actual historical weather that we experienced. You cannot use Sup3rCC data to study historical weather events, although other sup3r datasets may be intended for this. The Sup3rCC data is intended to help researchers study the impact of climate change on energy systems with high levels of wind and solar capacity. Please note that all climate change data is only a representation of the possible future climate and contains significant uncertainty. Analysis of multiple climate change scenarios and multiple climate models can help quantify this uncertainty.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Fusion Pilot Plant performance and the role of a Sustained High Power Density tokamak
+Authors: ['Menard, Jonathan [Princeton Plasma Physics Laboratory]', 'Grierson, Brian', 'Brown, Tom', 'Rana, Chirag', 'Zhai, Yuhu', 'Poli, Francesca', 'Maingi, Rajesh', 'Guttenfelder, Walter', 'Snyder, Philip']
+Date: 2022-01-19T04:00:00Z
+DOI: https://doi.org/10.11578/1888274
+Organization: ['Princeton Plasma Physics Laboratory (PPPL), Princeton, NJ (United States)']
+Subjects: ['core-edge integration', 'fusion pilot plant', 'high-temperature superconductors', 'liquid metals', 'steady-state tokamak']
+
+Recent U.S. fusion development strategy reports all recommend that the U.S. should pursue innovative science and technology to enable construction of a Fusion Pilot Plant (FPP) that produces net electricity from fusion at low capital cost. Compact tokamaks have been proposed as a means of potentially reducing the capital cost of a fusion pilot plant. However, compact steady-state tokamak FPPs face the challenge of integrating a high fraction of self-driven current with high core confinement, plasma pressure, and high divertor parallel heat flux. This integration is sufficiently challenging that a dedicated sustained-high-power-density (SHPD) tokamak facility is proposed by the U.S. community as the optimal way to close this integration gap. Performance projections for the steady-state tokamak FPP regime are presented and a preliminary SHPD device with substantial flexibility in lower aspect ratio (A=2-2.5), shaping, and divertor configuration to narrow gaps to a FPP is described.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

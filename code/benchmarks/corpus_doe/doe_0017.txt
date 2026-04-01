@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Temperature-Dependent Fracture Seismicity from Fluid Injection Experiments
+Authors: ['Wang, Junpeng [Pennsylvania State University]', 'Elsworth, Derek', 'Eijsink, Agathe']
+Date: 2024-02-29T04:00:00Z
+DOI: https://doi.org/10.15121/2483881
+Organization: ['DOE Geothermal Data Repository', 'Pennsylvania State University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'Utah FORGE', 'displacement', 'energy', 'experimental geomechanics', 'fluid injection', 'fracture mechanics', 'fracture seismicity', 'geomechanics', 'geothermal', 'granite', 'high temperature rock mechanics', 'pore pressure', 'raw data', 'seismicity', 'shear stress', 'stimulation', 'temperature']
+
+This dataset contains experimental data from fluid injection experiments conducted to investigate the influence of temperature on fracture seismicity. The experiments were performed on granite samples from Utah FORGE. The samples were prepared with a 30-degree inclined fracture and subjected to controlled stress and temperature conditions. Data were collected under three distinct temperature settings: 24 C, 78 C, and 137 C. During the experiments, a constant confining pressure of 10 MPa and a constant shear stress at 80% of the shear strength of the sample were maintained. Pore pressure was incrementally increased at a rate of 300 kPa every three minutes to simulate fluid injection. Temperature was raised rapidly and then stabilized for the duration of each test. The dataset includes shear stress and displacement measurements under each temperature condition, along with supplementary figures illustrating the experimental setup and time-series plots of pressures and temperature.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

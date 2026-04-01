@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: CTD profiles from oceanographic expedition HH/14 with RV HELMER HANSSEN in the Fram Strait in 2014
+Year: 2022
+DOI: https://doi.org/10.1594/PANGAEA.941537
+Geographic Coverage: {'type': 'point', 'coordinates': [6.925433000000161, 79.00220000000164]}
+Position: {'lat': 79.00220000000164, 'lon': 6.925433000000161}
+Topics: Biodiversity Conservation, Ecology, Environmental Sciences
+Data Points: 2444
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

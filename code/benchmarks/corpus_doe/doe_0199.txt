@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Literature Data on Foam Fracturing Fluid
+Authors: ['Thakor, Viren [Temple University] (ORCID:0000000321736386)', 'Ren, Fei', 'Wang, Hong']
+Date: 2021-11-08T04:00:00Z
+DOI: https://doi.org/10.15121/1869426
+Organization: ['DOE Geothermal Data Repository', 'Temple University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Enhanced Geothermal Systems', 'Foam Fracturing Fluids', 'data', 'data collection', 'energy', 'foam', 'foam fracturing', 'geothermal', 'literature review', 'processed data', 'reference']
+
+At the beginning of this project, the Temple team spent significant effort to collect data relevant to foam fracturing. More than 40 articles/reports were found in the open literature that reported the properties of aqueous foams under various testing conditions. The foam properties included viscosity and stability in terms of half-life, while were influenced by the foam quality, shear rate, temperature, pressure, as well as surfactants and additives used in making the foam base solutions. As a result, more than 1100 data points were collected, which are included in a master worksheet named "Literature data on Foam Fracturing Fluid". These data points are organized based on following parameters: 1. Literature source, including authors and publication year 2. Gaseous phase (e.g. CO2, N2) 3. Liquid phase (e.g. tap water, DI water, salt water) 4. Surfactants and their concentrations 6. Additives 7. Foam quality 8. Pressure 9. Temperature 10. Viscosity 11. Foam stability, which was characterized by its half-life: Half-life Foam study data base with data analysis was completed and a webpage is designed hosted on public server at https://surfactant-dashboard.herokuapp.com
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

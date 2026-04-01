@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: West Flank Coso FORGE: Mud Logs
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2016-05-13T04:00:00Z
+DOI: https://doi.org/10.15121/1287566
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Coso', 'EGS', 'FORGE', 'West Flank', 'c02', 'formation log', 'gamma radiation', 'geothermal', 'hydrostatic', 'lithology log', 'log', 'logging', 'mud log', 'mud logs', 'pressure', 'static', 'temperature', 'well', 'well log']
+
+Mud logs for wells 83-11, 68-6, 33A-7, 33A-7RD, 52B-7, and 88-1 at West Flank
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Geocube
+Authors: ['Administrator, EDX [National Energy Technology Laboratory]']
+Date: 2018-06-30T04:00:00Z
+DOI: https://doi.org/10.18141/1471973
+Organization: ['National Energy Technology Laboratory - Energy Data eXchange', 'NETL']
+Subjects: ['Earth', 'GIS', 'carbon storage', 'consumption', 'customize', 'download', 'energy', 'environmental', 'fault', 'gas', 'geodatabase', 'geographic', 'hydrocarbon', 'infrastructure', 'offshore', 'oil', 'onshore', 'permeability', 'pipeline', 'porosity', 'pressure', 'production', 'reservoir', 'sequestration', 'shapefile', 'subsurface', 'surface', 'temperature', 'thickness', 'transmission', 'unconventional', 'visualization', 'well']
+
+NOTICE: Geocube has been replaced by EDX Spatial, a modern geospatial platform to map, visualize, query and explore spatial data. Online web mapping tool for visualization and simple analysis of Earth-energy data files from public and DOE related sources. Geocube allows users to upload and visualize their own datasets but also comes preloaded with individual spatial datasets as well as spatial data collections that align to topical themes.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

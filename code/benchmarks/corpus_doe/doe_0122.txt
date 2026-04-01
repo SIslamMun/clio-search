@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ERA5-Land Data for LASSO-CACTI Overview Paper	
+Authors: ['Muñoz-Sabater, Joaquín (ORCID:000000025997290X)']
+Date: 2025-12-10T04:00:00Z
+DOI: https://doi.org/10.5439/3007120
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['10m wind u-component', '10m wind v-component', 'ECMWF model-derived', 'atmosphere: troposphere', 'model-derived 2 meter specific humidity', 'rain rate', 'soil', 'surface', 'surface downward longwave flux', 'surface downward shortwave flux', 'surface pressure', 'temperature']
+
+The European Centre for Medium-Range Weather Forecasts (ECMWF) generated a soil reanalysis dataset for the land component of the fifth generation of European ReAnalysis (ERA5), referred to as ERA5-Land. This is a model-generated dataset, with the original version available for the period 1950 to present. The version archived in this DOE ARM product is a subset of the data is for the period of the CACTI field campaign plus several preceding months, specifically from August 1, 2018 through March 22, 2019 with hourly intervals. The ARM copy is also a sub-region of the original global product; the ARM copy is for -60 to -5 °N by -105 to -30 °W. Only variables necessary to drive the WRF-Hydro model are included, which are the 2-m temperature and specific humidity, 10-m wind components, surface pressure, rain rate, and downward surface short and longwave radiation. These data have been obtained from the Copernicus Data Store.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

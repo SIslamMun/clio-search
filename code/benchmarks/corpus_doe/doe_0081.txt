@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Surface Meteorological Station - ARL 2m, ancillary flux, Prineville - Reviewed Data
+Authors: ['Eckman, Richard [Pacific Northwest National Laboratory]', 'Reese, Brad']
+Date: 2023-10-11T04:00:00Z
+DOI: https://doi.org/10.21947/1402017
+Organization: ['Atmosphere to Electrons (A2e) Data Archive and Portal, Pacific Northwest National Laboratory', 'PNNL']
+Subjects: ['17 WIND ENERGY']
+
+These data contain measurements from a four-component net radiometer, as well as 2-m temperature, pressure, and relative humidity. In addition, soil moisture and temperature measurements and soil heat fluxes are included.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

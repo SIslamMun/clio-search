@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Integrated Sounding System (ISS): meteorological data vertical profile
+Authors: ['Giangrande, Scott [ORNL]']
+Date: 1996-09-17T04:00:00Z
+DOI: https://doi.org/10.5439/1046191
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind']
+
+Integrated Sounding System (ISS): meteorological data vertical profile
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

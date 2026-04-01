@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Data of High-Temperature Dynamic LCM Testing Setup
+Authors: ['Magzoub, Musaab [University of Oklahoma]', 'Salehi, Saeed', 'Li, Guoqiang', 'Fan, Jizhou', 'Teodoriu, Catalin', 'Anyaezu, Tobenna', 'Saleh, Fatemeh K.', 'Taleghani, Arash D.']
+Date: 2021-05-31T04:00:00Z
+DOI: https://doi.org/10.15121/1986090
+Organization: ['DOE Geothermal Data Repository', 'University of Oklahoma']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Filtration', 'Fracture', 'Geothermal drilling', 'Granite', 'Lost circulation', 'Lost circulation materials', 'SMP', 'Sealability', 'Sealing pressure', 'Shape memory polymer', 'Smart LCM', 'Swellbore strengthening', 'drilling', 'drilling fluid additives', 'energy', 'experiment', 'fracture sealing', 'geothermal', 'model', 'processed data', 'technology', 'temperature', 'wellbore']
+
+Data from high temperature dynamic sealing tests for various fracture widths, at various temperatures (degrees F), with 5 wt.% bentonite-based mud containing various material fiber contents, at 100 to 400 psi differential pressure. Data from pressure test and evaluation of the dynamic lost circulation materials (LCM) testing unit to reflect the condition of open and sealed fracture using fracture width of 1000 microns at 120 degrees F. Links to two papers based on the data - "Loss circulation prevention in geothermal drilling by shape memory polymer" which was published in Geothermics 89 (2021) 101943) as well as "Evaluating sealability of blended smart polymer and fiber additive for geothermal drilling with the effect of fracture opening size", published in the Journal of Petroleum Science and Engineering 206 (2021) 108998.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Auxiliary data from the sea ice mass balance SIMBA 2020T61
+Year: 2021
+DOI: https://doi.org/10.1594/PANGAEA.926581
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-2.110328, 88.597573], [94.516906, 79.676666]]}
+Position: {'lat': 84.38155761950769, 'lon': 20.051814319169452}
+Data Points: 8284
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

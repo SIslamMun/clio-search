@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Wells 16A(78)-32 and 16B(78)-32 Extended Circulation Test Data - August and September 2024
+Authors: ['McLennan, John [Energy and Geoscience Institute at the University of Utah]', 'England, Kevin', 'Swearingen, Leroy']
+Date: 2024-10-11T04:00:00Z
+DOI: https://doi.org/10.15121/2475065
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A', '16B', 'EGS', 'Pason', 'Utah FORGE', 'Well 16A78-32', 'Well 16B78-32', 'calibration', 'calibration data', 'circulation', 'circulation test', 'data corrections', 'energy', 'extended circulation', 'extended circulation test', 'field calibration', 'flow', 'geothermal', 'pressure', 'raw data', 'report', 'temperature', 'test procedures']
+
+The dataset includes data collected during an extended circulation test conducted at the Utah FORGE site between August 8 and September 5, 2024. It provides uncorrected, raw digital data from the test, along with calibration information and a final report detailing the test procedures and corrections. The data is bundled in a single .zip file containing both field calibration and test data. Files include manual calibration data for temperature, pressure, and flow meters, as well as uncorrected, time-stamped measurements recorded in 30-second intervals, such as wellhead pressures, flow rates, and temperatures for wells 16A(78)-32 and 16B(78)-32. Additionally, the final report offers insights into the test methodology and provides guidelines on how to apply field calibrations to correct the raw Pason data.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

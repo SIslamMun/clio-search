@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: 30ecor (a1)
+Authors: ['Sullivan, Ryan [ORNL]', 'Keeler, Evan', 'Billesbach, Dave', 'Pal, Sujan']
+Date: 1997-04-25T04:00:00Z
+DOI: https://doi.org/10.5439/1879993
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Carbon dioxide (CO2) concentration', 'Carbon dioxide (CO2) flux', 'Horizontal wind', 'Latent heat flux', 'Methane concentration', 'Methane flux', 'Sensible heat flux', 'Vertical velocity']
+
+The eddy correlation (ECOR) flux measurement system provides half-hour measurements of the surface turbulent fluxes of momentum, sensible heat, latent heat, and carbon dioxide. The ECOR uses the eddy covariance technique, which involves correlation of the vertical wind component with the horizontal wind component, air temperature, water vapor density, and CO2 density. The system includes: A fast-response, 3D wind sensor (sonic anemometer) to record the orthogonal wind components and the speed of sound (SOS), which is used to derive the air temperature; An open-path infrared gas analyzer (IRGA) to obtain the water vapor density and CO2 density; and An IRGA to obtain the methane density (at the NSA and OLI sites only). ECOR systems are deployed where other methods for measuring surface fluxes, such as energy balance Bowen ratio systems (EBBR), are difficult to use. Uncorrected turbulent fluxes are available in the 30ecor datastream. It is recommended that routine ECOR corrections are applied to the data prior to use, and corrected fluxes are available in the 30qcecor VAP. In October 2019 the ECOR systems at SGP were upgraded with newer-model instruments, including the addition of a microprocessor allowing both uncorrected and corrected fluxes in a single datastream, ecorsf, and eliminating the need for the ECOR VAP at these sites.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

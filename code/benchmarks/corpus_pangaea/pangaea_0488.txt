@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Hydrochemistry measured on water bottle samples during Arni Fridriksson cruise A14/2009
+DOI: https://doi.pangaea.de/10.1594/PANGAEA.844186
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-27.973299999999995, 67.9993], [-12.672500000000014, 64.3385]]}
+Position: {'lat': 66.16889999999997, 'lon': -20.32289999999989}
+Topics: Inorganic Chemistry, Chemistry, Organic Chemistry
+Data Points: 210
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

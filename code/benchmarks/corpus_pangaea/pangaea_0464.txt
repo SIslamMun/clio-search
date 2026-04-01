@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Ice drift positions, 2 m air temperature, and sea level pressure obtained by Alfred Wegener Institutes sea ice drifter ArgosID 9372 between 1998-03-05 at 82.058 °N; 12.0416 °E and 1998-09-01 at 65.8623 °N; 12.0416 °E
+Year: 2003
+DOI: https://doi.org/10.1594/PANGAEA.126670
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-32.0325, 82.058], [12.0416, 65.8623]]}
+Position: {'lat': 77.09189344622853, 'lon': -4.956308862986592}
+Data Points: 14130
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

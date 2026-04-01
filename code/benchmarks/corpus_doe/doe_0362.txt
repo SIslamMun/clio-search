@@ -1,0 +1,19 @@
+DOE Scientific Dataset Record
+Title: NCAR/EOL ISFS Data for LASSO-CACTI Overview Paper
+Authors: ['Oncley, Steve (ORCID:0000000308297462)']
+Date: 2025-12-11T04:00:00Z
+DOI: https://doi.org/10.5439/3007292
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['Carbon dioxide (CO2) concentration', 'atmosphere: surface', 'dewpoint temperature', 'evapotranspiration', 'geosphere: soil', 'humidity mixing ratio', 'longwave radiation', 'net radiation', 'radiative flux', 'rain', 'raw bulk soil electrical conductivity', 'relative humidity', 'shortwave radiation', 'soil moisture', 'soil temperature', 'surface pressure', 'temperature', 'thermal conductivity', 'wind direction', 'wind speed']
+
+5 minute averages of surface meteorology and flux data collected by the NCAR/EOL Integrated Surface Flux System (ISFS) at 15 sites during the RELAMPAGO field campaign. These data have been quality-controlled and are available in NetCDF format. Winds reported by the sonic anemometers have been tilt corrected and rotated into geographic coordinates.
+
+Data providence, citation, and acknowledgement
+
+This ARM data set is a copy of v2.0 of the NCAR data set obtained on 6-Jun-2024 from https://doi.org/10.26023/ZPHJ-JW9W-2B0Y. The citation for the original data source is:
+
+NCAR/EOL In-situ Sensing Facility, Oncley, S. 2021. NCAR/EOL ISFS Surface Meteorology and Flux Products, 5-minute. Version 2.0. UCAR/NCAR - Earth Observing Laboratory. https://doi.org/10.26023/ZPHJ-JW9W-2B0Y Accessed 06 Jun 2024.
+
+In addition to the citation reference and any other acknowledgements, please acknowledge NCAR/EOL in your publications with text such as: "Data provided by NCAR/EOL under the sponsorship of the National Science Foundation. https://data.eol.ucar.edu/"
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

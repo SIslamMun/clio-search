@@ -1,0 +1,13 @@
+DOE Scientific Dataset Record
+Title: Back Trajectories during SAIL
+Authors: ['Zhou, Ruichen (ORCID:0000000152902311)', 'Perkins, Russell (ORCID:0000000223512362)', 'Kreidenweis, Sonia (ORCID:0000000225612914)', 'Ayars, Kelton']
+Date: 2025-08-06T04:00:00Z
+DOI: https://doi.org/10.5439/2574969
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['back trajectory']
+
+This data set contains air mass back trajectories generated during the Surface Atmosphere Integrated Field Laboratory (SAIL) campaign using the Hybrid Single-Particle Lagrangian Integrated Trajectory model (HYSPLIT, Stein et al. 2015, Rolph et al. 2017). For each hour from January 1, 2021 to June 30, 2023, a 96-hour back trajectory was initiated at the SAIL sampling site, starting 100 m above ground level. The calculations used the GDAS meteorological data set with model vertical velocity.
+
+The files within this dataset show location and meteorological parameters of the back trajectory analysis. There are 21 columns within each data file. The first 2 columns pertain to back trajectory parameters: the trajectory number (which is always 1) and the meteorological grid number. The next 9 columns pertain to spatiotemporal information: the year, month, day, hour (0-23), and minute of the trajectory, the previous time of the trajectory (in negative hours), and the airmass location (latitude, longitude, and height in m AGL). The rest of the parameters within each file pertains to surface and meteorological characteristics of the airmass: pressure (in hPa), potential temperature (in K), temperature (in K), precipitation rate (in mm/hr), mixing depth (in m), relative humidity (in % relative to liquid water), specific humidity (in g/kg), H2O mixing ratio (in g/kg), underlying terrain height (in meters above sea level), and incoming radiation (in W/m^2).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

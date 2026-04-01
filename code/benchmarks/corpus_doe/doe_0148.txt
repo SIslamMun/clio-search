@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: AOS: aerosol-based meteorology data
+Authors: ['Springston, Stephen [ORNL]', 'Kyrouac, Jenni']
+Date: 2010-10-03T04:00:00Z
+DOI: https://doi.org/10.5439/1025153
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal wind', 'Precipitation']
+
+AOS: aerosol-based meteorology data
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

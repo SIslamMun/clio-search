@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: mwrhf (b1)
+Authors: ['Cadeddu, Maria [ORNL]', 'Tuftedal, Matt']
+Date: 2006-11-03T04:00:00Z
+DOI: https://doi.org/10.5439/1986428
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric pressure, Atmospheric temperature, Microwave narrowband brightness temperature, Precipitation']
+
+The microwave radiometer-high frequency (MWRHF) provides time-series measurements of brightness temperatures from two channels centered at 90 and 150 GHz. These two channels are sensitive to the presence of liquid water and precipitable water vapor.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

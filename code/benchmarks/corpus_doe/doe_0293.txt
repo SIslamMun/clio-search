@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: A Model Evaluation Data Set for the Tropical ARM Sites
+Authors: ['Jakob, Christian [ORNL]']
+Date: 2008-01-15T04:00:00Z
+DOI: https://doi.org/10.5439/1169513
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Cloud base height', 'Cloud fraction', 'Cloud optical depth', 'Cloud top height', 'Horizontal wind', 'Liquid water path', 'Longwave broadband downwelling irradiance', 'Precipitable water', 'Precipitation', 'Shortwave broadband diffuse downwelling irradiance', 'Shortwave broadband direct downwelling irradiance', 'Shortwave broadband total downwelling irradiance']
+
+This data set has been derived from various ARM and external data sources with the main aim of providing modelers easy access to quality controlled data for model evaluation. The data set contains highly aggregated (in time) data from a number of sources at the tropical ARM sites at Manus and Nauru. It spans the years of 1999 and 2000. The data set contains information on downward surface radiation; surface meteorology, including precipitation; atmospheric water vapor and cloud liquid water content; hydrometeor cover as a function of height; and cloud cover, cloud optical thickness and cloud top pressure information provided by the International Satellite Cloud Climatology Project (ISCCP).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

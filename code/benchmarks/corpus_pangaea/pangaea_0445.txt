@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Air temperature and pressure measurements at the streamflow site, Brooks Gorge Research Watershed in 2016
+Year: 2020
+DOI: https://doi.org/10.1594/PANGAEA.922683
+Geographic Coverage: {'type': 'point', 'coordinates': [-88.6273, 47.1601]}
+Position: {'lat': 47.1601, 'lon': -88.6273}
+Topics: A, t, m, o, s
+Data Points: 15766
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

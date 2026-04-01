@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: A consistent High Arctic climatological dataset (1979-2018) of the Polish Polar Station Hornsund (SW Spitsbergen, Svalbard)
+Year: 2019
+DOI: https://doi.org/10.1594/PANGAEA.909042
+Geographic Coverage: {'type': 'point', 'coordinates': [15.55000000000003, 77.0]}
+Position: {'lat': 77.0, 'lon': 15.55000000000003}
+Topics: Geosciences, Multidisciplinary, Lithosphere
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

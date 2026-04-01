@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Fallon FORGE: Well Log Database
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2018-07-03T04:00:00Z
+DOI: https://doi.org/10.15121/1458998
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'FORGE', 'Fallon', 'Logs', 'Nevada', 'PTS', 'Well Data', 'aqueous chemistry', 'borehole', 'chemistry', 'core', 'cuttings', 'density', 'energy', 'fractures', 'geochemistry', 'geology', 'geophysics', 'geothermal', 'induced', 'lithology', 'log', 'magnetic susceptibility', 'natural', 'pressure', 'rock', 'rock properties', 'spinner', 'temperature', 'well', 'well log', 'wireline']
+
+Master well database for all logs and other well data pertaining to the Fallon FORGE site. Tables are formatted in NGDS Teir 3 schema where appropriate; redundancies between tables are omitted, and should be queried off of the main WellHeader table. All relationships are set on the "HeaderURI" primary key. Tables: WellHeader - well locations and information ChemFluid - aqueous chemistry analyses ChemRock - rock chemistry analyses DensityCore - rock densities from core FracturesInduced - induced borehole fractures FracturesNatural - natural borehole factures LithIntercepts - lithology picks from cuttings and core MagSuscCore - magnetic susceptibility for core samples MagSuscPmag - magnetic susceptibility for pmag samples PTSLogs - pressure-temperature-spin logs WirelineLogs - digital wireline logs (21-31 only)
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

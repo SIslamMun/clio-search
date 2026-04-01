@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Sonde data from MET Norway at Bear Island site (S2) & MET Norway Andenes Autosonde launcher (S3)
+Authors: ['Stiansen, Kjetil [ORNL]']
+Date: 2020-02-01T04:00:00Z
+DOI: https://doi.org/10.5439/1571439
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'S2: Vaisala MW41 Radiosonde System. S3: Vaisala AS15 Autosonde,Atmospheric temperature,Atmospheric moisture,Atmospheric pressure,Horizontal wind, ARM, DOE.']
+
+1 JANUARY 2020 - 31 MAY 2020 COMBLE Sonde data from MET&nbsp;Norway at Bear Island site (S2) &amp; MET Norway Andenes&nbsp;Autosonde launcher (S3) [ANX/S2/SONDE &amp;&nbsp;ANX/S3/SONDE].
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

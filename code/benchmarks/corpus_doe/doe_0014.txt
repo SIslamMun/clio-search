@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: West Flank Coso FORGE: Well 48-11TCH Temperature, Pressure, Directional, Well History, Wellbore Schematic
+Authors: ['Blankenship, Doug [Sandia National Laboratories]']
+Date: 2016-05-13T04:00:00Z
+DOI: https://doi.org/10.15121/1261976
+Organization: ['DOE Geothermal Data Repository', 'Sandia National Laboratories']
+Subjects: ['15 GEOTHERMAL ENERGY', '48-11TCH', 'Coso', 'EGS', 'FORGE', 'Temperature logs', 'Well data', 'West Flank', 'bottomhole', 'breccia zones', 'daily drilling reports', 'data', 'directional', 'directional survey', 'geothermal', 'geothermal exploration permit', 'gradient', 'history', 'hydrothermal clay abundance', 'hydrothermal veins', 'lithology', 'logging', 'mud logs', 'pressure', 'resistivity', 'schematic', 'service report', 'static survey', 'sundry notice', 'temperature', 'well', 'well completion', 'well history', 'well log', 'well schematic', 'wellbore', 'wellbore schematic']
+
+Temperature logs, pressure logs, directional survey, well history, well bore schematic, and other reports for well 48-11TCH at West Flank FORGE
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

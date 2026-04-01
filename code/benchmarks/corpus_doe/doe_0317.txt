@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: 1twr25m (a0)
+Authors: ['Kyrouac, Jenni [ORNL]', 'Tuftedal, Matt']
+Date: 1996-02-07T04:00:00Z
+DOI: https://doi.org/10.5439/1997092
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric temperature, Horizontal wind']
+
+Three tall towers are installed at ARM sites: a 60-m triangular tower at the Southern Great Plains (SGP) Central Facility (CF), a 21 m walkup scaffolding tower at the SGP Okmulgee forest site (E21), and a 40-m triangular tower at the North Slope of Alaska (NSA) at Barrow. The towers are used for meteorological, radiological, and other measurements. Instrument systems installed on the towers are listed in section 7, Instrument Details, although only the temperature/relative humidity/vapor pressure (T/RH/VP) measurements made on the SGP CF tower are described in detail. Information on measurements made by the other instrument systems on the towers can be found at individual instrument systems web pages.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

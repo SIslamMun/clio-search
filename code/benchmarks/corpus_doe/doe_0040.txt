@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: mettwr (a1)
+Authors: ['Kyrouac, Jenni [ORNL]', 'Tuftedal, Matt']
+Date: 1998-03-20T04:00:00Z
+DOI: https://doi.org/10.5439/1994054
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric pressure, Atmospheric temperature, Horizontal wind, Precipitation, Visibility']
+
+The surface and tower meteorological instrumentation uses mainly conventional in situ sensors mounted on a tower to measure wind speed, wind direction, air temperature, dew point, and humidity. It also obtains barometric pressure, visibility, and precipitation data from sensors at or near the base of the tower. In addition, a chilled mirror hygrometer is used for comparison purposes.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

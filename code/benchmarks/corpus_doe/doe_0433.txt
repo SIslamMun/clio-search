@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE Project 3-2417: Meteorological Data During 2024 Stimulation
+Authors: ['Ajo-Franklin, Jonathan [Rice University] (ORCID:0000000266664702)']
+Date: 2024-05-09T04:00:00Z
+DOI: https://doi.org/10.15121/2350695
+Organization: ['DOE Geothermal Data Repository', 'Rice University']
+Subjects: ['15 GEOTHERMAL ENERGY', '16A', '16B', 'EGS', 'Utah FORGE', 'atmospheric pressure', 'calibration', 'dew point', 'geothermal', 'humidity', 'instrumentation response', 'meterology', 'precipitation', 'raw data', 'stimulation', 'temperature', 'time series', 'weather data', 'wind']
+
+This preliminary data archive includes meteorological data recorded at the Utah FORGE facility over the period of time including the 16A/16B stimulation activities, largely March/April/May of 2024. This information may prove useful for understanding seismic and other instrumentation response during monitoring. The bulk of relevant stimulation activities occurred between March 25th and April 28th, 2024 and the included files span this period. All sensors were installed at the 78-16 pad and hence reflect weather state at the site. This dataset was acquired by the FOGMORE R&D project (Fiber Optic MOnitoring for Reservoir Evolution), Utah FORGE R&D Project 3-2417.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

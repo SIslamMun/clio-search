@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: SCILLA Secondary Aerosol Volume Concentration Airborne Data
+Authors: ['Collins, Don (ORCID:000000020010290X)', 'Han, Minghao (ORCID:0000000178467581)', 'Witte, Mikael (ORCID:0000000187956539)', 'Bucholtz, Anthony (ORCID:0000000270494005)']
+Date: 2025-07-29T04:00:00Z
+DOI: https://doi.org/10.5439/2574044
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['{"secondary aerosol concentration",aerosol_concentration,troposphere}']
+
+This data set contains secondary aerosol volume concentration in cubic micrometers per cubic centimeter (um^3/cm^3).  The aerosol was generated in an oxidation flow reactor (OFR) and its volume concentration measured with a scanning mobility particle sizer (SMPS).  Both components were designed and built at the University of California Riverside.  Ambient particles were removed with a Teflon filter upstream of the OFR and then pure ammonium sulfate particles were added to create a stable aerosol surface area on which low-volatility oxidation products condense.  High concentrations of hydroxyl radical (OH) formed inside the OFR accelerate the oxidative chemistry that would typically occur over a period of several days in the atmosphere, resulting in the production of secondary aerosol from precursor gases present in the ambient air. Concentrations of added ozone and water vapor were controlled to produce the desired and approximately constant level of photochemical aging.  The reactor temperature was controlled, while the pressure was not, and was always slightly lower than that of the sampled outside air.  Sampled air was pulled from above the Naval Postgraduate School’s (NPS) Twin Otter aircraft through a rear-facing, ¼” OD PFA Teflon tube.  The sample stream was split between the OFR and several gas analyzers (NOx, CO, O3, and H2O).  Though not contained in these files, data from an aerosol mass spectrometer intermittently operated downstream of the OFR are also available.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

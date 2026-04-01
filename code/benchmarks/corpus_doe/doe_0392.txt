@@ -1,0 +1,15 @@
+DOE Scientific Dataset Record
+Title: BLOC Site - ASSIST Thermodynamic Retrievals TROPoe v0.18 / Derived Data
+Authors: ['Adler, Bianca [NOAA PSL]', 'Bianco, Laura [NOAA PSL]']
+Date: 2025-11-24T04:00:00Z
+DOI: https://doi.org/10.21947/2997964
+Organization: ['Pacific Northwest National Laboratory']
+Subjects: ['17 WIND ENERGY']
+
+This dataset contains daily files with thermodynamic profiles retrieved with the optimal estimation physical retrieval TROPoe (Turner and Löhnert 2014; Turner and Blumberg 2019; Turner and Löhnert 2021). This is a postprocessed dataset and recommmended to use. The profiles are retrieved every 10 minutes from instantaneous radiances observed with an Atmospheric Sounder Spectrometer by Infrared Spectral Technology (ASSIST, Michaud-Belleau et al. 2025) operated by NOAA Physical Sciences Laboratory (PSL) on Block Island for WFIP3. 
+
+The spectral bands used in the retrieval are in the wavenumber range from 612 - 905.4 cm-1 and are specified in Turner and Löhnert (2021). Additional input data in TROPoe are cloud base height from a collocated ceilometer operated by NOAA GML and temperature, water vapor mixing ratio, and pressure from a collocated surface tower operated by NOAA PSL.
+
+In addition to these temporally resolved input data, TROPoe requires an a priori dataset (prior) that provides mean climatological estimates of thermodynamic profiles and specifies how temperature and humidity covary with height as an input (for details see, e.g., Djalalova et al. 2022). The prior is a key component of the retrieval and provides a constraint on the ill-posed inversion problem. A monthly prior was computed from operational radiosonde launches at Upton, NY.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

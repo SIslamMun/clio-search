@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Remote-sensing gas measurements with coherent Rayleigh-Brillouin scattering
+Authors: ['Gerakis, A. [Princeton Plasma Physics Lab. (PPPL), Princeton, NJ (United States); Princeton Plasma Physics Laboratory]', 'Shneider, M.N. [Princeton Plasma Physics Lab. (PPPL), Princeton, NJ (United States)]', 'Stratton, B.C. [Princeton Plasma Physics Lab. (PPPL), Princeton, NJ (United States)]']
+Date: 2016-01-01T04:00:00Z
+DOI: https://doi.org/10.11578/1366755
+Organization: ['Princeton Plasma Physics Laboratory (PPPL), Princeton, NJ (United States)']
+Subjects: ['70 PLASMA PHYSICS AND FUSION TECHNOLOGY', 'Polarizability\r\nTemperature measurement\r\nHigh pressure\r\nScattering measurements\r\nSpeed of sound']
+
+We measure the coherent Rayleigh-Brillouin scattering (CRBS) signal integral as a function of the recorded gas pressure in He, Co2, SF6, and air, and we confirm the already established quadratic dependence of the signal on the gas density. We propose the use of CRBS as an effective diagnostic for the remote measurement of gas’ density (pressure) and temperature, as well as polarizability, for gases of known composition.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

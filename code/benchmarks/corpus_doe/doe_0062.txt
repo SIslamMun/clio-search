@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Monthly Mean Pressure Reconstructions for Europe (1780-1980) and North America (1858-1980) (1987) (NDP-025)
+Authors: ['Jones, P. D. [University of East Anglia, Climatic Research Unit, School of Environmental Sciences; OSTI]', 'Wigley, T. M. L. [University of East Anglia, Climatic Research Unit, School of Environmental Sciences]', 'Briffa, K. R. [University of East Anglia, Climatic Research Unit, School of Environmental Sciences]']
+Date: 2018-01-01T04:00:00Z
+DOI: https://doi.org/10.3334/CDIAC/cli.ndp025
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'ANNUAL', 'CODE', 'IYEAR', 'MONTH', 'NDP-025', 'Pressure']
+
+Real and reconstructed measurements of monthly mean pressure data have been constructed for Europe for 1780 through 1980 and North America for 1858 through 1980. The reconstructions use early pressure, temperature, and precipitation data from a variety of sources including World Weather Records, meteorological and national archives, circulation maps, and daily chart series. Each record contains the year, monthly mean pressure, quality code, and annual mean pressure. These reconstructed gridded monthly pressures provide a reliable historical record of mean sea-level pressures for Europe and North America. The data are in two files: pressure reconstructions for Europe (1.47 MB) and for North America (0.72 MB).For access to the data files, click this link to the CDIAC data transition website: http://cdiac.ess-dive.lbl.gov/ndps/ndp025.html
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

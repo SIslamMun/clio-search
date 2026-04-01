@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM: Radiatively Important Parameters Best Estimate profiles derived with first McFarlane algorithm
+Authors: ['Shippert, Timothy [ORNL]', 'Riihimaki, Laura']
+Date: 2002-03-01T04:00:00Z
+DOI: https://doi.org/10.5439/1095388
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Aerosol extinction', 'Aerosol optical depth', 'Aerosol optical properties', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Carbon dioxide (CO2) concentration', 'Cloud droplet size', 'Cloud effective radius', 'Hydrometeor size', 'Ice water content', 'Liquid water content', 'Longwave broadband downwelling irradiance', 'Optical depth', 'Ozone', 'Ozone Column Abundance', 'Shortwave broadband diffuse downwelling irradiance', 'Shortwave broadband direct normal irradiance', 'Shortwave broadband total downwelling irradiance', 'Surface albedo', 'Surface skin temperature']
+
+Radiatively Important Parameters Best Estimate profiles derived with first McFarlane algorithm
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

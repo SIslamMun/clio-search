@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Alternative CAES Technology Using Depleted Unconventional Gas Wells and Subsurface Thermal Energy Storage (GeoCAES)
+Authors: ['Johnston, Henry [National Renewable Energy Laboratory] (ORCID:0000000227758239)', 'Young, David']
+Date: 2019-05-23T04:00:00Z
+DOI: https://doi.org/10.15121/1828157
+Organization: ['DOE Geothermal Data Repository', 'National Renewable Energy Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', 'GeoCAES', 'TES', 'code', 'energy', 'energy storage', 'feasibility', 'geothermal', 'geothermal energy storage', 'geothermal reservoir', 'model', 'natural gas', 'processed data', 'surface plant', 'technical', 'technical assesment', 'technology', 'unconventional shale', 'well']
+
+This project assessed the technical viability of a process called GeoCAES. The process stores electrical energy by injecting natural gas into shale gas formations using a compressor, storing it, and producing it through an expander to generate electricity. This data submission includes the models of temperature and pressure changes in the wellbore, surface plant equipment (compressor and expander), and the code used in CMG GEM reservoir modeling software to simulate injection and production. Note - the wellbore and surface plant equipment models use the REFPROP Excel Add-in from NIST (linked in submission) to calculate natural gas properties. Note - the reservoir model code requires a license for the Computer Modeling Group (CMG) GEM reservoir modeling software (linked in submission) to run it.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

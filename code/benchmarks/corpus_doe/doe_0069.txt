@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 58-32 Stimulation Data
+Authors: ['Best, Sharon [Geothermal Resource Group]']
+Date: 2019-04-20T04:00:00Z
+DOI: https://doi.org/10.15121/1542650
+Organization: ['DOE Geothermal Data Repository', 'Geothermal Resource Group']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Badger', 'Bridge Plug', 'DiDrill', 'DiDrill Survey Services', 'EGS', 'FORGE', 'GRG', 'Memory tool', 'Pason', 'Roosevelt Hot springs', 'Spartek Memory PT gauge', 'Utah', 'Utah FORGE', 'Utah geothermal', 'Well 58-32', 'energy', 'flow', 'flowback', 'fracture flow', 'geothermal', 'geothermal resource group', 'hydraulic', 'hydraulic fracturing', 'isolate pumping', 'lower perforation', 'milford', 'open-hole', 'openhole stimulation', 'phase 2C', 'pressure', 'rate', 'raw data', 'reservoir stimulation', 'stimulation', 'surface instruments', 'temperature', 'upper perforation', 'weatherford HD']
+
+Pressure, temperature, and flow data from open-hole, upper perforation, and lower perforation well stimulations gathered from various tools collected at well 58-32 during phase 2C.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

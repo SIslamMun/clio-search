@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Meteorological data from the Billy Bar site at the East River, Colorado
+Authors: ['Faybishenko, Boris [Lawrence Berkeley National Laboratory; Lawrence Berkeley National Laboratory] (ORCID:0000000300858499)', 'Gochis, Dave [University Corporation For Atmospheric Research (UCAR)]', 'Versteeg, Roelof [Subsurface Insights] (ORCID:0000000267671082)', 'Williams, Kenneth [Lawrence Berkeley National Laboratory] (ORCID:0000000235681155)']
+Date: 2021-01-01T04:00:00Z
+DOI: https://doi.org/10.21952/WTR/1545781
+Organization: ['Watershed Functionality Scientific Focus Area']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Air Temperature', 'Barometric Pressure', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC RADIATION > SOLAR RADIATION', 'East River Watershed Community Observatory', 'Meteorology – weather stations', 'Precipitation', 'QA/QC', 'Relative Humidity', 'Rmarkdown report', 'Wind Direction', 'Wind Speed', 'meteorological data']
+
+This dataset includes Quality Assessed and Quality Controlled (QA/QC) meteorological data from the Billy Bar field site in the East River Watershed, Colorado in order to inform watershed hydrobiogeochemical processes. The data includes 1-hour aligned time series of Solar Radiation, Wind Speed, Wind Direction, Air Temperature, Relative Humidity, Barometric Pressure, and Precipitation. For each parameter, the QA flags are given: 1 is for extreme (potential abnormal values), and 0 is for values in the expected range. The Rmarkdown document is a stand-alone file/notebook that preserves the text, code, and code results, as well as formatting contained in the original R script. The Data profiling report is a summary and graphical presentation of the data exploration process for data analysis and model building, so that users could focus on understanding data and extracting insights. The report provides a summary of each variable and does data profiling.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: High-Pressure and High-Temperature (HPHT) Lost Circulation Material (LCM) Testing
+Authors: ['Salehi, Saeed [University of Oklahoma]', 'Vivas, Cesar']
+Date: 2021-11-30T04:00:00Z
+DOI: https://doi.org/10.15121/1986087
+Organization: ['DOE Geothermal Data Repository', 'University of Oklahoma']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Fracture sealing', 'HPHT filtration', 'LCM', 'Lost circulation materials', 'PSD', 'Particle size distribution', 'drilling', 'drilling fluid additives', 'energy', 'experiment', 'gelation', 'geothermal', 'high pressure high temperature', 'model', 'processed data', 'rheology', 'technology', 'temperature', 'thermal degradation', 'wellbore']
+
+High-pressure and high-temperature (HPHT) lost circulation material (LCM) rheology test results, LCM particle size distributions (PSD) analysis, and HPHT LCM fluid loss test results. Three academic papers / reports derived from this research are also presented.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

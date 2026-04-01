@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Lyon-Bron, 1948-01-01 to 1958-12-31, ERA-CLIM ID 6012A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.822999
+Geographic Coverage: {'type': 'point', 'coordinates': [4.937, 45.726]}
+Position: {'lat': 45.726, 'lon': 4.937}
+Data Points: 410850
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

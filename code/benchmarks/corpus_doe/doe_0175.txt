@@ -1,0 +1,15 @@
+DOE Scientific Dataset Record
+Title: Fast Response Temperature by airborne measurements over BNF
+Authors: ['Pekour, Mikhail (ORCID:0000000298210078)']
+Date: 2025-09-26T04:00:00Z
+DOI: https://doi.org/10.5439/2589557
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['Air temperature, fast response', 'Measured air temperature', 'Potential air temperature', 'Static air temperature', 'Virtual potential air temperature']
+
+The original data were collected during the AAF Engineering Flights (AEF2025) in the vicinity of the ARM Bankhead National Forest (BNF) Atmospheric Observatory (https://www.arm.gov/capabilities/observatories/bnf ) in northwestern Alabama in March 2025. The ARM Aerial Facility ArcticShark uncrewed aerial system (UAS, https://www.arm.gov/capabilities/observatories/aaf/uas) was based at the public-use airport of Posey Field, Alabama (FAA LID: 1M4, 34.28027778° N, 87.60055556° W, 283m MSL) from March 9 through March 24, 2025. The ArcticShark UAS performed nine flights, including eight research flights over the AMF3 (BNF Main Site) and Supplemental Facilities to measure atmospheric state, turbulence, surface IR temperature and imagery, and aerosol number concentration and size distribution.
+
+The current data set presents fast response temperature in the atmospheric boundary layer and lower free troposphere measured on the airborne platform throughout the field campaign. The primary instruments used to create the current data set were the fine wire thermocouple probe, the Aircraft Integrated Meteorological Measurement System (AIMMS-30), the Pitot-static system (part of UAS flight control), and the infrared gas analyzer sensor for H2O and CO2 (LI-840).
+
+All parameters used in temperature calculations (static pressure, True Air Speed, and absolute humidity in form of dew point temperature) were included in the data set. For user convenience, one additional parameter was also included: the type of flight flag (level, up, down, turn, and combination of thereof).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

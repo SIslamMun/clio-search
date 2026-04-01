@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Meteodrone data
+Authors: ['Houston, Adam [ORNL]']
+Date: 2021-03-30T04:00:00Z
+DOI: https://doi.org/10.5439/1825058
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'temperature (proprietary),relative humidity (proprietary),pressure (proprietary),Atmospheric temperature,Atmospheric moisture,Atmospheric pressure,wind velocity, ARM, DOE.']
+
+The University of Nebraska-Lincoln (UNL) Meteodrone (model SSE MM-641) is a small (1.1 kg GTOW, ~40 cm across) hexcopter UAS manufactured by Meteomatics. Maximum endurance is approximately 30 min and estimated maximum operating altitude of 1500 m.&nbsp; Profiles can be executed at ascent/descent rates up to 10 m/s.&nbsp; The Meteodrone is capable of measuring temperature, relative humidity, wind velocity and GPS position time-stamped with GPS time.&nbsp; Temperature and dual relative humidity sensors are shielded from solar exposure by a housing with a vertically oriented air intake and hoirizontal exhaust.&nbsp; Sensor aspiration is driven by rotorwash across the horizontal exhaust.&nbsp; In its current configuration data are recorded only when executing vertical profiles.&nbsp; Attitude and position are updated at a data rate of 20 Hz while meteorological observations are updated at 10 Hz.&nbsp;
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

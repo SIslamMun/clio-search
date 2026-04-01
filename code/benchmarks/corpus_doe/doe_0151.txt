@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Enhanced Pedestal H-mode at low edge ion collisionality on NSTX
+Authors: ['Battaglia, D J [Princeton University (PPPL)]', 'Guttenfelder, W', 'Bell, R E', 'Diallo, A', 'Ferraro, N', 'Gerhardt, S P', 'Kaye, S M', 'Maingi, R', 'Smith, D R']
+Date: 2020-07-08T04:00:00Z
+DOI: https://doi.org/10.11578/1661168
+Organization: ['Princeton Plasma Physics Laboratory (PPPL), Princeton, NJ (United States)']
+Subjects: ['H-mode', 'NSTX', 'edge and boundary physics', 'magnetic plasma confinement', 'spherical tokamaks', 'turbulence and transport']
+
+The Enhanced Pedestal (EP) H-mode regime is an attractive wide-pedestal ELM-free high-betap scenario for NSTX-U and next-step devices as it achieves enhanced energy confinement (H98y,2 > 1.5), large normalized pressure (betaN > 5) and significant bootstrap fraction (f_BS > 0.6) at I_p/B_T = 2 MA/T. This regime is realized when the edge ion collisionality becomes sufficiently small that a positive feedback interaction occurs between a reduction in the ion neoclassical energy transport and an increase in the particle transport from pressure-driven edge instabilities. EP H-mode was most often observed as a transition following a large ELM in conditions with low edge neutral recycling. It is hypothesized that the onset of pressure-driven instabilities prior to the full recovery of the neutral density leads to a temporary period with elevated ion temperature gradient that triggers the transition to EP H-mode. Linear CGYRO and M3D-C1 calculations are compared to beam emission spectroscopy (BES) and magnetic spectroscopy in order to describe the evolution of the edge particle transport mechanisms during the ELM recovery and the saturated EP H-mode state. The observations are consistent with the hypothesis that the onset of pressure-driven edge instabilities, such as the KBM and kink-peeling, can be responsible for the increased particle transport in EP H-mode.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

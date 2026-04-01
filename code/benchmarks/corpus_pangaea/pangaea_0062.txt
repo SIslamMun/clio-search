@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Physical oceanography from mooring KPO_1047
+Year: 2015
+DOI: https://doi.org/10.1594/PANGAEA.843498
+Geographic Coverage: {'type': 'point', 'coordinates': [-23.0, 5.015]}
+Position: {'lat': 5.015, 'lon': -23.0}
+Topics: Meteorology & Atmospheric Sciences, Atmosphere
+Data Points: 26910
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

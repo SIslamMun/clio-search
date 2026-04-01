@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Soundings from SGP, June 2014 Sonde Comparison Study
+Authors: ['Jensen, Michael [ORNL]']
+Date: 2015-03-06T04:00:00Z
+DOI: https://doi.org/10.5439/1171962
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric water', 'Horizontal wind']
+
+In early June 2014, a radiosonde intercomparison trial was undertaken at the SGP Central Facility site with the goal of quantifying the relative performance of the RS92-SGP/MW31 and RS41-SG/MW41 radiosondes/systems. The June time period at SGP represents a springtime mid-latitude convective environment where the extensive remote sensing observations at the SGP site were used to further quantify the environment during the intercomparison. Over the course of five days (3 - 8 June) a total of 20 balloon launches were completed with efforts to sample the entire diurnal cycle and a variety of cloud conditions
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

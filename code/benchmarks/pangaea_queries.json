@@ -1,0 +1,29 @@
+{
+  "description": "PANGAEA geoscience cross-unit benchmark",
+  "source": "PANGAEA Data Publisher (https://www.pangaea.de)",
+  "doc_count": 500,
+  "query_count": 1,
+  "queries": [
+    {
+      "id": "pangaea_001",
+      "query": "climate and atmospheric science datasets with quantitative measurements",
+      "type": "topic_climate",
+      "relevant_docs": [
+        "pangaea_0000.txt",
+        "pangaea_0018.txt",
+        "pangaea_0040.txt",
+        "pangaea_0048.txt",
+        "pangaea_0052.txt",
+        "pangaea_0055.txt",
+        "pangaea_0056.txt",
+        "pangaea_0057.txt",
+        "pangaea_0058.txt",
+        "pangaea_0060.txt",
+        "pangaea_0061.txt",
+        "pangaea_0062.txt",
+        "pangaea_0078.txt",
+        "pangaea_0438.txt"
+      ]
+    }
+  ]
+}

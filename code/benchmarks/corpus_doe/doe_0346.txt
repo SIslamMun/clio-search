@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Process and control variables from the SNSâs cryogenic moderator system
+Authors: ['Maldonado, Bryan [ORNL-OLCF]', 'Winder, Drew', 'Ramuhalli, Pradeep', 'Blokland, Willem']
+Date: 2024-10-16T04:00:00Z
+DOI: https://doi.org/10.13139/OLCF/2441156
+Organization: ['Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)', 'Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['neutron science, time-series, cryogenic system, thermohydraulics']
+
+Set of process and control variables corresponding to the cryogenic moderator system at the SNS. The data corresponds to 54 measurement signals (pressure, temperature, flows, valve position, etc.) spanning from 2021/10/20 to 2021/10/21.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

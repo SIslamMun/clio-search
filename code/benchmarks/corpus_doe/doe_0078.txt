@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Inter-ELM pedestal evolution and the role of edge fluctuations in the C-Mod and DIII-D tokamaks
+Authors: ['Diallo, A. [OSTI]', 'Groebner, R. J.', 'Hughes, J. W.', 'Rhodes, T. L.', 'Baek, S. G.', 'LaBombard, B.', 'Terry, J. L.', 'Cziegler, I.', 'Walk, J.', 'Hubbard, A. E.', 'Smith, D.', 'Osborne, T. H.', 'Canik, J. M.', 'Guttenfelder, W.', 'Snyder, P. B.']
+Date: 2021-09-27T04:00:00Z
+DOI: https://doi.org/10.7910/DVN/LITI5S
+Organization: ['Massachusetts Inst. of Technology (MIT), Cambridge, MA (United States). Plasma Science and Fusion Center']
+Subjects: ['70 PLASMA PHYSICS AND FUSION TECHNOLOGY']
+
+Edge localized modes (ELMs) lead to a cyclical behaviour of the H-mode pedestal density, temperature and pressure. Substantial evidence exists associating the ELM crash with violation of ideal MHD stability, via current driven kink/peeling modes and/or pressure gradient driven ballooning modes. Recovery from ELM crashes and buildup to the next ELM crash is an active and critical area of edge physics research for ITER projections. In one set of theories, the pedestal pressure profile in H-mode discharges is predicted to be limited by micro-instabilities. One such micro-instability is the kinetic ballooning mode (KBM), which is hypothesized to provide a ‘soft’ limit that regulates the edge transport, thereby restricting the local pressure gradient. In this picture, e.g. in the EPED model, the pedestal width expands slowly until the ideal MHD stability limit is reached. Experiments were recently performed on the C-Mod and DIII-D devices to search for instabilities correlated with the pedestal evolution between ELMs. The results show correlations between the onset of quasi-coherent fluctuations between type I ELMs and a critical temperature gradient. Linear gyrokinetic calculations have shown that these fluctuations have characteristics similar to those expected for KBMs. These results provide additional data toward validation of the EPED model, increasing confidence in ITER projections.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

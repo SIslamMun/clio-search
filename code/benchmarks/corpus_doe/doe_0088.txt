@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Lawrence Berkley National Laboratory Building 59
+Authors: ['Luo, Na [Lawrence Berkeley National Laboratory; LBNL]']
+Date: 2021-02-01T04:00:00Z
+DOI: https://doi.org/10.25584/1763763
+Organization: ['Pacific Northwest National Laboratory 2', 'LBNL']
+Subjects: ['32 ENERGY CONSERVATION, CONSUMPTION, AND UTILIZATION', 'Indoor environmental', 'Occupant', 'Outdoor environmental', 'Systems and equipment operational']
+
+The building management system in Building 59 is monitoring and archiving building-level electricity usage, HVAC and lighting system states (e.g., setpoint, temperature, flow rate, pressure), indoor environmental conditions (air temperature, relative humidity, CO2), on-site weather (air temperature, relative humidity), and especially occupant counts as well as other metrics such as Wi-Fi signal. This dataset could support multiple use cases, such as model predictive control and occupant related demand management.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

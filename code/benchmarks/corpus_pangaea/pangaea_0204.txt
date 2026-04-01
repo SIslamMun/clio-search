@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Physical oceanography during cruise K9084_1987
+Year: 2006
+DOI: https://doi.org/10.1594/PANGAEA.494725
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[5.0, 72.0], [17.5, 71.0]]}
+Position: {'lat': 71.70786516853933, 'lon': 10.045683146067411}
+Data Points: 178
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

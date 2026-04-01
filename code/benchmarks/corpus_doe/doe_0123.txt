@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: 1smos (a0)
+Authors: ['Ermold, Brian [ORNL]']
+Date: 1993-07-01T04:00:00Z
+DOI: https://doi.org/10.5439/1999500
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric pressure, Atmospheric temperature, Atmospheric turbulence, Extreme event time, Horizontal wind, Precipitation']
+
+The surface meteorological observation system (SMOS) mostly uses conventional in situ sensors to obtain 1-minute, 30-minute, and 1440-minute (daily) averages of surface wind speed, wind direction, air temperature, relative humidity (RH), barometric pressure, and precipitation at the Central Facility and many of the extended facilities of ARM's Southern Great Plains (SGP) observatory. The SMOSs are not calibrated as systems. The sensors and the data logger (which includes the analog-to-digital converter, or A/D) are calibrated separately. All systems are installed using components that have a current calibration. SMOSs have not been installed at extended facilities located within about 10 km of existing surface meteorological stations, such as those of the Oklahoma Mesonet. These systems are used to create climatology for each particular location, and to verify the output of numerical weather forecast and other models. They are also used to "ground-truth" other remote-sensing equipment.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

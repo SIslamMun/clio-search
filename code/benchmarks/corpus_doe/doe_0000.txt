@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Well 16B(78)-32 Pressure-Temperature Logs March - April 2024
+Authors: ['McLennan, John [Energy and Geoscience Institute at the University of Utah]', 'Hughes, Baker']
+Date: 2024-04-20T04:00:00Z
+DOI: https://doi.org/10.15121/2368548
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', 'Baker Hughes', 'Baker pressure temperature logs', 'Utah FORGE', 'Well 16B78-32 pressure logs', 'Well 16B78-32 pressure temperature logs', 'Well 16B78-32 temperature logs', 'energy', 'fiber optics', 'geothermal', 'pressure', 'pressure temperature', 'temperature', 'well 16B', 'well 16B78-32']
+
+This dataset consists of Baker Hughes Pressure-Temperature gauge readings on fiber optics in Utah FORGE Well 16B(78)-32. This gauge is at a measured depth of 7,056.67 feet. The true vertical depth can be determined from the well survey data, which is linked below. The data consists of time series pressure-temperature data and plots from March 26th - April 20th 2024.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Deep electric field predictions by drift-reduced Braginskii theory with plasma-neutral interactions based upon experimental images of boundary turbulence
+Authors: ['Mathews, Abhilash [OSTI]', 'Hughes, Jerry', 'Terry, James', 'Baek, Seung-Gyou']
+Date: 2022-06-06T04:00:00Z
+DOI: https://doi.org/10.7910/DVN/EFXCPW
+Organization: ['Massachusetts Inst. of Technology (MIT), Cambridge, MA (United States). Plasma Science and Fusion Center']
+Subjects: ['70 PLASMA PHYSICS AND FUSION TECHNOLOGY']
+
+We present 2-dimensional turbulent electric field calculations via physics-informed deep learning consistent with (i) drift-reduced Braginskii theory under the framework of an axisymmetric fusion plasma with purely toroidal field and (ii) experimental estimates of the fluctuating electron density and temperature obtained from analysis of gas puff imaging of a discharge on the Alcator C-Mod tokamak. The inclusion of effects from the locally puffed atomic helium on particle and energy sources within the reduced plasma turbulence model are found to strengthen correlations between the electric field and electron pressure. The neutrals are also directly associated with an observed broadening in the distribution of turbulent field amplitudes and increased E×B shearing rates.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

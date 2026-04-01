@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Unmanned Aerial Systems (UAS) Evaluation of Routine Atmospheric Sounding Measurements using Unmanned Systems (ERASMUS)
+Authors: ['De Boer, Gijs [ORNL]']
+Date: 2016-01-05T04:00:00Z
+DOI: https://doi.org/10.5439/1235273
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'UAS, ERASMUS, Oliktok, DataHawk2, temperature, pressure, relative humidity, wind speeds']
+
+Data were collected to improve understanding of the Arctic troposphere, and to provide researchers with a focused case-study period for future observational and modeling studies pertaining to Arctic atmospheric processes.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

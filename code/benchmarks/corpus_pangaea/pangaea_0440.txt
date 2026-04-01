@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Meteorological data (near-surface air temperature, relative humidity and air pressure) measured by the ice unit of the unmanned ice station during the MOSAiC expedition
+Year: 2022
+DOI: https://doi.org/10.1594/PANGAEA.939329
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-4.955586, 85.1283167], [135.528867, 79.759433]]}
+Position: {'lat': 81.5490609, 'lon': 41.872564999999994}
+Topics: Environmental Sciences, Ecology, Geosciences, Multidisciplinary, Lithosphere
+Data Points: 18459
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: co2flxwind60m (a1)
+Authors: ['Biraud, Sebastien [ORNL]', 'Chan, Stephen']
+Date: 2015-07-22T04:00:00Z
+DOI: https://doi.org/10.5439/1972271
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Atmospheric turbulence', 'Carbon dioxide (CO2) concentration', 'Carbon dioxide (CO2) flux', 'Horizontal wind', 'Latent heat flux', 'Longwave broadband downwelling irradiance', 'Longwave broadband upwelling irradiance', 'Photosynthetically Active Radiation', 'Precipitation', 'Sensible heat flux', 'Shortwave broadband diffuse downwelling irradiance', 'Shortwave broadband direct downwelling irradiance', 'Shortwave broadband total downwelling irradiance', 'Shortwave broadband total net irradiance', 'Shortwave broadband total upwelling irradiance', 'Shortwave narrowband diffuse downwelling irradiance', 'Shortwave narrowband direct downwelling irradiance', 'Soil characteristics', 'Soil heat flux', 'Soil moisture', 'Soil moisture flux', 'Soil temperature', 'Surface skin temperature', 'Vertical velocity', 'Virtual temperature']
+
+The Southern Great Plains (SGP) carbon dioxide flux (CO2FLUX) measurement systems provide half-hour average fluxes of CO2, H2O (latent heat), sensible heat, and momentum. The systems use the eddy covariance technique, which computes the fluxes from the vertical wind speed in combination with the concentrations of CO2 and H2O, temperature, and horizontal wind speed, respectively. A 3D sonic anemometer obtains the wind components and the temperature, while an infrared gas analyzer measures CO2 and H2O. A sub-system also measures half-hour averages of radiation, meteorological, and soil measurements.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

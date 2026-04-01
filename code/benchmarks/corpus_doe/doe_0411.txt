@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: aafnavdsm10hz (a1)
+Authors: ['Mei, Fan [ORNL]', 'Ermold, Brian', 'Mehta, Hardeep']
+Date: 2016-04-28T04:00:00Z
+DOI: https://doi.org/10.5439/1971773
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric pressure, Atmospheric temperature, Horizontal wind, Navigation variables']
+
+This umbrella contains data from all instrumentation associated with the aircraft’s navigational location, motion, and attitude data. Navigational instrumentation on the Gulfstream-159 includes navigational data recorded from the AIMMS-20 (for other AIMMS produced data see the instrument category MET-AIR), CMigits global positioning system (GPS) & Inertial Navigational System (INS) Tactical System, Differential Survey Module (DSM), and VectorNav VN-200 INS. For a higher-order product that contains navigational data integrated with meteorological data and sampling masks/flags to aid analysis please see the categorical value added product NAVMET-AIR.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

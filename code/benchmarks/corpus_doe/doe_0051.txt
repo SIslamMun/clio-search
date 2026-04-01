@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Experimental Images and Videos of Foam Stability (Half-life)
+Authors: ['Thakor, Viren [Temple University] (ORCID:0000000321736386)', 'Ren, Fei', 'Wang, Hong']
+Date: 2021-09-15T04:00:00Z
+DOI: https://doi.org/10.15121/1872539
+Organization: ['DOE Geothermal Data Repository', 'Temple University']
+Subjects: ['15 GEOTHERMAL ENERGY', 'EGS', 'Enhanced Geothermal System', 'Foam', 'Foam Fracturing', 'Foam Stability', 'Half-life', 'enhanced thermal systems', 'fracturing fluid', 'half life', 'images', 'media', 'pressure', 'recordings', 'temperature', 'test', 'test footage', 'videos']
+
+The experimental data obtained in this project is the thermal stability data of various foams measured using the setup established at Temple University during this study. The setup is installed with a portable digital camera which can take images and videos of foam evolution at a given pressure and temperature condition. Consequently, the half-life data was recorded from the images/videos, which are used as a measure of the thermal stability for foams. Over the 3 years of this project, four different surfactants and five different stabilizing agents were studied. The surfactants are, Alfa Olefin Sulfonate (AOS), Sodium Dodecyl Sulphate (SDS), Tergitol (NP-40), and Cetyltrimethylammonium chloride (CTAC). The stabilizing agents are, guar gum, bentonite clay, crosslinking agents, silicon dioxide nanoparticles (60 to 70nm), and graphene oxide dispersions. Foam stability was evaluated at different temperatures between 100C and 200cC, while the foam generation pressure varied between atmospheric pressure (14.7 psi) and 1000 psi. The images are saved as .jpg file and videos are saved as .avi files.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

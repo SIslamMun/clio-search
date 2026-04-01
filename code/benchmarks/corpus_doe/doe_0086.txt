@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Eddy Covariance Flux / Processed Data
+Authors: ['Zippel, Seth [Oregon State University; Pacific Northwest National Laboratory]']
+Date: 2024-05-14T04:00:00Z
+DOI: https://doi.org/10.21947/2349402
+Organization: ['Atmosphere to Electrons (A2e) Data Archive and Portal, Pacific Northwest National Laboratory', 'PNNL']
+Subjects: ['17 WIND ENERGY']
+
+This dataset consists of estimates of mean and turbulent quantities from a vertical array of over a dozen instruments, which include sonic anemometers, relative humidity and temperature, pressure, rain, ocean temperature and salinity, ocean skin temperature, and surface wave spectra and bulk wave parameters. One of the levels consists of a paired sonic anemometer and infrared gas analyzer for direct covariance sensible and latent heat fluxes. Mean and turbulent quantities are determined over 20-minute averaging periods.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

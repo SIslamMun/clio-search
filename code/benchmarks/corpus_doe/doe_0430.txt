@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: In Situ Leaf Level Gas Exchange Measurements, Utqiagvik (Barrow), Alaska, 2013
+Authors: ['Rogers, Alistair [Brookhaven National Laboratory] (ORCID:0000000192627430)', 'Lasota, Stefanie']
+Date: 2014-12-01T04:00:00Z
+DOI: https://doi.org/10.5440/1167160
+Organization: ['Next Generation Ecosystems Experiment - Arctic, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Barrow Environmental Observatory (BEO)', 'Barrow, Alaska', 'CO2 concentration', 'Utqiagvik, Alaska', 'photosynthesis', 'relative humidity', 'stomatal conductance', 'temperature', 'vapor pressure deficit']
+
+Survey measurements of photosynthetic rate and stomatal conductance together with carbon dioxide concentration, temperature, PAR, and relative humidity for 8 species on the BEO. This dataset contains one .pdf file, one .xls, the data and metadata in the original form, and two .csv files, the data and metadata in the new format.The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research.The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska.Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

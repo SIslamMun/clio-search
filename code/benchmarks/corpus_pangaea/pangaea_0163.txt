@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice and sea ice drift from autonomous measurements from buoy 2013S2, deployed during Antarctic Fast Ice Network 2013 (AFIN 2013)
+Year: 2018
+DOI: https://doi.org/10.1594/PANGAEA.887807
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-8.2764, -70.6746], [-8.27, -70.6894]]}
+Position: {'lat': -70.68630072787492, 'lon': -8.273517850970483}
+Data Points: 270009
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

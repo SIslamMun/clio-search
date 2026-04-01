@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: ARM Best Estimate Data (ARMBE) Products for Climate Science for a Sustainable Energy Future (CSSEF)
+Authors: ['Riihimaki, Laura [ORNL]', 'Gaustad, Krista', 'McFarlane, Sally']
+Date: 2014-06-12T04:00:00Z
+DOI: https://doi.org/10.5439/1133969
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'ARM', 'ARMBE', 'Air Temperature', 'CSSEF', 'Horizontal wind', 'Relative Humidity', 'Surface Air Pressure', 'precipitation rate']
+
+This data set was created for the Climate Science for a Sustainable Energy Future (CSSEF) model testbed project and is an extension of the hourly average ARMBE dataset to other extended facility sites and to include uncertainty estimates. Uncertainty estimates were needed in order to use uncertainty quantification (UQ) techniques with the data.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

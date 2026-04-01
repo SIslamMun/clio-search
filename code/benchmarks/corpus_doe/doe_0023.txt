@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE Phase Native State FALCON Model Files
+Authors: ['Podgorney, Robert K [Idaho National Laboratory]']
+Date: 2019-06-06T04:00:00Z
+DOI: https://doi.org/10.15121/1787503
+Organization: ['DOE Geothermal Data Repository', 'Idaho National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', '3-D modeling', '3-D modelling', 'C', 'EGS', 'FALCON', 'FORGE', 'Milford', 'Roosevelt Hot Springs', 'Utah', 'Utah FORGE', 'characterization', 'code', 'energy', 'engineered geothermal system', 'enhanced geothermal system', 'geology', 'geospatial data', 'geothermal', 'inputs', 'lithologic contacts', 'lithology', 'mesh file', 'modeling', 'native state', 'preprocessed data', 'pressure', 'processed data', 'raw data', 'simulations', 'stress', 'temperature']
+
+The submission includes FALCON input file and mesh for the an initial pressure-temperature simulation, and a second set for pressure-temperature-displacement simulation. All simulations are steady state. Data and input for the FORGE Phase 2 native state model were compiled from historic and FORGE specific characterization efforts. The simulations look to find the in-situ pressure, temperature, and stress distributions in the vicinity of the Utah FORGE site. The purpose of the native state model was to establish a baseline for all other modeling analyses—so that the whole modeling team can start from a consistent set of conditions which makes for comparison of results more straightforward and meaningful. Requires the FALCON simulator which can be found in the "FALCON Simulator" link in the submission. Instructions for compiling and running FALCON can be found on the FORGE branch of the FALCON git repository in the README.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Seasonal climate reconstructions of sea level pressure and temperature for the North Atlantic region 1241-1970
+Year: 2021
+DOI: https://doi.org/10.1594/PANGAEA.932443
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-90.0, 70.0], [40.0, 20.0]]}
+Position: {'lat': 45.0, 'lon': -25.0}
+Topics: Geosciences, Multidisciplinary, Lithosphere, Meteorology & Atmospheric Sciences, Atmosphere
+Data Points: 4
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

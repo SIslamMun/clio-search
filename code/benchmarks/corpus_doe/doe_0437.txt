@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Merged RWP-WACR-ARSCL Cloud Mask and Cloud Type
+Authors: ['Feng, Zhe [ORNL]', 'Giangrande, Scott']
+Date: 2018-07-20T04:00:00Z
+DOI: https://doi.org/10.5439/1462693
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'RWP-WACR-ARSCL, Atmospheric pressure, Atmospheric temperature, Cloud top height, Cloud type, Precipitation, Cloud base height, Radar doppler, GOAMAZON, MAO, ARM, DOE']
+
+The Merged RWP-WACR-ARSCL Cloud Mask and Cloud Type PI Data Product combines the RWP calibrated radar reflectivity data with the WACR-ARSCL dataset to improve cloud mask in precipitating clouds and to provide cloud-type profile classification. WACR-ARSCL cloud profiles during substantial precipitation period where severe attenuation affects accuracy of WACR cloud-top detections were replaced with RWP profiles. The merged RWP-WACR-ARSCL cloud mask is then used to produce cloud-type profile classification. The cloud-type classification includes a total of seven cloud types: shallow cumulus, congestus, deep convective clouds, altocumulus, altostratus, cirrostratus and cirrus. See the data description for more details about the dataset.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

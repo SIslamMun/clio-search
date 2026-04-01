@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Snow height on sea ice and sea ice drift from autonomous measurements from buoy 2022S110, deployed during Antarctic Fast Ice Network 2022 (AFIN 2022)
+Year: 2024
+DOI: https://doi.org/10.1594/PANGAEA.964916
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[-16.92439999999999, -70.2696], [-7.794600000000003, -71.6092]]}
+Position: {'lat': -70.63208279486197, 'lon': -8.491850914728616}
+Data Points: 82208
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

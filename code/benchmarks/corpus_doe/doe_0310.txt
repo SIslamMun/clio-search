@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Neubrex Well 16B(78)-32 Circulation Test Fiber Optics Monitoring Data and Reports - July, 2023
+Authors: ['Jurick, Dana [Energy and Geoscience Institute at the University of Utah]', 'Guzik, Artur']
+Date: 2023-10-31T04:00:00Z
+DOI: https://doi.org/10.15121/2222469
+Organization: ['DOE Geothermal Data Repository', 'Energy and Geoscience Institute at the University of Utah']
+Subjects: ['15 GEOTHERMAL ENERGY', '16B', '16B78-32', 'DAS', 'DSS', 'DTS', 'EGS', 'FBE', 'Neubrex', 'Utah FORGE', 'Well 16B78-32', 'acoustic', 'acoustic sensing', 'distributed acoustic sensing', 'distributed temperature sensing', 'energy', 'fiber optics', 'geothermal', 'micro-strain', 'pressure', 'processed data', 'report', 'strain', 'strain change rate', 'strain rate', 'temperature']
+
+This dataset features Distributed Acoustic Sensing (DAS) and fiber optics monitoring data acquired by Neubrex Energy Services during the Utah FORGE Well 16B(78)-32 circulation test in July 2023. DAS and fiber optic monitoring data include absolute strain, strain change, strain change rate, distributed temperature sensing (DTS), and frequency band extraction (FBE). Data processing was completed between September and October 2023. The dataset includes the fiber optic sensing data collected during these operations, along with a data collection report, descriptions of the data, and instructions for reading the data files.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: mwrp
+Authors: ['Cadeddu, Maria [ORNL]', 'Gibler, Gabriel', 'Tuftedal, Matt']
+Date: 2004-02-19T04:00:00Z
+DOI: https://doi.org/10.5439/1025254
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'cape', 'cloudBaseHeight', 'dewpointTemperature', 'equilibriumLevel', 'equilibriumLevelPres', 'levelFreeConvection', 'levelFreeConvectionPres', 'liftingCondensationLevel', 'liftingCondensationLevelPres', 'liquidW', 'liquidWaterContent', 'liquidWaterPath', 'liquidWaterPath2', 'pressure', 'relativeHumidity', 'surfacePressure', 'surfaceRelativeHumidity', 'surfaceTemperature', 'surfaceWaterVaporDensity', 'temperature', 'totalPrecipitableWater', 'totalPrecipitableWater2', 'virtualTemperature', 'waterVaporDensity', 'waterVaporMixingRatio']
+
+ARM Instrument: Microwave Radiometer Profiler
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

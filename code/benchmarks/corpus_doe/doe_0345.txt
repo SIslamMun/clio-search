@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Walker Branch Throughfall Displacement Experiment Data Report: Site Characterization, System Performance, Weather, Species Composition, and Growth (NDP-078 and 078A)
+Authors: ['Hanson, P. J. [Oak Ridge National Laboratory, Environmental Sciences Division; OSTI]', 'Todd, D. E. [Oak Ridge National Laboratory, Environmental Sciences Division]', 'Riggs, J. S. [Oak Ridge National Laboratory, Instrumentation and Controls Division]', 'Wolfe, M. E. [Tennessee Valley Authority]', "O'Neill, E. G. [Oak Ridge National Laboratory, Environmental Sciences Division]"]
+Date: 2001-07-01T04:00:00Z
+DOI: https://doi.org/10.3334/CDIAC/VRC.NDP078
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'AIR TEMPERATURE', 'LEAF AREA INDEX', 'LITTER LAYER TEMPERATURE', 'NDP 78', 'NDP-078A', 'PHOTOSYNTHETICALLY ACTIVE RADIATION', 'RAIN', 'RELATIVE HUMIDITY', 'SHORTWAVE RADIATION', 'SOIL ROCK CONTENT', 'SOIL TEMPERATURE', 'SOIL WATER CONTENT', 'SOIL WATER POTENTIAL', 'SPECIES COMPOSITION', 'TOTAL RADIATION', 'TREE GROWTH', 'VAPOR PRESSURE DEFICIT', 'WIND SPEED', 'forests', 'growth', 'leaf area index', 'litter', 'sapling', 'soil', 'soil temperature', 'soil water content', 'soil water potential', 'tree', 'weather']
+
+This numeric data package provides data sets, and accompanying documentation, on site characterization, system performance, weather, species composition, and growth for the Throughfall Displacement Experiment, which was established in the Walker Branch Watershed of East Tennessee to provide data on the responses of forests to altered precipitation regimes. The specific data sets include soil water content and potential, coarse fraction of the soil profile, litter layer temperature, soil temperature, monthly weather, daily weather, hourly weather, species composition of trees and saplings, mature tree and sapling annual growth, and relative leaf area index. Fortran and SAS(TM) access codes are provided to read the ASCII data files.For access to the data files, click this link to the CDIAC data transition website: http://cdiac.ess-dive.lbl.gov/epubs/ndp/ndp078a/ndp078a.html
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Meteorological measurements in the upper air at station Rochambeau, 1953-02-04 to 1955-12-26, ERA-CLIM ID 6016A
+Year: 2014
+DOI: https://doi.org/10.1594/PANGAEA.823001
+Geographic Coverage: {'type': 'point', 'coordinates': [-52.365, 4.822]}
+Position: {'lat': 4.822, 'lon': -52.365}
+Data Points: 43723
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

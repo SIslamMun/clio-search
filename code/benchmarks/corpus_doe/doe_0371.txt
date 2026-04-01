@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Merged aerosol size distribution from SMPS and OPC for SAIL
+Authors: ['Zhou, Ruichen (ORCID:0000000152902311)', 'Perkins, Russell (ORCID:0000000223512362)', 'Kreidenweis, Sonia (ORCID:0000000225612914)']
+Date: 2025-07-24T04:00:00Z
+DOI: https://doi.org/10.5439/2572899
+Organization: ['Atmospheric Radiation Measurement User Facility']
+Subjects: ['merged size distribution', 'optical particle counter (OPC)', 'scanning-mobility particle sizer (SMPS)']
+
+This dataset contains merged aerosol number size distribution data for the Surface Atmosphere Integrated Field Laboratory (SAIL) campaign. The merged size distribution data were constructed by combining measurements from a scanning-mobility particle sizer (SMPS) and an optical particle counter (OPC), covering a size range of 0.01–35 µm. The merging methodology follows the approach described by Hand and Kreidenweis (2002) and Marinescu et al. (2019). All aerosol data from the ARM archive were corrected to standard temperature (273.15 K) and pressure (101.3 kPa).
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: Utah FORGE: Drilling Data for Student Competition
+Authors: ['Podgorney, Robert [Idaho National Laboratory]', 'McLennan, John', 'Moore, Joe']
+Date: 2018-12-07T04:00:00Z
+DOI: https://doi.org/10.15121/1495411
+Organization: ['DOE Geothermal Data Repository', 'Idaho National Laboratory']
+Subjects: ['15 GEOTHERMAL ENERGY', '58-32', 'EGS', 'FORGE', 'MU-ESW1', 'Milford', 'Pason', 'ROP', 'Roosevelt Hot Springs', 'TD', 'Utah', 'Utah FORGE', 'WOB', 'bits', 'characterization', 'data', 'depth', 'downscaled', 'drill', 'drilling', 'drilling data', 'energy', 'flow', 'geothermal', 'log', 'logs', 'materials', 'performance', 'phase 2b', 'processed data', 'pump pressure', 'rate of penetration', 'raw data', 'resource', 'rig', 'student competition', 'subsurface', 'temperature', 'torque', 'weight on bit', 'well', 'well data']
+
+Diagnostic drilling data (Pason log files) from Well 58-32 (previously labeled MU-ESW1), which was drilled near Milford Utah during Phase 2B of the FORGE Project to confirm geothermal reservoir characteristics met requirements for the final FORGE site. This dataset includes both raw, unprocessed drilling data recorded at 1Hz and a processed version downscaled to ~0.3m (1 ft) intervals. Diagnostic drilling data were collected to obtain useful information regarding the nature of the subsurface materials and performance of the drilling rig and drilling bits, including rate of penetration (ROP), weight on bit, temperature, pump pressure, etc.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: thwaps (b1)
+Authors: ['Ermold, Brian [ORNL]']
+Date: 1999-09-21T04:00:00Z
+DOI: https://doi.org/10.5439/1994771
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture, Atmospheric pressure, Atmospheric temperature, Horizontal wind']
+
+The temperature, humidity, wind, and pressure sensors (THWAPS) provide surface reference values of these measurements for balloon-borne sounding system (BBSS) launches. THWAPS are located adjacent to BBSS launch sites at the Southern Great Plains (SGP) Central Facility and its four boundary facilities. The THWAPS system is a combination of calibration-quality instruments that measure meteorological conditions near the surface. It includes a data logger to record time series of these variables.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

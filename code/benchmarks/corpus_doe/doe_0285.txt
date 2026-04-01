@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: interpolatedsonde
+Authors: ['Jensen, Michael [ORNL]', 'Giangrande, Scott', 'Fairless, Tami', 'Zhou, Aifang']
+Date: 1998-10-21T04:00:00Z
+DOI: https://doi.org/10.5439/1095316
+Organization: ['Atmospheric Radiation Measurement (ARM) Archive, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (US)', 'ARM Data Center, Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Atmospheric moisture', 'Atmospheric pressure', 'Atmospheric temperature', 'Horizontal', 'Horizontal wind', 'bar_pres', 'dp', 'rh', 'temp', 'u_wind', 'v_wind', 'vap_pres', 'wdir', 'wspd']
+
+ARM Instrument: Interpolated Sonde
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.

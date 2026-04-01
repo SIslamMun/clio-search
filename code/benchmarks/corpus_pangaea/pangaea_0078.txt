@@ -1,0 +1,10 @@
+PANGAEA Dataset Record
+Title: Homogenized radiosonde record at station Ny-Ålesund, Spitsbergen in 2019
+Year: 2023
+DOI: https://doi.org/10.1594/PANGAEA.961207
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[6.9859, 79.5804], [20.0668, 77.5837]]}
+Position: {'lat': 78.85972255283596, 'lon': 12.42605740043984}
+Topics: Meteorology & Atmospheric Sciences, Atmosphere
+Data Points: 768622
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

@@ -1,0 +1,9 @@
+PANGAEA Dataset Record
+Title: Tethered balloon-borne measurements of turbulence on 2020-04-07 from 11:46 to 12:26 during MOSAiC leg 3
+Year: 2021
+DOI: https://doi.org/10.1594/PANGAEA.934532
+Geographic Coverage: {'type': 'envelope', 'coordinates': [[14.538857, 84.499011], [14.548203, 84.49703]]}
+Position: {'lat': 84.4980205, 'lon': 14.54353}
+Data Points: 598865
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

@@ -1,0 +1,7 @@
+PANGAEA Dataset Record
+Title: LPEE saturation vapor pressure calculations using siderite clumped isotope-based reconstructions of atmospheric temperature
+Year: 2020
+DOI: https://doi.org/10.1594/PANGAEA.922964
+Data Points: 60
+
+Source: PANGAEA Data Publisher for Earth & Environmental Science. All measurements from peer-reviewed scientific studies.

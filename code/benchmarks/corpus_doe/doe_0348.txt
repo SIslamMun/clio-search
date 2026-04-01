@@ -1,0 +1,11 @@
+DOE Scientific Dataset Record
+Title: SUMO Micrometeorology
+Authors: ['Sevanto, Sanna [Los Alamos National Laboratory; ESS-DIVE]', 'Dickman, Turin L. [Los Alamos National Laboratory]', 'Collins, Adam [Los Alamos National Laboratory]', 'Grossiord, Charlotte [Swiss Federal Institute for Forest Snow and Landscape Research]', 'Adams, Henry [Oklahoma State University]', 'Borrego, Isaac [USGS Southwest Biological Science Center]', 'McDowell, Nate [Pacific Northwest National Laboratory (PNNL)]']
+Date: 2018-01-01T04:00:00Z
+DOI: https://doi.org/10.15485/1454272
+Organization: ['Environmental System Science Data Infrastructure for a Virtual Ecosystem', 'Vegetation Survival-Mortality (SUMO)']
+Subjects: ['54 ENVIRONMENTAL SCIENCES', 'Drought', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC RADIATION > NET RADIATION', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC TEMPERATURE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC TEMPERATURE > SURFACE TEMPERATURE > AIR TEMPERATURE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WATER VAPOR > WATER VAPOR INDICATORS > HUMIDITY > RELATIVE HUMIDITY', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WATER VAPOR > WATER VAPOR INDICATORS > VAPOR PRESSURE', 'EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WINDS > SURFACE WINDS > WIND SPEED', 'EARTH SCIENCE > ATMOSPHERE > PRECIPITATION', 'EARTH SCIENCE > ATMOSPHERE > PRECIPITATION > PRECIPITATION AMOUNT > 24 HOUR PRECIPITATION AMOUNT', 'EARTH SCIENCE > BIOSPHERE > VEGETATION', 'Forest', 'Heat']
+
+The Los Alamos Survival–Mortality experiment (SUMO) is located on Frijoles Mesa near Los Alamos, New Mexico, USA, at an elevation of 2150 m. This was a tree manipulation study that investigated the relative impacts of drought and warming on plant function and reveals how trees adapt to drought and heat in semi-arid regions. The study factored the role of tree hydraulic acclimation to both precipitation and temperature and separated their effects.The experiment is located in a pinon-juniper woodland near the ponderosa pine (Pinus ponderosa) forest ecotone. Daily average ambient micrometeorological conditions at the SUMO site. See SUMO Target Tree Information data package (doi:10.15485/1440544) for additional information. Data released by Los Alamos National Lab for public use under LA-UR-18-23656.
+
+Source: DOE Data Explorer (OSTI). U.S. Department of Energy scientific dataset.
