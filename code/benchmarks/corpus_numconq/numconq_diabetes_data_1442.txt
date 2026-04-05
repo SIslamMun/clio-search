@@ -1,0 +1,1 @@
+The patient is a 12-year-old Female with a BMI of 18.24. Their HbA1c level is 6.2%, and their blood glucose level is 85. They does not have hypertension and does not have heart disease. Their smoking history is 'No Info'. The diagnosis does not have diabetes.

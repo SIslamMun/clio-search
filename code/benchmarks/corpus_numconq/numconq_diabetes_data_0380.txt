@@ -1,0 +1,1 @@
+This Male individual, aged 80, has a BMI of 15.65. Their HbA1c level is 6.5%, and their blood glucose level is 145. They does not have hypertension and has heart disease. Their smoking history is categorized as 'former'. Based on the data, they does not have diabetes.

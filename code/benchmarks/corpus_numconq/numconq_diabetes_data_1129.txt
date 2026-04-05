@@ -1,0 +1,1 @@
+This Female individual is 34 years old with a BMI of 20.98. Their HbA1c level is 5.0%, and their blood glucose level is 160. They does not have hypertension, does not have heart disease, and have a smoking history of 'ever'. The data shows they does not have diabetes.

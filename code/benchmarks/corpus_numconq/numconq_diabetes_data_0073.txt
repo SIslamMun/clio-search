@@ -1,0 +1,1 @@
+This Male patient, aged 43, has a BMI of 27.32. Their HbA1c level is 3.5%, and their blood glucose level is 126. They does not have hypertension, does not have heart disease, and have a smoking history of 'not current'. The patient does not have diabetes.

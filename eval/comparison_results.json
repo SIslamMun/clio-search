@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "timestamp": "2026-04-04 03:48:57",
+    "evaluation": "NDP-MCP without CLIO vs with CLIO Search"
+  },
+  "ndp_corpus_profile": {
+    "documents": 130,
+    "chunks": 2295,
+    "measurements": 1329,
+    "metadata_density": 0.3451,
+    "distinct_units": 9
+  },
+  "iowarp_hdf5": {
+    "available": false,
+    "error": "Unable to synchronously open file (file signature not found)"
+  },
+  "per_query": [
+    {
+      "id": "Q1",
+      "label": "Temp \u00b0F\u2192\u00b0C",
+      "category": "cross-unit",
+      "description": "Cross-unit: query Fahrenheit, data in Celsius",
+      "ndp_native": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "time_s": 0.503
+      },
+      "clio_search": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "tokens_saved": 229500,
+        "branches_used": [
+          "lexical",
+          "vector",
+          "scientific"
+        ],
+        "branches_skipped": 1,
+        "time_s": 0.059,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q2",
+      "label": "Temp \u00b0C",
+      "category": "cross-unit",
+      "description": "Unit-specific: Celsius query",
+      "ndp_native": {
+        "hits": 1,
+        "tokens_consumed": 250,
+        "time_s": 0.434
+      },
+      "clio_search": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "tokens_saved": 229750,
+        "branches_used": [
+          "lexical",
+          "vector",
+          "scientific"
+        ],
+        "branches_skipped": 1,
+        "time_s": 0.102,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q3",
+      "label": "Pressure kPa",
+      "category": "cross-unit",
+      "description": "Cross-unit: kPa \u2192 Pa/hPa/bar",
+      "ndp_native": {
+        "hits": 2,
+        "tokens_consumed": 500,
+        "time_s": 2.741
+      },
+      "clio_search": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "tokens_saved": 230000,
+        "branches_used": [
+          "lexical",
+          "vector",
+          "scientific"
+        ],
+        "branches_skipped": 1,
+        "time_s": 0.102,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q4",
+      "label": "Wind km/h",
+      "category": "cross-unit",
+      "description": "Cross-unit: km/h \u2192 m/s",
+      "ndp_native": {
+        "hits": 127,
+        "tokens_consumed": 31750,
+        "time_s": 4.96
+      },
+      "clio_search": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "tokens_saved": 261250,
+        "branches_used": [
+          "lexical",
+          "vector",
+          "scientific"
+        ],
+        "branches_skipped": 1,
+        "time_s": 0.101,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q5",
+      "label": "Pressure text",
+      "category": "semantic",
+      "description": "Semantic: pressure as concept",
+      "ndp_native": {
+        "hits": 124,
+        "tokens_consumed": 31000,
+        "time_s": 6.596
+      },
+      "clio_search": {
+        "hits": 10,
+        "tokens_consumed": 1000,
+        "tokens_saved": 489000,
+        "branches_used": [
+          "lexical",
+          "vector"
+        ],
+        "branches_skipped": 2,
+        "time_s": 0.121,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q6",
+      "label": "Wind text",
+      "category": "semantic",
+      "description": "Semantic: wind speed data",
+      "ndp_native": {
+        "hits": 127,
+        "tokens_consumed": 31750,
+        "time_s": 2.751
+      },
+      "clio_search": {
+        "hits": 10,
+        "tokens_consumed": 1000,
+        "tokens_saved": 489750,
+        "branches_used": [
+          "lexical",
+          "vector"
+        ],
+        "branches_skipped": 2,
+        "time_s": 0.141,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q7",
+      "label": "Humidity",
+      "category": "semantic",
+      "description": "Semantic: humidity sensor",
+      "ndp_native": {
+        "hits": 24,
+        "tokens_consumed": 6000,
+        "time_s": 1.486
+      },
+      "clio_search": {
+        "hits": 10,
+        "tokens_consumed": 1000,
+        "tokens_saved": 464000,
+        "branches_used": [
+          "lexical",
+          "vector"
+        ],
+        "branches_skipped": 2,
+        "time_s": 0.13,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q8",
+      "label": "Radiation MJ",
+      "category": "cross-unit",
+      "description": "Cross-unit: MJ energy",
+      "ndp_native": {
+        "hits": 80,
+        "tokens_consumed": 20000,
+        "time_s": 4.686
+      },
+      "clio_search": {
+        "hits": 0,
+        "tokens_consumed": 0,
+        "tokens_saved": 249500,
+        "branches_used": [
+          "lexical",
+          "vector",
+          "scientific"
+        ],
+        "branches_skipped": 1,
+        "time_s": 0.102,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q9",
+      "label": "Glacier",
+      "category": "semantic",
+      "description": "Semantic: cross-domain",
+      "ndp_native": {
+        "hits": 1093,
+        "tokens_consumed": 273250,
+        "time_s": 6.236
+      },
+      "clio_search": {
+        "hits": 10,
+        "tokens_consumed": 1000,
+        "tokens_saved": 731250,
+        "branches_used": [
+          "lexical",
+          "vector"
+        ],
+        "branches_skipped": 2,
+        "time_s": 0.117,
+        "has_profile": true
+      }
+    },
+    {
+      "id": "Q10",
+      "label": "Ocean temp",
+      "category": "semantic",
+      "description": "Semantic: ocean data",
+      "ndp_native": {
+        "hits": 125,
+        "tokens_consumed": 31250,
+        "time_s": 7.164
+      },
+      "clio_search": {
+        "hits": 10,
+        "tokens_consumed": 1000,
+        "tokens_saved": 489250,
+        "branches_used": [
+          "lexical",
+          "vector"
+        ],
+        "branches_skipped": 2,
+        "time_s": 0.116,
+        "has_profile": true
+      }
+    }
+  ],
+  "totals": {
+    "ndp_hits": 1703,
+    "ndp_tokens": 425750,
+    "clio_hits": 50,
+    "clio_tokens": 5000,
+    "tokens_saved": 3863250,
+    "branches_used": 25,
+    "branches_possible": 40
+  },
+  "cost_analysis": {
+    "ndp_tokens": 425750,
+    "clio_tokens": 5000,
+    "tokens_saved": 3863250,
+    "cost_ndp_usd": 1.27725,
+    "cost_clio_usd": 0.015,
+    "cost_saved_usd": 11.5898,
+    "scale_multiplier_10B": 4357298
+  }
+}

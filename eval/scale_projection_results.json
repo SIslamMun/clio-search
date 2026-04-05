@@ -1,0 +1,48 @@
+{
+  "current_scale": {
+    "documents": 210,
+    "chunks": 569,
+    "measurements": 2674,
+    "metadata_density": 0.8752,
+    "profile_time_ms": 5.65,
+    "queries": 80,
+    "branches_used": 230,
+    "branches_skipped": 90,
+    "branches_possible": 320,
+    "brute_force_tokens": 18208000,
+    "clio_tokens": 13087000,
+    "tokens_saved": 5121000
+  },
+  "iowarp_projection": {
+    "target_blobs": 10000000000,
+    "scale_factor": 17574692.0,
+    "brute_force_tokens_per_query": 4000000000000,
+    "clio_tokens_per_query": 2875000000000.0,
+    "tokens_saved_per_query": 1125000000000.0,
+    "reduction_pct": 28.1,
+    "cost_saved_per_query_usd": 3375000.0,
+    "cost_saved_per_1000_queries_usd": 3375000000.0
+  },
+  "per_query_type": {
+    "cross_unit": {
+      "count": 40,
+      "avg_branches_used": 3.0,
+      "avg_branches_skipped": 1.0
+    },
+    "same_unit": {
+      "count": 20,
+      "avg_branches_used": 3.0,
+      "avg_branches_skipped": 1.0
+    },
+    "formula": {
+      "count": 10,
+      "avg_branches_used": 3.0,
+      "avg_branches_skipped": 1.0
+    },
+    "multi_constraint": {
+      "count": 10,
+      "avg_branches_used": 2.0,
+      "avg_branches_skipped": 2.0
+    }
+  }
+}

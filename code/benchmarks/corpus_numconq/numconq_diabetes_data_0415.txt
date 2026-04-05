@@ -1,0 +1,1 @@
+This 65-year-old Female has a BMI of 30.41. Their HbA1c level is 5.8%, and their blood glucose level is 160. They does not have hypertension, does not have heart disease, and have a smoking history of 'ever'. The data indicates they does not have diabetes.

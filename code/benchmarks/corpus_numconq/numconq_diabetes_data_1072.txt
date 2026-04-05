@@ -1,0 +1,1 @@
+The patient is a 75-year-old Male with a BMI of 30.65. Their HbA1c level is 4.0%, and their blood glucose level is 155. They does not have hypertension and does not have heart disease. Their smoking history is 'former'. The diagnosis does not have diabetes.

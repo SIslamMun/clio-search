@@ -1,0 +1,1 @@
+This Female individual is 80 years old with a BMI of 25.15. Their HbA1c level is 4.8%, and their blood glucose level is 85. They does not have hypertension, does not have heart disease, and have a smoking history of 'never'. The data shows they does not have diabetes.

@@ -1,0 +1,1 @@
+This Male individual, aged 73, has a BMI of 24.77. Their HbA1c level is 7.5%, and their blood glucose level is 220. They does not have hypertension and does not have heart disease. Their smoking history is categorized as 'not current'. Based on the data, they has diabetes.

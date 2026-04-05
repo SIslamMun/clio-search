@@ -1,0 +1,1 @@
+This Male individual, aged 59, has a BMI of 25.94. Their HbA1c level is 9.0%, and their blood glucose level is 140. They has hypertension and does not have heart disease. Their smoking history is categorized as 'ever'. Based on the data, they has diabetes.

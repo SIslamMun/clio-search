@@ -1,0 +1,1 @@
+The patient is a 1-year-old Male with a BMI of 18.42. Their HbA1c level is 4.0%, and their blood glucose level is 126. They does not have hypertension and does not have heart disease. Their smoking history is 'never'. The diagnosis does not have diabetes.

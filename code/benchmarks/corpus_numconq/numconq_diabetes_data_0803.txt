@@ -1,0 +1,1 @@
+This Male patient, aged 80, has a BMI of 32.95. Their HbA1c level is 6.0%, and their blood glucose level is 130. They does not have hypertension, has heart disease, and have a smoking history of 'former'. The patient has diabetes.

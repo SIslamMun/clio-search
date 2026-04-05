@@ -1,0 +1,1 @@
+This 80-year-old Male has a BMI of 22.06. Their HbA1c level is 9.0%, and their blood glucose level is 155. They does not have hypertension, does not have heart disease, and have a smoking history of 'never'. The data indicates they has diabetes.

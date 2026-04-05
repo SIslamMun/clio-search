@@ -1,0 +1,1 @@
+This Male individual is 78 years old with a BMI of 34.27. Their HbA1c level is 5.0%, and their blood glucose level is 80. They does not have hypertension, does not have heart disease, and have a smoking history of 'not current'. The data shows they does not have diabetes.

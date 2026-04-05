@@ -34,3 +34,6 @@ paper/*.out
 paper/*.fls
 paper/*.fdb_latexmk
 paper/*.synctex.gz
+
+# LaTeX scratch in repo root
+texput.log

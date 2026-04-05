@@ -1,0 +1,1 @@
+This Female patient is 67 years old with a BMI of 28.52. Their HbA1c level is 6.5%, and their blood glucose level is 200. They has hypertension, has heart disease, and have a smoking history of 'current'. The diagnosis has diabetes.

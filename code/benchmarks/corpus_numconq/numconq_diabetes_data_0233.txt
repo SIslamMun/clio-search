@@ -1,0 +1,1 @@
+This Male patient, aged 11, has a BMI of 17.09. Their HbA1c level is 6.6%, and their blood glucose level is 126. They does not have hypertension, does not have heart disease, and have a smoking history of 'never'. The patient does not have diabetes.

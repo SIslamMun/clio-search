@@ -1,0 +1,1 @@
+This Male patient is 23 years old with a BMI of 26.97. Their HbA1c level is 3.5%, and their blood glucose level is 130. They does not have hypertension, does not have heart disease, and have a smoking history of 'No Info'. The diagnosis does not have diabetes.

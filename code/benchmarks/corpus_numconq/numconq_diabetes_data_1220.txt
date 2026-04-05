@@ -1,0 +1,1 @@
+This Male individual, aged 30, has a BMI of 57.17. Their HbA1c level is 5.8%, and their blood glucose level is 300. They has hypertension and does not have heart disease. Their smoking history is categorized as 'former'. Based on the data, they has diabetes.

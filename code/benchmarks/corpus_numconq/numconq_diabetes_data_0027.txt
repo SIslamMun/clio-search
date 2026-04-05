@@ -1,0 +1,1 @@
+This Male patient is 40 years old with a BMI of 27.85. Their HbA1c level is 5.8%, and their blood glucose level is 80. They does not have hypertension, does not have heart disease, and have a smoking history of 'former'. The diagnosis does not have diabetes.

@@ -110,19 +110,31 @@ _UNIT_REGISTRY: dict[str, UnitEntry] = {
     "min":  UnitEntry(_DIM_TIME, 60.0,   domain="time"),
     "h":    UnitEntry(_DIM_TIME, 3600.0, domain="time"),
     # --- Temperature (Θ) ---
-    "kelvin": UnitEntry(_DIM_TEMPERATURE, 1.0, 0.0,     domain="temperature"),
-    "degc":   UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
-    "°c":     UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
-    "degf":   UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
-    "°f":     UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
+    "kelvin":  UnitEntry(_DIM_TEMPERATURE, 1.0, 0.0,     domain="temperature"),
+    "k":       UnitEntry(_DIM_TEMPERATURE, 1.0, 0.0,     domain="temperature"),
+    "degc":    UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
+    "°c":      UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
+    "c":       UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
+    "celsius": UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15,  domain="temperature"),
+    "centigrade": UnitEntry(_DIM_TEMPERATURE, 1.0, 273.15, domain="temperature"),
+    "degf":    UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
+    "°f":      UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
+    "f":       UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
+    "fahrenheit": UnitEntry(_DIM_TEMPERATURE, 5.0/9.0, 255.372, domain="temperature"),
     # --- Pressure (M·L⁻¹·T⁻²) ---
-    "pa":   UnitEntry(_DIM_PRESSURE, 1.0,   domain="pressure"),
-    "hpa":  UnitEntry(_DIM_PRESSURE, 1e2,   domain="pressure"),
-    "kpa":  UnitEntry(_DIM_PRESSURE, 1e3,   domain="pressure"),
-    "mpa":  UnitEntry(_DIM_PRESSURE, 1e6,   domain="pressure"),
-    "bar":  UnitEntry(_DIM_PRESSURE, 1e5,   domain="pressure"),
-    "atm":  UnitEntry(_DIM_PRESSURE, 101325.0, domain="pressure"),
-    "psi":  UnitEntry(_DIM_PRESSURE, 6894.757, domain="pressure"),
+    "pa":       UnitEntry(_DIM_PRESSURE, 1.0,   domain="pressure"),
+    "pascal":   UnitEntry(_DIM_PRESSURE, 1.0,   domain="pressure"),
+    "pascals":  UnitEntry(_DIM_PRESSURE, 1.0,   domain="pressure"),
+    "hpa":      UnitEntry(_DIM_PRESSURE, 1e2,   domain="pressure"),
+    "hectopascal": UnitEntry(_DIM_PRESSURE, 1e2, domain="pressure"),
+    "kpa":      UnitEntry(_DIM_PRESSURE, 1e3,   domain="pressure"),
+    "kilopascal": UnitEntry(_DIM_PRESSURE, 1e3, domain="pressure"),
+    "mpa":      UnitEntry(_DIM_PRESSURE, 1e6,   domain="pressure"),
+    "megapascal": UnitEntry(_DIM_PRESSURE, 1e6, domain="pressure"),
+    "bar":      UnitEntry(_DIM_PRESSURE, 1e5,   domain="pressure"),
+    "atm":      UnitEntry(_DIM_PRESSURE, 101325.0, domain="pressure"),
+    "atmosphere": UnitEntry(_DIM_PRESSURE, 101325.0, domain="pressure"),
+    "psi":      UnitEntry(_DIM_PRESSURE, 6894.757, domain="pressure"),
     # --- Velocity (L·T⁻¹) ---
     "m/s":  UnitEntry(_DIM_VELOCITY, 1.0,           domain="velocity"),
     "km/h": UnitEntry(_DIM_VELOCITY, 1000.0/3600.0, domain="velocity"),
@@ -189,6 +201,7 @@ class Measurement:
     raw_unit: str
     canonical_value: float
     canonical_unit: str  # dimension key string (e.g., "1|-1|-2|0|0|0|0" for pressure)
+    quality: str = "unknown"  # QualityFlag string form; see indexing.quality
 
 
 @dataclass(frozen=True, slots=True)
@@ -244,6 +257,20 @@ def _normalize_formula_side(side: str) -> str:
 
 
 def extract_measurements(text: str) -> list[Measurement]:
+    """Extract numeric measurements with units from free text.
+
+    Each match is canonicalised to SI base units. Quality is set to
+    ``"good"`` by default since the value was successfully parsed and
+    canonicalised — downstream connectors can override this when the
+    source provides explicit QC flags (e.g. CSV qc columns).
+    """
+    # Import locally to avoid a top-level circular import (quality depends
+    # on nothing, but indexing.scientific is imported widely).
+    from clio_agentic_search.indexing.quality import (
+        QualityFlag,
+        derive_flag_from_value,
+    )
+
     measurements: list[Measurement] = []
     for match in _MEASUREMENT_PATTERN.finditer(text):
         raw_value = float(match.group("value"))
@@ -252,12 +279,18 @@ def extract_measurements(text: str) -> list[Measurement]:
             canonical_value, canonical_unit = canonicalize_measurement(raw_value, raw_unit)
         except ValueError:
             continue
+        # Default to GOOD, then let the physical-plausibility check
+        # potentially downgrade to QUESTIONABLE for out-of-range values.
+        flag = derive_flag_from_value(
+            canonical_unit, canonical_value, QualityFlag.GOOD,
+        )
         measurements.append(
             Measurement(
                 raw_value=raw_value,
                 raw_unit=raw_unit.lower(),
                 canonical_value=canonical_value,
                 canonical_unit=canonical_unit,
+                quality=flag.value,
             )
         )
     return measurements
@@ -276,24 +309,44 @@ def extract_formula_signatures(text: str) -> list[str]:
 
 
 def encode_measurements(measurements: list[Measurement]) -> str:
+    """Encode a list of :class:`Measurement` objects to a string.
+
+    Format: semicolon-separated entries; each entry pipe-separated as:
+        canonical_unit|canonical_value|raw_unit|raw_value[|quality]
+
+    The optional ``quality`` field is a :class:`~indexing.quality.QualityFlag`
+    string (``"good"``, ``"bad"``, etc). When absent (legacy rows), decoding
+    yields ``quality="unknown"``.
+    """
     if not measurements:
         return ""
     return ";".join(
-        f"{item.canonical_unit}|{item.canonical_value:.12g}|{item.raw_unit}|{item.raw_value:.12g}"
+        f"{item.canonical_unit}|{item.canonical_value:.12g}|"
+        f"{item.raw_unit}|{item.raw_value:.12g}|{item.quality}"
         for item in measurements
     )
 
 
 def decode_measurements(value: str) -> list[Measurement]:
+    """Decode a string produced by :func:`encode_measurements`.
+
+    Accepts both the 4-field legacy format (no quality) and the 5-field
+    format (with quality) for backward compatibility. Malformed entries
+    are skipped silently.
+    """
     decoded: list[Measurement] = []
     if not value:
         return decoded
 
     for item in value.split(";"):
         parts = item.split("|")
-        if len(parts) != 4:
+        if len(parts) < 4:
             continue
-        canonical_unit, canonical_value, raw_unit, raw_value = parts
+        canonical_unit = parts[0]
+        canonical_value = parts[1]
+        raw_unit = parts[2]
+        raw_value = parts[3]
+        quality = parts[4] if len(parts) >= 5 else "unknown"
         try:
             decoded.append(
                 Measurement(
@@ -301,6 +354,7 @@ def decode_measurements(value: str) -> list[Measurement]:
                     raw_unit=raw_unit,
                     canonical_value=float(canonical_value),
                     canonical_unit=canonical_unit,
+                    quality=quality,
                 )
             )
         except ValueError:

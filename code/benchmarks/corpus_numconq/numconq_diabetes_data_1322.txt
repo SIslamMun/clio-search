@@ -1,0 +1,1 @@
+The patient is a 23-year-old Female with a BMI of 27.32. Their HbA1c level is 4.5%, and their blood glucose level is 90. They does not have hypertension and does not have heart disease. Their smoking history is 'never'. The diagnosis does not have diabetes.

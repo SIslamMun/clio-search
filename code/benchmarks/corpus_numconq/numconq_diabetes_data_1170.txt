@@ -1,0 +1,1 @@
+This Male individual, aged 50, has a BMI of 25.49. Their HbA1c level is 6.1%, and their blood glucose level is 260. They has hypertension and does not have heart disease. Their smoking history is categorized as 'not current'. Based on the data, they has diabetes.

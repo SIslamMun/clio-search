@@ -1,0 +1,1 @@
+This Male individual is 67 years old with a BMI of 35.44. Their HbA1c level is 4.8%, and their blood glucose level is 126. They has hypertension, has heart disease, and have a smoking history of 'former'. The data shows they does not have diabetes.

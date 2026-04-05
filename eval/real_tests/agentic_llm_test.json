@@ -1,0 +1,91 @@
+{
+  "test": "Claude Agent: NDP-MCP direct vs CLIO (using NDP-MCP)",
+  "timestamp": "2026-04-04 15:35:49",
+  "architecture": {
+    "mode_a": "Claude Agent \u2192 NDP-MCP tools directly",
+    "mode_b": "Claude Agent \u2192 CLIO \u2192 NDP-MCP (CLIO orchestrates)"
+  },
+  "question": "Find scientific datasets that contain temperature measurements above 30 degrees Celsius. List the top 3 most relevant datasets with title and one-sentence explanation.",
+  "ndp_mcp_binary": "/home/shazzadul/Illinois_Tech/Spring26/RA/clio-search/code/.venv/bin/ndp-mcp",
+  "clio_discovery_via_ndp_mcp": {
+    "terms": [
+      {
+        "term": "temperature",
+        "found": 15
+      },
+      {
+        "term": "pressure",
+        "found": 15
+      },
+      {
+        "term": "wind",
+        "found": 15
+      },
+      {
+        "term": "humidity",
+        "found": 15
+      },
+      {
+        "term": "glacier",
+        "found": 15
+      },
+      {
+        "term": "ocean",
+        "found": 15
+      }
+    ],
+    "datasets_found": 90,
+    "mcp_tools_available": [
+      "list_organizations",
+      "search_datasets",
+      "get_dataset_details"
+    ]
+  },
+  "clio_corpus": {
+    "documents": 76,
+    "chunks": 1715,
+    "measurements": 1122,
+    "metadata_density": 0.3773
+  },
+  "mode_a_direct_ndp": {
+    "tool_calls": [
+      "ToolSearch",
+      "mcp__ndp__search_datasets",
+      "mcp__ndp__search_datasets",
+      "mcp__ndp__search_datasets",
+      "mcp__ndp__search_datasets",
+      "mcp__ndp__search_datasets",
+      "Bash"
+    ],
+    "num_tool_calls": 7,
+    "num_turns": 12,
+    "input_tokens": 262,
+    "output_tokens": 1172,
+    "cache_creation_tokens": 6928,
+    "cache_read_tokens": 64217,
+    "total_tokens": 8362,
+    "time_s": 40.37,
+    "answer": "Now I have a clear picture. Here are the **top 3 most relevant datasets** for temperature measurements above 30\u00b0C:\n\n---\n\n1. **ECOSTRESS Tiled Land Surface Temperature and Emissivity Instantaneous L2 Global 70 m V002**\n   (`lpcloud-eco-l2t-lste-002`)\n   \u2014 Global land surface temperature measurements at 70 m resolution from the ISS-mounted ECOSTRESS sensor, designed to monitor plant heat stress \u2014 routinely captures surface temperatures well above 30 \u00b0C in arid and tropical regions.\n\n2. **ASTER L2 Surface Kinetic Temperature V004**\n   (`lpcloud-ast-08-004`)\n   \u2014 Satellite-derived surface kinetic temperature from Terra/ASTER's five thermal infrared bands, providing high-resolution temperature retrievals that frequently exceed 30 \u00b0C over land surfaces worldwide.\n\n3. **A multiscale study of the "
+  },
+  "mode_b_via_clio": {
+    "tool_calls": [
+      "ToolSearch",
+      "mcp__clio__clio_find_datasets"
+    ],
+    "num_tool_calls": 2,
+    "num_turns": 3,
+    "input_tokens": 7,
+    "output_tokens": 448,
+    "cache_creation_tokens": 4657,
+    "cache_read_tokens": 34542,
+    "total_tokens": 5112,
+    "time_s": 15.95,
+    "answer": "Here are the **top 3 most relevant datasets** with temperature measurements above 30\u00b0C:\n\n1. **IoT Sensor Data** (score: 8.22)\n   Environmental sensor data from Iron Horse Vineyards capturing IoT-based temperature readings, likely including ambient and soil temperature measurements in vineyard conditions.\n\n2. **Mobile Deployment Platform Measurements and Sensors** (score: 7.78)\n   Field sensor data from NEON (National Ecological Observatory Network) mobile deployment platforms, collecting environmental measurements including temperature across ecological sites.\n\n3. **A Multiscale Study of the Coupling Between Flow, Fire and Vegetation \u2014 Temperature Profile (2022\u20132025)** (score: 6.87)\n   Temperature profile data from wildfire science field experiments studying the interaction between airflow"
+  },
+  "comparison": {
+    "token_savings": 3250,
+    "token_savings_pct": 38.9,
+    "tool_call_savings": 5,
+    "time_savings_s": 24.42
+  }
+}
