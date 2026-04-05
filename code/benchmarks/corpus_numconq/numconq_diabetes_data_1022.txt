@@ -1,0 +1,1 @@
+The patient is a 62-year-old Female with a BMI of 44.23. Their HbA1c level is 8.2%, and their blood glucose level is 145. They has hypertension and has heart disease. Their smoking history is 'former'. The diagnosis has diabetes.

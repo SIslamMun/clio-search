@@ -1,0 +1,1 @@
+This Female individual, aged 70, has a BMI of 33.19. Their HbA1c level is 7.5%, and their blood glucose level is 126. They does not have hypertension and does not have heart disease. Their smoking history is categorized as 'not current'. Based on the data, they has diabetes.

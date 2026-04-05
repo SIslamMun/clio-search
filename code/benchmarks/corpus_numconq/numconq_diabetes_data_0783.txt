@@ -1,0 +1,1 @@
+This Female patient, aged 5, has a BMI of 18.78. Their HbA1c level is 3.5%, and their blood glucose level is 85. They does not have hypertension, does not have heart disease, and have a smoking history of 'No Info'. The patient does not have diabetes.

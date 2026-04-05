@@ -1,0 +1,1 @@
+This Female patient is 57 years old with a BMI of 40.67. Their HbA1c level is 4.5%, and their blood glucose level is 130. They does not have hypertension, does not have heart disease, and have a smoking history of 'current'. The diagnosis does not have diabetes.

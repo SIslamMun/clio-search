@@ -1,0 +1,1 @@
+This Female individual, aged 48, has a BMI of 31.25. Their HbA1c level is 6.2%, and their blood glucose level is 240. They does not have hypertension and does not have heart disease. Their smoking history is categorized as 'ever'. Based on the data, they has diabetes.

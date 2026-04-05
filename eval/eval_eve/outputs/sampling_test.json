@@ -1,0 +1,40 @@
+{
+  "test": "Sampling-aware search: brute force vs CLIO",
+  "timestamp": "2026-04-04 17:57:56",
+  "corpus": {
+    "total_blobs": 50000,
+    "needle_count": 3,
+    "index_time_s": 727.619,
+    "db_size_mb": 13.01
+  },
+  "query": {
+    "description": "Find temperature 85-95 degC"
+  },
+  "brute_force": {
+    "method": "brute_force",
+    "chunks_inspected": 50000,
+    "tokens_processed": 400018,
+    "time_s": 0.072,
+    "fetch_time_s": 0.016,
+    "matches_found": 20828
+  },
+  "clio": {
+    "method": "clio_science_aware",
+    "profile_time_ms": 8.34,
+    "chunks_inspected": 3,
+    "tokens_processed": 42,
+    "time_s": 0.011,
+    "query_time_ms": 2.94,
+    "matches_found": 3,
+    "profile": {
+      "total_chunks": 50000,
+      "total_measurements": 37536
+    }
+  },
+  "savings": {
+    "chunks_inspected_ratio": 6e-05,
+    "tokens_processed_ratio": 0.000105,
+    "chunk_reduction_pct": 99.99,
+    "token_reduction_pct": 99.99
+  }
+}

@@ -1,0 +1,1 @@
+This Female patient is 49 years old with a BMI of 24.34. Their HbA1c level is 5.7%, and their blood glucose level is 80. They does not have hypertension, does not have heart disease, and have a smoking history of 'current'. The diagnosis does not have diabetes.

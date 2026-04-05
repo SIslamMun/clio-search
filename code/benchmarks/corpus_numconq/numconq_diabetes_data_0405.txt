@@ -1,0 +1,1 @@
+This 66-year-old Male has a BMI of 31.28. Their HbA1c level is 3.5%, and their blood glucose level is 80. They has hypertension, does not have heart disease, and have a smoking history of 'former'. The data indicates they does not have diabetes.

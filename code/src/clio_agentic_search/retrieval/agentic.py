@@ -7,7 +7,9 @@ from dataclasses import dataclass, field
 
 from clio_agentic_search.core.connectors import NamespaceConnector
 from clio_agentic_search.models.contracts import CitationRecord, TraceEvent
+from clio_agentic_search.retrieval.capabilities import CorpusProfileCapable
 from clio_agentic_search.retrieval.coordinator import RetrievalCoordinator
+from clio_agentic_search.retrieval.corpus_profile import CorpusProfile
 from clio_agentic_search.retrieval.query_rewriter import (
     FallbackQueryRewriter,
     QueryRewriter,
@@ -27,6 +29,15 @@ class HopRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class TokenUsage:
+    """Cumulative LLM token usage across all hops."""
+
+    total_input_tokens: int = 0
+    total_output_tokens: int = 0
+    llm_calls: int = 0
+
+
+@dataclass(frozen=True, slots=True)
 class AgenticQueryResult:
     namespace: str
     original_query: str
@@ -35,6 +46,8 @@ class AgenticQueryResult:
     hops: list[HopRecord]
     trace: list[TraceEvent]
     total_hops: int
+    strategy_used: str = "default"
+    token_usage: TokenUsage = field(default_factory=TokenUsage)
 
 
 @dataclass(slots=True)
@@ -63,6 +76,16 @@ class AgenticRetriever:
         all_citations: dict[str, CitationRecord] = {}  # chunk_id -> best citation
         current_query = query
 
+        # --- Metadata-adaptive strategy selection ---
+        strategy_used = "default"
+        profile: CorpusProfile | None = None
+        if isinstance(connector, CorpusProfileCapable):
+            profile = connector.corpus_profile()
+            if profile.metadata_density > 0.5:
+                strategy_used = "metadata_rich"
+            elif profile.metadata_density < 0.1:
+                strategy_used = "metadata_sparse"
+
         self._append_trace(
             trace=trace,
             stage="agentic_started",
@@ -71,6 +94,8 @@ class AgenticRetriever:
                 "query": query,
                 "namespace": namespace,
                 "max_hops": str(self.max_hops),
+                "strategy": strategy_used,
+                "metadata_density": f"{profile.metadata_density:.2f}" if profile else "n/a",
             },
         )
 
@@ -213,6 +238,15 @@ class AgenticRetriever:
             },
         )
 
+        # Aggregate token usage from rewrite results.
+        total_input = sum(
+            getattr(h, "_input_tokens", 0) for h in hops
+        )
+        total_output = sum(
+            getattr(h, "_output_tokens", 0) for h in hops
+        )
+        llm_calls = sum(1 for h in hops if h.strategy not in ("initial", "converged"))
+
         return AgenticQueryResult(
             namespace=namespace,
             original_query=query,
@@ -221,6 +255,12 @@ class AgenticRetriever:
             hops=hops,
             trace=trace,
             total_hops=len(hops),
+            strategy_used=strategy_used,
+            token_usage=TokenUsage(
+                total_input_tokens=total_input,
+                total_output_tokens=total_output,
+                llm_calls=llm_calls,
+            ),
         )
 
     def query_namespaces(
@@ -239,6 +279,28 @@ class AgenticRetriever:
         current_query = query
         namespaces = [c.descriptor().name for c in connectors]
 
+        # --- Namespace routing: score and rank connectors ---
+        ops = scientific_operators or ScientificQueryOperators()
+        scored_connectors: list[tuple[float, NamespaceConnector]] = []
+        for conn in connectors:
+            score = 0.5  # base score for any non-empty namespace
+            if isinstance(conn, CorpusProfileCapable):
+                p = conn.corpus_profile()
+                if p.document_count > 0:
+                    score += 0.5
+                if ops.is_active() and p.has_measurements:
+                    score += 2.0
+                if ops.formula is not None and p.has_formulas:
+                    score += 1.5
+                if p.metadata_density > 0.3:
+                    score += 1.0
+            scored_connectors.append((score, conn))
+
+        # Sort descending by score; on first hop query only top-ranked.
+        scored_connectors.sort(key=lambda sc: -sc[0])
+        ranked_connectors = [conn for _, conn in scored_connectors]
+        routing_order = [conn.descriptor().name for conn in ranked_connectors]
+
         self._append_trace(
             trace=trace,
             stage="agentic_multi_started",
@@ -246,11 +308,19 @@ class AgenticRetriever:
             attributes={
                 "query": query,
                 "namespaces": ",".join(namespaces),
+                "routing_order": ",".join(routing_order),
                 "max_hops": str(self.max_hops),
             },
         )
 
         for hop_number in range(1, self.max_hops + 1):
+            # On hop 1, query only the top-ranked namespace(s);
+            # on subsequent hops, widen to all namespaces.
+            if hop_number == 1 and len(ranked_connectors) > 1:
+                active_connectors = ranked_connectors[:1]
+            else:
+                active_connectors = ranked_connectors
+
             self._append_trace(
                 trace=trace,
                 stage="hop_started",
@@ -258,11 +328,14 @@ class AgenticRetriever:
                 attributes={
                     "hop": str(hop_number),
                     "query": current_query,
+                    "active_namespaces": ",".join(
+                        c.descriptor().name for c in active_connectors
+                    ),
                 },
             )
 
             result = self.coordinator.query_namespaces(
-                connectors=connectors,
+                connectors=active_connectors,
                 query=current_query,
                 top_k=top_k,
                 metadata_filters=metadata_filters,
@@ -381,6 +454,8 @@ class AgenticRetriever:
             },
         )
 
+        llm_calls = sum(1 for h in hops if h.strategy not in ("initial", "converged"))
+
         return AgenticQueryResult(
             namespace=",".join(namespaces),
             original_query=query,
@@ -389,6 +464,12 @@ class AgenticRetriever:
             hops=hops,
             trace=trace,
             total_hops=len(hops),
+            strategy_used="routed",
+            token_usage=TokenUsage(
+                total_input_tokens=0,
+                total_output_tokens=0,
+                llm_calls=llm_calls,
+            ),
         )
 
     @staticmethod

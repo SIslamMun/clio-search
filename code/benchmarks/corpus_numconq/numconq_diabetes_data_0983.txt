@@ -1,0 +1,1 @@
+This Female patient, aged 44, has a BMI of 54.12. Their HbA1c level is 3.5%, and their blood glucose level is 140. They does not have hypertension, has heart disease, and have a smoking history of 'never'. The patient does not have diabetes.

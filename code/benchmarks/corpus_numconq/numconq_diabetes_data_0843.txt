@@ -1,0 +1,1 @@
+This Female patient, aged 80, has a BMI of 20.93. Their HbA1c level is 5.0%, and their blood glucose level is 90. They does not have hypertension, does not have heart disease, and have a smoking history of 'never'. The patient does not have diabetes.

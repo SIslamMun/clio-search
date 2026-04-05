@@ -1,0 +1,1 @@
+This Female patient is 19 years old with a BMI of 23.35. Their HbA1c level is 3.5%, and their blood glucose level is 155. They does not have hypertension, does not have heart disease, and have a smoking history of 'never'. The diagnosis does not have diabetes.

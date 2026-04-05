@@ -37,6 +37,8 @@ class RewriteResult:
     rewritten_query: str
     strategy: str  # "expand", "narrow", "pivot", "done"
     reasoning: str
+    input_tokens: int = 0
+    output_tokens: int = 0
 
 
 class QueryRewriter:
@@ -83,7 +85,17 @@ class QueryRewriter:
         )
 
         raw_text = response.content[0].text.strip()
-        return _parse_llm_response(raw_text, original_query=query)
+        result = _parse_llm_response(raw_text, original_query=query)
+        input_tokens = getattr(response.usage, "input_tokens", 0)
+        output_tokens = getattr(response.usage, "output_tokens", 0)
+        return RewriteResult(
+            original_query=result.original_query,
+            rewritten_query=result.rewritten_query,
+            strategy=result.strategy,
+            reasoning=result.reasoning,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+        )
 
 
 class FallbackQueryRewriter:

@@ -1,0 +1,281 @@
+{
+  "test": "NDP-MCP without CLIO vs with CLIO",
+  "timestamp": "2026-04-04 04:33:02",
+  "ndp_index": {
+    "documents": 131,
+    "chunks": 2323,
+    "measurements": 1293,
+    "metadata_density": 0.3366,
+    "index_time_s": 509.32,
+    "profile_time_ms": 6.52
+  },
+  "queries": [
+    {
+      "id": "t1",
+      "terms": [
+        "fahrenheit"
+      ],
+      "query": "temperature above 86 fahrenheit",
+      "has_range": true,
+      "ndp_without_clio": {
+        "results": 0,
+        "api_calls": 1,
+        "time_s": 0.546,
+        "total_tokens": 0,
+        "total_chars": 0
+      },
+      "clio_search": {
+        "results": 0,
+        "time_s": 0.077,
+        "total_tokens": 0,
+        "total_chars": 0,
+        "branches": [
+          "lexical",
+          "vector",
+          "scientific"
+        ]
+      }
+    },
+    {
+      "id": "t2",
+      "terms": [
+        "celsius"
+      ],
+      "query": "temperature above 30 celsius",
+      "has_range": true,
+      "ndp_without_clio": {
+        "results": 1,
+        "api_calls": 1,
+        "time_s": 0.422,
+        "total_tokens": 261,
+        "total_chars": 1903
+      },
+      "clio_search": {
+        "results": 0,
+        "time_s": 0.086,
+        "total_tokens": 0,
+        "total_chars": 0,
+        "branches": [
+          "lexical",
+          "vector",
+          "scientific"
+        ]
+      }
+    },
+    {
+      "id": "t3",
+      "terms": [
+        "kPa"
+      ],
+      "query": "pressure around 101 kPa",
+      "has_range": true,
+      "ndp_without_clio": {
+        "results": 2,
+        "api_calls": 1,
+        "time_s": 2.524,
+        "total_tokens": 1893,
+        "total_chars": 15281
+      },
+      "clio_search": {
+        "results": 0,
+        "time_s": 0.104,
+        "total_tokens": 0,
+        "total_chars": 0,
+        "branches": [
+          "lexical",
+          "vector",
+          "scientific"
+        ]
+      }
+    },
+    {
+      "id": "t4",
+      "terms": [
+        "pressure"
+      ],
+      "query": "atmospheric pressure sensor data",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 30,
+        "api_calls": 1,
+        "time_s": 1.077,
+        "total_tokens": 8378,
+        "total_chars": 64368
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.128,
+        "total_tokens": 120,
+        "total_chars": 1608,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    },
+    {
+      "id": "t5",
+      "terms": [
+        "wind",
+        "speed"
+      ],
+      "query": "wind speed above 50 km/h",
+      "has_range": true,
+      "ndp_without_clio": {
+        "results": 93,
+        "api_calls": 2,
+        "time_s": 4.977,
+        "total_tokens": 70801,
+        "total_chars": 717483
+      },
+      "clio_search": {
+        "results": 0,
+        "time_s": 0.113,
+        "total_tokens": 0,
+        "total_chars": 0,
+        "branches": [
+          "lexical",
+          "vector",
+          "scientific"
+        ]
+      }
+    },
+    {
+      "id": "t6",
+      "terms": [
+        "wind"
+      ],
+      "query": "wind speed measurements",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 77,
+        "api_calls": 1,
+        "time_s": 4.864,
+        "total_tokens": 48169,
+        "total_chars": 473783
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.128,
+        "total_tokens": 191,
+        "total_chars": 1590,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    },
+    {
+      "id": "t7",
+      "terms": [
+        "humidity"
+      ],
+      "query": "relative humidity measurements",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 24,
+        "api_calls": 1,
+        "time_s": 0.995,
+        "total_tokens": 6001,
+        "total_chars": 51698
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.114,
+        "total_tokens": 190,
+        "total_chars": 1590,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    },
+    {
+      "id": "t8",
+      "terms": [
+        "radiation"
+      ],
+      "query": "solar radiation data",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 38,
+        "api_calls": 1,
+        "time_s": 1.633,
+        "total_tokens": 16399,
+        "total_chars": 145610
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.116,
+        "total_tokens": 183,
+        "total_chars": 1609,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    },
+    {
+      "id": "t9",
+      "terms": [
+        "glacier",
+        "temperature"
+      ],
+      "query": "glacier temperature pressure data",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 1092,
+        "api_calls": 2,
+        "time_s": 13.062,
+        "total_tokens": 95485,
+        "total_chars": 815334
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.139,
+        "total_tokens": 219,
+        "total_chars": 1609,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    },
+    {
+      "id": "t10",
+      "terms": [
+        "ocean",
+        "temperature"
+      ],
+      "query": "ocean surface temperature",
+      "has_range": false,
+      "ndp_without_clio": {
+        "results": 120,
+        "api_calls": 2,
+        "time_s": 10.499,
+        "total_tokens": 141731,
+        "total_chars": 1326869
+      },
+      "clio_search": {
+        "results": 10,
+        "time_s": 0.116,
+        "total_tokens": 186,
+        "total_chars": 1609,
+        "branches": [
+          "lexical",
+          "vector"
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "ndp_results": 1477,
+    "ndp_tokens": 389118,
+    "ndp_time_s": 40.599,
+    "ndp_api_calls": 13,
+    "clio_results": 60,
+    "clio_tokens": 1089,
+    "clio_time_s": 1.121,
+    "token_reduction_pct": 99.7
+  }
+}

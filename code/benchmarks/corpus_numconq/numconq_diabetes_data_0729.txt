@@ -1,0 +1,1 @@
+This Male individual is 45 years old with a BMI of 25.44. Their HbA1c level is 4.8%, and their blood glucose level is 100. They has hypertension, does not have heart disease, and have a smoking history of 'never'. The data shows they does not have diabetes.

@@ -1,0 +1,1 @@
+This Male patient is 60 years old with a BMI of 31.79. Their HbA1c level is 6.0%, and their blood glucose level is 85. They does not have hypertension, does not have heart disease, and have a smoking history of 'not current'. The diagnosis does not have diabetes.
