@@ -2,32 +2,32 @@
 
 Full evaluation pipeline for the SC26 main-track submission of
 **CLIO Search: Agentic Scientific Data Discovery with Intelligent
-Orchestration**. The evaluation is split into two tiers:
+Orchestration**.
 
-1. **Laptop experiments (L1–L8)** — everything that can be done on a
-   single workstation. Real data, real MCP servers, real LLM integration,
-   real benchmarks.
-2. **Delta experiments (D1–D6)** — distributed scaling experiments on
-   NCSA DeltaAI (GH200 Grace Hopper supercomputer) that the laptop cannot
-   do. Requires Slurm + ACCESS allocation.
+## Architecture
 
-Everything is **pre-built and documented but not yet executed**. Each
-script writes a structured JSON into `outputs/`; each plot is generated
-from those JSONs by `code/generate_plots.py`.
+CLIO is an agentic retrieval service (not an MCP server, not an LLM agent).
+It connects to data sources via connectors (NDP-MCP, filesystem, S3, HDF5,
+etc.), indexes into DuckDB with science-aware operators (SI unit
+canonicalization, quality filtering, formula normalization), and runs
+multi-hop retrieval via `AgenticRetriever`.
+
+The evaluation compares two paths for the same query:
+```
+Path 1 (baseline):  LLM agent → NDP-MCP → NDP API  (agent does all reasoning)
+Path 2 (CLIO):      LLM agent → CLIO → NDP-MCP → NDP API → DuckDB → agentic search
+                    (CLIO does the reasoning, agent just reads compact results)
+```
 
 ## Directory layout
 
 ```
 eval/eval_final/
-├── README.md                       ← this file
-├── ARCHITECTURE.md                 ← CLIO vs MCP architectural note
-├── iowarp_core-1.0.3-cp312-*.whl   ← pre-built main-branch wheel for L2
-│
+├── README.md                        ← this file
 ├── code/
-│   ├── laptop/                     ← L1–L8 experiments (run locally)
-│   │   ├── L1_ndp_vs_clio_agent.py
-│   │   ├── L1b_fair_comparison_reference.py  (earlier draft, reference only)
-│   │   ├── L2_iowarp_cte_scaling.py           (up to 1M blobs)
+│   ├── laptop/                      ← L1–L8 experiments (run locally)
+│   │   ├── L1_single.py             ← L1: LLM+NDP-MCP vs LLM+CLIO (10 queries)
+│   │   ├── L2_iowarp_cte_scaling.py
 │   │   ├── L3_si_unit_cross_prefix.py
 │   │   ├── L4_numconq_benchmark.py
 │   │   ├── L5_federation_100_namespaces.py
@@ -35,145 +35,85 @@ eval/eval_final/
 │   │   ├── L7_scaling_curves.py
 │   │   └── L8_cross_corpus_diversity.py
 │   │
-│   ├── delta/                      ← D1–D6 experiments (run on DeltaAI)
-│   │   ├── distributed_clio.py          ← coordinator/worker binary
-│   │   ├── D1_D6_experiments.py         ← driver script
-│   │   ├── download_arxiv.py            ← data prep
-│   │   ├── index_shard.py               ← per-worker indexer
-│   │   ├── slurm_strong_scaling.sh      ← Slurm batch for D1
-│   │   └── slurm_weak_scaling.sh        ← Slurm batch for D2
+│   ├── delta/                       ← D1–D6 experiments (run on DeltaAI)
+│   │   ├── distributed_clio.py      ← coordinator/worker TCP binary
+│   │   ├── D1_D6_experiments.py     ← experiment driver
+│   │   ├── download_arxiv.py        ← data prep (2.5M arXiv abstracts)
+│   │   ├── index_shard.py           ← per-worker DuckDB indexer
+│   │   ├── prepare_weak_data.sh     ← weak scaling data setup
+│   │   ├── slurm_strong_scaling.sh  ← Slurm batch for D1 (strong scaling)
+│   │   └── slurm_weak_scaling.sh    ← Slurm batch for D2 (weak scaling)
 │   │
-│   └── generate_plots.py           ← produces all paper figures
+│   └── generate_plots.py            ← generates all paper figures from JSONs
 │
-├── data/                           ← (empty — populate as experiments need)
-│   └── NumConQ/                    ← expected: `git clone Tongji-KGLLM/NumConQ`
-│
-├── outputs/                        ← JSON results (one file per experiment)
-│
-└── plots/                          ← PNG figures for the paper
+├── outputs/                         ← JSON results (one per experiment)
+└── plots/                           ← PNG figures for the paper
 ```
 
 ---
 
-## Experiment summary
+## Results (laptop tier, completed)
 
-### Laptop tier (L1–L8)
-
-| # | Experiment | Key claim | Data | Estimated runtime |
-|---|---|---|---:|---:|
-| L1 | NDP-MCP vs CLIO+NDP-MCP (Claude Agent SDK, 10 queries) | CLIO-as-harness saves tokens and tool calls for an LLM agent querying the real NDP catalog | Live NDP API | ~30 min |
-| L2 | IOWarp CTE BlobQuery scaling 1K → 1M blobs | Tag-filtered BlobQuery scales sub-linearly; full-scan is linear | Synthetic scientific blobs in Docker | ~20-30 min |
-| L3 | SI unit cross-prefix correctness | Dimensional-analysis canonicalisation gives R@5 ≈ 1.0 where BM25/dense go to ~0 on cross-unit queries | Synthetic scientific abstracts (6 quantities × 7 unit variants) | ~2 min |
-| L4 | NumConQ benchmark (6,500 queries, 5 domains) | CLIO is competitive with learned retrievers on the standard numeric benchmark | NumConQ from Tongji-KGLLM (must be downloaded) | ~10-30 min |
-| L5 | 100-namespace federation with quality + schema + sampling | Per-dataset strategy adaptation saves 52% of retrieval work | Synthetic 100 namespaces × 5 types | ~2 min |
-| L6 | CIMIS quality filter on real NOAA-standard QC data | Quality filter rejects bad/missing rows at SQL level | 5 CIMIS weather stations (15 MB each) | ~5-10 min |
-| L7 | Single-node scaling curves 1K → 100K synthetic | Profile + query time are sub-linear in corpus size | Synthetic | ~10-15 min |
-| L8 | Cross-corpus diversity (NOAA + DOE + controlled + arXiv) | CLIO distinguishes rich / sparse / dense metadata across real corpora | NOAA 1728, DOE 500, controlled 210 | ~10 min |
-
-**Laptop total runtime: ~90-120 minutes of compute over a single working session.**
-
-### Delta tier (D1–D6)
-
-| # | Experiment | Key claim | Resources | Estimated runtime |
-|---|---|---|---|---:|
-| D1 | Distributed strong scaling 1 → 2 → 4 workers | CLIO query latency decreases with worker count at fixed 2.5M corpus | 5 DeltaAI nodes (1 coord + 4 workers) | ~90 min (queue-dependent) |
-| D2 | Distributed weak scaling 1/625K → 2/1.25M → 4/2.5M | Per-worker work stays constant as data scales with nodes | 5 DeltaAI nodes | ~60 min |
-| D3 | Large-scale distributed indexing of 2.5M arXiv | Parallel sharded indexing across 4 workers | 4 DeltaAI nodes | ~30 min |
-| D4 | Cross-unit precision at 2.5M scale | L3's claim holds at 500× larger corpus distributed | 4 DeltaAI nodes | ~10 min |
-| D5 | NumConQ at scale (6.5K queries × 2.5M corpus distributed) | CLIO scales to corpora larger than existing benchmarks target | 4 DeltaAI nodes | ~30 min |
-| D6 | 100-namespace federation distributed | L5's claim holds at 10M total docs distributed across 4 workers | 4 DeltaAI nodes | ~15 min |
-
-**Delta total budget: ≈ 4 nodes × 8-10 hours = 32-40 node-hours.**
+| Experiment | Key claim | Result |
+|---|---|---|
+| **L1** LLM+NDP-MCP vs LLM+CLIO (10 queries) | CLIO reduces token consumption for LLM agents | **70.1% token reduction**, 78% fewer tool calls, 74% faster |
+| **L2** IOWarp CTE scaling (1K→50K blobs) | Tag-filtered BlobQuery scales sub-linearly | 50× data → 5.76× query time (sub-linear) |
+| **L3** SI unit cross-prefix (42 synthetic docs) | Dimensional analysis R@5 where baselines fail | CLIO 0.69 vs Dense 0.00 |
+| **L4** NumConQ (2,614 queries, 2 domains) | Competitive on numeric benchmark | CLIO R@5 = 0.36 ≈ BM25 |
+| **L5** 100-namespace federation | Strategy adaptation saves retrieval work | 52.3% branches saved |
+| **L6** CIMIS quality filter (5 stations, 657K rows) | Quality filter drops bad rows at SQL level | 12,796 rows rejected |
+| **L7** Scaling curves (1K→100K) | Sub-linear profile + query time | 100× data → 4.44× profile, 2.82× query |
+| **L8** Cross-corpus diversity (NOAA+DOE+controlled) | Metadata-adaptive strategy classification | Rich/sparse/default correctly identified |
 
 ---
 
-## Prerequisites
+## How to run
 
-### Laptop setup
+### Laptop experiments
 
 ```bash
-# 1. Python venv with all CLIO deps
-cd /home/shazzadul/Illinois_Tech/Spring26/RA/clio-search/code
-uv sync
-source .venv/bin/activate
+cd clio-search/code
+uv sync --all-extras --dev
 
-# 2. NDP-MCP server (for L1)
-uv add /tmp/clio-kit/clio-kit-mcp-servers/ndp
-
-# 3. Claude Agent SDK (for L1)
+# L1: requires NDP-MCP server + Claude Agent SDK
 uv add claude-agent-sdk aiohttp
+python3 ../eval/eval_final/code/laptop/L1_single.py
 
-# 4. iowarp-core main-branch wheel (for L2)
-#    Already built at eval/eval_final/iowarp_core-1.0.3-*.whl
-#    Docker must be available.
+# L2: requires Docker + iowarp wheel
+python3 ../eval/eval_final/code/laptop/L2_iowarp_cte_scaling.py
 
-# 5. NumConQ data (for L4) — download manually
-cd eval/eval_final/data
-git clone https://github.com/Tongji-KGLLM/NumConQ.git
+# L3–L8: no special dependencies
+python3 ../eval/eval_final/code/laptop/L3_si_unit_cross_prefix.py
+python3 ../eval/eval_final/code/laptop/L4_numconq_benchmark.py
+python3 ../eval/eval_final/code/laptop/L5_federation_100_namespaces.py
+python3 ../eval/eval_final/code/laptop/L6_cimis_quality_filter.py
+python3 ../eval/eval_final/code/laptop/L7_scaling_curves.py
+python3 ../eval/eval_final/code/laptop/L8_cross_corpus_diversity.py
 
-# 6. matplotlib (for plot generation)
-pip install matplotlib
+# Generate plots
+python3 ../eval/eval_final/code/generate_plots.py
 ```
 
-### DeltaAI setup
+### DeltaAI experiments
 
 ```bash
-# On your laptop:
+# 1. Clone repo on DeltaAI
 ssh delta-ai
+git clone git@github.com:SIslamMun/clio-search.git
+cd clio-search
 
-# On DeltaAI:
-mkdir -p $HOME/clio-search
-# Transfer the repo (rsync or git)
-
-# Create a Python venv on Delta
+# 2. Set up Python
 module load python
 python3 -m venv $HOME/clio-venv
 source $HOME/clio-venv/bin/activate
-cd $HOME/clio-search/code
-pip install -e .
-pip install aiohttp  # for distributed_clio.py
+cd code && pip install -e . && pip install aiohttp
+cd ..
 
-# ACCESS allocation: make sure your --account in the slurm scripts
-# matches your active project.
-```
-
----
-
-## Running the experiments
-
-### Laptop
-
-```bash
-cd /home/shazzadul/Illinois_Tech/Spring26/RA/clio-search
-
-# Run each experiment individually. Order is independent; each writes a
-# separate JSON into eval/eval_final/outputs/.
-python3 eval/eval_final/code/laptop/L1_ndp_vs_clio_agent.py
-python3 eval/eval_final/code/laptop/L2_iowarp_cte_scaling.py
-python3 eval/eval_final/code/laptop/L3_si_unit_cross_prefix.py
-python3 eval/eval_final/code/laptop/L4_numconq_benchmark.py
-python3 eval/eval_final/code/laptop/L5_federation_100_namespaces.py
-python3 eval/eval_final/code/laptop/L6_cimis_quality_filter.py
-python3 eval/eval_final/code/laptop/L7_scaling_curves.py
-python3 eval/eval_final/code/laptop/L8_cross_corpus_diversity.py
-
-# Generate all plots from whatever JSONs exist
-python3 eval/eval_final/code/generate_plots.py
-```
-
-### Delta
-
-```bash
-# 0. Upload code to Delta
-rsync -avz eval/eval_final/code/delta/ delta-ai:clio-search/eval/eval_final/code/delta/
-
-# 1. Download arXiv dataset on DeltaAI login node (do once)
-ssh delta-ai
-cd clio-search
+# 3. Download arXiv data (2.5M abstracts, ~5 GB)
 python3 eval/eval_final/code/delta/download_arxiv.py \
     --output-dir /scratch/$USER/arxiv --shards 4
 
-# 2. Pre-build per-worker DuckDB indices (do once — takes ~30 min for 2.5M)
+# 4. Build DuckDB indices (4 parallel jobs, ~30 min)
 for i in 0 1 2 3; do
     python3 eval/eval_final/code/delta/index_shard.py \
         --shard-jsonl /scratch/$USER/arxiv/arxiv_shard_$i.jsonl \
@@ -182,101 +122,99 @@ for i in 0 1 2 3; do
 done
 wait
 
-# 3. Edit slurm scripts: replace YOUR_ACCOUNT with your ACCESS allocation
+# 5. Prepare weak scaling data (symlinks phase directories)
+bash eval/eval_final/code/delta/prepare_weak_data.sh
+
+# 6. IMPORTANT: Edit Slurm scripts — change YOUR_ACCOUNT
 vim eval/eval_final/code/delta/slurm_strong_scaling.sh
 vim eval/eval_final/code/delta/slurm_weak_scaling.sh
 
-# 4. Submit strong-scaling job (1/2/4 worker phases)
-sbatch eval/eval_final/code/delta/slurm_strong_scaling.sh
+# 7. Submit jobs
+sbatch eval/eval_final/code/delta/slurm_strong_scaling.sh   # D1 strong scaling
+sbatch eval/eval_final/code/delta/slurm_weak_scaling.sh     # D2 weak scaling
 
-# 5. Submit weak-scaling job
-sbatch eval/eval_final/code/delta/slurm_weak_scaling.sh
-
-# 6. Monitor
+# 8. Monitor
 squeue -u $USER
 
-# 7. When done, copy outputs back to laptop
-rsync -avz delta-ai:clio-search/eval/eval_final/outputs/ eval/eval_final/outputs/
-
-# 8. Generate updated plots
+# 9. When done — generate plots
 python3 eval/eval_final/code/generate_plots.py
 ```
 
 ---
 
-## Expected outputs
+## How L1 works (the headline experiment)
 
-After all experiments run, `eval/eval_final/outputs/` contains:
+**Query**: "Find datasets with temperature above 30°C from weather stations"
 
+### Path 1: LLM agent + NDP-MCP (baseline)
 ```
-L1_ndp_vs_clio_agent.json
-L1_ndp_vs_clio_agent_trace.json
-L2_iowarp_cte_scaling.json
-L3_si_unit_cross_prefix.json
-L4_numconq_benchmark.json
-L5_federation_100_namespaces.json
-L6_cimis_quality_filter.json
-L7_scaling_curves.json
-L8_cross_corpus_diversity.json
-D_strong_1workers.json
-D_strong_2workers.json
-D_strong_4workers.json
-D_weak_1workers.json
-D_weak_2workers.json
-D_weak_4workers.json
-D_indexing.json
-D_cross_unit.json
-D_numconq.json
-D_federation.json
+Agent calls search_datasets("temperature") → NDP returns 25 dataset JSONs
+Agent reads all 25 descriptions (raw catalog text enters LLM context)
+Agent calls search_datasets("weather") → 25 more
+Agent calls get_dataset_details() for 4 promising ones
+Agent reasons, filters, writes prose answer
+→ 12 tool calls, 131K tokens, 58 seconds
 ```
 
-And `eval/eval_final/plots/` contains the matching PNG figures.
+### Path 2: LLM agent + CLIO
+```
+Agent calls clio_search(query="...", numeric_constraint={unit:"degC", min:30})
+  └─ CLIO internally:
+     1. NDPMCPClient connects to NDP-MCP via MCP protocol
+     2. Discovers 50 datasets
+     3. Indexes into DuckDB (chunks, embeddings, measurements)
+     4. Downloads CSVs → parse_scientific_csv → extract measurements
+        → canonicalize_measurement(30, "degC") → 303.15 K
+        → derive_flag_from_value() → quality="good"
+     5. AgenticRetriever runs multi-hop:
+        BM25 + vector + scientific branches in parallel
+        FallbackQueryRewriter expands unit variants
+     6. Returns 10 ranked citations (~2K tokens)
+Agent reads compact citations, writes summary
+→ 2 tool calls, 39K tokens, 19 seconds
+```
+
+**Result: 70% fewer tokens because CLIO kept 100KB of catalog text
+out of the LLM context.**
 
 ---
 
-## How this maps to the paper's claims
+## Delta experiments (D1–D6)
 
-| Paper claim | Supporting experiments |
+| Experiment | What it tests | Setup |
+|---|---|---|
+| **D1** Strong scaling | Query latency with 1/2/4 workers on fixed 2.5M corpus | 5 nodes |
+| **D2** Weak scaling | Per-worker latency stays flat as data grows with workers | 5 nodes |
+| **D3** Indexing throughput | Parallel sharded indexing across 4 workers | 4 nodes |
+| **D4** Cross-unit at scale | Unit canonicalization correctness on 2.5M corpus | 4 nodes |
+| **D5** Numeric queries at scale | 20 scientific queries against 2.5M distributed corpus | 4 nodes |
+| **D6** Federation at scale | 100-namespace routing through distributed coordinator | 4 nodes |
+
+### How distributed CLIO works
+```
+Coordinator (1 node, port 9200)
+  ├── Worker 0 (node 1, port 9201) → DuckDB shard 0 (625K docs)
+  ├── Worker 1 (node 2, port 9201) → DuckDB shard 1 (625K docs)
+  ├── Worker 2 (node 3, port 9201) → DuckDB shard 2 (625K docs)
+  └── Worker 3 (node 4, port 9201) → DuckDB shard 3 (625K docs)
+
+Query flow: Coordinator fans out to all workers → each worker
+queries its local DuckDB shard → results merged + reranked
+```
+
+Workers are stateless HTTP servers (aiohttp). Coordinator aggregates
+results by score. Communication is TCP/JSON — no MPI needed.
+
+---
+
+## Paper claims → experiments
+
+| Claim | Evidence |
 |---|---|
-| "CLIO reduces tool calls and tokens for LLM agents accessing MCP-backed scientific catalogs" | L1, Pareto chart |
-| "Dimensional-analysis unit conversion is guaranteed-correct across all SI prefixes, where learned retrievers are probabilistic" | L3, L4 |
-| "CLIO scales to 1M scientific blobs on a single node via indexed DuckDB + CTE, and sub-linearly across multiple nodes on DeltaAI" | L2, L7, D1, D2 |
-| "Per-dataset strategy adaptation via corpus profiling saves 50%+ of retrieval work on heterogeneous 100-namespace federations" | L5, D6 |
-| "Data quality filtering at SQL level eliminates bad/missing rows before retrieval in real weather-station datasets" | L6 |
-| "CLIO distinguishes rich / sparse / no-metadata corpora and picks different strategies accordingly" | L8 |
-| "Distributed CLIO on DeltaAI achieves near-linear strong scaling on a 2.5M real scientific corpus" | D1 |
-| "CLIO's per-worker architecture supports weak scaling with constant per-node work" | D2 |
-
----
-
-## Honest caveats
-
-- **L2 (IOWarp CTE 1M blobs)** runs inside a Docker container. The wheel at
-  `eval/eval_final/iowarp_core-1.0.3-*.whl` is the main-branch build — PyPI's
-  v1.0.3 has a shared-memory bug that blocks PutBlob. If the container's shm
-  isn't large enough (needs `--shm-size=8g`), the 1M scale may fail; the
-  script reports the furthest scale reached.
-- **L4 (NumConQ)** requires the dataset to be downloaded manually and its
-  format may differ from what `_load_queries()` expects. Adapt if needed.
-- **L3 cross-unit probe** uses synthetic-but-realistic abstract templates
-  because we don't index a full arXiv dump on the laptop. The synthetic
-  data is sufficient for the correctness claim (measurement injection is
-  what matters, prose backbone is flavour).
-- **Delta experiments** require working ACCESS allocation + Slurm + SSH
-  to DeltaAI. If any of these are unavailable, the laptop tier alone is
-  still publishable at an SC workshop.
-- **Scale target**: 2.5M arXiv papers × 4 DeltaAI nodes is borderline
-  SC main track. It clears SC workshop + PASC comfortably. See the
-  planning note in previous sessions for venue assessment.
-
----
-
-## Contact + reproducibility
-
-Every experiment is deterministic given its seed. Results should
-reproduce to within ±5% across runs (noise comes from OS scheduling and
-NDP API latency).
-
-Raw JSON outputs are machine-readable and include timestamps, scales,
-and all raw measurements — not just aggregates.
-
+| CLIO reduces LLM token consumption for scientific discovery | L1 (70.1% reduction over 10 queries) |
+| Dimensional analysis gives correct cross-unit retrieval | L3 (CLIO R@5 vs baselines) |
+| Quality filter drops bad data at SQL level | L6 (12K rows rejected from CIMIS) |
+| Metadata-adaptive strategy saves retrieval work | L5 (52% branches saved) |
+| Sub-linear single-node scaling | L7 (100× data → 4.4× profile time) |
+| Near-linear distributed scaling | D1, D2 (on DeltaAI) |
+| CLIO works across data source types | L8 (NOAA, DOE, controlled corpora) |
