@@ -1,0 +1,1212 @@
+{
+  "experiment": "L1: Raw Agent vs LLM+NDP-MCP vs LLM+CLIO \u2014 10 queries",
+  "timestamp": "2026-04-06 13:28:39",
+  "queries": [
+    {
+      "id": "Q01",
+      "text": "Find datasets with temperature measurements above 30 degrees Celsius from weather stations",
+      "terms": [
+        "temperature",
+        "weather"
+      ]
+    },
+    {
+      "id": "Q02",
+      "text": "Find datasets reporting atmospheric pressure around 101 kPa",
+      "terms": [
+        "pressure",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "Q03",
+      "text": "Find wind speed measurements above 50 km/h from meteorological datasets",
+      "terms": [
+        "wind",
+        "speed"
+      ]
+    },
+    {
+      "id": "Q04",
+      "text": "Find datasets about glacier ice sheet temperature observations",
+      "terms": [
+        "glacier",
+        "ice",
+        "temperature"
+      ]
+    },
+    {
+      "id": "Q05",
+      "text": "Find humidity sensor measurements from environmental monitoring stations",
+      "terms": [
+        "humidity",
+        "environmental"
+      ]
+    },
+    {
+      "id": "Q06",
+      "text": "Find solar radiation datasets measured in MJ per square meter",
+      "terms": [
+        "solar",
+        "radiation"
+      ]
+    },
+    {
+      "id": "Q07",
+      "text": "Find ocean surface temperature satellite datasets",
+      "terms": [
+        "ocean",
+        "temperature",
+        "satellite"
+      ]
+    },
+    {
+      "id": "Q08",
+      "text": "Find datasets containing precipitation measurements above 100 mm per day",
+      "terms": [
+        "precipitation",
+        "rainfall"
+      ]
+    },
+    {
+      "id": "Q09",
+      "text": "Find wildfire thermal detection datasets from satellite observations",
+      "terms": [
+        "wildfire",
+        "thermal"
+      ]
+    },
+    {
+      "id": "Q10",
+      "text": "Find soil moisture measurements from agricultural monitoring networks",
+      "terms": [
+        "soil",
+        "moisture",
+        "agricultural"
+      ]
+    }
+  ],
+  "index_stats": {
+    "index_time_s": 306.71,
+    "documents": 320,
+    "chunks": 338,
+    "measurements": 1460,
+    "density": 0.4379,
+    "csv": {
+      "csvs_attempted": 10,
+      "csvs_processed": 0,
+      "rows_indexed": 0,
+      "measurements_found": 0,
+      "errors": []
+    }
+  },
+  "summary": {
+    "run0_total_tokens": 875102,
+    "run0_main_tokens": 520004,
+    "run0_sub_tokens": 355098,
+    "run0_sub_agents": 8,
+    "run0_total_tools": 515,
+    "run0_total_time_s": 3049.1,
+    "run0_queries_with_results": 9,
+    "run1_total_tokens": 988954,
+    "run1_main_tokens": 988954,
+    "run1_sub_tokens": 0,
+    "run1_total_tools": 76,
+    "run1_total_time_s": 1046.1,
+    "run1_queries_with_results": 10,
+    "run2_total_tokens": 403474,
+    "run2_main_tokens": 403474,
+    "run2_sub_tokens": 0,
+    "run2_total_tools": 20,
+    "run2_total_time_s": 216.3,
+    "run2_queries_with_results": 8,
+    "clio_vs_raw_token_reduction_pct": 53.9,
+    "clio_vs_ndp_token_reduction_pct": 59.2
+  },
+  "per_query_run0_raw_agent": [
+    {
+      "elapsed_s": 70.12,
+      "num_turns": 8,
+      "num_tool_calls": 7,
+      "tool_calls": [
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch"
+      ],
+      "main_usage": {
+        "input_tokens": 1860,
+        "output_tokens": 2438,
+        "cache_creation_input_tokens": 13877,
+        "cache_read_input_tokens": 94285
+      },
+      "main_tokens": 112460,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 112460,
+      "total_tool_calls": 7,
+      "answer_length": 5783,
+      "answer_snippet": "Here is a verified summary of datasets containing weather station temperature measurements that include readings above 30\u00b0C, organized by source:\n\n---\n\n## NOAA / NCEI\n\n### 1. GHCN-Daily (Global Historical Climatology Network \u2014 Daily)\n- **Coverage**: 100,000+ stations, 180 countries, records going back 175+ years\n- **Variables**: TMAX, TMIN (in tenths of \u00b0C), precipitation, snow depth\n- **Filter for >30\u00b0C**: Query `TMAX >= 300` (units are tenths of \u00b0C); tropical/arid stations routinely exceed thi",
+      "query_id": "Q01"
+    },
+    {
+      "elapsed_s": 291.6,
+      "num_turns": 2,
+      "num_tool_calls": 37,
+      "tool_calls": [
+        "Agent",
+        "Bash",
+        "Bash",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 1554,
+        "cache_creation_input_tokens": 12292,
+        "cache_read_input_tokens": 30908
+      },
+      "main_tokens": 44760,
+      "sub_agents": [
+        {
+          "total_tokens": 49062,
+          "tool_uses": 36,
+          "duration_ms": 263506
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 49062,
+      "sub_agent_tool_uses": 36,
+      "total_tokens": 93822,
+      "total_tool_calls": 73,
+      "answer_length": 2716,
+      "answer_snippet": "Here are 11 verified datasets reporting atmospheric pressure around 101 kPa (101,325 Pa / 1013.25 hPa):\n\n---\n\n### Unit conversion reminder\n1 kPa = 10 hPa = 10 mbar = 1000 Pa. Standard sea-level = **101.325 kPa**.\n\n---\n\n### Reanalysis / Global Gridded\n\n| # | Dataset | Units | Coverage | URL |\n|---|---------|-------|----------|-----|\n| 1 | **ERA5 Single Levels** (ECMWF/Copernicus) | Pa | Global, hourly, 1940\u2013present | https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels |\n| 2 |",
+      "query_id": "Q02"
+    },
+    {
+      "elapsed_s": 306.17,
+      "num_turns": 3,
+      "num_tool_calls": 36,
+      "tool_calls": [
+        "ToolSearch",
+        "Agent",
+        "Bash",
+        "Bash",
+        "Bash",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch"
+      ],
+      "main_usage": {
+        "input_tokens": 9,
+        "output_tokens": 1780,
+        "cache_creation_input_tokens": 13704,
+        "cache_read_input_tokens": 50617
+      },
+      "main_tokens": 66110,
+      "sub_agents": [
+        {
+          "total_tokens": 41346,
+          "tool_uses": 34,
+          "duration_ms": 273369
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 41346,
+      "sub_agent_tool_uses": 34,
+      "total_tokens": 107456,
+      "total_tool_calls": 70,
+      "answer_length": 3138,
+      "answer_snippet": "Here are 12 verified datasets containing wind speed measurements above 50 km/h (13.9 m/s / 27 knots):\n\n---\n\n## Key conversion: 50 km/h = 13.89 m/s = 27.0 knots = 31.1 mph\n\n---\n\n### NOAA NCEI\n\n| Dataset | URL | Units | >50 km/h Notes |\n|---|---|---|---|\n| **Global Hourly ISD** | https://www.ncei.noaa.gov/data/global-hourly/ | m/s (tenths) | Yes \u2014 storms, fronts, coastal/mountain stations |\n| **Global Summary of the Day (GSOD)** | https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/ | ",
+      "query_id": "Q03"
+    },
+    {
+      "elapsed_s": 278.32,
+      "num_turns": 2,
+      "num_tool_calls": 42,
+      "tool_calls": [
+        "Agent",
+        "Bash",
+        "Bash",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 1322,
+        "cache_creation_input_tokens": 11038,
+        "cache_read_input_tokens": 30904
+      },
+      "main_tokens": 43270,
+      "sub_agents": [
+        {
+          "total_tokens": 44021,
+          "tool_uses": 41,
+          "duration_ms": 254358
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 44021,
+      "sub_agent_tool_uses": 41,
+      "total_tokens": 87291,
+      "total_tool_calls": 83,
+      "answer_length": 2488,
+      "answer_snippet": "Here are **10+ verified glacier/ice sheet temperature datasets** across major repositories:\n\n---\n\n## NOAA / NCEI Paleoclimatology\n\n| Dataset | Coverage | URL |\n|---|---|---|\n| **GISP2 Temperature Reconstruction** (Alley 2000) | Central Greenland, ~50,000 yr BP to present | https://doi.org/10.25921/36sb-3355 |\n| **Greenland Ice Sheet Holocene d18O & Temperature** | 6 ice core sites (Camp Century, GRIP, NGRIP, DYE-3, Renland, Agassiz), 11,650 yr BP\u20131960 | https://doi.org/10.25921/bvxd-nz36 |\n\n---\n",
+      "query_id": "Q04"
+    },
+    {
+      "elapsed_s": 182.05,
+      "num_turns": 3,
+      "num_tool_calls": 28,
+      "tool_calls": [
+        "ToolSearch",
+        "Agent",
+        "Bash",
+        "Grep",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Read",
+        "Read",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Read",
+        "Read",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Bash",
+        "Read",
+        "Bash",
+        "Bash",
+        "Read"
+      ],
+      "main_usage": {
+        "input_tokens": 9,
+        "output_tokens": 1712,
+        "cache_creation_input_tokens": 12078,
+        "cache_read_input_tokens": 50586
+      },
+      "main_tokens": 64385,
+      "sub_agents": [
+        {
+          "total_tokens": 35036,
+          "tool_uses": 26,
+          "duration_ms": 146949
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 35036,
+      "sub_agent_tool_uses": 26,
+      "total_tokens": 99421,
+      "total_tool_calls": 54,
+      "answer_length": 3586,
+      "answer_snippet": "Here are 7 verified, publicly accessible humidity sensor datasets from major environmental monitoring networks:\n\n---\n\n## Humidity Sensor Datasets from Environmental Monitoring Stations\n\n### 1. NOAA Integrated Surface Database (ISD / ASOS-AWOS)\n- **Variables:** Dew point (\u00b0C), relative humidity (%)\n- **Coverage:** ~35,000 global stations, 1901\u2013present, hourly\n- **Access:** No registration required\n- **URL:** https://www.ncei.noaa.gov/products/land-based-station/integrated-surface-database\n- **Dir",
+      "query_id": "Q05"
+    },
+    {
+      "elapsed_s": 600.05,
+      "num_turns": 0,
+      "num_tool_calls": 0,
+      "tool_calls": [],
+      "main_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "main_tokens": 0,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 0,
+      "total_tool_calls": 0,
+      "answer_length": 0,
+      "answer_snippet": "TIMEOUT",
+      "error": "Timed out after 600s",
+      "query_id": "Q06"
+    },
+    {
+      "elapsed_s": 531.58,
+      "num_turns": 2,
+      "num_tool_calls": 31,
+      "tool_calls": [
+        "Agent",
+        "Grep",
+        "Bash",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 2165,
+        "cache_creation_input_tokens": 24164,
+        "cache_read_input_tokens": 23854
+      },
+      "main_tokens": 50189,
+      "sub_agents": [
+        {
+          "total_tokens": 46369,
+          "tool_uses": 30,
+          "duration_ms": 497730
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 46369,
+      "sub_agent_tool_uses": 30,
+      "total_tokens": 96558,
+      "total_tool_calls": 61,
+      "answer_length": 4166,
+      "answer_snippet": "Here's a comprehensive catalog of ocean SST satellite datasets:\n\n---\n\n## Ocean Surface Temperature (SST) Satellite Datasets\n\n### NOAA\n\n| Dataset | Resolution | Coverage | Units | URL |\n|---|---|---|---|---|\n| **OISST v2.1** | 0.25\u00b0, daily | Sep 1981\u2013present | Celsius | https://www.ncei.noaa.gov/products/optimum-interpolation-sst |\n| **AVHRR Pathfinder v5.3** | 4 km, 2x daily | Aug 1981\u2013Dec 2023 *(discontinued)* | Celsius | https://www.ncei.noaa.gov/products/avhrr-pathfinder-sst |\n| **Geo-Polar B",
+      "query_id": "Q07"
+    },
+    {
+      "elapsed_s": 185.33,
+      "num_turns": 2,
+      "num_tool_calls": 21,
+      "tool_calls": [
+        "Agent",
+        "Grep",
+        "Bash",
+        "Read",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "Grep"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 1515,
+        "cache_creation_input_tokens": 12661,
+        "cache_read_input_tokens": 30908
+      },
+      "main_tokens": 45090,
+      "sub_agents": [
+        {
+          "total_tokens": 41868,
+          "tool_uses": 20,
+          "duration_ms": 162069
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 41868,
+      "sub_agent_tool_uses": 20,
+      "total_tokens": 86958,
+      "total_tool_calls": 41,
+      "answer_length": 2447,
+      "answer_snippet": "Here are verified datasets containing daily precipitation values that can exceed 100 mm/day:\n\n---\n\n## Station-Based Datasets\n\n| Dataset | Source | Period | Units | URL |\n|---|---|---|---|---|\n| **GHCN-Daily v3** | NOAA NCEI | 1800s\u2013present | tenths of mm (\u00f710 = mm) | https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily |\n| **GSOD** | NOAA NCEI | 1929\u2013present | 0.01 inches (\u00d70.254 = mm) | https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?i",
+      "query_id": "Q08"
+    },
+    {
+      "elapsed_s": 321.46,
+      "num_turns": 2,
+      "num_tool_calls": 37,
+      "tool_calls": [
+        "Agent",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 1420,
+        "cache_creation_input_tokens": 15501,
+        "cache_read_input_tokens": 30905
+      },
+      "main_tokens": 47832,
+      "sub_agents": [
+        {
+          "total_tokens": 52864,
+          "tool_uses": 36,
+          "duration_ms": 295157
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 52864,
+      "sub_agent_tool_uses": 36,
+      "total_tokens": 100696,
+      "total_tool_calls": 73,
+      "answer_length": 2426,
+      "answer_snippet": "Here's a structured summary of verified wildfire thermal detection datasets:\n\n---\n\n## Active Fire / Thermal Detection (with FRP + Brightness Temperature)\n\n| Dataset | Agency | Sensor | Resolution | FRP | BT | Coverage | Start |\n|---|---|---|---|---|---|---|---|\n| **MOD14 V061** | NASA LP DAAC | Terra/MODIS | 1 km | MW | K (Ch21@4\u00b5m, Ch31@11\u00b5m) | Global | Feb 2000 |\n| **MYD14 V061** | NASA LP DAAC | Aqua/MODIS | 1 km | MW | K (Ch21, Ch31) | Global | Jul 2002 |\n| **VNP14 V002** | NASA LP DAAC | Su",
+      "query_id": "Q09"
+    },
+    {
+      "elapsed_s": 282.42,
+      "num_turns": 2,
+      "num_tool_calls": 27,
+      "tool_calls": [
+        "Agent",
+        "Grep",
+        "Glob",
+        "ToolSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebFetch",
+        "WebSearch",
+        "WebSearch",
+        "WebSearch",
+        "WebFetch"
+      ],
+      "main_usage": {
+        "input_tokens": 6,
+        "output_tokens": 1472,
+        "cache_creation_input_tokens": 13526,
+        "cache_read_input_tokens": 30904
+      },
+      "main_tokens": 45908,
+      "sub_agents": [
+        {
+          "total_tokens": 44532,
+          "tool_uses": 26,
+          "duration_ms": 256141
+        }
+      ],
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 44532,
+      "sub_agent_tool_uses": 26,
+      "total_tokens": 90440,
+      "total_tool_calls": 53,
+      "answer_length": 2648,
+      "answer_snippet": "Here are verified soil moisture datasets from agricultural monitoring networks:\n\n---\n\n## In Situ Agricultural Networks (primary targets)\n\n| Dataset | Units | Coverage | URL |\n|---|---|---|---|\n| **USDA NRCS SCAN** | VWC (%, saturation%, norm%) | 200+ US stations, depths 2\u201340 in, 1990s\u2013present | https://www.wcc.nrcs.usda.gov/scan/ |\n| **Oklahoma Mesonet** | cm\u00b3/cm\u00b3 at 5/25/60/75 cm | 103 OK stations, 30-min data, 1996\u2013present | https://www.mesonet.org/weather/soil-moisture |\n| **USDA ARS Cook Far",
+      "query_id": "Q10"
+    }
+  ],
+  "per_query_run1_ndp": [
+    {
+      "elapsed_s": 49.01,
+      "num_tool_calls": 8,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 9,
+        "output_tokens": 1426,
+        "cache_creation_input_tokens": 10983,
+        "cache_read_input_tokens": 68460
+      },
+      "main_tokens": 80878,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 80878,
+      "total_tool_calls": 8,
+      "answer_length": 2637,
+      "answer_snippet": "Here are the most relevant datasets from the **National Data Platform** matching your query about temperature measurements from weather stations:\n\n---\n\n### \ud83c\udf21\ufe0f Weather Station Datasets with Temperature Data\n\n1. **Weather Station Measurements** (Synoptic)\n   - **Org:** Synoptic\n   - **Description:** Weather station measurements accessible via the Pylaski REST API. Covers stations primarily in the western US (California region).\n   - **Format:** REST API (HTTPS)\n   - **API Endpoint:** `https://fire",
+      "query_id": "Q01"
+    },
+    {
+      "elapsed_s": 51.01,
+      "num_tool_calls": 11,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Read",
+        "Grep",
+        "Bash"
+      ],
+      "main_usage": {
+        "input_tokens": 6768,
+        "output_tokens": 1866,
+        "cache_creation_input_tokens": 10784,
+        "cache_read_input_tokens": 149462
+      },
+      "main_tokens": 168880,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 168880,
+      "total_tool_calls": 11,
+      "answer_length": 1964,
+      "answer_snippet": "Here are the results from searching the **National Data Platform** for datasets related to atmospheric pressure (~101 kPa):\n\n---\n\n### Most Relevant Matches\n\n| # | Dataset | Why Relevant |\n|---|---------|-------------|\n| 1 | **High-accuracy gas, pressure, humidity and temperature sensors: bme680** | BME680 sensor captures barometric pressure (typical range ~101 kPa at sea level) |\n| 2 | **Humidity sensor measuring relative humidity, barometric pressure and ambient temperature: bme280** | BME280 i",
+      "query_id": "Q02"
+    },
+    {
+      "elapsed_s": 39.51,
+      "num_tool_calls": 7,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Bash",
+        "Bash"
+      ],
+      "main_usage": {
+        "input_tokens": 848,
+        "output_tokens": 1746,
+        "cache_creation_input_tokens": 4555,
+        "cache_read_input_tokens": 68321
+      },
+      "main_tokens": 75470,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 75470,
+      "total_tool_calls": 7,
+      "answer_length": 1996,
+      "answer_snippet": "Here are the most relevant datasets from the **National Data Platform** for wind speed measurements:\n\n---\n\n### \ud83c\udf2c\ufe0f Wind Speed & Meteorological Datasets\n\n| # | Dataset | Organization | Relevance |\n|---|---------|-------------|-----------|\n| 1 | **SDG&E Weather Station Wind Gust Forecasts** | `sdge` | \u2b50 Four-day wind gust forecasts across SDG&E weather network \u2014 directly contains wind speed/gust data |\n| 2 | **CIMIS Hourly Data \u2013 Multiple Stations** | `not-affiliated` | \u2b50 Hourly weather station mea",
+      "query_id": "Q03"
+    },
+    {
+      "elapsed_s": 30.97,
+      "num_tool_calls": 5,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 8,
+        "output_tokens": 1074,
+        "cache_creation_input_tokens": 10572,
+        "cache_read_input_tokens": 49535
+      },
+      "main_tokens": 61189,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 61189,
+      "total_tool_calls": 5,
+      "answer_length": 1989,
+      "answer_snippet": "Here are the datasets I found on the National Data Platform related to glacier/ice sheet temperature observations:\n\n---\n\n### 1. \ud83e\uddca Aletsch Glacier Subglacial Water Pressure and Temperature Data\n- **Organization:** Marriott Library HIVE (University of Utah)\n- **Description:** Subglacial water pressure and temperature measurements from ice boreholes in the Aletsch Glacier ablation area (Switzerland). The data supports hydromechanical coupled numerical models of Late Pleistocene and Holocene glacier",
+      "query_id": "Q04"
+    },
+    {
+      "elapsed_s": 36.62,
+      "num_tool_calls": 7,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 9,
+        "output_tokens": 1108,
+        "cache_creation_input_tokens": 6294,
+        "cache_read_input_tokens": 64815
+      },
+      "main_tokens": 72226,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 72226,
+      "total_tool_calls": 7,
+      "answer_length": 1876,
+      "answer_snippet": "Here's what I found on the **National Data Platform**:\n\n---\n\n### 1. \ud83c\udf21\ufe0f BME280 \u2014 Humidity Sensor (Relative Humidity, Pressure & Temperature)\n| Field | Details |\n|---|---|\n| **Title** | *Humidity sensor measuring relative humidity, barometric pressure and ambient temperature: bme280* |\n| **Organization** | SAGE (via WIFIRE Commons) |\n| **Description** | The BME280 is a humidity sensor for mobile/wearable applications. It measures **relative humidity**, **barometric pressure**, and **ambient temper",
+      "query_id": "Q05"
+    },
+    {
+      "elapsed_s": 61.55,
+      "num_tool_calls": 13,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Bash",
+        "Bash",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "ToolSearch",
+        "Bash",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 148,
+        "output_tokens": 2489,
+        "cache_creation_input_tokens": 21227,
+        "cache_read_input_tokens": 128776
+      },
+      "main_tokens": 152640,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 152640,
+      "total_tool_calls": 13,
+      "answer_length": 1812,
+      "answer_snippet": "Here are the solar radiation datasets I found on the National Data Platform. Both include solar radiation measurements that are convertible to **MJ/m\u00b2**:\n\n---\n\n### 1. **CIMIS Hourly Data \u2013 Multiple Stations**\n- **Coverage:** 18 CIMIS weather stations across California's Central Valley (2010\u20132025)\n- **Solar radiation column:** `Sol Rad (W/sq.m)` \u2014 incoming solar radiation in **watts per square meter** (hourly). Can be converted to MJ/m\u00b2 by integrating over time: `1 W/m\u00b2 \u00d7 3600 s = 0.0036 MJ/m\u00b2` p",
+      "query_id": "Q06"
+    },
+    {
+      "elapsed_s": 33.49,
+      "num_tool_calls": 7,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 9,
+        "output_tokens": 1109,
+        "cache_creation_input_tokens": 17840,
+        "cache_read_input_tokens": 67256
+      },
+      "main_tokens": 86214,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 86214,
+      "total_tool_calls": 7,
+      "answer_length": 1668,
+      "answer_snippet": "Here are the results from searching the National Data Platform. Unfortunately, **no dedicated ocean/sea surface temperature (SST) satellite datasets** were found in the NDP catalog. The closest matches are **land** surface temperature products from NASA's VIIRS satellite sensors:\n\n---\n\n### Matching Datasets (Surface Temperature \u2014 Land-focused)\n\n| # | Dataset | Satellite | Resolution | Org | DOI |\n|---|---------|-----------|------------|-----|-----|\n| 1 | **VIIRS/JPSS1 Land Surface Temperature & ",
+      "query_id": "Q07"
+    },
+    {
+      "elapsed_s": 662.54,
+      "num_tool_calls": 8,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Read",
+        "Grep",
+        "Bash"
+      ],
+      "main_usage": {
+        "input_tokens": 14651,
+        "output_tokens": 1126,
+        "cache_creation_input_tokens": 36349,
+        "cache_read_input_tokens": 107901
+      },
+      "main_tokens": 160027,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 160027,
+      "total_tool_calls": 8,
+      "answer_length": 2462,
+      "answer_snippet": "Here are the results from searching the **National Data Platform** for precipitation-related datasets. I found **24 total datasets** across two searches. Here are the most relevant ones for your interest in **precipitation measurements > 100 mm/day**:\n\n---\n\n### Direct Precipitation Measurement Datasets\n\n| # | Dataset | Organization | Relevance |\n|---|---------|-------------|-----------|\n| 1 | **Alta-Collins Snow and Liquid Precipitation Equivalent Observations 2023\u20132024** | Marriott Library HIVE",
+      "query_id": "Q08"
+    },
+    {
+      "elapsed_s": 53.56,
+      "num_tool_calls": 6,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 8,
+        "output_tokens": 1085,
+        "cache_creation_input_tokens": 25357,
+        "cache_read_input_tokens": 46435
+      },
+      "main_tokens": 72885,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 72885,
+      "total_tool_calls": 6,
+      "answer_length": 2048,
+      "answer_snippet": "Here are the wildfire-related datasets found on the National Data Platform:\n\n---\n\n### 1. **USA Current Wildfires**\n- **Publisher:** CA Governor's Office of Emergency Services\n- **Description:** Near real-time point and perimeter locations of wildfire occurrences across the US (past 7 days). Includes satellite thermal detections, infrared-calculated acreage, Red Flag warnings, and wind data. Sourced from **IRWIN** (Integrated Reporting of Wildland-Fire Information) and **NIFC** (National Interage",
+      "query_id": "Q09"
+    },
+    {
+      "elapsed_s": 27.86,
+      "num_tool_calls": 4,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "main_usage": {
+        "input_tokens": 8,
+        "output_tokens": 1039,
+        "cache_creation_input_tokens": 8833,
+        "cache_read_input_tokens": 48665
+      },
+      "main_tokens": 58545,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 58545,
+      "total_tool_calls": 4,
+      "answer_length": 2247,
+      "answer_snippet": "Here are **4 datasets** on the National Data Platform related to soil moisture measurements:\n\n---\n\n### 1. \ud83c\udf3e CropSmart Soil Moisture Data Service\n- **Organization:** CropSmart\n- **Description:** Daily and weekly topsoil soil moisture data for CONUS derived from **SMAP L4** satellite observations, served via WMS/WCS.\n- **Resources:** SMAP Daily WMS \u00b7 SMAP Weekly WMS\n- **Creator:** Chen Zhang (GMU)\n- **Access:** Public \u2014 [Docs](https://cloud.csiss.gmu.edu/CropSmart)\n\n---\n\n### 2. \ud83c\udf0d Current Condition",
+      "query_id": "Q10"
+    }
+  ],
+  "per_query_run2_clio": [
+    {
+      "elapsed_s": 18.5,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 659,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 38804
+      },
+      "main_tokens": 39470,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 39470,
+      "total_tool_calls": 2,
+      "answer_length": 1533,
+      "answer_snippet": "Here are the results from the CLIO search:\n\n---\n\n### Search: *Temperature measurements > 30 \u00b0C from weather stations*\n\n| # | Title | Score | Source |\n|---|-------|-------|--------|\n| 1 | **Authigenic Mineral Textures in Submarine 1979 Basalt Drill Core, Surtsey Volcano, Iceland** | 1.5 | `ndp_2c32f081-08a` \u00b7 Marriott Library Hive |\n\n**Summary:** The search returned **1 result**, which is a geoscience dataset related to mineral textures in volcanic basalt drill cores from Surtsey Volcano, Iceland",
+      "query_id": "Q01"
+    },
+    {
+      "elapsed_s": 15.35,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 260,
+        "cache_creation_input_tokens": 1284,
+        "cache_read_input_tokens": 38519
+      },
+      "main_tokens": 40070,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40070,
+      "total_tool_calls": 2,
+      "answer_length": 99,
+      "answer_snippet": "ERROR: Command failed with exit code 1 (exit code: 1)\nError output: Check stderr output for details",
+      "query_id": "Q02"
+    },
+    {
+      "elapsed_s": 39.28,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 1010,
+        "cache_creation_input_tokens": 1236,
+        "cache_read_input_tokens": 38534
+      },
+      "main_tokens": 40787,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40787,
+      "total_tool_calls": 2,
+      "answer_length": 2549,
+      "answer_snippet": "Here are the top results for **wind speed measurements above 50 km/h** from meteorological datasets:\n\n| # | Dataset | Score | Highlights |\n|---|---------|-------|------------|\n| 1 | **Dust Events in Salt Lake Valley, Utah** \u2014 Performance evaluation of Alphasense OPC-N3 and Plantower PMS5003 sensors | 14.8 | Dust-event monitoring with associated wind speed measurements |\n| 2 | **Arctic Surface Wind Effects on Snowflake Camera** \u2014 MATLAB code & observations of wind impacts on Multi-Angle Snowflake",
+      "query_id": "Q03"
+    },
+    {
+      "elapsed_s": 21.07,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 757,
+        "cache_creation_input_tokens": 4973,
+        "cache_read_input_tokens": 34678
+      },
+      "main_tokens": 40415,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40415,
+      "total_tool_calls": 2,
+      "answer_length": 2099,
+      "answer_snippet": "Here are the top datasets related to **glacier ice sheet temperature observations**:\n\n### \ud83c\udfd4\ufe0f Directly Relevant \u2014 Glacier-Specific\n\n1. **Aletsch Glacier Subglacial Water Pressure and Temperature Data** (score: 19.7)\n   - *Organization:* Marriott Library Hive\n   - Subglacial water pressure and temperature measurements from the Aletsch Glacier \u2014 the most directly relevant result with in-situ temperature observations beneath the ice.\n\n2. **Monitoring the Mass Balance of Eklutna Glacier, AK** (score:",
+      "query_id": "Q04"
+    },
+    {
+      "elapsed_s": 20.54,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 805,
+        "cache_creation_input_tokens": 4967,
+        "cache_read_input_tokens": 34678
+      },
+      "main_tokens": 40457,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40457,
+      "total_tool_calls": 2,
+      "answer_length": 2210,
+      "answer_snippet": "Here are the top results for **humidity sensor measurements from environmental monitoring stations**:\n\n---\n\n### \ud83d\udd1d Most Relevant\n\n1. **Humidity sensor measuring relative humidity, barometric pressure and ambient temperature: bme280** (score: 11.8)\n   - **Org:** Sage\n   - A BME280 humidity sensor dataset capturing **relative humidity, barometric pressure, and ambient temperature** \u2014 a direct match for your query.\n\n2. **High-accuracy gas, pressure, humidity and temperature sensors: bme680** (score:",
+      "query_id": "Q05"
+    },
+    {
+      "elapsed_s": 20.81,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 780,
+        "cache_creation_input_tokens": 4799,
+        "cache_read_input_tokens": 34942
+      },
+      "main_tokens": 40528,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40528,
+      "total_tool_calls": 2,
+      "answer_length": 1969,
+      "answer_snippet": "Here are the results from the CLIO search for **solar radiation datasets measured in MJ/m\u00b2**. The catalog returned 10 ranked results over 2 retrieval hops, though none are a direct hit for solar irradiance in MJ/m\u00b2. Here's a summary of the most relevant finds:\n\n| # | Dataset | Organization | Relevance |\n|---|---------|-------------|-----------|\n| 1 | **Interagency Remote Automatic Weather Stations (RAWS)** | NIFC | \u2b50 **Most relevant** \u2014 RAWS stations typically record solar radiation alongside ot",
+      "query_id": "Q06"
+    },
+    {
+      "elapsed_s": 20.51,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 943,
+        "cache_creation_input_tokens": 5031,
+        "cache_read_input_tokens": 34674
+      },
+      "main_tokens": 40655,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40655,
+      "total_tool_calls": 2,
+      "answer_length": 2011,
+      "answer_snippet": "Here are the top results from the NDP catalog for **ocean surface temperature satellite datasets**:\n\n| # | Dataset | Source | Resolution | Score |\n|---|---------|--------|------------|-------|\n| 1 | **VIIRS/JPSS1 (NOAA-20) Land Surface Temperature & Emissivity** L2 Swath | NASA | 750m, 6-min | 11.84 |\n| 2 | **VIIRS/NPP Land Surface Temperature & Emissivity** L2 Swath | NASA | 750m, 6-min | 11.18 |\n| 3 | **MODIS/Aqua Land Surface Temperature/3-Band Emissivity** L2 | NASA FIRMS | 1km, 5-min | 10.4",
+      "query_id": "Q07"
+    },
+    {
+      "elapsed_s": 26.0,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 864,
+        "cache_creation_input_tokens": 4768,
+        "cache_read_input_tokens": 34993
+      },
+      "main_tokens": 40632,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40632,
+      "total_tool_calls": 2,
+      "answer_length": 2185,
+      "answer_snippet": "Here are the top datasets found for **precipitation measurements above 100 mm/day**, ranked by relevance:\n\n| # | Dataset | Score | Summary |\n|---|---------|-------|---------|\n| 1 | **Mass and Density of Individual Frozen Hydrometeors** | 17.8 | Contains mass/density measurements of frozen hydrometeors using a differential emissivity imaging technique \u2014 relevant to understanding intense precipitation events. |\n| 2 | **Corrected Liquid Water Path Data (Arctic Graupel)** | 16.1 | Liquid water path ",
+      "query_id": "Q08"
+    },
+    {
+      "elapsed_s": 20.22,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 969,
+        "cache_creation_input_tokens": 5044,
+        "cache_read_input_tokens": 34680
+      },
+      "main_tokens": 40700,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 40700,
+      "total_tool_calls": 2,
+      "answer_length": 1995,
+      "answer_snippet": "Here are the top **10 wildfire thermal detection datasets** from satellite observations, ranked by relevance:\n\n---\n\n### \ud83d\udd25 VIIRS-Based Datasets\n\n| # | Dataset | Source | Resolution | Score |\n|---|---------|--------|------------|-------|\n| 1 | **VIIRS Thermal Hotspots and Fire Activity** | NIFC | Near real-time | 13.5 |\n| 2 | **VIIRS/NPP Thermal Anomalies/Fire L2 Swath** | NASA | 750 m, 6-min | 10.2 |\n| 3 | **VIIRS/JPSS1 Thermal Anomalies/Fire L2 Swath** | NASA | 750 m, 6-min | 10.2 |\n| 4 | **VIIR",
+      "query_id": "Q09"
+    },
+    {
+      "elapsed_s": 14.05,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "main_usage": {
+        "input_tokens": 7,
+        "output_tokens": 195,
+        "cache_creation_input_tokens": 7837,
+        "cache_read_input_tokens": 31721
+      },
+      "main_tokens": 39760,
+      "sub_agents": [],
+      "sub_agent_count": 0,
+      "sub_agent_tokens": 0,
+      "sub_agent_tool_uses": 0,
+      "total_tokens": 39760,
+      "total_tool_calls": 2,
+      "answer_length": 99,
+      "answer_snippet": "ERROR: Command failed with exit code 1 (exit code: 1)\nError output: Check stderr output for details",
+      "query_id": "Q10"
+    }
+  ]
+}
