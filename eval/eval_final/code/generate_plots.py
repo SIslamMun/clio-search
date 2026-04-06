@@ -129,26 +129,37 @@ def plot_L1() -> None:
 
     # Per-query comparison bar chart
     if "per_query_run1" in d:
-        qids = [r["query_id"] for r in r1]
+        # Map Q01-Q10 to readable labels; use query_id as-is if already descriptive
+        _QUERY_LABELS = {
+            "Q01": "temp>30°C", "Q02": "pressure\n~101kPa", "Q03": "wind>50km/h",
+            "Q04": "glacier\nice temp", "Q05": "humidity\nsensor", "Q06": "solar\nradiation",
+            "Q07": "ocean\nsurf temp", "Q08": "precip\n>100mm", "Q09": "wildfire\nthermal",
+            "Q10": "soil\nmoisture",
+        }
+        raw_ids = [r["query_id"] for r in r1]
+        labels = [_QUERY_LABELS.get(qid, qid.replace("_", "\n")) for qid in raw_ids]
         r1_toks = [r["total_tokens"] for r in r1]
         r2_toks = [r["total_tokens"] for r in r2]
 
-        fig, ax = plt.subplots(figsize=(12, 5))
-        x = range(len(qids))
+        fig, ax = plt.subplots(figsize=(10, 4.5))
+        x = range(len(labels))
         w = 0.35
-        ax.bar([i - w/2 for i in x], r1_toks, w, label="LLM+NDP-MCP", color="#6699cc", edgecolor="black")
-        ax.bar([i + w/2 for i in x], r2_toks, w, label="LLM+CLIO", color="#ee7733", edgecolor="black")
+        ax.bar([i - w/2 for i in x], [t/1000 for t in r1_toks], w,
+               label="LLM + NDP-MCP", color="#6699cc", edgecolor="black", linewidth=0.5)
+        ax.bar([i + w/2 for i in x], [t/1000 for t in r2_toks], w,
+               label="LLM + CLIO", color="#ee7733", edgecolor="black", linewidth=0.5)
         ax.set_xticks(list(x))
-        ax.set_xticklabels(qids)
-        ax.set_ylabel("Tokens consumed")
-        ax.set_title("L1: Per-query token consumption")
-        ax.legend()
-        ax.set_ylim(0, max(r1_toks) * 1.15)
+        ax.set_xticklabels(labels, fontsize=8)
+        ax.set_ylabel("Tokens (thousands)", fontsize=10)
+        ax.set_title("L1: Per-query token consumption — LLM+NDP-MCP vs LLM+CLIO", fontsize=11)
+        ax.legend(fontsize=9, loc="upper left")
+        ax.set_ylim(0, max(r1_toks) / 1000 * 1.18)
         for i, (v1, v2) in enumerate(zip(r1_toks, r2_toks)):
             pct = (1 - v2 / v1) * 100
-            ax.text(i, max(v1, v2) + 2000, f"-{pct:.0f}%", ha="center", fontsize=8, color="red")
+            ax.text(i, max(v1, v2)/1000 + 3, f"−{pct:.0f}%",
+                    ha="center", fontsize=7, color="red", fontweight="bold")
         fig.tight_layout()
-        fig.savefig(OUT_FIG / "fig_L1_per_query.png", dpi=150, bbox_inches="tight")
+        fig.savefig(OUT_FIG / "fig_L1_per_query.png", dpi=200, bbox_inches="tight")
         plt.close(fig)
         print(f"  ✓ fig_L1_per_query.png")
 
