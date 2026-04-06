@@ -24,10 +24,23 @@ import sys
 import os
 from pathlib import Path
 
+# --- Find chimaera binary (Apptainer doesn't inherit container PATH) ---
+import shutil as _shutil
+_chimaera = _shutil.which("chimaera")
+if not _chimaera:
+    for _c in ["/home/iowarp/venv/bin/chimaera", "/home/iowarp/.local/bin/chimaera",
+               "/usr/local/bin/chimaera", "/opt/conda/bin/chimaera"]:
+        if os.path.isfile(_c):
+            _chimaera = _c
+            break
+if not _chimaera:
+    raise RuntimeError(f"chimaera binary not found. PATH={os.environ.get('PATH')}")
+print(f"chimaera found at: {_chimaera}", flush=True)
+
 # --- Start Chimaera runtime ---
 rt_log = "/tmp/rt.log"
 rt = subprocess.Popen(
-    ["chimaera", "runtime", "start"],
+    [_chimaera, "runtime", "start"],
     stdout=open(rt_log, "w"),
     stderr=subprocess.STDOUT,
 )
