@@ -1,0 +1,135 @@
+{
+  "experiment": "D5: NumConQ distributed",
+  "coordinator_url": "http://gh038:9200",
+  "total_queries": 20,
+  "repeats": 3,
+  "queries_with_hits": 20,
+  "hit_rate": 1.0,
+  "total_hits": 200,
+  "latency_p50_s": 0.04205078002996743,
+  "latency_p95_s": 0.05686924094334245,
+  "latency_p99_s": 0.06232255802024156,
+  "per_query": [
+    {
+      "query": "mass around 125 GeV Higgs boson",
+      "unit": "GeV",
+      "best_hits": 10,
+      "avg_latency_s": 0.01631041899478684
+    },
+    {
+      "query": "wavelength 550 nm visible light",
+      "unit": "nm",
+      "best_hits": 10,
+      "avg_latency_s": 0.01357201102655381
+    },
+    {
+      "query": "frequency 2.4 GHz wireless",
+      "unit": "GHz",
+      "best_hits": 10,
+      "avg_latency_s": 0.013709735008887947
+    },
+    {
+      "query": "temperature 2.7 kelvin CMB",
+      "unit": "kelvin",
+      "best_hits": 10,
+      "avg_latency_s": 0.04760702765391519
+    },
+    {
+      "query": "voltage 3.3 V semiconductor",
+      "unit": "V",
+      "best_hits": 10,
+      "avg_latency_s": 0.04840702668298036
+    },
+    {
+      "query": "magnetic field 1.5 tesla MRI",
+      "unit": "T",
+      "best_hits": 10,
+      "avg_latency_s": 0.042108282020005085
+    },
+    {
+      "query": "pressure 101 kPa atmospheric",
+      "unit": "kPa",
+      "best_hits": 10,
+      "avg_latency_s": 0.013610580664438507
+    },
+    {
+      "query": "current 10 mA sensor",
+      "unit": "mA",
+      "best_hits": 10,
+      "avg_latency_s": 0.04498583233604828
+    },
+    {
+      "query": "power 100 W laser",
+      "unit": "W",
+      "best_hits": 10,
+      "avg_latency_s": 0.042540131020359695
+    },
+    {
+      "query": "distance 1 AU solar system",
+      "unit": "AU",
+      "best_hits": 10,
+      "avg_latency_s": 0.042289695663688086
+    },
+    {
+      "query": "energy 13 TeV LHC collision",
+      "unit": "TeV",
+      "best_hits": 10,
+      "avg_latency_s": 0.04241619829554111
+    },
+    {
+      "query": "resistance 50 ohm impedance",
+      "unit": "ohm",
+      "best_hits": 10,
+      "avg_latency_s": 0.04507295531220734
+    },
+    {
+      "query": "capacitance 100 pF detector",
+      "unit": "pF",
+      "best_hits": 10,
+      "avg_latency_s": 0.051589752663858235
+    },
+    {
+      "query": "luminosity 1e34 cm-2 s-1 collider",
+      "unit": "cm",
+      "best_hits": 10,
+      "avg_latency_s": 0.04486921732313931
+    },
+    {
+      "query": "redshift z=1 cosmological",
+      "unit": "",
+      "best_hits": 10,
+      "avg_latency_s": 0.04399313568137586
+    },
+    {
+      "query": "density 1 g/cm3 water",
+      "unit": "g/cm3",
+      "best_hits": 10,
+      "avg_latency_s": 0.04530242132022977
+    },
+    {
+      "query": "acceleration 9.8 m/s2 gravity",
+      "unit": "m/s2",
+      "best_hits": 10,
+      "avg_latency_s": 0.0494490343456467
+    },
+    {
+      "query": "bandwidth 100 MHz signal",
+      "unit": "MHz",
+      "best_hits": 10,
+      "avg_latency_s": 0.014393011651312312
+    },
+    {
+      "query": "efficiency 95 percent conversion",
+      "unit": "%",
+      "best_hits": 10,
+      "avg_latency_s": 0.047207967028953135
+    },
+    {
+      "query": "angle 45 degrees diffraction",
+      "unit": "deg",
+      "best_hits": 10,
+      "avg_latency_s": 0.041740975032250084
+    }
+  ],
+  "timestamp": "2026-04-06 14:43:56"
+}

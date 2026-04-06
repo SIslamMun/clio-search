@@ -1,0 +1,56 @@
+{
+  "experiment": "D3: distributed indexing (profile query)",
+  "elapsed_s": 0.055943126091733575,
+  "profile": {
+    "coordinator_elapsed_s": 0.04878032405395061,
+    "workers": [
+      {
+        "shard_id": 0,
+        "elapsed_s": 0.0379998420830816,
+        "document_count": 17399,
+        "chunk_count": 38533,
+        "measurement_count": 3540,
+        "formula_count": 37080,
+        "metadata_density": 0.6882931513248385,
+        "has_measurements": true
+      },
+      {
+        "shard_id": 1,
+        "elapsed_s": 0.038390630041249096,
+        "document_count": 16450,
+        "chunk_count": 36097,
+        "measurement_count": 3383,
+        "formula_count": 34432,
+        "metadata_density": 0.6857079535695487,
+        "has_measurements": true
+      },
+      {
+        "shard_id": 2,
+        "elapsed_s": 0.046061722910963,
+        "document_count": 19104,
+        "chunk_count": 43130,
+        "measurement_count": 4102,
+        "formula_count": 42076,
+        "metadata_density": 0.6936471133781591,
+        "has_measurements": true
+      },
+      {
+        "shard_id": 3,
+        "elapsed_s": 0.036271141027100384,
+        "document_count": 17069,
+        "chunk_count": 37842,
+        "measurement_count": 3441,
+        "formula_count": 36387,
+        "metadata_density": 0.6879921780032768,
+        "has_measurements": true
+      }
+    ],
+    "aggregate": {
+      "workers": 4,
+      "total_documents": 70022,
+      "total_chunks": 155602,
+      "total_measurements": 14466
+    }
+  },
+  "timestamp": "2026-04-06 14:43:20"
+}

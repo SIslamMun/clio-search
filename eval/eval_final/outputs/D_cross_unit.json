@@ -1,0 +1,62 @@
+{
+  "experiment": "D4: cross-unit at scale",
+  "probes": [
+    {
+      "quantity": "pressure",
+      "value": 100000,
+      "unit": "Pa",
+      "hits": 12,
+      "total_shards_with_hits": 12,
+      "latency_s": 0.030274087912403047
+    },
+    {
+      "quantity": "pressure",
+      "value": 100,
+      "unit": "kPa",
+      "hits": 12,
+      "total_shards_with_hits": 12,
+      "latency_s": 0.014514470007270575
+    },
+    {
+      "quantity": "pressure",
+      "value": 1,
+      "unit": "bar",
+      "hits": 12,
+      "total_shards_with_hits": 12,
+      "latency_s": 0.014091697987169027
+    },
+    {
+      "quantity": "pressure",
+      "value": 0.987,
+      "unit": "atm",
+      "hits": 12,
+      "total_shards_with_hits": 12,
+      "latency_s": 0.013963414006866515
+    },
+    {
+      "quantity": "temperature",
+      "value": 30,
+      "unit": "degC",
+      "hits": 20,
+      "total_shards_with_hits": 20,
+      "latency_s": 0.049076181021519005
+    },
+    {
+      "quantity": "temperature",
+      "value": 86,
+      "unit": "degF",
+      "hits": 20,
+      "total_shards_with_hits": 20,
+      "latency_s": 0.043683917028829455
+    },
+    {
+      "quantity": "temperature",
+      "value": 303.15,
+      "unit": "kelvin",
+      "hits": 20,
+      "total_shards_with_hits": 20,
+      "latency_s": 0.042888483963906765
+    }
+  ],
+  "timestamp": "2026-04-06 14:43:54"
+}
