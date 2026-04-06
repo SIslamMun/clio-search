@@ -66,58 +66,68 @@ DATA_DIR = _REPO / "eval" / "eval_final" / "data" / "NumConQ"
 # ----------------------------------------------------------------------------
 
 
+_NUMCONQ_V9 = DATA_DIR / "evaluation" / "dataset" / "numcial_constraint_v9"
+_DOMAINS = ["qs_data", "league_data"]
+
+
 def _load_queries() -> list[dict[str, Any]] | None:
-    """Load NumConQ queries.
+    """Load NumConQ queries across domains.
 
-    Expected structure (from Tongji-KGLLM repo):
-      queries.json: [
-        {
-          "qid": "q0001",
-          "domain": "finance",
-          "query": "Find companies with revenue > 100M USD",
-          "relevant_docs": ["doc123", "doc456", ...],
-          "numeric_constraint": {"operator": ">", "value": 100, "unit": "million_usd"}
-        },
-        ...
-      ]
+    Real NumConQ structure:
+      evaluation/dataset/numcial_constraint_v9/<domain>/test/query.json
+      evaluation/dataset/numcial_constraint_v9/<domain>/test/doc.json
 
-    If the real format differs (which it might), edit this function.
+    Each query entry: {query, positive_text [list of doc strings], type,
+    constraint, numerical}. Relevance is resolved by matching positive_text
+    to doc strings (by content equality); see _load_corpus.
     """
-    q_path = DATA_DIR / "queries.json"
-    if not q_path.exists():
+    if not _NUMCONQ_V9.exists():
         return None
-    with q_path.open() as f:
-        return json.load(f)
+    out: list[dict[str, Any]] = []
+    for domain in _DOMAINS:
+        q_path = _NUMCONQ_V9 / domain / "test" / "query.json"
+        d_path = _NUMCONQ_V9 / domain / "test" / "doc.json"
+        if not q_path.exists() or not d_path.exists():
+            continue
+        with d_path.open() as f:
+            docs = json.load(f)
+        doc_to_id = {doc: f"{domain}_{i}" for i, doc in enumerate(docs)}
+        with q_path.open() as f:
+            queries = json.load(f)
+        for i, q in enumerate(queries):
+            relevant_docs = [
+                doc_to_id[t] for t in q.get("positive_text", []) if t in doc_to_id
+            ]
+            out.append({
+                "qid": f"{domain}_q{i}",
+                "domain": domain,
+                "query": q["query"],
+                "relevant_docs": relevant_docs,
+                "type": q.get("type"),
+                "constraint": q.get("constraint"),
+                "numerical": q.get("numerical"),
+            })
+    return out if out else None
 
 
 def _load_corpus() -> list[dict[str, Any]] | None:
-    """Load NumConQ documents.
-
-    Expected: corpus/*.txt or corpus/*.jsonl files, one document per entry.
-    """
-    corpus_dir = DATA_DIR / "corpus"
-    if not corpus_dir.exists():
+    """Load NumConQ documents across domains — concatenated with domain prefix."""
+    if not _NUMCONQ_V9.exists():
         return None
-
-    docs: list[dict[str, Any]] = []
-    # Try JSONL format
-    for jsonl_file in corpus_dir.glob("*.jsonl"):
-        with jsonl_file.open() as f:
-            for line in f:
-                try:
-                    obj = json.loads(line)
-                    docs.append(obj)
-                except json.JSONDecodeError:
-                    continue
-    # Fallback: plain text files
-    if not docs:
-        for txt_file in corpus_dir.glob("*.txt"):
-            docs.append({
-                "doc_id": txt_file.stem,
-                "text": txt_file.read_text(errors="ignore"),
-                "domain": "unknown",
+    out: list[dict[str, Any]] = []
+    for domain in _DOMAINS:
+        d_path = _NUMCONQ_V9 / domain / "test" / "doc.json"
+        if not d_path.exists():
+            continue
+        with d_path.open() as f:
+            docs = json.load(f)
+        for i, text in enumerate(docs):
+            out.append({
+                "doc_id": f"{domain}_{i}",
+                "text": text,
+                "domain": domain,
             })
-    return docs if docs else None
+    return out if out else None
 
 
 # ----------------------------------------------------------------------------

@@ -1,0 +1,527 @@
+{
+  "experiment": "L1: LLM+NDP-MCP vs LLM+CLIO(NDP-MCP) \u2014 10 queries",
+  "timestamp": "2026-04-06 04:05:06",
+  "queries": [
+    {
+      "id": "Q01",
+      "text": "Find datasets with temperature measurements above 30 degrees Celsius from weather stations",
+      "terms": [
+        "temperature",
+        "weather"
+      ]
+    },
+    {
+      "id": "Q02",
+      "text": "Find datasets reporting atmospheric pressure around 101 kPa",
+      "terms": [
+        "pressure",
+        "atmospheric"
+      ]
+    },
+    {
+      "id": "Q03",
+      "text": "Find wind speed measurements above 50 km/h from meteorological datasets",
+      "terms": [
+        "wind",
+        "speed"
+      ]
+    },
+    {
+      "id": "Q04",
+      "text": "Find datasets about glacier ice sheet temperature observations",
+      "terms": [
+        "glacier",
+        "ice",
+        "temperature"
+      ]
+    },
+    {
+      "id": "Q05",
+      "text": "Find humidity sensor measurements from environmental monitoring stations",
+      "terms": [
+        "humidity",
+        "environmental"
+      ]
+    },
+    {
+      "id": "Q06",
+      "text": "Find solar radiation datasets measured in MJ per square meter",
+      "terms": [
+        "solar",
+        "radiation"
+      ]
+    },
+    {
+      "id": "Q07",
+      "text": "Find ocean surface temperature satellite datasets",
+      "terms": [
+        "ocean",
+        "temperature",
+        "satellite"
+      ]
+    },
+    {
+      "id": "Q08",
+      "text": "Find datasets containing precipitation measurements above 100 mm per day",
+      "terms": [
+        "precipitation",
+        "rainfall"
+      ]
+    },
+    {
+      "id": "Q09",
+      "text": "Find wildfire thermal detection datasets from satellite observations",
+      "terms": [
+        "wildfire",
+        "thermal"
+      ]
+    },
+    {
+      "id": "Q10",
+      "text": "Find soil moisture measurements from agricultural monitoring networks",
+      "terms": [
+        "soil",
+        "moisture",
+        "agricultural"
+      ]
+    }
+  ],
+  "index_stats": {
+    "index_time_s": 287.79,
+    "documents": 320,
+    "chunks": 338,
+    "measurements": 1460,
+    "density": 0.4379,
+    "csv": {
+      "csvs_attempted": 10,
+      "csvs_processed": 0,
+      "rows_indexed": 0,
+      "measurements_found": 0,
+      "errors": []
+    }
+  },
+  "summary": {
+    "run1_total_tokens": 1346231,
+    "run2_total_tokens": 402843,
+    "token_reduction_pct": 70.1,
+    "run1_total_tools": 91,
+    "run2_total_tools": 20,
+    "run1_total_time_s": 715.7,
+    "run2_total_time_s": 187.0
+  },
+  "per_query_run1": [
+    {
+      "elapsed_s": 58.27,
+      "num_tool_calls": 11,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "usage": {
+        "input_tokens": 850,
+        "output_tokens": 2414,
+        "cache_creation_input_tokens": 10572,
+        "cache_read_input_tokens": 117616
+      },
+      "total_tokens": 131452,
+      "answer_length": 2209,
+      "query_id": "Q01"
+    },
+    {
+      "elapsed_s": 63.08,
+      "num_tool_calls": 11,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Grep",
+        "Read",
+        "Bash"
+      ],
+      "usage": {
+        "input_tokens": 143,
+        "output_tokens": 1830,
+        "cache_creation_input_tokens": 8572,
+        "cache_read_input_tokens": 125833
+      },
+      "total_tokens": 136378,
+      "answer_length": 1701,
+      "query_id": "Q02"
+    },
+    {
+      "elapsed_s": 51.2,
+      "num_tool_calls": 6,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Read",
+        "Grep",
+        "Bash"
+      ],
+      "usage": {
+        "input_tokens": 11,
+        "output_tokens": 1665,
+        "cache_creation_input_tokens": 7256,
+        "cache_read_input_tokens": 94158
+      },
+      "total_tokens": 103090,
+      "answer_length": 1899,
+      "query_id": "Q03"
+    },
+    {
+      "elapsed_s": 38.5,
+      "num_tool_calls": 7,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "usage": {
+        "input_tokens": 9,
+        "output_tokens": 1042,
+        "cache_creation_input_tokens": 10200,
+        "cache_read_input_tokens": 68717
+      },
+      "total_tokens": 79968,
+      "answer_length": 1520,
+      "query_id": "Q04"
+    },
+    {
+      "elapsed_s": 94.11,
+      "num_tool_calls": 12,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Read",
+        "Grep",
+        "Read",
+        "Bash"
+      ],
+      "usage": {
+        "input_tokens": 144,
+        "output_tokens": 2123,
+        "cache_creation_input_tokens": 8946,
+        "cache_read_input_tokens": 148736
+      },
+      "total_tokens": 159949,
+      "answer_length": 2365,
+      "query_id": "Q05"
+    },
+    {
+      "elapsed_s": 174.7,
+      "num_tool_calls": 13,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Bash",
+        "ToolSearch",
+        "Bash",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__get_dataset_details",
+        "mcp__ndp__search_datasets"
+      ],
+      "usage": {
+        "input_tokens": 149,
+        "output_tokens": 2318,
+        "cache_creation_input_tokens": 22218,
+        "cache_read_input_tokens": 159919
+      },
+      "total_tokens": 184604,
+      "answer_length": 1819,
+      "query_id": "Q06"
+    },
+    {
+      "elapsed_s": 69.29,
+      "num_tool_calls": 11,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "usage": {
+        "input_tokens": 14546,
+        "output_tokens": 1501,
+        "cache_creation_input_tokens": 41723,
+        "cache_read_input_tokens": 137944
+      },
+      "total_tokens": 195714,
+      "answer_length": 1832,
+      "query_id": "Q07"
+    },
+    {
+      "elapsed_s": 86.56,
+      "num_tool_calls": 10,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "mcp__ndp__search_datasets",
+        "Read",
+        "Grep",
+        "Read",
+        "Bash"
+      ],
+      "usage": {
+        "input_tokens": 14653,
+        "output_tokens": 2074,
+        "cache_creation_input_tokens": 21749,
+        "cache_read_input_tokens": 185099
+      },
+      "total_tokens": 223575,
+      "answer_length": 2583,
+      "query_id": "Q08"
+    },
+    {
+      "elapsed_s": 50.19,
+      "num_tool_calls": 6,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 1116,
+        "cache_creation_input_tokens": 22032,
+        "cache_read_input_tokens": 49767
+      },
+      "total_tokens": 72923,
+      "answer_length": 2091,
+      "query_id": "Q09"
+    },
+    {
+      "elapsed_s": 29.83,
+      "num_tool_calls": 4,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets",
+        "mcp__ndp__search_datasets"
+      ],
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 1075,
+        "cache_creation_input_tokens": 7966,
+        "cache_read_input_tokens": 49529
+      },
+      "total_tokens": 58578,
+      "answer_length": 2310,
+      "query_id": "Q10"
+    }
+  ],
+  "per_query_run2": [
+    {
+      "elapsed_s": 18.58,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 611,
+        "cache_creation_input_tokens": 3839,
+        "cache_read_input_tokens": 34965
+      },
+      "total_tokens": 39422,
+      "answer_length": 1442,
+      "query_id": "Q01"
+    },
+    {
+      "elapsed_s": 11.75,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 260,
+        "cache_creation_input_tokens": 4810,
+        "cache_read_input_tokens": 34993
+      },
+      "total_tokens": 40070,
+      "answer_length": 99,
+      "query_id": "Q02"
+    },
+    {
+      "elapsed_s": 18.9,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 669,
+        "cache_creation_input_tokens": 4768,
+        "cache_read_input_tokens": 35002
+      },
+      "total_tokens": 40446,
+      "answer_length": 99,
+      "query_id": "Q03"
+    },
+    {
+      "elapsed_s": 20.72,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 691,
+        "cache_creation_input_tokens": 4754,
+        "cache_read_input_tokens": 34975
+      },
+      "total_tokens": 40427,
+      "answer_length": 1696,
+      "query_id": "Q04"
+    },
+    {
+      "elapsed_s": 18.83,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 688,
+        "cache_creation_input_tokens": 4629,
+        "cache_read_input_tokens": 34936
+      },
+      "total_tokens": 40260,
+      "answer_length": 1978,
+      "query_id": "Q05"
+    },
+    {
+      "elapsed_s": 21.49,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 767,
+        "cache_creation_input_tokens": 5114,
+        "cache_read_input_tokens": 34684
+      },
+      "total_tokens": 40572,
+      "answer_length": 1864,
+      "query_id": "Q06"
+    },
+    {
+      "elapsed_s": 20.11,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 937,
+        "cache_creation_input_tokens": 4773,
+        "cache_read_input_tokens": 34932
+      },
+      "total_tokens": 40649,
+      "answer_length": 2068,
+      "query_id": "Q07"
+    },
+    {
+      "elapsed_s": 22.38,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 789,
+        "cache_creation_input_tokens": 4768,
+        "cache_read_input_tokens": 34993
+      },
+      "total_tokens": 40557,
+      "answer_length": 2091,
+      "query_id": "Q08"
+    },
+    {
+      "elapsed_s": 20.11,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 949,
+        "cache_creation_input_tokens": 5044,
+        "cache_read_input_tokens": 34680
+      },
+      "total_tokens": 40680,
+      "answer_length": 2045,
+      "query_id": "Q09"
+    },
+    {
+      "elapsed_s": 14.11,
+      "num_tool_calls": 2,
+      "tool_calls": [
+        "ToolSearch",
+        "mcp__clio__clio_search"
+      ],
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 195,
+        "cache_creation_input_tokens": 4622,
+        "cache_read_input_tokens": 34936
+      },
+      "total_tokens": 39760,
+      "answer_length": 99,
+      "query_id": "Q10"
+    }
+  ]
+}

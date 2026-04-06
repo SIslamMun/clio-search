@@ -75,22 +75,41 @@ def _load(name: str) -> dict[str, Any] | None:
 
 
 def plot_L1() -> None:
-    d = _load("L1_ndp_vs_clio_agent.json")
+    d = _load("L1_10queries.json")
+    if d is None:
+        # Try old format
+        d = _load("L1_10queries.json")
     if d is None:
         return
-    agg_a = d["mode_a_aggregate"]
-    agg_b = d["mode_b_aggregate"]
 
-    metrics = ["total_tool_calls", "total_tokens", "total_time_s"]
+    # New format: per_query_run1 / per_query_run2
+    if "per_query_run1" in d:
+        r1 = d["per_query_run1"]
+        r2 = d["per_query_run2"]
+        r1_tokens = sum(r["total_tokens"] for r in r1)
+        r2_tokens = sum(r["total_tokens"] for r in r2)
+        r1_tools = sum(r["num_tool_calls"] for r in r1)
+        r2_tools = sum(r["num_tool_calls"] for r in r2)
+        r1_time = sum(r["elapsed_s"] for r in r1)
+        r2_time = sum(r["elapsed_s"] for r in r2)
+    else:
+        agg_a = d["mode_a_aggregate"]
+        agg_b = d["mode_b_aggregate"]
+        r1_tokens = agg_a["total_tokens"]
+        r2_tokens = agg_b["total_tokens"]
+        r1_tools = agg_a["total_tool_calls"]
+        r2_tools = agg_b["total_tool_calls"]
+        r1_time = agg_a["total_time_s"]
+        r2_time = agg_b["total_time_s"]
+
     labels = ["Tool calls", "Total tokens", "Wall time (s)"]
-    x = range(len(metrics))
-    a_vals = [agg_a[m] for m in metrics]
-    b_vals = [agg_b[m] for m in metrics]
+    a_vals = [r1_tools, r1_tokens, r1_time]
+    b_vals = [r2_tools, r2_tokens, r2_time]
 
     fig, axes = plt.subplots(1, 3, figsize=(12, 4))
-    for i, (ax, metric, label) in enumerate(zip(axes, metrics, labels, strict=True)):
-        ax.bar(
-            ["NDP-MCP", "NDP-MCP + CLIO"],
+    for i, (ax, label) in enumerate(zip(axes, labels, strict=True)):
+        bars = ax.bar(
+            ["LLM+NDP-MCP", "LLM+CLIO"],
             [a_vals[i], b_vals[i]],
             color=["#6699cc", "#ee7733"],
             edgecolor="black",
@@ -98,13 +117,40 @@ def plot_L1() -> None:
         ax.set_title(label)
         ax.set_ylabel(label)
         for j, v in enumerate([a_vals[i], b_vals[i]]):
-            ax.text(j, v, f"{v:,}", ha="center", va="bottom")
+            fmt = f"{v:,.0f}" if v > 100 else f"{v:.1f}"
+            ax.text(j, v, fmt, ha="center", va="bottom", fontsize=9)
 
-    fig.suptitle("L1: NDP-MCP vs CLIO+NDP-MCP (10 queries)", y=1.02)
+    reduction = (1 - r2_tokens / r1_tokens) * 100
+    fig.suptitle(f"L1: LLM+NDP-MCP vs LLM+CLIO ({len(r1) if 'per_query_run1' in d else '10'} queries, {reduction:.0f}% token reduction)", y=1.02)
     fig.tight_layout()
-    fig.savefig(OUT_FIG / "fig_L1_tokens_tools.png")
+    fig.savefig(OUT_FIG / "fig_L1_tokens_tools.png", dpi=150, bbox_inches="tight")
     plt.close(fig)
     print(f"  ✓ fig_L1_tokens_tools.png")
+
+    # Per-query comparison bar chart
+    if "per_query_run1" in d:
+        qids = [r["query_id"] for r in r1]
+        r1_toks = [r["total_tokens"] for r in r1]
+        r2_toks = [r["total_tokens"] for r in r2]
+
+        fig, ax = plt.subplots(figsize=(12, 5))
+        x = range(len(qids))
+        w = 0.35
+        ax.bar([i - w/2 for i in x], r1_toks, w, label="LLM+NDP-MCP", color="#6699cc", edgecolor="black")
+        ax.bar([i + w/2 for i in x], r2_toks, w, label="LLM+CLIO", color="#ee7733", edgecolor="black")
+        ax.set_xticks(list(x))
+        ax.set_xticklabels(qids)
+        ax.set_ylabel("Tokens consumed")
+        ax.set_title("L1: Per-query token consumption")
+        ax.legend()
+        ax.set_ylim(0, max(r1_toks) * 1.15)
+        for i, (v1, v2) in enumerate(zip(r1_toks, r2_toks)):
+            pct = (1 - v2 / v1) * 100
+            ax.text(i, max(v1, v2) + 2000, f"-{pct:.0f}%", ha="center", fontsize=8, color="red")
+        fig.tight_layout()
+        fig.savefig(OUT_FIG / "fig_L1_per_query.png", dpi=150, bbox_inches="tight")
+        plt.close(fig)
+        print(f"  ✓ fig_L1_per_query.png")
 
 
 # ============================================================================
@@ -405,20 +451,13 @@ def plot_D2() -> None:
 
 
 def plot_pareto() -> None:
-    """Accuracy vs tokens — Pareto chart across L1, L3, L4 if available."""
+    """Token cost comparison — Pareto chart across experiments."""
     points: list[tuple[float, float, str]] = []
-    l1 = _load("L1_ndp_vs_clio_agent.json")
-    if l1:
-        points.append((
-            l1["mode_a_aggregate"]["total_tokens"],
-            l1["mode_a_aggregate"]["avg_correctness"],
-            "L1: NDP-MCP only",
-        ))
-        points.append((
-            l1["mode_b_aggregate"]["total_tokens"],
-            l1["mode_b_aggregate"]["avg_correctness"],
-            "L1: CLIO + NDP-MCP",
-        ))
+    l1 = _load("L1_10queries.json")
+    if l1 and "summary" in l1:
+        s = l1["summary"]
+        points.append((s["run1_total_tokens"], 1.0, "L1: LLM+NDP-MCP"))
+        points.append((s["run2_total_tokens"], 1.0, "L1: LLM+CLIO"))
     if not points:
         return
 

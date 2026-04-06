@@ -1,0 +1,734 @@
+{
+  "experiment": "L6: CIMIS quality filter end-to-end",
+  "timestamp": "2026-04-05 07:34:11",
+  "stations_analysed": 5,
+  "total_rows_parsed": 657600,
+  "aggregate": {
+    "total_rows": 657600,
+    "matches_with_quality_filter": 82151,
+    "matches_without_quality_filter": 94947,
+    "rows_dropped_by_quality_filter": 12796
+  },
+  "per_station": [
+    {
+      "station_id": "105-westlands",
+      "station_name": "CIMIS 105 Westlands",
+      "total_rows": 131520,
+      "rows_parsed": 131520,
+      "parse_errors": 0,
+      "parse_time_s": 3.15,
+      "measurement_columns": [
+        {
+          "name": "ETo",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": null,
+          "qc_column_detected": true
+        },
+        {
+          "name": "Precip",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": "precipitation",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Vap Pres",
+          "raw_unit": "kPa",
+          "canonical_unit_for_registry": "kPa",
+          "canonical_concept": "pressure",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Air Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Dew Point",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "humidity",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Wind Speed",
+          "raw_unit": "m/s",
+          "canonical_unit_for_registry": "m/s",
+          "canonical_concept": "wind_speed",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Soil Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        }
+      ],
+      "quality_by_column": {
+        "ETo": {
+          "good": 124211,
+          "questionable": 5778,
+          "bad": 879,
+          "unknown": 182
+        },
+        "Precip": {
+          "good": 130977,
+          "questionable": 60,
+          "bad": 13
+        },
+        "Vap Pres": {
+          "good": 130767,
+          "questionable": 227,
+          "bad": 56
+        },
+        "Air Temp": {
+          "good": 124872,
+          "questionable": 5912,
+          "bad": 266
+        },
+        "Dew Point": {
+          "good": 124917,
+          "questionable": 5814,
+          "bad": 319
+        },
+        "Wind Speed": {
+          "good": 130431,
+          "estimated": 555,
+          "questionable": 5
+        },
+        "Soil Temp": {
+          "good": 121082,
+          "questionable": 9583,
+          "bad": 196
+        }
+      },
+      "query_temperature_above_30C": {
+        "threshold_canonical_K": 303.15,
+        "rows_matching_with_quality_filter": 28023,
+        "rows_matching_without_quality_filter": 34346,
+        "rows_dropped_by_quality_filter": 6323,
+        "sample_matches": [
+          {
+            "raw_value": 30.5,
+            "raw_unit": "c",
+            "canonical_value": 303.65,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Westlands",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 32.7,
+            "raw_unit": "c",
+            "canonical_value": 305.84999999999997,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Westlands",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 34.5,
+            "raw_unit": "c",
+            "canonical_value": 307.65,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Westlands",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          }
+        ]
+      }
+    },
+    {
+      "station_id": "124-panoche",
+      "station_name": "CIMIS 124 Panoche",
+      "total_rows": 131520,
+      "rows_parsed": 131520,
+      "parse_errors": 0,
+      "parse_time_s": 3.31,
+      "measurement_columns": [
+        {
+          "name": "ETo",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": null,
+          "qc_column_detected": true
+        },
+        {
+          "name": "Precip",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": "precipitation",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Vap Pres",
+          "raw_unit": "kPa",
+          "canonical_unit_for_registry": "kPa",
+          "canonical_concept": "pressure",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Air Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Dew Point",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "humidity",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Wind Speed",
+          "raw_unit": "m/s",
+          "canonical_unit_for_registry": "m/s",
+          "canonical_concept": "wind_speed",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Soil Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        }
+      ],
+      "quality_by_column": {
+        "ETo": {
+          "good": 121643,
+          "questionable": 4828,
+          "bad": 1890,
+          "unknown": 148
+        },
+        "Precip": {
+          "good": 128462,
+          "bad": 10,
+          "questionable": 33,
+          "estimated": 1
+        },
+        "Vap Pres": {
+          "good": 128076,
+          "questionable": 291,
+          "estimated": 4,
+          "bad": 135
+        },
+        "Air Temp": {
+          "good": 123285,
+          "questionable": 4958,
+          "bad": 256
+        },
+        "Dew Point": {
+          "good": 123191,
+          "questionable": 4924,
+          "bad": 378
+        },
+        "Wind Speed": {
+          "good": 127019,
+          "estimated": 1356,
+          "questionable": 2
+        },
+        "Soil Temp": {
+          "good": 114297,
+          "questionable": 6183,
+          "bad": 2375
+        }
+      },
+      "query_temperature_above_30C": {
+        "threshold_canonical_K": 303.15,
+        "rows_matching_with_quality_filter": 11914,
+        "rows_matching_without_quality_filter": 13419,
+        "rows_dropped_by_quality_filter": 1505,
+        "sample_matches": [
+          {
+            "raw_value": 30.2,
+            "raw_unit": "c",
+            "canonical_value": 303.34999999999997,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Panoche",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 32.3,
+            "raw_unit": "c",
+            "canonical_value": 305.45,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Panoche",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 33.8,
+            "raw_unit": "c",
+            "canonical_value": 306.95,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Panoche",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          }
+        ]
+      }
+    },
+    {
+      "station_id": "125-arvinedison",
+      "station_name": "CIMIS 125 Arvin-Edison",
+      "total_rows": 131520,
+      "rows_parsed": 131520,
+      "parse_errors": 0,
+      "parse_time_s": 2.79,
+      "measurement_columns": [
+        {
+          "name": "ETo",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": null,
+          "qc_column_detected": true
+        },
+        {
+          "name": "Precip",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": "precipitation",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Vap Pres",
+          "raw_unit": "kPa",
+          "canonical_unit_for_registry": "kPa",
+          "canonical_concept": "pressure",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Air Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Dew Point",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "humidity",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Wind Speed",
+          "raw_unit": "m/s",
+          "canonical_unit_for_registry": "m/s",
+          "canonical_concept": "wind_speed",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Soil Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        }
+      ],
+      "quality_by_column": {
+        "ETo": {
+          "good": 125097,
+          "questionable": 4774,
+          "bad": 1185,
+          "unknown": 97,
+          "missing": 1,
+          "estimated": 2
+        },
+        "Precip": {
+          "good": 131002,
+          "bad": 65,
+          "questionable": 84,
+          "unknown": 3,
+          "missing": 1
+        },
+        "Vap Pres": {
+          "good": 130855,
+          "questionable": 154,
+          "bad": 142,
+          "unknown": 3
+        },
+        "Air Temp": {
+          "good": 126075,
+          "questionable": 4815,
+          "bad": 260,
+          "unknown": 3,
+          "estimated": 1
+        },
+        "Dew Point": {
+          "good": 125913,
+          "questionable": 4831,
+          "bad": 403,
+          "unknown": 3
+        },
+        "Wind Speed": {
+          "good": 130317,
+          "questionable": 6,
+          "estimated": 761
+        },
+        "Soil Temp": {
+          "good": 119206,
+          "questionable": 4858,
+          "bad": 1182
+        }
+      },
+      "query_temperature_above_30C": {
+        "threshold_canonical_K": 303.15,
+        "rows_matching_with_quality_filter": 17539,
+        "rows_matching_without_quality_filter": 20665,
+        "rows_dropped_by_quality_filter": 3126,
+        "sample_matches": [
+          {
+            "raw_value": 30.0,
+            "raw_unit": "c",
+            "canonical_value": 303.15,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Arvin-Edison",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 31.7,
+            "raw_unit": "c",
+            "canonical_value": 304.84999999999997,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Arvin-Edison",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 33.8,
+            "raw_unit": "c",
+            "canonical_value": 306.95,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Arvin-Edison",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          }
+        ]
+      }
+    },
+    {
+      "station_id": "131-fairoaks",
+      "station_name": "CIMIS 131 Fair Oaks",
+      "total_rows": 131520,
+      "rows_parsed": 131520,
+      "parse_errors": 0,
+      "parse_time_s": 2.78,
+      "measurement_columns": [
+        {
+          "name": "ETo",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": null,
+          "qc_column_detected": true
+        },
+        {
+          "name": "Precip",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": "precipitation",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Vap Pres",
+          "raw_unit": "kPa",
+          "canonical_unit_for_registry": "kPa",
+          "canonical_concept": "pressure",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Air Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Dew Point",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "humidity",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Wind Speed",
+          "raw_unit": "m/s",
+          "canonical_unit_for_registry": "m/s",
+          "canonical_concept": "wind_speed",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Soil Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        }
+      ],
+      "quality_by_column": {
+        "ETo": {
+          "good": 121741,
+          "bad": 4007,
+          "questionable": 4359,
+          "unknown": 740,
+          "missing": 2
+        },
+        "Precip": {
+          "good": 130711,
+          "questionable": 81,
+          "bad": 18,
+          "missing": 2
+        },
+        "Vap Pres": {
+          "good": 130306,
+          "questionable": 373,
+          "missing": 1,
+          "bad": 127,
+          "estimated": 3
+        },
+        "Air Temp": {
+          "good": 126028,
+          "questionable": 4521,
+          "bad": 225,
+          "estimated": 2
+        },
+        "Dew Point": {
+          "good": 125475,
+          "questionable": 4483,
+          "bad": 346
+        },
+        "Wind Speed": {
+          "good": 126350,
+          "estimated": 3592,
+          "questionable": 3,
+          "bad": 24
+        },
+        "Soil Temp": {
+          "good": 126256,
+          "questionable": 3371,
+          "bad": 204
+        }
+      },
+      "query_temperature_above_30C": {
+        "threshold_canonical_K": 303.15,
+        "rows_matching_with_quality_filter": 10793,
+        "rows_matching_without_quality_filter": 12059,
+        "rows_dropped_by_quality_filter": 1266,
+        "sample_matches": [
+          {
+            "raw_value": 31.1,
+            "raw_unit": "c",
+            "canonical_value": 304.25,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Fair Oaks",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 33.0,
+            "raw_unit": "c",
+            "canonical_value": 306.15,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Fair Oaks",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 35.0,
+            "raw_unit": "c",
+            "canonical_value": 308.15,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Fair Oaks",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          }
+        ]
+      }
+    },
+    {
+      "station_id": "146-belridge",
+      "station_name": "CIMIS 146 Belridge",
+      "total_rows": 131520,
+      "rows_parsed": 131520,
+      "parse_errors": 0,
+      "parse_time_s": 2.82,
+      "measurement_columns": [
+        {
+          "name": "ETo",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": null,
+          "qc_column_detected": true
+        },
+        {
+          "name": "Precip",
+          "raw_unit": "mm",
+          "canonical_unit_for_registry": "mm",
+          "canonical_concept": "precipitation",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Vap Pres",
+          "raw_unit": "kPa",
+          "canonical_unit_for_registry": "kPa",
+          "canonical_concept": "pressure",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Air Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Dew Point",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "humidity",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Wind Speed",
+          "raw_unit": "m/s",
+          "canonical_unit_for_registry": "m/s",
+          "canonical_concept": "wind_speed",
+          "qc_column_detected": true
+        },
+        {
+          "name": "Soil Temp",
+          "raw_unit": "C",
+          "canonical_unit_for_registry": "degC",
+          "canonical_concept": "temperature",
+          "qc_column_detected": true
+        }
+      ],
+      "quality_by_column": {
+        "ETo": {
+          "good": 122385,
+          "questionable": 3674,
+          "bad": 3043,
+          "unknown": 103
+        },
+        "Precip": {
+          "good": 128638,
+          "bad": 137,
+          "questionable": 350
+        },
+        "Vap Pres": {
+          "good": 129084,
+          "questionable": 41
+        },
+        "Air Temp": {
+          "good": 125190,
+          "questionable": 3805,
+          "bad": 129,
+          "estimated": 1
+        },
+        "Dew Point": {
+          "good": 125175,
+          "questionable": 3818,
+          "bad": 129
+        },
+        "Wind Speed": {
+          "good": 126182,
+          "estimated": 2920
+        },
+        "Soil Temp": {
+          "good": 124654,
+          "questionable": 3199,
+          "bad": 76
+        }
+      },
+      "query_temperature_above_30C": {
+        "threshold_canonical_K": 303.15,
+        "rows_matching_with_quality_filter": 13882,
+        "rows_matching_without_quality_filter": 14458,
+        "rows_dropped_by_quality_filter": 576,
+        "sample_matches": [
+          {
+            "raw_value": 30.4,
+            "raw_unit": "c",
+            "canonical_value": 303.54999999999995,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Belridge",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 32.5,
+            "raw_unit": "c",
+            "canonical_value": 305.65,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Belridge",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          },
+          {
+            "raw_value": 34.3,
+            "raw_unit": "c",
+            "canonical_value": 307.45,
+            "canonical_unit": "0,0,0,0,1,0,0",
+            "quality": "good",
+            "context": {
+              "Stn Name": "Belridge",
+              "Date": "9/28/2010"
+            },
+            "column": "Air Temp (C)"
+          }
+        ]
+      }
+    }
+  ]
+}

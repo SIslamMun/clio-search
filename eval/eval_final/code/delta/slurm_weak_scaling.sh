@@ -1,6 +1,10 @@
 #!/bin/bash
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# IMPORTANT: You MUST edit --account below to your ACCESS/DeltaAI allocation
+# before submitting this script.  E.g.: #SBATCH --account=bbka-delta-gpu
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #SBATCH --job-name=clio_weak
-#SBATCH --account=YOUR_ACCOUNT         # edit
+#SBATCH --account=YOUR_ACCOUNT         # <-- EDIT THIS to your allocation
 #SBATCH --partition=ghx4
 #SBATCH --nodes=5
 #SBATCH --ntasks-per-node=1
@@ -21,9 +25,14 @@
 # Each worker's shard is the same size (625K) so per-worker work is held
 # constant. Efficiency = reference_latency / phase_latency.
 #
-# Assumes the caller has pre-built per-worker DuckDB indices matching each
-# phase's shard assignment under:
-#   /scratch/$USER/weak_phase_${n}/clio_shard_${i}.duckdb
+# Before running, execute prepare_weak_data.sh to create the phase-specific
+# directories from the base shards:
+#   bash prepare_weak_data.sh
+#
+# This creates:
+#   /scratch/$USER/weak_phase_1/clio_shard_0.duckdb  (shard 0 only)
+#   /scratch/$USER/weak_phase_2/clio_shard_{0,1}.duckdb
+#   /scratch/$USER/weak_phase_4/clio_shard_{0,1,2,3}.duckdb
 # ---------------------------------------------------------------------------
 
 set -euo pipefail
@@ -63,7 +72,23 @@ run_phase() {
         worker_urls="${worker_urls}${worker_urls:+,}http://${w}:9201"
     done
 
-    sleep 10
+    # Wait for all workers to be healthy before launching coordinator
+    echo "Waiting for workers to become healthy..."
+    for i in $(seq 0 $((n_workers - 1))); do
+        w="${phase_workers[$i]}"
+        for attempt in $(seq 1 30); do
+            if curl -sf "http://${w}:9201/ping" > /dev/null 2>&1; then
+                echo "  worker $i ($w) is healthy"
+                break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+                echo "ERROR: worker $i ($w) did not start after 60s"
+                pkill -P $$ -f distributed_clio.py || true
+                return 1
+            fi
+            sleep 2
+        done
+    done
 
     srun --nodes=1 --ntasks=1 --nodelist="$COORDINATOR" \
         python3 "$DIST_SCRIPT" coordinator \
@@ -71,7 +96,20 @@ run_phase() {
             --workers "$worker_urls" \
             > "logs/weak_coord_${n_workers}_${SLURM_JOB_ID}.log" 2>&1 &
 
-    sleep 5
+    # Wait for coordinator to be healthy
+    echo "Waiting for coordinator to become healthy..."
+    for attempt in $(seq 1 30); do
+        if curl -sf "http://${COORDINATOR}:9200/profile" > /dev/null 2>&1; then
+            echo "  coordinator is healthy"
+            break
+        fi
+        if [ "$attempt" -eq 30 ]; then
+            echo "ERROR: coordinator did not start after 60s"
+            pkill -P $$ -f distributed_clio.py || true
+            return 1
+        fi
+        sleep 2
+    done
 
     export CLIO_COORDINATOR="http://${COORDINATOR}:9200"
     python3 "$DRIVER_SCRIPT" \

@@ -1,0 +1,290 @@
+{
+  "experiment": "L8: Cross-corpus diversity",
+  "timestamp": "2026-04-05 08:00:34",
+  "corpora_analysed": 3,
+  "corpora": [
+    {
+      "name": "NOAA_GHCN_Daily",
+      "description": "1,728 real weather station docs with metric units",
+      "file_count": 1728,
+      "index_time_s": 861.35,
+      "profile_time_basic_ms": 17.14,
+      "profile_time_sampled_ms": 21.47,
+      "documents": 1728,
+      "chunks": 4959,
+      "measurements": 28360,
+      "formulas": 0,
+      "distinct_units": [
+        "0,0,0,0,1,0,0",
+        "0,1,-1,0,0,0,0",
+        "0,1,0,0,0,0,0"
+      ],
+      "metadata_density": 0.6969,
+      "richness_score": 0.58,
+      "strategy": "metadata_rich",
+      "metadata_schema": {
+        "namespace": "noaa",
+        "total_documents": 1728,
+        "total_chunks": 4959,
+        "richness_score": 0.58,
+        "distinct_field_count": 6,
+        "concepts": [],
+        "top_fields": [
+          {
+            "key": "structure.kind",
+            "scope": "chunk",
+            "occurrences": 4959,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "chunk",
+            "occurrences": 4959,
+            "concept": null
+          },
+          {
+            "key": "path",
+            "scope": "chunk",
+            "occurrences": 4959,
+            "concept": null
+          },
+          {
+            "key": "scientific.measurements",
+            "scope": "chunk",
+            "occurrences": 3456,
+            "concept": null
+          },
+          {
+            "key": "path",
+            "scope": "document",
+            "occurrences": 1728,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "document",
+            "occurrences": 1728,
+            "concept": null
+          }
+        ]
+      },
+      "quality_summary": {
+        "total": 28360,
+        "good": 28360,
+        "questionable": 0,
+        "bad": 0,
+        "missing": 0,
+        "estimated": 0,
+        "unknown": 0,
+        "acceptable_ratio": 1.0,
+        "average_score": 1.0
+      }
+    },
+    {
+      "name": "DOE_Data_Explorer",
+      "description": "500 DOE scientific dataset descriptions",
+      "file_count": 500,
+      "index_time_s": 456.99,
+      "profile_time_basic_ms": 15.68,
+      "profile_time_sampled_ms": 27.01,
+      "documents": 500,
+      "chunks": 2446,
+      "measurements": 307,
+      "formulas": 4,
+      "distinct_units": [
+        "0,0,-1,0,0,0,0",
+        "0,0,0,0,1,0,0",
+        "0,0,1,0,0,0,0",
+        "0,1,-1,0,0,0,0",
+        "0,1,0,0,0,0,0",
+        "1,-1,-2,0,0,0,0",
+        "1,0,0,0,0,0,0",
+        "1,2,-2,0,0,0,0",
+        "1,2,-3,0,0,0,0"
+      ],
+      "metadata_density": 0.094,
+      "richness_score": 0.64,
+      "strategy": "metadata_sparse",
+      "metadata_schema": {
+        "namespace": "doe",
+        "total_documents": 500,
+        "total_chunks": 2446,
+        "richness_score": 0.64,
+        "distinct_field_count": 8,
+        "concepts": [],
+        "top_fields": [
+          {
+            "key": "structure.kind",
+            "scope": "chunk",
+            "occurrences": 2446,
+            "concept": null
+          },
+          {
+            "key": "path",
+            "scope": "chunk",
+            "occurrences": 2446,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "chunk",
+            "occurrences": 2446,
+            "concept": null
+          },
+          {
+            "key": "path",
+            "scope": "document",
+            "occurrences": 500,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "document",
+            "occurrences": 500,
+            "concept": null
+          },
+          {
+            "key": "scientific.measurements",
+            "scope": "chunk",
+            "occurrences": 226,
+            "concept": null
+          },
+          {
+            "key": "scientific.formulas",
+            "scope": "chunk",
+            "occurrences": 4,
+            "concept": null
+          },
+          {
+            "key": "equation.block",
+            "scope": "chunk",
+            "occurrences": 4,
+            "concept": null
+          }
+        ]
+      },
+      "quality_summary": {
+        "total": 307,
+        "good": 302,
+        "questionable": 5,
+        "bad": 0,
+        "missing": 0,
+        "estimated": 0,
+        "unknown": 0,
+        "acceptable_ratio": 0.9837,
+        "average_score": 0.9878
+      },
+      "sampling_recovery": {
+        "sample_size": 30,
+        "concepts_found": [
+          "humidity",
+          "measurement_quality",
+          "precipitation",
+          "pressure",
+          "soil_moisture",
+          "solar_radiation",
+          "temperature",
+          "time",
+          "wind_direction",
+          "wind_speed"
+        ],
+        "measurement_count_in_sample": 2,
+        "units_found": [
+          "km",
+          "m"
+        ],
+        "inferred_density": 0.5,
+        "recovered_structure": true
+      }
+    },
+    {
+      "name": "Controlled_v2",
+      "description": "210 synthetic multi-domain scientific documents",
+      "file_count": 210,
+      "index_time_s": 90.72,
+      "profile_time_basic_ms": 11.27,
+      "profile_time_sampled_ms": 12.64,
+      "documents": 210,
+      "chunks": 569,
+      "measurements": 2674,
+      "formulas": 43,
+      "distinct_units": [
+        "0,0,-1,0,0,0,0",
+        "0,0,0,0,1,0,0",
+        "0,0,1,0,0,0,0",
+        "0,1,-1,0,0,0,0",
+        "0,1,0,0,0,0,0",
+        "1,-1,-2,0,0,0,0",
+        "1,0,0,0,0,0,0",
+        "1,2,-2,0,0,0,0",
+        "1,2,-3,0,0,0,0"
+      ],
+      "metadata_density": 0.8752,
+      "richness_score": 0.61,
+      "strategy": "metadata_rich",
+      "metadata_schema": {
+        "namespace": "ctrl",
+        "total_documents": 210,
+        "total_chunks": 569,
+        "richness_score": 0.61,
+        "distinct_field_count": 7,
+        "concepts": [],
+        "top_fields": [
+          {
+            "key": "path",
+            "scope": "chunk",
+            "occurrences": 569,
+            "concept": null
+          },
+          {
+            "key": "structure.kind",
+            "scope": "chunk",
+            "occurrences": 569,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "chunk",
+            "occurrences": 569,
+            "concept": null
+          },
+          {
+            "key": "scientific.measurements",
+            "scope": "chunk",
+            "occurrences": 498,
+            "concept": null
+          },
+          {
+            "key": "suffix",
+            "scope": "document",
+            "occurrences": 210,
+            "concept": null
+          },
+          {
+            "key": "path",
+            "scope": "document",
+            "occurrences": 210,
+            "concept": null
+          },
+          {
+            "key": "scientific.formulas",
+            "scope": "chunk",
+            "occurrences": 38,
+            "concept": null
+          }
+        ]
+      },
+      "quality_summary": {
+        "total": 2674,
+        "good": 2643,
+        "questionable": 31,
+        "bad": 0,
+        "missing": 0,
+        "estimated": 0,
+        "unknown": 0,
+        "acceptable_ratio": 0.9884,
+        "average_score": 0.9913
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "test": "100-namespace federation with per-dataset strategy selection",
+  "timestamp": "2026-04-05 07:33:52",
+  "namespace_counts": {
+    "rich_sci": 30,
+    "sparse_sci": 30,
+    "pure_text": 30,
+    "formula_heavy": 5,
+    "empty": 5
+  },
+  "ingest_time_s": 77.6,
+  "results_without_sampling": [
+    {
+      "query_id": "q_temp",
+      "query_text": "Find temperature measurements above 25 degrees Celsius",
+      "domain": "temperature",
+      "numeric_range": [
+        25.0,
+        50.0,
+        "degC"
+      ],
+      "total_namespaces": 100,
+      "profiled": 100,
+      "skipped_scientific": 52,
+      "activated_scientific": 48,
+      "skipped_vector": 100,
+      "skipped_lexical": 5,
+      "activated_any": 95,
+      "namespaces_that_should_match": 12,
+      "namespaces_we_visited_correctly": 12,
+      "namespaces_we_skipped_correctly": 52,
+      "false_positives": 36,
+      "false_negatives": 0,
+      "routing_precision": 0.25,
+      "routing_recall": 1.0,
+      "total_profile_time_ms": 906.12,
+      "avg_profile_time_per_ns_ms": 9.061,
+      "total_selection_time_ms": 2.19,
+      "recovered_via_sampling": 0
+    },
+    {
+      "query_id": "q_press",
+      "query_text": "Find pressure measurements around 101 kPa",
+      "domain": "pressure",
+      "numeric_range": [
+        95.0,
+        110.0,
+        "kPa"
+      ],
+      "total_namespaces": 100,
+      "profiled": 100,
+      "skipped_scientific": 52,
+      "activated_scientific": 48,
+      "skipped_vector": 100,
+      "skipped_lexical": 5,
+      "activated_any": 95,
+      "namespaces_that_should_match": 12,
+      "namespaces_we_visited_correctly": 12,
+      "namespaces_we_skipped_correctly": 52,
+      "false_positives": 36,
+      "false_negatives": 0,
+      "routing_precision": 0.25,
+      "routing_recall": 1.0,
+      "total_profile_time_ms": 904.81,
+      "avg_profile_time_per_ns_ms": 9.048,
+      "total_selection_time_ms": 2.24,
+      "recovered_via_sampling": 0
+    }
+  ],
+  "results_with_sampling": [
+    {
+      "query_id": "q_temp",
+      "query_text": "Find temperature measurements above 25 degrees Celsius",
+      "domain": "temperature",
+      "numeric_range": [
+        25.0,
+        50.0,
+        "degC"
+      ],
+      "total_namespaces": 100,
+      "profiled": 100,
+      "skipped_scientific": 52,
+      "activated_scientific": 48,
+      "skipped_vector": 100,
+      "skipped_lexical": 5,
+      "activated_any": 95,
+      "namespaces_that_should_match": 12,
+      "namespaces_we_visited_correctly": 12,
+      "namespaces_we_skipped_correctly": 52,
+      "false_positives": 36,
+      "false_negatives": 0,
+      "routing_precision": 0.25,
+      "routing_recall": 1.0,
+      "total_profile_time_ms": 1221.79,
+      "avg_profile_time_per_ns_ms": 12.218,
+      "total_selection_time_ms": 2.36,
+      "recovered_via_sampling": 6
+    },
+    {
+      "query_id": "q_press",
+      "query_text": "Find pressure measurements around 101 kPa",
+      "domain": "pressure",
+      "numeric_range": [
+        95.0,
+        110.0,
+        "kPa"
+      ],
+      "total_namespaces": 100,
+      "profiled": 100,
+      "skipped_scientific": 52,
+      "activated_scientific": 48,
+      "skipped_vector": 100,
+      "skipped_lexical": 5,
+      "activated_any": 95,
+      "namespaces_that_should_match": 12,
+      "namespaces_we_visited_correctly": 12,
+      "namespaces_we_skipped_correctly": 52,
+      "false_positives": 36,
+      "false_negatives": 0,
+      "routing_precision": 0.25,
+      "routing_recall": 1.0,
+      "total_profile_time_ms": 1246.17,
+      "avg_profile_time_per_ns_ms": 12.462,
+      "total_selection_time_ms": 2.33,
+      "recovered_via_sampling": 6
+    }
+  ]
+}
