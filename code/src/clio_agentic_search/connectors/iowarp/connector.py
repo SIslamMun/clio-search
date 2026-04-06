@@ -15,7 +15,10 @@ IOWarp's tiered blob storage — the integration point the paper needs.
 
 from __future__ import annotations
 
+import csv as _csv
 import hashlib
+import io as _io
+import json as _json
 import time
 from dataclasses import dataclass, field
 
@@ -165,18 +168,15 @@ class IOWarpConnector:
                     skipped += 1
                     continue
 
-                if isinstance(content_bytes, bytes):
-                    text = content_bytes.decode("utf-8", errors="ignore")
-                else:
-                    text = str(content_bytes)
+                raw = content_bytes if isinstance(content_bytes, bytes) else str(content_bytes).encode()
+                text = self._parse_blob_content(raw)
                 if not text.strip():
                     skipped += 1
                     continue
 
                 # Build CLIO document from blob
                 blob_uri = f"cte://{tag_name}/{blob_name}"
-                hash_input = content_bytes if isinstance(content_bytes, bytes) else text.encode()
-                content_hash = hashlib.sha256(hash_input).hexdigest()
+                content_hash = hashlib.sha256(raw).hexdigest()
                 document_id = hashlib.sha1(
                     f"{self.namespace}:{blob_uri}".encode()
                 ).hexdigest()
@@ -652,6 +652,66 @@ class IOWarpConnector:
         )
         ann_index.build(embeddings)
         self._ann_index = ann_index
+
+    def _parse_blob_content(self, content_bytes: bytes) -> str:
+        """Parse blob bytes into indexable text regardless of format.
+
+        Tries formats in order: JSON → CSV → UTF-8 text → binary summary.
+        Synthesizes measurement-friendly text so CLIO's SI unit extraction
+        works even when blobs carry no external metadata — CLIO reads what
+        is *inside* the blob to build the index.
+        """
+        # --- Try JSON ---
+        try:
+            data = _json.loads(content_bytes)
+            return self._json_to_measurement_text(data)
+        except (_json.JSONDecodeError, UnicodeDecodeError, ValueError):
+            pass
+
+        # --- Try CSV ---
+        try:
+            text = content_bytes.decode("utf-8")
+            lines = text.splitlines()
+            if len(lines) >= 2 and "," in lines[0]:
+                return self._csv_to_measurement_text(text)
+        except UnicodeDecodeError:
+            pass
+
+        # --- Try plain UTF-8 text ---
+        try:
+            return content_bytes.decode("utf-8")
+        except UnicodeDecodeError:
+            pass
+
+        # --- Binary fallback ---
+        return f"binary blob {len(content_bytes)} bytes"
+
+    def _json_to_measurement_text(self, data: object) -> str:
+        """Flatten JSON to measurement-friendly text.
+
+        Concatenates all string values and numeric values so that patterns
+        like ``"23.15 degC"`` appear adjacent in the output and can be
+        picked up by CLIO's measurement extraction regex.
+        """
+        if not isinstance(data, dict):
+            return str(data)
+        parts: list[str] = []
+        for value in data.values():
+            if isinstance(value, str):
+                parts.append(value)
+            elif isinstance(value, (int, float)):
+                parts.append(str(value))
+            elif isinstance(value, (list, dict)):
+                parts.append(self._json_to_measurement_text(value))
+        return " ".join(parts)
+
+    def _csv_to_measurement_text(self, text: str) -> str:
+        """Parse CSV, synthesize measurement text from header + all data rows."""
+        reader = _csv.DictReader(_io.StringIO(text))
+        parts: list[str] = []
+        for row in reader:
+            parts.extend(f"{k} {v}" for k, v in row.items() if v.strip())
+        return " | ".join(parts)
 
     def _ensure_connected(self) -> None:
         if not self._connected:

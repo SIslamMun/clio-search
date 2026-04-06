@@ -1,0 +1,875 @@
+{
+  "experiment": "D2: weak scaling single run",
+  "coordinator_url": "http://gh038:9200",
+  "query_count": 8,
+  "repeats": 10,
+  "total_measurements": 80,
+  "latency_p50_s": 0.039416190003976226,
+  "latency_p95_s": 0.042139922035858035,
+  "latency_p99_s": 0.05506919708568603,
+  "latency_max_s": 0.05506919708568603,
+  "latency_min_s": 0.01191135193221271,
+  "per_query": [
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.048067471012473106,
+      "fanout_elapsed_s": 0.04805950296577066,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.04059443005826324,
+      "fanout_elapsed_s": 0.0405876780860126,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03894439502619207,
+      "fanout_elapsed_s": 0.03893703501671553,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.0397308690007776,
+      "fanout_elapsed_s": 0.03972421307116747,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03899617004208267,
+      "fanout_elapsed_s": 0.038990569999441504,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03951420297380537,
+      "fanout_elapsed_s": 0.039507578941993415,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.038252093945629895,
+      "fanout_elapsed_s": 0.03824636701028794,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03944684495218098,
+      "fanout_elapsed_s": 0.039440572960302234,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03948268492240459,
+      "fanout_elapsed_s": 0.039477084996178746,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "temperature above 30 celsius",
+        "min_value": 30,
+        "max_value": 100,
+        "unit": "degC"
+      },
+      "coordinator_elapsed_s": 0.03837180300615728,
+      "fanout_elapsed_s": 0.03836581902578473,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.011139020090922713,
+      "fanout_elapsed_s": 0.01113575603812933,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.01027907500974834,
+      "fanout_elapsed_s": 0.01027555507607758,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.01023590995464474,
+      "fanout_elapsed_s": 0.010232229949906468,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.01007917698007077,
+      "fanout_elapsed_s": 0.010075688944198191,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.01005623396486044,
+      "fanout_elapsed_s": 0.010053097968921065,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.010088104987517,
+      "fanout_elapsed_s": 0.01008423394523561,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.010020619025453925,
+      "fanout_elapsed_s": 0.010016843094490469,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.009988490957766771,
+      "fanout_elapsed_s": 0.00998493900988251,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.01009543298278004,
+      "fanout_elapsed_s": 0.010091976961120963,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "pressure around 101 kPa",
+        "min_value": 95,
+        "max_value": 110,
+        "unit": "kPa"
+      },
+      "coordinator_elapsed_s": 0.009904782986268401,
+      "fanout_elapsed_s": 0.009901134995743632,
+      "workers": 2,
+      "hits": 5
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.01235252304468304,
+      "fanout_elapsed_s": 0.012347082956694067,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.012302700080908835,
+      "fanout_elapsed_s": 0.01229719608090818,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011567711946554482,
+      "fanout_elapsed_s": 0.011562559986487031,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011577951954677701,
+      "fanout_elapsed_s": 0.011572672054171562,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011551487958058715,
+      "fanout_elapsed_s": 0.011544607928954065,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011395429028198123,
+      "fanout_elapsed_s": 0.011389796971343458,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011385957943275571,
+      "fanout_elapsed_s": 0.01138080598320812,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011347878025844693,
+      "fanout_elapsed_s": 0.011341957957483828,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011482561938464642,
+      "fanout_elapsed_s": 0.011477025924250484,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "energy spectrum 1 GeV",
+        "min_value": 0.5,
+        "max_value": 5.0,
+        "unit": "GeV"
+      },
+      "coordinator_elapsed_s": 0.011404965072870255,
+      "fanout_elapsed_s": 0.011399621027521789,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03620248707011342,
+      "fanout_elapsed_s": 0.03619647107552737,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037234554067254066,
+      "fanout_elapsed_s": 0.0372289220103994,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03720770706422627,
+      "fanout_elapsed_s": 0.03720159502699971,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03804566792678088,
+      "fanout_elapsed_s": 0.03804016497451812,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03826012590434402,
+      "fanout_elapsed_s": 0.03825433400925249,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03739679092541337,
+      "fanout_elapsed_s": 0.03739109495654702,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03771102102473378,
+      "fanout_elapsed_s": 0.03770503692794591,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.0382642219774425,
+      "fanout_elapsed_s": 0.03825874999165535,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03660154796671122,
+      "fanout_elapsed_s": 0.03659581998363137,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "neural network architecture deep learning",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037815178046002984,
+      "fanout_elapsed_s": 0.037809801986441016,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03692064399365336,
+      "fanout_elapsed_s": 0.0369145639706403,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03747733193449676,
+      "fanout_elapsed_s": 0.03747185994870961,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03694534697569907,
+      "fanout_elapsed_s": 0.03693949105218053,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03654350200667977,
+      "fanout_elapsed_s": 0.03653812606353313,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.036606924957595766,
+      "fanout_elapsed_s": 0.03660142095759511,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03713503701146692,
+      "fanout_elapsed_s": 0.03712860494852066,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03610066510736942,
+      "fanout_elapsed_s": 0.03609560907352716,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03739829396363348,
+      "fanout_elapsed_s": 0.03739259799476713,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037459571030922234,
+      "fanout_elapsed_s": 0.03745349193923175,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "quantum computing algorithm entanglement",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03678685496561229,
+      "fanout_elapsed_s": 0.036780870985239744,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03820406401064247,
+      "fanout_elapsed_s": 0.03819820797070861,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037463540909811854,
+      "fanout_elapsed_s": 0.037457524915225804,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.036631371011026204,
+      "fanout_elapsed_s": 0.03662561101373285,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037655694992281497,
+      "fanout_elapsed_s": 0.03765015897806734,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03740920498967171,
+      "fanout_elapsed_s": 0.037403477006591856,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03762177494354546,
+      "fanout_elapsed_s": 0.03761614393442869,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03780580300372094,
+      "fanout_elapsed_s": 0.03780055500101298,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037006336031481624,
+      "fanout_elapsed_s": 0.03700003202538937,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03778237907681614,
+      "fanout_elapsed_s": 0.037776267039589584,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "gravitational wave detection LIGO",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03659431601408869,
+      "fanout_elapsed_s": 0.03658839606214315,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.0385640220483765,
+      "fanout_elapsed_s": 0.03855848603416234,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03739298100117594,
+      "fanout_elapsed_s": 0.037387382006272674,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03941170999314636,
+      "fanout_elapsed_s": 0.0394055339274928,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.0388615180272609,
+      "fanout_elapsed_s": 0.03885578992776573,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037141693057492375,
+      "fanout_elapsed_s": 0.03713618905749172,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03833670006133616,
+      "fanout_elapsed_s": 0.03833103599026799,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.040124777937307954,
+      "fanout_elapsed_s": 0.040119146928191185,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03769803000614047,
+      "fanout_elapsed_s": 0.03769255802035332,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.0400953070493415,
+      "fanout_elapsed_s": 0.040089612011797726,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "convolutional neural network image classification",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03991012799087912,
+      "fanout_elapsed_s": 0.03990456089377403,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037209114991128445,
+      "fanout_elapsed_s": 0.03720345092006028,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03737743094097823,
+      "fanout_elapsed_s": 0.03737192694097757,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.039204676053486764,
+      "fanout_elapsed_s": 0.0391990439966321,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03667034592945129,
+      "fanout_elapsed_s": 0.03666481003165245,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.0362682769773528,
+      "fanout_elapsed_s": 0.03626248496584594,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03838169004302472,
+      "fanout_elapsed_s": 0.03837625007145107,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03816288092639297,
+      "fanout_elapsed_s": 0.03815715294331312,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.037546865991316736,
+      "fanout_elapsed_s": 0.03754136199131608,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.036983168916776776,
+      "fanout_elapsed_s": 0.03697763290256262,
+      "workers": 2,
+      "hits": 10
+    },
+    {
+      "query": {
+        "query": "reinforcement learning policy gradient",
+        "top_k": 10
+      },
+      "coordinator_elapsed_s": 0.03805334703065455,
+      "fanout_elapsed_s": 0.038047780049964786,
+      "workers": 2,
+      "hits": 10
+    }
+  ],
+  "timestamp": "2026-04-06 12:04:40"
+}
