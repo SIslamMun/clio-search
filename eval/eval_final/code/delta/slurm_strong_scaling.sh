@@ -4,7 +4,7 @@
 # before submitting this script.  E.g.: #SBATCH --account=bbka-delta-gpu
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #SBATCH --job-name=clio_strong
-#SBATCH --account=YOUR_ACCOUNT         # <-- EDIT THIS to your allocation
+#SBATCH --account=bekn-dtai-gh
 #SBATCH --partition=ghx4               # DeltaAI GH200 partition
 #SBATCH --nodes=5                      # 1 coordinator + 4 workers
 #SBATCH --ntasks-per-node=1
@@ -28,8 +28,8 @@
 # Assumes:
 #   - Python venv at $HOME/clio-venv with all CLIO deps installed
 #   - iowarp-core wheel built at $HOME/iowarp_core.whl
-#   - arXiv corpus pre-sharded into 4 files at /scratch/$USER/arxiv/arxiv_shard_*.jsonl
-#   - Each worker's DuckDB index pre-built at /scratch/$USER/clio_shard_*.duckdb
+#   - arXiv corpus pre-sharded into 4 files at ${WORK}/arxiv/arxiv_shard_*.jsonl
+#   - Each worker's DuckDB index pre-built at ${WORK}/clio_shard_*.duckdb
 #
 # Edit the ACCOUNT line before submission. Run as:
 #   sbatch slurm_strong_scaling.sh
@@ -40,9 +40,11 @@ set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p logs outputs
 
-source "$HOME/clio-venv/bin/activate"
+WORK="/work/nvme/bekn/sislam3"
+module load python/3.11.9
+source "${WORK}/clio-venv/bin/activate"
 
-REPO="$HOME/clio-search"
+REPO="/u/sislam3/clio-search"
 DIST_SCRIPT="$REPO/eval/eval_final/code/delta/distributed_clio.py"
 DRIVER_SCRIPT="$REPO/eval/eval_final/code/delta/D1_D6_experiments.py"
 
@@ -75,7 +77,7 @@ run_phase() {
                 --port 9201 \
                 --shard-id "$i" \
                 --total-shards "$n_workers" \
-                --db-path "/scratch/$USER/clio_shard_${i}.duckdb" \
+                --db-path "${WORK}/clio_shard_${i}.duckdb" \
                 > "logs/worker_${i}_of_${n_workers}_${SLURM_JOB_ID}.log" 2>&1 &
         worker_urls="${worker_urls}${worker_urls:+,}http://${w}:9201"
     done
@@ -126,6 +128,12 @@ run_phase() {
     python3 "$DRIVER_SCRIPT" \
         --experiment strong \
         --output-suffix "_${n_workers}workers"
+
+    # D3: distributed indexing throughput — run once when all 4 workers are up
+    if [ "$n_workers" -eq 4 ]; then
+        echo "Running D3 (distributed indexing throughput)..."
+        python3 "$DRIVER_SCRIPT" --experiment indexing
+    fi
 
     # Tear down
     pkill -P $$ -f distributed_clio.py || true

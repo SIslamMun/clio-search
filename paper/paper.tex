@@ -410,6 +410,135 @@ exactly 2~tool calls per query (one \texttt{ToolSearch} + one
 \label{fig:l1-per-query}
 \end{figure}
 
+%% ===================================================================
+%% Use Case 2: Distributed Scaling on DeltaAI (D1 + D2)
+%% ===================================================================
+\subsection{Use Case 2: Distributed Scaling on DeltaAI}
+\label{sec:uc2-scaling}
+
+We evaluate CLIO's distributed query pipeline on NCSA DeltaAI
+(NVIDIA GH200 Grace Hopper nodes) against a corpus of 2.5~million arXiv
+abstracts pre-indexed into four DuckDB shards of 625K documents each.
+Experiments D1 and D2 measure query latency across 8 query types
+(3 scientific range queries + 5 lexical queries) $\times$ 10 repeats = 80
+measurements per configuration.
+
+\textbf{D1 --- Strong scaling.}
+All four shards are available to every configuration; we vary only the
+number of active workers (1, 2, 4). Each worker holds $\nicefrac{2.5\text{M}}{4}$
+documents regardless of active worker count.
+
+\begin{table}[t]
+\centering
+\caption{D1: Strong scaling --- query latency (ms) at fixed 2.5M-document
+corpus on DeltaAI GH200. 80 queries per configuration.}
+\label{tab:d1-strong}
+\small
+\begin{tabular}{rrrr}
+\toprule
+\textbf{Workers} & \textbf{p50 (ms)} & \textbf{p95 (ms)} & \textbf{p99 (ms)} \\
+\midrule
+1 & 39.0 & 41.5 & 57.2 \\
+2 & 40.7 & 43.7 & 57.5 \\
+4 & 41.6 & 62.1 & 66.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:d1-strong} shows p50 latency remains sub-42\,ms across all
+configurations. The $1{\to}4$~worker speedup at p50 is 0.94$\times$
+(effectively flat), indicating that the bottleneck in this experiment is
+coordinator fan-out overhead, not per-worker DuckDB query time. The
+critical result for SC26 is not worker-count speedup but \emph{sustained
+low latency at scale}: all 80 queries across all configurations complete
+under 70\,ms, with p50 under 42\,ms across 2.5~million documents.
+
+\textbf{D2 --- Weak scaling.}
+Data volume and worker count grow together: 1 worker / 625K docs,
+2 workers / 1.25M docs, 4 workers / 2.5M docs. Per-worker load is held
+constant; efficiency $= \text{latency}_{1\text{w}} / \text{latency}_{N\text{w}}$.
+
+\begin{table}[t]
+\centering
+\caption{D2: Weak scaling --- latency (ms) as data and workers grow
+together. Efficiency = $\text{p50}_{1\text{w}} / \text{p50}_{N\text{w}}$.}
+\label{tab:d2-weak}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+\textbf{Workers} & \textbf{Corpus} & \textbf{p50 (ms)} & \textbf{p95 (ms)} & \textbf{Efficiency} \\
+\midrule
+1 & 625K   & 38.5 & 41.2 & 1.00 \\
+2 & 1.25M  & 39.4 & 42.1 & 0.98 \\
+4 & 2.5M   & 41.0 & 59.0 & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:d2-weak} shows weak scaling efficiency of \textbf{0.94}
+at $4\times$ scale: quadrupling both data and workers increases p50
+latency by only 2.5\,ms (6.5\%). This near-linear weak scaling
+demonstrates that CLIO's coordinator--worker architecture allows horizontal
+scale-out with minimal overhead, making it suitable for HPC storage
+deployments where data grows proportionally with available compute nodes.
+
+%% ===================================================================
+%% Use Case 3: IOWarp Blob Search
+%% ===================================================================
+\subsection{Use Case 3: IOWarp Blob Search}
+\label{sec:uc3-iowarp}
+
+At IOWarp's target scale of 10 billion blobs, agents need a way to
+\emph{determine what to retrieve} before fetching. Raw BlobQuery returns
+all blobs in a tag with no content filtering; at 10B blobs per tag this
+is unusable. CLIO addresses this by indexing scientific metadata from
+IOWarp CTE blobs at ingest time, then answering unit-aware queries against
+the index --- returning only the blob IDs that match the numeric range,
+in any unit.
+
+We store synthetic scientific blobs across four CTE tags
+(temperature in \textdegree C, pressure in kPa, wind in m/s, humidity in \%)
+and issue four cross-unit queries: temperature in \textdegree F (data in
+\textdegree C), pressure in psi (data in kPa), wind in km/h (data in m/s),
+and a temperature range in \textdegree F. The queries are deliberately
+unit-mismatched to test CLIO's SI canonicalization; raw BlobQuery has no
+unit-conversion capability.
+
+\begin{table}[t]
+\centering
+\caption{Use Case 3: CLIO vs.\ raw BlobQuery on IOWarp CTE blobs.
+CLIO returns top-50 unit-converted matches; BlobQuery returns all blobs
+in the tag (no filtering). All four cross-unit queries succeed for CLIO
+at every scale. Profile = corpus profiling time.}
+\label{tab:uc3-iowarp}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+\textbf{Blobs} & \textbf{Index (s)} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQuery} \\
+\midrule
+1{,}000  & 79.8\,s  & 14\,ms & 2{,}750  & 50 & 250 (all) \\
+5{,}000  & 439.8\,s & 18\,ms & 13{,}750 & 50 & 1{,}250 (all) \\
+10{,}000 & 884.4\,s & 22\,ms & 27{,}500 & 50 & 2{,}500 (all) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:uc3-iowarp} shows three key results. First, CLIO
+successfully finds cross-unit matches at every scale: all four
+unit-mismatched queries return results, while BlobQuery cannot perform
+any content-level filtering. Second, corpus profiling completes in
+14--22\,ms via DuckDB aggregation regardless of corpus size. Third,
+CLIO's inspection rate falls from 5.0\% at 1K blobs to
+\textbf{0.5\% at 10K blobs}: rather than returning all 2{,}500 blobs
+in a tag, CLIO returns 50 matching blobs ($50\times$ reduction). At
+IOWarp's 10-billion-blob target, this selectivity is the difference
+between an agent that fetches everything blindly and one that fetches
+only what satisfies the scientist's numeric constraint.
+
+Note: indexing throughput (11--13 blobs/s) reflects the Docker overlay
+filesystem on the laptop test environment. DeltaAI results at 1K--1M
+scale with NVMe-backed storage are pending (job 2083709).
+
 \iffalse  %% ------- BEGIN evaluation section (commented out) -------
 
 We structure the evaluation around the abstract's claims, organized as five parts that each demonstrate a different aspect of agentic scientific discovery. \textbf{Part~1} (Sec.~5.2--5.4) evaluates science-aware operators---unit conversion and formula normalization---as one capability the agent uses. \textbf{Part~2} (Sec.~5.5) compares NDP-MCP native search against CLIO Search to show the value of the agentic layer. \textbf{Part~3} (Sec.~5.6) projects context cost savings to IOWarp's 10-billion-blob scale. \textbf{Part~4} (Sec.~5.7) tests metadata-adaptive discovery across rich, sparse, and no-metadata corpora. \textbf{Part~5} (Sec.~5.8) evaluates agentic orchestration---corpus profiling, branch selection, and ablation.
