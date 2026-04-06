@@ -30,7 +30,6 @@ mkdir -p logs
 
 REPO="/u/sislam3/clio-search"
 WORK="/work/nvme/bekn/sislam3"
-WHEEL="${REPO}/eval/eval_eve/iowarp_core-1.0.3-cp312-cp312-linux_x86_64.whl"
 INNER_SCRIPT="${REPO}/eval/eval_final/code/delta/l2c_iowarp_no_metadata_inner.py"
 SIF="${WORK}/iowarp-deps-cpu.sif"
 DB_DIR="${WORK}/l2c_iowarp_db"
@@ -58,21 +57,20 @@ mkdir -p "$DB_DIR"
 # ---------- Step 2: Run inside Apptainer ----------
 echo ""
 echo "Running L2-C inside Apptainer..."
-WHEEL_NAME=$(basename "$WHEEL")
 
 apptainer exec \
     --writable-tmpfs \
     --env "SCALES_JSON=${SCALES_JSON}" \
     --env "DB_DIR=/dbdir" \
-    --bind "${WHEEL}:/wheels/${WHEEL_NAME}:ro" \
     --bind "${INNER_SCRIPT}:/test.py:ro" \
     --bind "${REPO}/code/src:/clio/src:ro" \
     --bind "${DB_DIR}:/dbdir" \
     "$SIF" \
     bash -c "
         export PATH=/home/iowarp/venv/bin:/home/iowarp/.local/bin:/usr/local/bin:/opt/conda/bin:\$PATH
-        pip install /wheels/${WHEEL_NAME} --force-reinstall -q 2>&1 | tail -3
-        pip install duckdb -q 2>&1 | tail -1
+        mkdir -p /tmp/pysite
+        python3 -m pip install --target /tmp/pysite iowarp_core duckdb -q 2>&1 | tail -5
+        export PYTHONPATH=/tmp/pysite:\${PYTHONPATH:-}
         python3 /test.py
     " | tee /tmp/l2c_raw_output.txt
 
