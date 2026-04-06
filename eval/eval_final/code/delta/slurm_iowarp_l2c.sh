@@ -70,7 +70,7 @@ apptainer exec \
     --bind "${DB_DIR}:/dbdir" \
     "$SIF" \
     bash -c "
-        export PATH=/home/iowarp/venv/bin:\$PATH
+        export PATH=/home/iowarp/venv/bin:/home/iowarp/.local/bin:/usr/local/bin:/opt/conda/bin:\$PATH
         pip install /wheels/${WHEEL_NAME} --force-reinstall -q 2>&1 | tail -3
         pip install duckdb -q 2>&1 | tail -1
         python3 /test.py
