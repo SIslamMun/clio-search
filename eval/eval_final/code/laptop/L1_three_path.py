@@ -53,21 +53,42 @@ def run_raw_agent_query(query_text: str) -> dict[str, Any]:
         "verify the data actually exists, check units, and report specific dataset names and URLs."
     )
 
-    proc = subprocess.run(
-        [
-            "claude", "-p",
-            "--output-format", "stream-json",
-            "--verbose",
-            "--dangerously-skip-permissions",
-            "--max-budget-usd", "2.0",
-            "--model", "sonnet",
-            prompt,
-        ],
-        capture_output=True,
-        text=True,
-        timeout=300,
-        cwd=str(_REPO),
-    )
+    try:
+        proc = subprocess.run(
+            [
+                "claude", "-p",
+                "--output-format", "stream-json",
+                "--verbose",
+                "--dangerously-skip-permissions",
+                "--max-budget-usd", "2.0",
+                "--model", "sonnet",
+                prompt,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=600,
+            cwd=str(_REPO),
+        )
+    except subprocess.TimeoutExpired as e:
+        elapsed = time.time() - t0
+        return {
+            "elapsed_s": round(elapsed, 2),
+            "num_turns": 0,
+            "num_tool_calls": 0,
+            "tool_calls": [],
+            "main_usage": {"input_tokens": 0, "output_tokens": 0,
+                           "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0},
+            "main_tokens": 0,
+            "sub_agents": [],
+            "sub_agent_count": 0,
+            "sub_agent_tokens": 0,
+            "sub_agent_tool_uses": 0,
+            "total_tokens": 0,
+            "total_tool_calls": 0,
+            "answer_length": 0,
+            "answer_snippet": "TIMEOUT",
+            "error": f"Timed out after {elapsed:.0f}s",
+        }
     elapsed = time.time() - t0
 
     # Parse stream-json events
