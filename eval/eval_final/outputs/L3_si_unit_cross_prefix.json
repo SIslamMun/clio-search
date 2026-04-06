@@ -1,0 +1,410 @@
+{
+  "experiment": "L3: SI unit cross-prefix correctness",
+  "timestamp": "2026-04-05 07:32:36",
+  "probe_count": 6,
+  "total_documents": 42,
+  "overall_macro_avg_recall_at_5": {
+    "bm25": 0.632,
+    "dense": 0.0,
+    "stringnorm": 0.714,
+    "clio": 0.69
+  },
+  "per_probe": [
+    {
+      "quantity": "pressure",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "pa",
+          "query_value": 100000,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "hpa",
+          "query_value": 1000,
+          "bm25_recall_at_5": 0.42857142857142855,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kpa",
+          "query_value": 100,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mpa",
+          "query_value": 0.1,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "bar",
+          "query_value": 1.0,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "atm",
+          "query_value": 0.987,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "psi",
+          "query_value": 14.504,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.653,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.714
+    },
+    {
+      "quantity": "temperature",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "degc",
+          "query_value": 30,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "degf",
+          "query_value": 86,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "kelvin",
+          "query_value": 303.15,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "celsius",
+          "query_value": 30,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "fahrenheit",
+          "query_value": 86,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "k",
+          "query_value": 303.15,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        },
+        {
+          "query_unit": "\u00b0c",
+          "query_value": 30,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.5714285714285714
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.714,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.571
+    },
+    {
+      "quantity": "velocity",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "m/s",
+          "query_value": 10,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "km/h",
+          "query_value": 36,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kn",
+          "query_value": 19.438,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "m/s",
+          "query_value": 10.0,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "km/h",
+          "query_value": 36.0,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kn",
+          "query_value": 19.438,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "m/s",
+          "query_value": 10,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.673,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.714
+    },
+    {
+      "quantity": "length",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "nm",
+          "query_value": 1000000000.0,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mm",
+          "query_value": 1000,
+          "bm25_recall_at_5": 0.14285714285714285,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "cm",
+          "query_value": 100,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "m",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.42857142857142855,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "km",
+          "query_value": 0.001,
+          "bm25_recall_at_5": 0.2857142857142857,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "m",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.42857142857142855,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "cm",
+          "query_value": 100,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.429,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.714
+    },
+    {
+      "quantity": "mass",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "mg",
+          "query_value": 1000000.0,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "g",
+          "query_value": 1000,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kg",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "g",
+          "query_value": 1000,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kg",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "g",
+          "query_value": 1000,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mg",
+          "query_value": 1000000.0,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.653,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.714
+    },
+    {
+      "quantity": "energy",
+      "ground_truth_size": 7,
+      "per_query_variant": [
+        {
+          "query_unit": "ev",
+          "query_value": 6.242e+21,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kev",
+          "query_value": 6.242e+18,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mev",
+          "query_value": 6242000000000000.0,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kj",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mj",
+          "query_value": 0.001,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "kj",
+          "query_value": 1,
+          "bm25_recall_at_5": 0.7142857142857143,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        },
+        {
+          "query_unit": "mj",
+          "query_value": 0.001,
+          "bm25_recall_at_5": 0.5714285714285714,
+          "dense_recall_at_5": 0.0,
+          "stringnorm_recall_at_5": 0.7142857142857143,
+          "clio_recall_at_5": 0.7142857142857143
+        }
+      ],
+      "avg_bm25_recall_at_5": 0.673,
+      "avg_dense_recall_at_5": 0.0,
+      "avg_stringnorm_recall_at_5": 0.714,
+      "avg_clio_recall_at_5": 0.714
+    }
+  ]
+}

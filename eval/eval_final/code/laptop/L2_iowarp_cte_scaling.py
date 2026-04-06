@@ -202,15 +202,16 @@ def main() -> None:
 
         cmd = [
             "docker", "run", "--rm",
-            "--shm-size=8g",
+            "--shm-size=16g",
             "-u", "root",
             "-e", f"SCALES_JSON={json.dumps(SCALES)}",
-            "-v", f"{WHEEL_PATH}:/wheel.whl",
+            "-v", f"{WHEEL_PATH}:/wheels/{WHEEL_PATH.name}",
             "-v", f"{tmp / 'inner_test.py'}:/test.py",
             DOCKER_IMAGE,
             "bash", "-c",
             (
-                "python3 -m pip install /wheel.whl --force-reinstall 2>&1 | tail -1 && "
+                f"python3 -m pip install /wheels/{WHEEL_PATH.name} "
+                "--force-reinstall 2>&1 | tail -1 && "
                 "python3 /test.py"
             ),
         ]
@@ -222,28 +223,54 @@ def main() -> None:
         elapsed = time.time() - t0
         print(f"\nDocker run wall time: {elapsed:.1f}s")
 
-        if proc.returncode != 0:
-            print(f"\nDocker exited with code {proc.returncode}")
-            print("STDERR (last 50 lines):")
-            for line in proc.stderr.splitlines()[-50:]:
-                print(f"  {line}")
-            print("STDOUT (last 50 lines):")
-            for line in proc.stdout.splitlines()[-50:]:
-                print(f"  {line}")
-            sys.exit(1)
-
-        # Extract the JSON sentinel block from stdout
         stdout = proc.stdout
+        partial_failure = proc.returncode != 0
+        if partial_failure:
+            print(f"\nDocker exited with code {proc.returncode} — parsing partial results")
+            print("STDERR (last 10 lines):")
+            for line in proc.stderr.splitlines()[-10:]:
+                print(f"  {line}")
+
+        # Extract the JSON sentinel block from stdout (full-run success)
         begin = stdout.find("===RESULT_JSON_BEGIN===")
         end = stdout.find("===RESULT_JSON_END===")
-        if begin == -1 or end == -1:
-            print("ERROR: no JSON sentinel found in container output")
-            print("Full stdout:")
-            print(stdout[-3000:])
-            sys.exit(1)
-
-        json_text = stdout[begin + len("===RESULT_JSON_BEGIN==="):end].strip()
-        result = json.loads(json_text)
+        if begin != -1 and end != -1:
+            json_text = stdout[begin + len("===RESULT_JSON_BEGIN==="):end].strip()
+            result = json.loads(json_text)
+        else:
+            # Fall back to parsing per-scale JSON blocks dumped before the crash
+            result = {"scales": [], "partial": True}
+            lines = stdout.splitlines()
+            i = 0
+            while i < len(lines):
+                if "--- Scale:" in lines[i]:
+                    # Find following { ... } JSON block
+                    j = i + 1
+                    while j < len(lines) and lines[j].lstrip()[:1] != "{":
+                        j += 1
+                    if j >= len(lines):
+                        break
+                    depth = 0
+                    buf = []
+                    while j < len(lines):
+                        buf.append(lines[j])
+                        depth += lines[j].count("{") - lines[j].count("}")
+                        if depth == 0:
+                            break
+                        j += 1
+                    try:
+                        result["scales"].append(json.loads("\n".join(buf)))
+                    except Exception:
+                        pass
+                    i = j + 1
+                else:
+                    i += 1
+            if not result["scales"]:
+                print("ERROR: no scale results recoverable from stdout")
+                print("Full stdout tail:")
+                print(stdout[-3000:])
+                sys.exit(1)
+            print(f"Recovered {len(result['scales'])} partial scale results")
 
     # Print summary table
     print("\n" + "=" * 75)

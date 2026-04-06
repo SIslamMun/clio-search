@@ -1,13 +1,13 @@
 {
   "test": "NDP-MCP without CLIO vs with CLIO",
-  "timestamp": "2026-04-04 04:33:02",
+  "timestamp": "2026-04-06 00:06:25",
   "ndp_index": {
-    "documents": 131,
-    "chunks": 2323,
-    "measurements": 1293,
-    "metadata_density": 0.3366,
-    "index_time_s": 509.32,
-    "profile_time_ms": 6.52
+    "documents": 134,
+    "chunks": 884,
+    "measurements": 105339,
+    "metadata_density": 0.9219,
+    "index_time_s": 1426.13,
+    "profile_time_ms": 26.69
   },
   "queries": [
     {
@@ -20,20 +20,21 @@
       "ndp_without_clio": {
         "results": 0,
         "api_calls": 1,
-        "time_s": 0.546,
+        "time_s": 0.432,
         "total_tokens": 0,
         "total_chars": 0
       },
       "clio_search": {
-        "results": 0,
-        "time_s": 0.077,
-        "total_tokens": 0,
-        "total_chars": 0,
+        "results": 10,
+        "time_s": 0.156,
+        "total_tokens": 260,
+        "total_chars": 1609,
         "branches": [
           "lexical",
           "vector",
           "scientific"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -46,20 +47,21 @@
       "ndp_without_clio": {
         "results": 1,
         "api_calls": 1,
-        "time_s": 0.422,
+        "time_s": 0.575,
         "total_tokens": 261,
         "total_chars": 1903
       },
       "clio_search": {
-        "results": 0,
-        "time_s": 0.086,
-        "total_tokens": 0,
-        "total_chars": 0,
+        "results": 10,
+        "time_s": 0.178,
+        "total_tokens": 260,
+        "total_chars": 1609,
         "branches": [
           "lexical",
           "vector",
           "scientific"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -72,20 +74,20 @@
       "ndp_without_clio": {
         "results": 2,
         "api_calls": 1,
-        "time_s": 2.524,
+        "time_s": 2.498,
         "total_tokens": 1893,
         "total_chars": 15281
       },
       "clio_search": {
-        "results": 0,
-        "time_s": 0.104,
-        "total_tokens": 0,
-        "total_chars": 0,
+        "results": 10,
+        "time_s": 0.155,
+        "total_tokens": 220,
+        "total_chars": 1609,
         "branches": [
           "lexical",
-          "vector",
-          "scientific"
-        ]
+          "vector"
+        ],
+        "scientific_fallback_to_text": true
       }
     },
     {
@@ -98,19 +100,20 @@
       "ndp_without_clio": {
         "results": 30,
         "api_calls": 1,
-        "time_s": 1.077,
+        "time_s": 1.28,
         "total_tokens": 8378,
         "total_chars": 64368
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.128,
-        "total_tokens": 120,
-        "total_chars": 1608,
+        "time_s": 0.067,
+        "total_tokens": 206,
+        "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -124,20 +127,20 @@
       "ndp_without_clio": {
         "results": 93,
         "api_calls": 2,
-        "time_s": 4.977,
+        "time_s": 3.253,
         "total_tokens": 70801,
         "total_chars": 717483
       },
       "clio_search": {
-        "results": 0,
-        "time_s": 0.113,
-        "total_tokens": 0,
-        "total_chars": 0,
+        "results": 10,
+        "time_s": 0.178,
+        "total_tokens": 226,
+        "total_chars": 1609,
         "branches": [
           "lexical",
-          "vector",
-          "scientific"
-        ]
+          "vector"
+        ],
+        "scientific_fallback_to_text": true
       }
     },
     {
@@ -150,19 +153,20 @@
       "ndp_without_clio": {
         "results": 77,
         "api_calls": 1,
-        "time_s": 4.864,
+        "time_s": 2.022,
         "total_tokens": 48169,
         "total_chars": 473783
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.128,
-        "total_tokens": 191,
-        "total_chars": 1590,
+        "time_s": 0.071,
+        "total_tokens": 232,
+        "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -175,19 +179,20 @@
       "ndp_without_clio": {
         "results": 24,
         "api_calls": 1,
-        "time_s": 0.995,
+        "time_s": 0.851,
         "total_tokens": 6001,
         "total_chars": 51698
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.114,
-        "total_tokens": 190,
-        "total_chars": 1590,
+        "time_s": 0.077,
+        "total_tokens": 215,
+        "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -200,19 +205,20 @@
       "ndp_without_clio": {
         "results": 38,
         "api_calls": 1,
-        "time_s": 1.633,
+        "time_s": 1.197,
         "total_tokens": 16399,
         "total_chars": 145610
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.116,
-        "total_tokens": 183,
+        "time_s": 0.096,
+        "total_tokens": 204,
         "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -226,19 +232,20 @@
       "ndp_without_clio": {
         "results": 1092,
         "api_calls": 2,
-        "time_s": 13.062,
+        "time_s": 4.646,
         "total_tokens": 95485,
         "total_chars": 815334
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.139,
-        "total_tokens": 219,
+        "time_s": 0.077,
+        "total_tokens": 214,
         "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     },
     {
@@ -252,30 +259,31 @@
       "ndp_without_clio": {
         "results": 120,
         "api_calls": 2,
-        "time_s": 10.499,
+        "time_s": 4.355,
         "total_tokens": 141731,
         "total_chars": 1326869
       },
       "clio_search": {
         "results": 10,
-        "time_s": 0.116,
-        "total_tokens": 186,
+        "time_s": 0.138,
+        "total_tokens": 167,
         "total_chars": 1609,
         "branches": [
           "lexical",
           "vector"
-        ]
+        ],
+        "scientific_fallback_to_text": false
       }
     }
   ],
   "totals": {
     "ndp_results": 1477,
     "ndp_tokens": 389118,
-    "ndp_time_s": 40.599,
+    "ndp_time_s": 21.109,
     "ndp_api_calls": 13,
-    "clio_results": 60,
-    "clio_tokens": 1089,
-    "clio_time_s": 1.121,
-    "token_reduction_pct": 99.7
+    "clio_results": 100,
+    "clio_tokens": 2204,
+    "clio_time_s": 1.193,
+    "token_reduction_pct": 99.4
   }
 }

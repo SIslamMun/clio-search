@@ -1,0 +1,63 @@
+{
+  "experiment": "L2: IOWarp CTE BlobQuery scaling up to 1M blobs",
+  "timestamp": "2026-04-05 08:59:27",
+  "iowarp_version": "1.0.3 (main branch build)",
+  "environment": "Docker iowarp/deps-cpu:latest with --shm-size=8g",
+  "scales_requested": [
+    1000,
+    5000,
+    10000,
+    50000,
+    100000,
+    500000,
+    1000000
+  ],
+  "wall_time_s": 28.5,
+  "scales": [
+    {
+      "N_blobs": 1000,
+      "put_time_s": 0.243,
+      "put_throughput_blobs_per_s": 4119.0,
+      "BlobQuery_tag_ms": 2.63,
+      "BlobQuery_tag_results": 250,
+      "BlobQuery_specific_ms": 8.37,
+      "BlobQuery_specific_results": 1,
+      "BlobQuery_all_ms": 3.91,
+      "BlobQuery_all_results": 1000
+    },
+    {
+      "N_blobs": 5000,
+      "put_time_s": 1.005,
+      "put_throughput_blobs_per_s": 4974.0,
+      "BlobQuery_tag_ms": 3.74,
+      "BlobQuery_tag_results": 1250,
+      "BlobQuery_specific_ms": 11.77,
+      "BlobQuery_specific_results": 2,
+      "BlobQuery_all_ms": 13.52,
+      "BlobQuery_all_results": 6000
+    },
+    {
+      "N_blobs": 10000,
+      "put_time_s": 1.793,
+      "put_throughput_blobs_per_s": 5576.0,
+      "BlobQuery_tag_ms": 5.32,
+      "BlobQuery_tag_results": 2500,
+      "BlobQuery_specific_ms": 24.53,
+      "BlobQuery_specific_results": 3,
+      "BlobQuery_all_ms": 31.14,
+      "BlobQuery_all_results": 16000
+    },
+    {
+      "N_blobs": 50000,
+      "put_time_s": 8.765,
+      "put_throughput_blobs_per_s": 5704.0,
+      "BlobQuery_tag_ms": 15.14,
+      "BlobQuery_tag_results": 12500,
+      "BlobQuery_specific_ms": 116.58,
+      "BlobQuery_specific_results": 4,
+      "BlobQuery_all_ms": 152.04,
+      "BlobQuery_all_results": 66000
+    }
+  ],
+  "partial": true
+}

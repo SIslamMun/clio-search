@@ -16,6 +16,7 @@ from typing import Any
 import httpx
 
 from clio_agentic_search.indexing.scientific import (
+    Measurement,
     build_structure_aware_chunk_plan,
     canonicalize_measurement,
     normalize_formula,
@@ -254,6 +255,209 @@ class NDPConnector:
             self._ann_index = ann
 
         return indexed
+
+    # ------------------------------------------------------------------
+    # CSV row ingestion — indexes actual measurement rows from CSV resources
+    # linked in NDP datasets, so that scientific_measurements has real
+    # canonical values for query_chunks_by_measurement_range().
+    # ------------------------------------------------------------------
+
+    def index_csv_resources(
+        self,
+        datasets: list[dict[str, Any]],
+        *,
+        max_csvs: int = 5,
+        max_rows_per_csv: int = 5000,
+        max_download_bytes: int = 50 * 1024 * 1024,
+        timeout_s: float = 60.0,
+    ) -> dict[str, Any]:
+        """Download CSV resources from NDP datasets and index row-level data.
+
+        For each CSV found in the datasets' resource lists:
+          1. Download the CSV (bounded by *max_download_bytes*)
+          2. Parse with ``parse_scientific_csv`` (extracts measurements,
+             canonicalises units via SI registry, tags quality flags)
+          3. Group rows into chunks (~20 rows each), build metadata with
+             ``encode_measurements``, upsert into DuckDB
+
+        Returns a stats dict: csvs_processed, rows_indexed, measurements_found.
+        """
+        from clio_agentic_search.indexing.csv_parser import parse_scientific_csv
+        from clio_agentic_search.indexing.scientific import encode_measurements
+
+        self._ensure_connected()
+
+        csv_urls: list[dict[str, str]] = []
+        seen_urls: set[str] = set()
+        for ds in datasets:
+            ds_title = ds.get("title", ds.get("name", "?"))
+            for res in ds.get("resources", []):
+                fmt = (res.get("format") or "").upper()
+                url = res.get("url") or ""
+                if fmt == "CSV" and url.startswith("http"):
+                    if "all_stations" in url.lower():
+                        continue
+                    if url in seen_urls:
+                        continue
+                    seen_urls.add(url)
+                    csv_urls.append({
+                        "url": url,
+                        "dataset_title": ds_title,
+                        "resource_name": res.get("name", "resource"),
+                        "dataset_id": ds.get("id", "")[:12],
+                    })
+        # Cap at max_csvs after scanning ALL datasets
+        csv_urls = csv_urls[:max_csvs]
+
+        stats = {
+            "csvs_attempted": len(csv_urls),
+            "csvs_processed": 0,
+            "rows_indexed": 0,
+            "measurements_found": 0,
+            "errors": [],
+        }
+
+        rows_per_chunk = 20
+        for csv_info in csv_urls:
+            url = csv_info["url"]
+            try:
+                with httpx.Client(timeout=timeout_s) as client:
+                    resp = client.get(url, follow_redirects=True)
+                    resp.raise_for_status()
+                    if len(resp.content) > max_download_bytes:
+                        stats["errors"].append(f"Too large: {url}")
+                        continue
+                    csv_text = resp.text
+            except Exception as e:
+                stats["errors"].append(f"Download failed {url}: {e}")
+                continue
+
+            parsed = parse_scientific_csv(csv_text, max_rows=max_rows_per_csv)
+            if not parsed.schema.measurement_columns:
+                continue  # no measurable columns detected
+
+            # Build chunks of ~rows_per_chunk rows each
+            doc_id = f"csv_{csv_info['dataset_id']}_{csv_info['resource_name'][:20]}"
+            doc_id = doc_id.replace(" ", "_").replace("/", "_")[:60]
+            uri = f"ndp-csv://{url}"
+            doc_checksum = hashlib.sha256(url.encode()).hexdigest()
+
+            doc = DocumentRecord(
+                namespace=self.namespace,
+                document_id=doc_id,
+                uri=uri,
+                checksum=doc_checksum,
+                modified_at_ns=time.time_ns(),
+            )
+
+            chunks: list[ChunkRecord] = []
+            embeddings: list[EmbeddingRecord] = []
+            metadata_records: list[MetadataRecord] = [
+                MetadataRecord(
+                    namespace=self.namespace, record_id=doc_id,
+                    scope="document", key="source", value="ndp-csv",
+                ),
+                MetadataRecord(
+                    namespace=self.namespace, record_id=doc_id,
+                    scope="document", key="title",
+                    value=csv_info["dataset_title"][:200],
+                ),
+                MetadataRecord(
+                    namespace=self.namespace, record_id=doc_id,
+                    scope="document", key="csv_url", value=url,
+                ),
+            ]
+
+            all_measurements_in_doc = 0
+            for batch_start in range(0, len(parsed.rows), rows_per_chunk):
+                batch = parsed.rows[batch_start: batch_start + rows_per_chunk]
+                # Build chunk text: CSV header + data rows (compact)
+                header_line = ",".join(parsed.schema.header)
+                data_lines = []
+                batch_measurements: list[Measurement] = []
+                for row in batch:
+                    # Rebuild the row text from context + measurements
+                    parts = []
+                    for k, v in row.context.items():
+                        parts.append(f"{k}={v}")
+                    for m in row.measurements:
+                        parts.append(f"{m.raw_value} {m.raw_unit}")
+                        batch_measurements.append(m)
+                    data_lines.append("; ".join(parts))
+
+                chunk_text = (
+                    f"[{csv_info['dataset_title'][:80]}]\n"
+                    + "\n".join(data_lines[:rows_per_chunk])
+                )
+                chunk_idx = batch_start // rows_per_chunk
+                chunk_id = hashlib.sha1(
+                    f"{doc_id}_c{chunk_idx}".encode()
+                ).hexdigest()
+
+                chunk = ChunkRecord(
+                    namespace=self.namespace,
+                    chunk_id=chunk_id,
+                    document_id=doc_id,
+                    chunk_index=chunk_idx,
+                    text=chunk_text,
+                    start_offset=batch_start,
+                    end_offset=batch_start + len(batch),
+                )
+                chunks.append(chunk)
+
+                emb = EmbeddingRecord(
+                    namespace=self.namespace,
+                    chunk_id=chunk_id,
+                    model=self.embedding_model,
+                    vector=self.embedder.embed(chunk_text),
+                )
+                embeddings.append(emb)
+
+                # Store scientific measurements as chunk metadata
+                if batch_measurements:
+                    encoded = encode_measurements(batch_measurements)
+                    metadata_records.append(MetadataRecord(
+                        namespace=self.namespace, record_id=chunk_id,
+                        scope="chunk", key="scientific.measurements",
+                        value=encoded,
+                    ))
+                    all_measurements_in_doc += len(batch_measurements)
+
+            if not chunks:
+                continue
+
+            file_state = FileIndexState(
+                namespace=self.namespace,
+                path=uri,
+                document_id=doc_id,
+                mtime_ns=time.time_ns(),
+                content_hash=doc_checksum,
+            )
+
+            self.storage.upsert_document_bundle(
+                document=doc,
+                chunks=chunks,
+                embeddings=embeddings,
+                metadata=metadata_records,
+                file_state=file_state,
+            )
+
+            stats["csvs_processed"] += 1
+            stats["rows_indexed"] += len(parsed.rows)
+            stats["measurements_found"] += all_measurements_in_doc
+
+        # Rebuild ANN index to include new CSV chunks
+        embeddings_map = self.storage.list_embeddings(
+            self.namespace, self.embedding_model,
+        )
+        if embeddings_map:
+            sample_vec = next(iter(embeddings_map.values()))
+            dims = len(sample_vec)
+            ann = build_ann_adapter(backend="exact", dimensions=dims, shard_count=4)
+            ann.build(embeddings_map)
+            self._ann_index = ann
+
+        return stats
 
     def search_lexical(self, query: str, top_k: int) -> list[ScoredChunk]:
         self._ensure_connected()

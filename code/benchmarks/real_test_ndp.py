@@ -114,6 +114,17 @@ def clio_search(
         connector=connector, query=query, top_k=10,
         scientific_operators=operators,
     )
+    # Fallback: when a numeric range is active but the scientific branch
+    # matches nothing (NDP catalog descriptions rarely contain explicit
+    # row-level values), re-run with text-retrieval only so the comparison
+    # still produces a usable citation list.
+    fallback_used = False
+    if operators.numeric_range is not None and not result.citations:
+        fallback_used = True
+        result = coordinator.query(
+            connector=connector, query=query, top_k=10,
+            scientific_operators=ScientificQueryOperators(),
+        )
     elapsed = time.time() - t0
 
     # Measure actual text returned
@@ -133,6 +144,7 @@ def clio_search(
         "total_tokens": tokens,
         "total_chars": len(total_text),
         "branches": branches,
+        "scientific_fallback_to_text": fallback_used,
     }
 
 
@@ -150,13 +162,21 @@ def main() -> None:
         conn.connect()
 
         t0 = time.time()
+        total_csv_stats = {"csvs_processed": 0, "rows_indexed": 0, "measurements_found": 0}
         for term in ["temperature", "pressure", "wind", "humidity", "radiation", "glacier", "ocean"]:
             try:
                 ds = conn.discover_datasets(search_terms=[term], limit=25)
                 conn.index_datasets(ds)
+                # Also index CSV row data for scientific_measurements
+                csv_stats = conn.index_csv_resources(ds, max_csvs=3, max_rows_per_csv=5000)
+                for k in total_csv_stats:
+                    total_csv_stats[k] += csv_stats.get(k, 0)
             except Exception:
                 pass
         index_time = time.time() - t0
+        print(f"  CSV ingestion: {total_csv_stats['csvs_processed']} CSVs, "
+              f"{total_csv_stats['rows_indexed']} rows, "
+              f"{total_csv_stats['measurements_found']} measurements")
 
         profile = build_corpus_profile(db, "ndp")
         print(f"  Indexed: {profile.document_count} docs, {profile.chunk_count} chunks, "

@@ -1,6 +1,10 @@
 #!/bin/bash
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# IMPORTANT: You MUST edit --account below to your ACCESS/DeltaAI allocation
+# before submitting this script.  E.g.: #SBATCH --account=bbka-delta-gpu
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #SBATCH --job-name=clio_strong
-#SBATCH --account=YOUR_ACCOUNT         # edit: your ACCESS allocation
+#SBATCH --account=YOUR_ACCOUNT         # <-- EDIT THIS to your allocation
 #SBATCH --partition=ghx4               # DeltaAI GH200 partition
 #SBATCH --nodes=5                      # 1 coordinator + 4 workers
 #SBATCH --ntasks-per-node=1
@@ -17,11 +21,15 @@
 # against a fixed 2.5M arXiv corpus and records query latency + throughput
 # for each configuration.
 #
+# Strong scaling means ALL phases use the SAME 4 pre-built indices —
+# we just vary how many workers are active (1, 2, 4). The indices are
+# named clio_shard_0.duckdb ... clio_shard_3.duckdb.
+#
 # Assumes:
 #   - Python venv at $HOME/clio-venv with all CLIO deps installed
 #   - iowarp-core wheel built at $HOME/iowarp_core.whl
-#   - arXiv corpus pre-sharded into 4 files at $HOME/scratch/arxiv_shard_*.jsonl
-#   - Each worker's DuckDB index pre-built at $HOME/scratch/clio_shard_*.duckdb
+#   - arXiv corpus pre-sharded into 4 files at /scratch/$USER/arxiv/arxiv_shard_*.jsonl
+#   - Each worker's DuckDB index pre-built at /scratch/$USER/clio_shard_*.duckdb
 #
 # Edit the ACCOUNT line before submission. Run as:
 #   sbatch slurm_strong_scaling.sh
@@ -55,7 +63,10 @@ run_phase() {
     echo "PHASE: $n_workers workers"
     echo "=========================================="
 
-    # Launch workers on their respective nodes
+    # Launch workers on their respective nodes.
+    # Strong scaling: all phases use the same 4 pre-built indices
+    # (clio_shard_0.duckdb .. clio_shard_3.duckdb). We just vary how many
+    # workers are active.
     for i in $(seq 0 $((n_workers - 1))); do
         w="${phase_workers[$i]}"
         echo "Launching worker $i on $w"
@@ -64,13 +75,28 @@ run_phase() {
                 --port 9201 \
                 --shard-id "$i" \
                 --total-shards "$n_workers" \
-                --db-path "/scratch/$USER/clio_shard_${i}_of_${n_workers}.duckdb" \
+                --db-path "/scratch/$USER/clio_shard_${i}.duckdb" \
                 > "logs/worker_${i}_of_${n_workers}_${SLURM_JOB_ID}.log" 2>&1 &
         worker_urls="${worker_urls}${worker_urls:+,}http://${w}:9201"
     done
 
-    # Give workers a moment to start
-    sleep 10
+    # Wait for all workers to be healthy before launching coordinator
+    echo "Waiting for workers to become healthy..."
+    for i in $(seq 0 $((n_workers - 1))); do
+        w="${phase_workers[$i]}"
+        for attempt in $(seq 1 30); do
+            if curl -sf "http://${w}:9201/ping" > /dev/null 2>&1; then
+                echo "  worker $i ($w) is healthy"
+                break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+                echo "ERROR: worker $i ($w) did not start after 60s"
+                pkill -P $$ -f distributed_clio.py || true
+                return 1
+            fi
+            sleep 2
+        done
+    done
 
     # Launch coordinator on node 0
     echo "Launching coordinator on $COORDINATOR with workers: $worker_urls"
@@ -80,7 +106,20 @@ run_phase() {
             --workers "$worker_urls" \
             > "logs/coordinator_${n_workers}_${SLURM_JOB_ID}.log" 2>&1 &
 
-    sleep 5
+    # Wait for coordinator to be healthy
+    echo "Waiting for coordinator to become healthy..."
+    for attempt in $(seq 1 30); do
+        if curl -sf "http://${COORDINATOR}:9200/profile" > /dev/null 2>&1; then
+            echo "  coordinator is healthy"
+            break
+        fi
+        if [ "$attempt" -eq 30 ]; then
+            echo "ERROR: coordinator did not start after 60s"
+            pkill -P $$ -f distributed_clio.py || true
+            return 1
+        fi
+        sleep 2
+    done
 
     # Run the experiment from the submit node, talking to the coordinator
     export CLIO_COORDINATOR="http://${COORDINATOR}:9200"
