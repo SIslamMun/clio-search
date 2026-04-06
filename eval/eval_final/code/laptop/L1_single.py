@@ -118,7 +118,6 @@ async def run_agent_query(query_text: str, mcp_servers: dict, system_prompt: str
         "usage": usage,
         "total_tokens": sum(usage.values()),
         "answer_length": len(final_answer),
-        "answer": final_answer,
     }
 
 
@@ -253,123 +252,6 @@ async def main():
         json.dump(output, f, indent=2, default=str)
     print(f"\nSaved: {OUT_DIR / 'L1_10queries.json'}")
 
-    # Run validation if --validate flag is passed
-    if "--validate" in sys.argv:
-        print(f"\n{'='*70}")
-        print("VALIDATION (LLM-based relevance check)")
-        print(f"{'='*70}")
-        validate_results(output)
-
-
-# ============================================================================
-# LLM Validation — run with --validate flag
-# ============================================================================
-
-def validate_results(data: dict[str, Any]) -> None:
-    """Use Claude CLI to judge whether both paths found relevant datasets.
-
-    For each query, asks the LLM:
-    - Is Run 1's answer relevant to the query? (score 1-5)
-    - Is Run 2's answer relevant to the query? (score 1-5)
-    - Do they find overlapping datasets?
-
-    Run separately: python3 L1_single.py --validate-only
-    (loads saved JSON and validates without re-running experiments)
-    """
-    import subprocess
-
-    queries = data.get("queries", [])
-    r1_list = data.get("per_query_run1", [])
-    r2_list = data.get("per_query_run2", [])
-
-    if not r1_list or not r2_list:
-        print("  No results to validate.")
-        return
-
-    validations = []
-    for q, r1, r2 in zip(queries, r1_list, r2_list):
-        qid = q["id"]
-        query_text = q["text"]
-        r1_answer = r1.get("answer", "(not saved)")[:1500]
-        r2_answer = r2.get("answer", "(not saved)")[:1500]
-
-        if r1_answer == "(not saved)" or r2_answer == "(not saved)":
-            print(f"  {qid}: answers not saved — skipping")
-            validations.append({"query_id": qid, "skipped": True})
-            continue
-
-        prompt = (
-            f"You are evaluating two search systems. Both received the same query.\n\n"
-            f"QUERY: {query_text}\n\n"
-            f"SYSTEM A (LLM+NDP-MCP) ANSWER:\n{r1_answer}\n\n"
-            f"SYSTEM B (LLM+CLIO) ANSWER:\n{r2_answer}\n\n"
-            f"Score each answer on relevance (1-5, where 5 = perfectly relevant).\n"
-            f"List the datasets each found.\n"
-            f"Note any overlap (datasets found by both).\n\n"
-            f"Respond in EXACTLY this format:\n"
-            f"system_a_score: <1-5>\n"
-            f"system_b_score: <1-5>\n"
-            f"system_a_datasets: <comma-separated list>\n"
-            f"system_b_datasets: <comma-separated list>\n"
-            f"overlap: <comma-separated list or 'none'>\n"
-            f"notes: <one sentence>"
-        )
-
-        print(f"  {qid}: validating...", end="", flush=True)
-        try:
-            proc = subprocess.run(
-                ["claude", "-p", prompt, "--no-input"],
-                capture_output=True, text=True, timeout=60,
-            )
-            raw = proc.stdout.strip()
-
-            # Parse scores
-            v: dict[str, Any] = {"query_id": qid, "raw_response": raw}
-            for line in raw.split("\n"):
-                line = line.strip()
-                if line.startswith("system_a_score:"):
-                    try: v["system_a_score"] = int(line.split(":")[1].strip())
-                    except: pass
-                elif line.startswith("system_b_score:"):
-                    try: v["system_b_score"] = int(line.split(":")[1].strip())
-                    except: pass
-                elif line.startswith("system_a_datasets:"):
-                    v["system_a_datasets"] = line.split(":", 1)[1].strip()
-                elif line.startswith("system_b_datasets:"):
-                    v["system_b_datasets"] = line.split(":", 1)[1].strip()
-                elif line.startswith("overlap:"):
-                    v["overlap"] = line.split(":", 1)[1].strip()
-                elif line.startswith("notes:"):
-                    v["notes"] = line.split(":", 1)[1].strip()
-
-            a_score = v.get("system_a_score", "?")
-            b_score = v.get("system_b_score", "?")
-            overlap = v.get("overlap", "?")
-            print(f" A={a_score}/5  B={b_score}/5  overlap={overlap[:50]}")
-            validations.append(v)
-
-        except Exception as e:
-            print(f" error: {e}")
-            validations.append({"query_id": qid, "error": str(e)})
-
-    # Summary
-    a_scores = [v["system_a_score"] for v in validations if "system_a_score" in v]
-    b_scores = [v["system_b_score"] for v in validations if "system_b_score" in v]
-    if a_scores and b_scores:
-        print(f"\n  Avg relevance: System A (LLM+NDP) = {sum(a_scores)/len(a_scores):.1f}/5, "
-              f"System B (LLM+CLIO) = {sum(b_scores)/len(b_scores):.1f}/5")
-
-    # Save validation
-    val_path = OUT_DIR / "L1_validation.json"
-    with val_path.open("w") as f:
-        json.dump({"validations": validations}, f, indent=2, default=str)
-    print(f"  Saved: {val_path}")
-
 
 if __name__ == "__main__":
-    if "--validate-only" in sys.argv:
-        # Load saved results and validate without re-running
-        data = json.load((OUT_DIR / "L1_10queries.json").open())
-        validate_results(data)
-    else:
-        asyncio.run(main())
+    asyncio.run(main())
