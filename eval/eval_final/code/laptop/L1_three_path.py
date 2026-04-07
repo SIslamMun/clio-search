@@ -35,7 +35,7 @@ QUERIES = [
     {"id": "Q06", "text": "Find solar radiation datasets measured in MJ per square meter", "terms": ["solar", "radiation"]},
     {"id": "Q07", "text": "Find ocean surface temperature satellite datasets", "terms": ["ocean", "temperature", "satellite"]},
     {"id": "Q08", "text": "Find datasets containing precipitation measurements above 100 mm per day", "terms": ["precipitation", "rainfall"]},
-    {"id": "Q09", "text": "Find wildfire thermal detection datasets from satellite observations", "terms": ["wildfire", "thermal"]},
+    {"id": "Q09", "text": "Find fire thermal detection datasets from satellite observations", "terms": ["fire", "thermal"]},
     {"id": "Q10", "text": "Find soil moisture measurements from agricultural monitoring networks", "terms": ["soil", "moisture", "agricultural"]},
 ]
 
@@ -207,11 +207,34 @@ async def setup_clio():
     all_terms = sorted({t for q in QUERIES for t in q["terms"]})
     print(f"  Discover terms: {all_terms}")
 
-    client = NDPMCPClient(ndp_mcp_binary=NDP_MCP_BINARY)
+    # Run NDP-MCP discovery in a subprocess to isolate stderr from the SDK.
+    # The NDP-MCP server prints error tracebacks to stderr when the NDP
+    # catalog is slow/flaky, and these corrupt the claude_agent_sdk session.
+    import pickle
+    _discovery_script = (
+        "import asyncio, pickle, sys; sys.path.insert(0,'src');"
+        "from clio_agentic_search.connectors.ndp.mcp_client import NDPMCPClient;"
+        f"terms={all_terms!r};"
+        f"binary={NDP_MCP_BINARY!r};"
+        "async def run():\n"
+        "  c=NDPMCPClient(ndp_mcp_binary=binary)\n"
+        "  async with c.connect() as cc:\n"
+        "    return await cc.search_datasets(terms, limit=25)\n"
+        "ds=asyncio.run(run());"
+        "sys.stdout.buffer.write(pickle.dumps(ds))"
+    )
     t0 = time.time()
-    async with client.connect() as c:
-        print(f"  NDP-MCP tools: {await c.list_tools()}")
-        datasets = await c.search_datasets(all_terms, limit=25)
+    _proc = subprocess.run(
+        [sys.executable, "-c", _discovery_script],
+        capture_output=True, timeout=600, cwd=str(_CODE),
+    )
+    if _proc.returncode == 0:
+        datasets = pickle.loads(_proc.stdout)
+    else:
+        # Fallback: run in-process
+        client = NDPMCPClient(ndp_mcp_binary=NDP_MCP_BINARY)
+        async with client.connect() as c:
+            datasets = await c.search_datasets(all_terms, limit=25)
     print(f"  Discovered {len(datasets)} datasets via MCP")
 
     _connector.index_datasets(datasets)
@@ -275,6 +298,7 @@ async def run_agent_query(
                 system_prompt=system_prompt,
                 permission_mode="bypassPermissions",
                 max_turns=12,
+                model="claude-sonnet-4-20250514",
             ),
         ):
             if isinstance(event, AssistantMessage) and hasattr(event, "content"):

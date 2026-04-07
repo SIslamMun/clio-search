@@ -1,0 +1,17 @@
+{
+  "query_id": "Q02",
+  "elapsed_s": 25.42,
+  "total_tokens": 41321,
+  "main_usage": {
+    "input_tokens": 28,
+    "output_tokens": 1328,
+    "cache_creation_input_tokens": 1764,
+    "cache_read_input_tokens": 38201
+  },
+  "tool_calls": [
+    "ToolSearch",
+    "mcp__clio__clio_search"
+  ],
+  "answer_length": 1862,
+  "answer_snippet": "I found several relevant datasets reporting atmospheric pressure around 101 kPa. Here are the top results ranked by relevance:\n\n## **Top Atmospheric Pressure Datasets (100-102 kPa range):**\n\n### 1. **CAMS Reanalysis** (Score: 9.3)\n- **Organization:** ndp-admin-ingest  \n- **Coverage:** January 2003 to June 2022\n- **Description:** Latest global atmospheric reanalysis dataset - likely contains comprehensive atmospheric pressure measurements at standard conditions\n\n### 2. **AirFire Hot Dry Windy Ind"
+}

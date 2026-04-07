@@ -101,27 +101,22 @@
     }
   },
   "summary": {
-    "run0_total_tokens": 875102,
-    "run0_main_tokens": 520004,
-    "run0_sub_tokens": 355098,
-    "run0_sub_agents": 8,
-    "run0_total_tools": 515,
-    "run0_total_time_s": 3049.1,
-    "run0_queries_with_results": 9,
+    "run0_total_tokens": 989417,
+    "run0_main_tokens": 563026,
+    "run0_sub_tokens": 426391,
+    "run0_sub_agents": 9,
+    "run0_total_time_s": 3048.1,
+    "run0_queries_with_results": 10,
     "run1_total_tokens": 988954,
-    "run1_main_tokens": 988954,
-    "run1_sub_tokens": 0,
-    "run1_total_tools": 76,
     "run1_total_time_s": 1046.1,
     "run1_queries_with_results": 10,
-    "run2_total_tokens": 403474,
-    "run2_main_tokens": 403474,
-    "run2_sub_tokens": 0,
-    "run2_total_tools": 20,
-    "run2_total_time_s": 216.3,
-    "run2_queries_with_results": 8,
-    "clio_vs_raw_token_reduction_pct": 53.9,
-    "clio_vs_ndp_token_reduction_pct": 59.2
+    "run2_total_tokens": 474101,
+    "run2_total_time_s": 266.2,
+    "run2_queries_with_results": 10,
+    "clio_vs_raw_token_reduction_pct": 52.1,
+    "clio_vs_ndp_token_reduction_pct": 52.1,
+    "clio_vs_raw_time_reduction_pct": 91.3,
+    "clio_vs_ndp_time_reduction_pct": 74.6
   },
   "per_query_run0_raw_agent": [
     {
@@ -414,7 +409,7 @@
       "query_id": "Q05"
     },
     {
-      "elapsed_s": 600.05,
+      "elapsed_s": 599.01,
       "num_turns": 0,
       "num_tool_calls": 0,
       "tool_calls": [],
@@ -424,15 +419,15 @@
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0
       },
-      "main_tokens": 0,
+      "main_tokens": 43022,
       "sub_agents": [],
-      "sub_agent_count": 0,
-      "sub_agent_tokens": 0,
+      "sub_agent_count": 1,
+      "sub_agent_tokens": 71293,
       "sub_agent_tool_uses": 0,
-      "total_tokens": 0,
-      "total_tool_calls": 0,
-      "answer_length": 0,
-      "answer_snippet": "TIMEOUT",
+      "total_tokens": 114315,
+      "total_tool_calls": 173,
+      "answer_length": 1819,
+      "answer_snippet": "Here are the confirmed solar radiation datasets measured in **MJ/m\u00b2**:\n\n---\n\n## Natively in MJ/m\u00b2\n\n| # | Dataset | Repository | Coverage | URL |\n|---|---------|-----------|----------|-----|\n| 1 | **NASA POWER** `ALLSKY_SFC_SW_DWN` (daily/agriculture product) | NASA LaRC | Global, 1981\u2013present, 0.5\u00b0 grid | https://power.larc.nasa.gov |\n| 2 | **High-res Surface Solar Radiation over China** (Jiang & Lu) | PANGAEA | China, 2007\u2013present, 0.05\u00b0 grid, HDF5 | https://doi.pangaea.de/10.1594/PANGAEA.90413",
       "error": "Timed out after 600s",
       "query_id": "Q06"
     },
@@ -993,27 +988,27 @@
       "query_id": "Q01"
     },
     {
-      "elapsed_s": 15.35,
+      "elapsed_s": 25.42,
       "num_tool_calls": 2,
       "tool_calls": [
         "ToolSearch",
         "mcp__clio__clio_search"
       ],
       "main_usage": {
-        "input_tokens": 7,
-        "output_tokens": 260,
-        "cache_creation_input_tokens": 1284,
-        "cache_read_input_tokens": 38519
+        "input_tokens": 28,
+        "output_tokens": 1328,
+        "cache_creation_input_tokens": 1764,
+        "cache_read_input_tokens": 38201
       },
-      "main_tokens": 40070,
+      "main_tokens": 41321,
       "sub_agents": [],
       "sub_agent_count": 0,
       "sub_agent_tokens": 0,
       "sub_agent_tool_uses": 0,
-      "total_tokens": 40070,
+      "total_tokens": 41321,
       "total_tool_calls": 2,
-      "answer_length": 99,
-      "answer_snippet": "ERROR: Command failed with exit code 1 (exit code: 1)\nError output: Check stderr output for details",
+      "answer_length": 1862,
+      "answer_snippet": "I found several relevant datasets reporting atmospheric pressure around 101 kPa. Here are the top results ranked by relevance:\n\n## **Top Atmospheric Pressure Datasets (100-102 kPa range):**\n\n### 1. **CAMS Reanalysis** (Score: 9.3)\n- **Organization:** ndp-admin-ingest  \n- **Coverage:** January 2003 to June 2022\n- **Description:** Latest global atmospheric reanalysis dataset - likely contains comprehensive atmospheric pressure measurements at standard conditions\n\n### 2. **AirFire Hot Dry Windy Ind",
       "query_id": "Q02"
     },
     {
@@ -1185,28 +1180,33 @@
       "query_id": "Q09"
     },
     {
-      "elapsed_s": 14.05,
-      "num_tool_calls": 2,
+      "elapsed_s": 53.82,
+      "num_tool_calls": 6,
       "tool_calls": [
         "ToolSearch",
+        "ToolSearch",
+        "mcp__clio__clio_search",
+        "mcp__clio__clio_search",
+        "mcp__clio__clio_search",
         "mcp__clio__clio_search"
       ],
       "main_usage": {
-        "input_tokens": 7,
-        "output_tokens": 195,
-        "cache_creation_input_tokens": 7837,
-        "cache_read_input_tokens": 31721
+        "input_tokens": 60,
+        "output_tokens": 2354,
+        "cache_creation_input_tokens": 9403,
+        "cache_read_input_tokens": 97319
       },
-      "main_tokens": 39760,
+      "main_tokens": 109136,
       "sub_agents": [],
       "sub_agent_count": 0,
       "sub_agent_tokens": 0,
       "sub_agent_tool_uses": 0,
-      "total_tokens": 39760,
-      "total_tool_calls": 2,
-      "answer_length": 99,
-      "answer_snippet": "ERROR: Command failed with exit code 1 (exit code: 1)\nError output: Check stderr output for details",
+      "total_tokens": 109136,
+      "total_tool_calls": 6,
+      "answer_length": 3104,
+      "answer_snippet": "## Comprehensive Summary of Soil Moisture Datasets from Agricultural Monitoring Networks\n\nBased on my search of the CLIO catalog, here are the available soil moisture measurement datasets from agricultural monitoring networks:\n\n### **Primary Soil Moisture Services:**\n\n#### 1. **CropSmart Soil Moisture Data Service** \u2b50 (Most Relevant)\n- **Organization:** CropSmart\n- **Type:** Daily/Weekly topsoil moisture data via WMS/WCS services\n- **Features:** Integrates SMAP (Soil Moisture Active Passive) sat",
       "query_id": "Q10"
     }
-  ]
+  ],
+  "note": "Q02/Q10 CLIO patched with model=claude-sonnet-4-20250514 fix. Q06 Raw Agent patched with 900s timeout rerun."
 }

@@ -1,0 +1,21 @@
+{
+  "query_id": "Q10",
+  "elapsed_s": 53.82,
+  "total_tokens": 109136,
+  "main_usage": {
+    "input_tokens": 60,
+    "output_tokens": 2354,
+    "cache_creation_input_tokens": 9403,
+    "cache_read_input_tokens": 97319
+  },
+  "tool_calls": [
+    "ToolSearch",
+    "ToolSearch",
+    "mcp__clio__clio_search",
+    "mcp__clio__clio_search",
+    "mcp__clio__clio_search",
+    "mcp__clio__clio_search"
+  ],
+  "answer_length": 3104,
+  "answer_snippet": "## Comprehensive Summary of Soil Moisture Datasets from Agricultural Monitoring Networks\n\nBased on my search of the CLIO catalog, here are the available soil moisture measurement datasets from agricultural monitoring networks:\n\n### **Primary Soil Moisture Services:**\n\n#### 1. **CropSmart Soil Moisture Data Service** \u2b50 (Most Relevant)\n- **Organization:** CropSmart\n- **Type:** Daily/Weekly topsoil moisture data via WMS/WCS services\n- **Features:** Integrates SMAP (Soil Moisture Active Passive) sat"
+}
