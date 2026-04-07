@@ -79,15 +79,17 @@
 \draw[arr] (merge) -- (cite);
 
 % ====== Right side: connectors ======
-\node[connbox, right=1.1cm of ns, yshift=0.65cm]  (fs)   {Filesystem};
-\node[connbox, below=0.12cm of fs]                 (s3)   {S3 Object Store};
-\node[connbox, below=0.12cm of s3]                 (qd)   {Qdrant};
-\node[connbox, below=0.12cm of qd]                 (neo)  {Neo4j};
-\node[sciconn, below=0.12cm of neo]                (hdf)  {HDF5};
-\node[sciconn, below=0.12cm of hdf]                (nc)   {NetCDF};
+\node[connbox, right=1.1cm of ns, yshift=0.85cm]  (fs)   {Filesystem};
+\node[connbox, below=0.10cm of fs]                 (s3)   {S3 Object Store};
+\node[connbox, below=0.10cm of s3]                 (qd)   {Qdrant};
+\node[connbox, below=0.10cm of qd]                 (neo)  {Neo4j};
+\node[sciconn, below=0.10cm of neo]                (hdf)  {HDF5};
+\node[sciconn, below=0.10cm of hdf]                (nc)   {NetCDF};
+\node[sciconn, below=0.10cm of nc]                 (iow)  {IOWarp CTE};
+\node[connbox, below=0.10cm of iow]                (ndp)  {NDP (MCP)};
 
 % label
-\node[above=0.08cm of fs, font=\tiny\bfseries] {Connectors};
+\node[above=0.08cm of fs, font=\tiny\bfseries] {Connectors (9)};
 
 % arrows from connectors to namespace registry
 \draw[arr] (fs.west)  -- (ns.east |- fs.west);
@@ -96,6 +98,8 @@
 \draw[arr] (neo.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
 \draw[arr] (hdf.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
 \draw[arr] (nc.west)  -| ([xshift=0.15cm]ns.east) -- (ns.east);
+\draw[arr] (iow.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
+\draw[arr] (ndp.west) -| ([xshift=0.15cm]ns.east) -- (ns.east);
 
 % ====== Left side: agentic loop ======
 \node[box, left=1.0cm of rc, minimum width=1.6cm, fill=white]
