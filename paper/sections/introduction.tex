@@ -19,7 +19,7 @@ We present CLIO Search, a retrieval system that implements this cycle for scient
 We make three contributions:
 
 \begin{enumerate}
-\item \textbf{Science-aware retrieval operators.} Dimensional conversion and formula normalization ($F{=}ma$ vs.\ $ma{=}F$) execute as deterministic retrieval branches alongside BM25 and dense search. A composable unit registry (46~units, 12~domains\footnote{Length, mass, time, temperature, pressure, velocity, frequency, radioactivity, energy, power, area, acceleration.}) canonicalizes to SI base units at index time with correctness guaranteed by construction.
+\item \textbf{Science-aware retrieval operators.} Dimensional conversion and formula normalization ($F{=}ma$ vs.\ $ma{=}F$) execute as deterministic retrieval branches alongside BM25 and dense search. A composable unit registry (58~units, 12~domains\footnote{Length, mass, time, temperature, pressure, velocity, frequency, radioactivity, energy, power, area, acceleration.}) canonicalizes to SI base units at index time with correctness guaranteed by construction.
 
 \item \textbf{Corpus-adaptive search orchestration.} A profiling layer inspects each namespace before querying to determine viable strategies. Rich-metadata corpora activate science-aware operators; sparse corpora fall back to text retrieval; multi-hop refinement adapts based on intermediate results.
 
