@@ -26,39 +26,30 @@ The core insight behind dimensional conversion is that cross-unit matching is an
 
 The key insight underlying our approach is that physical units are not a flat enumeration---they are expressions over a small set of base dimensions. Every unit is fully characterized by a \emph{dimension vector} over the seven SI base dimensions $[\text{M}, \text{L}, \text{T}, \text{I}, \Theta, \text{N}, \text{J}]$ (mass, length, time, electric current, temperature, amount of substance, luminous intensity) plus a scale factor and optional offset relative to the SI base unit for that dimension combination. For example, Pa and kPa share the dimension vector $\text{M}^1\text{L}^{-1}\text{T}^{-2}$ with scale factors 1 and $10^3$ respectively. Two units are \emph{compatible} if and only if their dimension vectors are equal; \emph{conversion} between compatible units is the ratio of their scale factors.
 
-We implement this as a composable unit registry (Table~\ref{tab:si_conversion}). Each entry is a 4-tuple: (dimension vector, scale, offset, domain tag). Adding a new unit requires adding a single configuration entry---no code changes. The domain tag disambiguates dimensionally identical but physically distinct quantities: becquerel (Bq) and hertz (Hz) are both $\text{T}^{-1}$, but a cross-unit radioactivity query should not match frequency measurements. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, dimension\_key). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and dimension\_key for efficient range scans.
+We implement this as a composable unit registry covering 46 units across 12 physical domains. Table~\ref{tab:si_conversion} shows a representative excerpt. Each entry is a 4-tuple: (dimension vector, scale, offset, domain tag). Adding a new unit requires adding a single configuration row---no code changes. The domain tag disambiguates dimensionally identical but physically distinct quantities: becquerel (Bq) and hertz (Hz) are both $\text{T}^{-1}$, but a cross-unit radioactivity query should not match frequency measurements. At index time, a regex-based measurement extractor identifies numeric-unit pairs in document text and scientific file metadata. Each extracted measurement is stored as a 4-tuple: (raw\_value, raw\_unit, canonical\_value, dimension\_key). These tuples populate a \texttt{scientific\_measurements} table in DuckDB, indexed on canonical\_value and dimension\_key for efficient range scans.
 
 \begin{table}[!t]
 \centering
-\caption{Composable unit registry: 46 units across 12 domains. Each unit is a dimension vector $[\text{M},\text{L},\text{T},\text{I},\Theta,\text{N},\text{J}]$ + scale factor. Adding a unit = adding one row.}
+\caption{Unit registry excerpt. Each unit is a dimension vector over SI base dimensions with a scale factor and domain tag. Adding a unit requires one configuration row and no code changes.}
 \label{tab:si_conversion}
-\footnotesize
-\renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{l l l c}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l r l}
 \toprule
-\textbf{Domain} & \textbf{Dim.\ Vector} & \textbf{Units} & \textbf{Count} \\
+\textbf{Unit} & \textbf{Dim.\ vector [M,L,T,I,$\Theta$,N,J]} & \textbf{Scale} & \textbf{Domain} \\
 \midrule
-Length       & $\text{L}^1$                          & nm, mm, cm, m, km         & 5 \\
+Pa  & $\text{M}^{1}\,\text{L}^{-1}\,\text{T}^{-2}$ & 1              & pressure \\
 \rowcolor{gray!5}
-Mass         & $\text{M}^1$                          & mg, g, kg                 & 3 \\
-Time         & $\text{T}^1$                          & s, min, h                 & 3 \\
+kPa & $\text{M}^{1}\,\text{L}^{-1}\,\text{T}^{-2}$ & $10^{3}$       & pressure \\
+Hz  & $\text{T}^{-1}$                                & 1              & frequency \\
 \rowcolor{gray!5}
-Temperature  & $\Theta^1$                            & K, degC, degF             & 5 \\
-Pressure     & $\text{M}^1\text{L}^{-1}\text{T}^{-2}$ & Pa, hPa, kPa, MPa, bar, atm, psi & 7 \\
+Bq  & $\text{T}^{-1}$                                & 1              & radioactivity \\
+eV  & $\text{M}^{1}\,\text{L}^{2}\,\text{T}^{-2}$   & $1.602\!\times\!10^{-19}$ & energy \\
 \rowcolor{gray!5}
-Velocity     & $\text{L}^1\text{T}^{-1}$            & m/s, km/h, kn             & 3 \\
-Frequency    & $\text{T}^{-1}$                       & Hz, kHz, MHz, GHz, rad/s  & 5 \\
+J   & $\text{M}^{1}\,\text{L}^{2}\,\text{T}^{-2}$   & 1              & energy \\
+m   & $\text{L}^{1}$                                  & 1              & distance \\
 \rowcolor{gray!5}
-Radioactivity & $\text{T}^{-1}$                      & Bq, Ci                    & 2 \\
-Energy       & $\text{M}^1\text{L}^2\text{T}^{-2}$  & eV, keV, MeV, GeV, kJ, MJ, GJ & 7 \\
-\rowcolor{gray!5}
-Power        & $\text{M}^1\text{L}^2\text{T}^{-3}$  & W, kW, MW, GW             & 4 \\
-Area         & $\text{L}^2$                          & ha                        & 1 \\
-\rowcolor{gray!5}
-Acceleration & $\text{L}^1\text{T}^{-2}$            & m/s$^2$                   & 1 \\
-\midrule
-\multicolumn{3}{l}{\textbf{Total}} & \textbf{46} \\
+km  & $\text{L}^{1}$                                  & $10^{3}$       & distance \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
