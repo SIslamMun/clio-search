@@ -30,26 +30,27 @@ We implement this as a composable unit registry covering 46 units across 12 phys
 
 \begin{table}[!t]
 \centering
-\caption{Unit registry excerpt. Each unit is a dimension vector over SI base dimensions with a scale factor and domain tag. Adding a unit requires one configuration row and no code changes.}
+\caption{Unit registry excerpt (8 of 46 units). Each unit is a dimension vector + scale factor + domain tag. Adding a unit = one row, no code changes.}
 \label{tab:si_conversion}
-\small
+\footnotesize
+\setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l r l}
+\begin{tabular}{@{}l l r l@{}}
 \toprule
-\textbf{Unit} & \textbf{Dim.\ vector [M,L,T,I,$\Theta$,N,J]} & \textbf{Scale} & \textbf{Domain} \\
+\textbf{Unit} & \textbf{Dim.\ vector} & \textbf{Scale} & \textbf{Domain} \\
 \midrule
-Pa  & $\text{M}^{1}\,\text{L}^{-1}\,\text{T}^{-2}$ & 1              & pressure \\
+Pa  & $\text{M}\text{L}^{-1}\text{T}^{-2}$ & 1              & pressure \\
 \rowcolor{gray!5}
-kPa & $\text{M}^{1}\,\text{L}^{-1}\,\text{T}^{-2}$ & $10^{3}$       & pressure \\
-Hz  & $\text{T}^{-1}$                                & 1              & frequency \\
+kPa & $\text{M}\text{L}^{-1}\text{T}^{-2}$ & $10^{3}$       & pressure \\
+Hz  & $\text{T}^{-1}$                       & 1              & frequency \\
 \rowcolor{gray!5}
-Bq  & $\text{T}^{-1}$                                & 1              & radioactivity \\
-eV  & $\text{M}^{1}\,\text{L}^{2}\,\text{T}^{-2}$   & $1.602\!\times\!10^{-19}$ & energy \\
+Bq  & $\text{T}^{-1}$                       & 1              & radioact. \\
+eV  & $\text{M}\text{L}^{2}\text{T}^{-2}$  & $1.6\!\times\!10^{-19}$ & energy \\
 \rowcolor{gray!5}
-J   & $\text{M}^{1}\,\text{L}^{2}\,\text{T}^{-2}$   & 1              & energy \\
-m   & $\text{L}^{1}$                                  & 1              & distance \\
+J   & $\text{M}\text{L}^{2}\text{T}^{-2}$  & 1              & energy \\
+m   & $\text{L}$                             & 1              & distance \\
 \rowcolor{gray!5}
-km  & $\text{L}^{1}$                                  & $10^{3}$       & distance \\
+km  & $\text{L}$                             & $10^{3}$       & distance \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}

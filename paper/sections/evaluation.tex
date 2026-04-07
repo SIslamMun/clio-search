@@ -78,17 +78,18 @@ tools, and (3)~an agent with a single \textbf{CLIO} tool that indexes
 All paths use \texttt{claude-sonnet-4-20250514} and the same NDP
 catalog. $\Delta$~is relative to the Claude Native Agent.}
 \label{tab:l1-results}
-\small
+\footnotesize
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l r r r c}
+\begin{tabular}{@{}l r r r c@{}}
 \toprule
-\textbf{Method} & \textbf{Tokens} & \textbf{Token $\Delta$} & \textbf{Time $\Delta$} & \textbf{Ans.} \\
+\textbf{Method} & \textbf{Tokens} & \textbf{Tok.\ $\Delta$} & \textbf{Time $\Delta$} & \textbf{Ans.} \\
 \midrule
 Claude Native Agent & 989{,}417 & ---       & ---       & 10/10 \\
 \rowcolor{gray!5}
 NDP-MCP             & 988{,}954 & $-$0.05\% & $-$65.68\% & 10/10 \\
 \rowcolor{gray!15}
-\textbf{CLIO}       & \textbf{474{,}101} & $\boldsymbol{-}$\textbf{52.08\%} & $\boldsymbol{-}$\textbf{91.27\%} & \textbf{10/10} \\
+\textbf{CLIO}       & \textbf{474{,}101} & \textbf{$-$52.08\%} & \textbf{$-$91.27\%} & \textbf{10/10} \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}

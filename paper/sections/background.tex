@@ -42,24 +42,25 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 \centering
 \caption{Capability comparison across retrieval and scientific data systems. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
 \label{tab:comparison}
-\small
 \renewcommand{\arraystretch}{1.2}
-\setlength{\tabcolsep}{5pt}
+\resizebox{\textwidth}{!}{%
+\footnotesize
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{l c c c c c c c c c c}
 \toprule
  & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
 \cmidrule(lr){2-6} \cmidrule(lr){7-11}
 \textbf{System}
-  & \rotatebox{60}{\small SI Conversion}
-  & \rotatebox{60}{\small Formula Norm.}
-  & \rotatebox{60}{\small Sci.\ Branches}
-  & \rotatebox{60}{\small Federated}
-  & \rotatebox{60}{\small HDF5/NetCDF}
-  & \rotatebox{60}{\small Agentic}
-  & \rotatebox{60}{\small Qty.\ Extract.}
-  & \rotatebox{60}{\small Paper Search}
-  & \rotatebox{60}{\small Data Search}
-  & \rotatebox{60}{\small LLM Integr.} \\
+  & \rotatebox{60}{\scriptsize SI Conv.}
+  & \rotatebox{60}{\scriptsize Formula}
+  & \rotatebox{60}{\scriptsize Sci.\ Branches}
+  & \rotatebox{60}{\scriptsize Federated}
+  & \rotatebox{60}{\scriptsize HDF5/NetCDF}
+  & \rotatebox{60}{\scriptsize Agentic}
+  & \rotatebox{60}{\scriptsize Qty.\ Extract.}
+  & \rotatebox{60}{\scriptsize Paper Search}
+  & \rotatebox{60}{\scriptsize Data Search}
+  & \rotatebox{60}{\scriptsize LLM Integr.} \\
 \midrule
 \rowcolor{gray!15}
 \textbf{Ours (clio)}  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
@@ -76,11 +77,12 @@ SciAgent               & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \
 \rowcolor{gray!5}
 Context-1              & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}% end resizebox
 \renewcommand{\arraystretch}{1.15}
 \end{table*}
 
-Table~\ref{tab:comparison} summarizes the landscape. Individual capabilities exist in isolation---UDUNITS converts units offline, PANGAEA-GPT validates scales post-hoc, OpenScholar searches papers at scale---but to our knowledge, no prior \emph{retrieval system} integrates arithmetic SI conversion as a first-class retrieval operator, combines it with formula normalization, or operates across federated HPC backends with per-connector capability negotiation. We honestly mark capabilities we lack---we do not index papers. PANGAEA-GPT receives partial credit for quantity extraction (unit scale validation, but post-hoc rather than at retrieval time).
+Table~\ref{tab:comparison} summarizes the landscape. Individual capabilities exist in isolation---UDUNITS converts units offline, PANGAEA-GPT validates scales post-hoc, OpenScholar searches papers at scale---but to our knowledge, no prior retrieval system integrates arithmetic SI conversion as a first-class operator, combines it with formula normalization, or operates across federated HPC backends with per-connector capability negotiation. We mark capabilities we lack: we do not index papers. PANGAEA-GPT receives partial credit for quantity extraction (unit scale validation, but post-hoc rather than at retrieval time).
 
 %% ===================================================================
 %% Section 3: System Design
