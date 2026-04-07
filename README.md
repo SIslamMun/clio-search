@@ -1,6 +1,6 @@
 # CLIO Search
 
-**Agentic Scientific Data Discovery with Intelligent Orchestration**
+**Agentic Search for Scientific Data**
 
 SC2026 submission — research implementation and paper.
 
