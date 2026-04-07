@@ -1,18 +1,37 @@
 \section{Implementation}
 
-clio-agentic-search is implemented as a single-binary Python system with no external service dependencies beyond an optional LLM endpoint. We cover the software stack and storage schema (Sec.~4.1), connectors for binary scientific formats (Sec.~4.2), and the experimental platform (Sec.~4.3).
+CLIO is implemented as an embedded Python system with no external
+service dependencies beyond an optional LLM endpoint. We describe the
+software stack and storage schema (Sec.~4.1), connectors for
+scientific data formats and external catalogs (Sec.~4.2), and the
+experimental platform (Sec.~4.3).
 
-\subsection{System Implementation}
+\subsection{Software Stack and Storage}
 
-The system is implemented in Python 3.11+ and exposes both a CLI and an async HTTP API via FastAPI. The CLI (\texttt{clio}) and HTTP API expose all retrieval modes including \texttt{--agentic}, \texttt{--numeric-range}, and \texttt{--formula} flags.
+The system is implemented in Python 3.11+ (13{,}100 lines, 60 modules)
+and exposes a CLI (\texttt{clio query}, \texttt{clio index},
+\texttt{clio serve}) and an async HTTP API via FastAPI. Dense retrieval
+uses sentence-transformers with all-MiniLM-L6-v2 (22.7M parameters,
+384-dim, Apache 2.0). Two ANN backends are supported behind a common
+\texttt{ANNAdapter} protocol: \texttt{ExactANNAdapter} (16 shards,
+exact cosine) and \texttt{HnswANNAdapter} (hnswlib). Write safety on
+shared filesystems uses \texttt{fcntl} file locking. OpenTelemetry
+instrumentation provides observability with structured trace events
+from all retrieval branches.
 
-Dense retrieval uses sentence-transformers with the all-MiniLM-L6-v2 model (22.7M parameters, 384-dimensional embeddings, Apache 2.0 license). Two ANN backends are supported behind a common \texttt{ANNAdapter} protocol: \texttt{ExactANNAdapter}, which partitions vectors across 16 shards and computes exact cosine similarity, and \texttt{HnswANNAdapter}, which delegates to hnswlib for approximate search on larger corpora. Write safety on shared filesystems is enforced via \texttt{fcntl} file locking. Observability is provided by OpenTelemetry instrumentation with Prometheus-compatible \texttt{/metrics} endpoints; all retrieval branches and agentic hops emit structured trace events.
-
-All persistent state resides in a single DuckDB database file. DuckDB was selected for three reasons: it is embedded (no external service to deploy on compute nodes), it supports SQL-native full-text search sufficient for BM25 scoring, and its single-file storage model is compatible with POSIX parallel filesystems common in HPC environments. The schema comprises eight tables (Table~\ref{tab:schema}).
+All persistent state resides in a single DuckDB file
+(Table~\ref{tab:schema}). DuckDB was selected for three properties:
+embedded operation (no service to deploy on compute nodes), SQL-native
+full-text search for BM25 scoring, and single-file compatibility with
+POSIX parallel filesystems. The schema comprises eight tables; the two
+science-aware tables (\texttt{scientific\_measurements},
+\texttt{scientific\_formulas}) store canonicalized SI values and
+normalized formula signatures, enabling direct SQL range predicates
+that bypass the embedding pipeline.
 
 \begin{table}[!t]
 \centering
-\caption{DuckDB storage schema (8 tables). Science-aware tables (shaded) enable dimensional and formula retrieval.}
+\caption{DuckDB schema (8 tables). Shaded tables enable science-aware retrieval.}
 \label{tab:schema}
 \footnotesize
 \renewcommand{\arraystretch}{1.15}
@@ -24,7 +43,7 @@ All persistent state resides in a single DuckDB database file. DuckDB was select
 documents         & Corpus records    & URI, namespace, SHA-256 \\
 chunks            & Text segments     & text, doc FK, offset \\
 embeddings        & Dense vectors     & 384-dim vec, chunk FK \\
-metadata          & Key-value store   & key, value per doc \\
+metadata          & Key-value store   & key, value per doc/chunk \\
 file\_index       & Change detect.    & path, SHA-256, mtime \\
 lexical\_post.    & BM25 retrieval    & token, chunk FK, TF \\
 \rowcolor{gray!10}
@@ -36,29 +55,75 @@ sci\_formulas     & Formula match     & raw, normalized form \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-The \texttt{scientific\_measurements} and \texttt{scientific\_formulas} tables are the storage-level counterpart of the science-aware operators described in Section~3. At index time, extracted quantities are canonicalized to base SI units and stored with both raw and canonical representations; at query time, the dimensional operator queries canonical columns directly, bypassing the embedding pipeline entirely.
+The agentic layer comprises three modules:
+\texttt{CorpusProfile} queries DuckDB aggregate statistics per namespace
+(document count, measurement count, metadata density);
+\texttt{BranchSelector} decides which retrieval branches to activate;
+and \texttt{AgenticRetriever} drives the multi-hop loop with
+per-hop token tracking. Connectors opt into profiling via the
+\texttt{CorpusProfileCapable} protocol. Additional indexing modules
+handle CSV parsing with automatic unit detection
+(\texttt{csv\_parser}), data quality flag extraction
+(\texttt{quality}), and sampling-based schema recovery for sparse
+metadata (\texttt{sample\_schema}). The system is validated by 283
+automated tests executed via pytest.
 
-The agentic orchestration layer adds two modules: a \texttt{CorpusProfile} that queries DuckDB aggregate statistics per namespace (document count, measurement count, metadata density) and a \texttt{BranchSelector} that decides which retrieval branches to activate based on the profile and query operators. Connectors opt into profiling via the \texttt{CorpusProfileCapable} protocol; connectors that do not implement it fall back to the original behavior (all branches activated). Token usage is tracked per hop via the \texttt{TokenUsage} dataclass on \texttt{AgenticQueryResult}. The system is validated by 283 automated tests spanning unit, integration, and benchmark suites, executed via pytest with no external service dependencies.
+\subsection{Connectors}
 
-\subsection{HDF5 and NetCDF Connectors}
+Nine connectors implement the \texttt{NamespaceConnector} protocol and
+declare capabilities via runtime-checkable protocols:
 
-The HDF5 connector uses h5py to recursively walk the group and dataset hierarchy of each file. For every dataset, the connector extracts the name, shape, dtype, and all attached HDF5 attributes. Attributes carrying physical semantics---\texttt{units}, \texttt{long\_name}, \texttt{description}---are identified by convention and routed through the SI canonicalization pipeline described in Section~3.2, producing entries in the \texttt{scientific\_measurements} table. Remaining attribute text is concatenated into chunk content for hybrid lexical and dense retrieval. Dataset structural metadata (shape, dtype, group path) is stored as key-value pairs in the \texttt{metadata} table, enabling queries such as ``find all 3D datasets with a pressure variable.'' Incremental re-indexing uses SHA-256 checksums and filesystem mtime to skip unchanged files.
+\textbf{Filesystem and S3} are the reference implementations, supporting
+all five capability protocols (lexical, vector, scientific, metadata
+filter, corpus profile). Incremental re-indexing uses SHA-256 content
+hashes and modification times.
 
-The NetCDF connector uses xarray and is aware of Climate and Forecast (CF) metadata conventions \cite{cfconventions}. For each file, the connector extracts all variables with their names, units, \texttt{long\_name} attributes, dimensions, and shapes, as well as global attributes including \texttt{title}, \texttt{history}, and \texttt{Conventions}. Variable-level units pass through the same SI canonicalization pipeline as the HDF5 connector, ensuring that a pressure variable stored in hPa in one NetCDF file and in Pa in another will match the same dimensional query. Global attributes are indexed as document-level metadata.
+\textbf{HDF5} uses h5py to walk group/dataset hierarchies, extracting
+attribute-level units (\texttt{units}, \texttt{long\_name}) and
+routing them through SI canonicalization. \textbf{NetCDF} uses xarray
+with Climate and Forecast (CF) convention awareness~\cite{cfconventions},
+ensuring that a pressure variable in hPa matches the same query as one
+in Pa.
 
-\subsection{IOWarp and NDP Connectors}
+\textbf{IOWarp CTE} bridges CLIO to IOWarp's tiered blob storage.
+The connector enumerates blobs via \texttt{BlobQuery}, reads content
+via \texttt{Tag.GetBlob}, and parses JSON, CSV, or plain text via a
+format-detection pipeline. An \texttt{index\_from\_texts} fast path
+indexes pre-loaded content at ingest time. The connector implements
+all four search capabilities, making IOWarp a first-class CLIO backend.
 
-The IOWarp connector bridges CLIO's retrieval pipeline to IOWarp's Context Transfer Engine (CTE), enabling unit-aware search over data that physically resides in IOWarp's tiered blob storage. The connector enumerates blobs via \texttt{BlobQuery}, reads content via \texttt{Tag.GetBlob}, and indexes extracted measurements into DuckDB. An \texttt{index\_from\_texts} fast path indexes pre-loaded blob content at ingest time, avoiding per-blob CTE reads for production pipelines. The connector implements \texttt{LexicalSearchCapable}, \texttt{VectorSearchCapable}, \texttt{ScientificSearchCapable}, and \texttt{CorpusProfileCapable}, making IOWarp a full CLIO backend.
+\textbf{NDP (MCP)} discovers datasets from the National Data Platform
+by spawning \texttt{ndp-mcp} as a subprocess and calling
+\texttt{search\_datasets} per term via the Model Context Protocol.
+It optionally downloads CSV resources and extracts row-level
+measurements, enabling CLIO to search live external catalogs (NOAA,
+NASA, DOE) with the same science-aware operators used for local data.
 
-The NDP connector discovers datasets from the National Data Platform via the Model Context Protocol (MCP). It spawns the \texttt{ndp-mcp} server as a subprocess, calls \texttt{search\_datasets} per search term, indexes returned dataset metadata into DuckDB, and optionally downloads CSV resources to extract row-level measurements. This enables CLIO to search live external catalogs (NOAA, NASA, DOE, USGS) with the same science-aware operators used for local data.
+\textbf{Qdrant} and \textbf{Neo4j} use in-memory stub implementations
+that validate the protocol and capability negotiation logic.
+\textbf{KV log store} supports lexical search over key-value and
+streaming log data.
 
 \subsection{Experimental Platform}
 
-Single-node experiments were conducted on Linux 6.17 with Python 3.11, DuckDB 1.1, and sentence-transformers 3.3 with the all-MiniLM-L6-v2 embedding model (22.7M parameters, 384 dimensions). Distributed experiments run on NCSA DeltaAI (NVIDIA GH200 Grace Hopper nodes) with a 2.5M arXiv abstract corpus across 4 DuckDB shards. IOWarp experiments run inside Docker with the \texttt{iowarp/deps-cpu} image and Chimaera runtime v1.0.3 (16\,GB shared memory). The agentic efficiency experiment uses \texttt{claude-sonnet-4-20250514} via the Claude Agent SDK.
+Single-node experiments run on Linux 6.17 with Python 3.11 and
+DuckDB 1.1. Distributed experiments run on NCSA DeltaAI (NVIDIA GH200
+Grace Hopper nodes) with 2.5M arXiv abstracts across 4 DuckDB shards;
+a lightweight coordinator--worker architecture over TCP/JSON handles
+fan-out and result merging without MPI. IOWarp experiments run inside
+Docker (\texttt{iowarp/deps-cpu}, Chimaera v1.0.3, 16\,GB shared
+memory). The agentic efficiency experiment uses
+\texttt{claude-sonnet-4-20250514} via the Claude Agent SDK.
 
-The clio-agentic-search codebase comprises approximately 13{,}100 lines of Python across 60 modules, with 283 automated tests. The project uses uv for dependency resolution and reproducible environment setup; \texttt{uv sync} installs all dependencies from a locked manifest. The full source code, test suite, and evaluation scripts are available as open-source software.
+The project uses uv for dependency resolution; \texttt{uv sync}
+installs all dependencies from a locked manifest. The full source code,
+test suite, and evaluation scripts are open-source.
 
-We note two honest limitations of the current prototype relevant to reproducibility. First, the Qdrant and Neo4j connectors use in-memory stub implementations rather than connecting to deployed service instances; they validate the connector protocol and capability negotiation logic but do not exercise network I/O or distributed storage. Second, IOWarp integration is validated at 10K blobs inside Docker; the 10-billion-blob target scale requires deployment on production IOWarp infrastructure with NVMe-backed storage tiers.
+\textbf{Limitations.} The Qdrant and Neo4j connectors are stubs.
+IOWarp integration is validated at 10K blobs; the 10B-blob target
+requires production IOWarp infrastructure with NVMe tiers. The
+distributed coordinator is an evaluation prototype, not yet part of
+the main codebase.
 
 %% ===================================================================
 %% Section 5: Evaluation
