@@ -342,72 +342,71 @@ quality filtering, metadata-adaptive strategy) provide capabilities that
 standard retrieval systems lack. Experiments L1--L8 run on a single
 workstation; D1--D6 scale to NCSA DeltaAI (GH200 Grace Hopper).
 
-\subsection{L1: Agentic Discovery --- LLM+NDP-MCP vs LLM+CLIO}
+\subsection{L1: Agentic Discovery --- Three-Path Comparison}
 
-We run 10~scientific discovery queries through two paths using the same
-Claude~LLM and the same NDP catalog:
+We run 10~scientific discovery queries through three paths using the same
+LLM (\texttt{claude-sonnet-4-20250514}) and the same NDP catalog:
 
 \begin{itemize}
-\item \textbf{Path~1 (baseline):} LLM agent accesses the National Data
-  Platform via NDP-MCP directly. The agent calls \texttt{search\_datasets}
+\item \textbf{Claude Native Agent:} The LLM agent operates with no
+  domain-specific tools. It uses web search and spawns sub-agents for
+  parallel research across NOAA, NASA, and NDP repositories.
+\item \textbf{NDP-MCP:} The LLM agent accesses the National Data
+  Platform via NDP-MCP directly, calling \texttt{search\_datasets}
   and \texttt{get\_dataset\_details} multiple times, reading raw catalog
   JSON into its context window.
-\item \textbf{Path~2 (CLIO):} LLM agent calls a single CLIO tool. CLIO
+\item \textbf{CLIO:} The LLM agent calls a single CLIO tool. CLIO
   internally connects to NDP-MCP via the MCP protocol, indexes datasets
-  into DuckDB with science-aware chunking, and runs multi-hop agentic
-  retrieval via \texttt{AgenticRetriever}. The agent receives compact
-  ranked citations ($\sim$2K tokens) instead of raw catalog dumps
-  ($\sim$100K tokens).
+  into DuckDB with science-aware operators, and runs multi-hop agentic
+  retrieval. The agent receives compact ranked citations ($\sim$2K tokens)
+  instead of raw catalog dumps ($\sim$100K tokens).
 \end{itemize}
 
 \begin{table}[t]
 \centering
-\caption{L1: Per-query token consumption --- LLM+NDP-MCP vs LLM+CLIO
-(same NDP-MCP server, same LLM, same 10~queries).}
+\caption{Agentic efficiency: 10~scientific data discovery queries over
+the NDP catalog. Same LLM, same queries. $\Delta$~is relative to the
+Claude Native Agent baseline.}
 \label{tab:l1-results}
 \small
-\begin{tabular}{lrrr}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l r r r c}
 \toprule
-\textbf{Query} & \textbf{LLM+NDP} & \textbf{LLM+CLIO} & \textbf{Reduction} \\
+\textbf{Method} & \textbf{LLM} & \textbf{Tokens} & \textbf{Token $\Delta$} & \textbf{Time $\Delta$} & \textbf{Answered} \\
 \midrule
-temp\_above\_30C     & 131{,}452 & 39{,}422  & 70.0\% \\
-pressure\_101kPa     & 136{,}378 & 40{,}070  & 70.6\% \\
-wind\_above\_50kmh   & 103{,}090 & 40{,}446  & 60.8\% \\
-glacier\_ice\_temp   &  79{,}968 & 40{,}427  & 49.4\% \\
-humidity\_sensor     & 159{,}949 & 40{,}260  & 74.8\% \\
-solar\_radiation\_MJ & 184{,}604 & 40{,}572  & 78.0\% \\
-ocean\_surface\_temp & 195{,}714 & 40{,}649  & 79.2\% \\
-precip\_above\_100mm & 223{,}575 & 40{,}557  & 81.9\% \\
-wildfire\_thermal    &  72{,}923 & 40{,}680  & 44.2\% \\
-soil\_moisture       &  58{,}578 & 39{,}760  & 32.1\% \\
-\midrule
-\textbf{Total}       & \textbf{1{,}346{,}231} & \textbf{402{,}843} & \textbf{70.1\%} \\
+Claude Native Agent & claude-sonnet-4 & 989K & ---       & ---       & 10/10 \\
+\rowcolor{gray!5}
+NDP-MCP             & claude-sonnet-4 & 989K & $-$0.05\% & $-$65.7\% & 10/10 \\
+\rowcolor{gray!15}
+\textbf{CLIO}       & \textbf{claude-sonnet-4} & \textbf{474K} & $\boldsymbol{-}$\textbf{52.1\%} & $\boldsymbol{-}$\textbf{91.3\%} & \textbf{10/10} \\
 \bottomrule
 \end{tabular}
+\renewcommand{\arraystretch}{1.15}
 \end{table}
 
 Table~\ref{tab:l1-results} shows that CLIO reduces total token consumption
-by \textbf{70.1\%} across 10~queries (1.35M$\to$403K tokens), with per-query
-reductions ranging from 32\% (soil moisture, a simple semantic query where
-the baseline agent used only 4~tool calls) to 82\% (precipitation, where the
-baseline agent made 10~NDP calls). Tool calls decreased from 91 to 20
-(78\% reduction), and wall-clock time from 716s to 187s (74\% reduction).
+by \textbf{52\%} and wall-clock time by \textbf{91\%} compared to the Claude
+Native Agent baseline. The native agent and NDP-MCP consume nearly identical
+tokens ($\sim$989K) through different mechanisms: the native agent spawns
+9~sub-agents for parallel web research (563K main + 426K sub-agent tokens),
+while NDP-MCP injects full catalog JSON into the LLM context (989K main
+tokens). CLIO avoids both by indexing catalog content into a local DuckDB
+store and returning only compact ranked citations.
 
-The reduction arises because CLIO keeps raw catalog text out of the LLM
-context. In Path~1, each \texttt{search\_datasets} call returns $\sim$25
-dataset descriptions ($\sim$10K tokens) that the agent must read in full.
-In Path~2, CLIO indexes these descriptions into DuckDB, runs BM25 + vector
-+ scientific branches in parallel, and returns only the top-10 ranked
-citations ($\sim$2K tokens). The LLM agent in Path~2 consistently uses
-exactly 2~tool calls per query (one \texttt{ToolSearch} + one
-\texttt{clio\_search}) regardless of query complexity.
+NDP-MCP reduces wall time by 66\% over the native agent (17~min vs.\ 51~min)
+because it queries the NDP API directly rather than searching the web, but
+achieves no token savings because the raw catalog text still enters the prompt.
+CLIO reduces time by a further 75\% over NDP-MCP (4.4~min vs.\ 17~min) and
+tokens by 52\% because the agent receives only 10~ranked citations per query
+rather than 25~full dataset descriptions.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.85\columnwidth]{../eval/eval_final/plots/fig_L1_per_query.png}
-\caption{Per-query token consumption: LLM+NDP-MCP (blue) vs LLM+CLIO
-(orange). CLIO is stable at $\sim$40K tokens; baseline varies 59K--224K.}
-\label{fig:l1-per-query}
+\includegraphics[width=0.85\columnwidth]{../eval/eval_final/plots/fig_L1_three_path.png}
+\caption{Three-path comparison: total tokens (left) and wall time (right)
+across 10~scientific discovery queries. CLIO achieves 52\% token reduction
+and 91\% time reduction vs.\ the Claude Native Agent.}
+\label{fig:l1-three-path}
 \end{figure}
 
 %% ===================================================================
