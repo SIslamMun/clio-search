@@ -156,8 +156,8 @@ String norm.       & 0.32 & 0.04 & 0.07 & 0.39 \\
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{figures/fig4_crossunit_p5.pdf}
-\caption{Cross-unit P@5. Science-aware operators achieve 0.99 vs.\ 0.40.}
+\includegraphics[width=0.85\columnwidth]{figures/fig_crossunit_p5_bar.png}
+\caption{Cross-unit retrieval P@5. CLIO's science-aware operators achieve 0.99 vs.\ 0.40 for the best text baseline (+0.59 absolute).}
 \label{fig:crossunit}
 \end{figure}
 
@@ -277,12 +277,21 @@ top-50 unit-converted matches; BlobQuery returns all blobs unfiltered.}
 \end{table}
 
 CLIO finds cross-unit matches at every scale while BlobQuery cannot
-filter by content (Table~\ref{tab:iowarp}). The inspection rate falls
+filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). The inspection rate falls
 from 5.0\% at 1K to \textbf{0.1\% at 50K} ($250\times$ reduction over
 BlobQuery). Corpus profiling scales sub-linearly: 14\,ms at 1K to
 44\,ms at 50K (a $50\times$ data increase produces only a $3\times$
 profiling increase). The 100K scale was not reached due to IOWarp's
 shared-memory limit (16\,GB) in the Docker test environment.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/fig_iowarp_scaling.png}
+\caption{IOWarp scaling: corpus profiling time (left axis) grows
+sub-linearly while inspection rate (right axis) drops from 5\% to
+0.1\% as blob count increases from 1K to 50K.}
+\label{fig:iowarp-scaling}
+\end{figure}
 
 \textbf{Distributed scaling on 2.5M arXiv abstracts.}
 We evaluate CLIO's coordinator--worker pipeline on NCSA DeltaAI
