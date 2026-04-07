@@ -21,7 +21,7 @@ We argue that these failures share a common root cause: retrieval pipelines lack
 
 \item \textbf{Formula normalization.} We normalize mathematical expressions across whitespace, superscript, side-swap, and factor-reordering variants, integrated with dimensional operators as parallel retrieval branches.
 
-\item \textbf{Federated multi-namespace search.} A connector architecture supports unified retrieval across filesystem, S3, Qdrant, Neo4j, HDF5, and NetCDF backends with per-backend capability negotiation and incremental indexing.
+\item \textbf{Federated multi-namespace search.} A connector architecture supports unified retrieval across nine backends---filesystem, S3, Qdrant, Neo4j, HDF5, NetCDF, IOWarp CTE, NDP (via MCP), and key-value log store---with per-backend capability negotiation and incremental indexing.
 
 \item \textbf{HDF5/NetCDF metadata indexing.} Dedicated connectors extract measurements from scientific file formats and feed them through the same SI canonicalization pipeline, enabling cross-format dimensional search.
 
