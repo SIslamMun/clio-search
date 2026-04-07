@@ -1,0 +1,66 @@
+{
+  "experiment": "L2-B: CLIO + IOWarp CTE Integration (50K scale)",
+  "timestamp": "2026-04-07",
+  "iowarp_version": "1.0.3 (main branch build)",
+  "environment": "Docker iowarp/deps-cpu:latest with --shm-size=16g",
+  "scale": {
+    "N_blobs": 50000,
+    "put_time_s": 6.31,
+    "put_throughput_blobs_per_s": 7927,
+    "clio_index_time_s": 5081.88,
+    "clio_index_throughput_blobs_per_s": 10,
+    "corpus_profile_ms": 44.32,
+    "document_count": 50000,
+    "chunk_count": 50000,
+    "measurement_count": 137500,
+    "distinct_units": ["0,0,0,0,1,0,0", "0,1,-1,0,0,0,0", "0,1,0,0,0,0,0", "1,-1,-2,0,0,0,0"],
+    "inspection_rate_pct": 0.1,
+    "queries": [
+      {
+        "query": "Temperature cross-unit (degF → degC)",
+        "ground_truth_matches": 3201,
+        "clio_scientific_results": 50,
+        "clio_scientific_time_ms": 12199.38,
+        "clio_lexical_results": 50,
+        "clio_lexical_time_ms": 46.99,
+        "raw_blobquery_results": 12500,
+        "raw_blobquery_time_ms": 24.50,
+        "clio_finds_cross_unit": true
+      },
+      {
+        "query": "Pressure cross-unit (psi → kPa)",
+        "ground_truth_matches": 7499,
+        "clio_scientific_results": 50,
+        "clio_scientific_time_ms": 49762.68,
+        "clio_lexical_results": 50,
+        "clio_lexical_time_ms": 51.58,
+        "raw_blobquery_results": 12500,
+        "raw_blobquery_time_ms": 13.17,
+        "clio_finds_cross_unit": true
+      },
+      {
+        "query": "Wind cross-unit (km/h → m/s)",
+        "ground_truth_matches": 6204,
+        "clio_scientific_results": 50,
+        "clio_scientific_time_ms": 29367.75,
+        "clio_lexical_results": 50,
+        "clio_lexical_time_ms": 42.54,
+        "raw_blobquery_results": 12500,
+        "raw_blobquery_time_ms": 13.35,
+        "clio_finds_cross_unit": true
+      },
+      {
+        "query": "Temperature range (degF → degC)",
+        "ground_truth_matches": 1576,
+        "clio_scientific_results": 50,
+        "clio_scientific_time_ms": 20486.57,
+        "clio_lexical_results": 50,
+        "clio_lexical_time_ms": 45.48,
+        "raw_blobquery_results": 12500,
+        "raw_blobquery_time_ms": 17.52,
+        "clio_finds_cross_unit": true
+      }
+    ]
+  },
+  "100K_status": "Failed — IOWarp CTE PutBlob operation failed (shared memory limit at 16GB)"
+}

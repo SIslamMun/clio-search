@@ -26,7 +26,7 @@ We make three contributions:
 \item \textbf{Federated scientific search.} A connector architecture spans heterogeneous backends (filesystems, object stores, HDF5, NetCDF, IOWarp, external catalogs) with per-connector capability negotiation.
 \end{enumerate}
 
-We evaluate on a controlled benchmark (210~documents, 80~queries), real observatory data (288~NOAA GHCN-Daily documents), a live external catalog (341~NDP datasets), distributed HPC infrastructure (2.5M arXiv abstracts across 4~GH200 nodes on NCSA DeltaAI), and IOWarp blob storage (10K blobs). CLIO achieves 0.99~P@5 on cross-unit queries (vs.\ 0.40 for the strongest text baseline); on same-unit controls all methods score comparably (0.30--0.45), confirming the gains are specific to cross-unit matching. Real-world precision improves by 87\% on NOAA data, with sub-50\,ms query latency and 0.94 weak scaling efficiency at distributed scale.
+We evaluate on a controlled benchmark (210~documents, 80~queries), real observatory data (288~NOAA GHCN-Daily documents), a live external catalog (341~NDP datasets), distributed HPC infrastructure (2.5M arXiv abstracts across 4~GH200 nodes on NCSA DeltaAI), and IOWarp blob storage (up to 50K blobs). CLIO achieves 0.99~P@5 on cross-unit queries (vs.\ 0.40 for the strongest text baseline); on same-unit controls all methods score comparably (0.30--0.45), confirming the gains are specific to cross-unit matching. Real-world precision improves by 87\% on NOAA data, with sub-50\,ms query latency and 0.94 weak scaling efficiency at distributed scale.
 
 %% ===================================================================
 %% Section 2: Background and Related Work
