@@ -340,9 +340,10 @@ canonicalization is consistent across shards.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_d4_crossunit_correctness.png}
-\caption{Cross-unit correctness on 70K distributed arXiv documents.
-Different unit expressions for the same physical quantity return
-identical hit counts across 4~GH200 nodes.}
+\caption{Distributed cross-unit queries on 70K arXiv (4~GH200 nodes).
+All unit variants return identical hit counts (correctness) at
+sub-50\,ms latency. Pa is slower than kPa/bar/atm due to larger
+raw-value range scan.}
 \label{fig:d4-correctness}
 \end{figure}
 
