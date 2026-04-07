@@ -331,12 +331,20 @@ overhead.
 To verify that dimensional conversion remains correct when the corpus
 is distributed, we issue cross-unit probe queries against the 70K-document
 distributed corpus (4~shards on DeltaAI GH200). Table~\ref{tab:d4-crossunit}
-shows that querying in different units yields \emph{identical hit counts}:
-100~kPa, 100{,}000~Pa, 1~bar, and 0.987~atm all return exactly 12~hits;
-30\textdegree C, 86\textdegree F, and 303.15~K all return exactly
-20~hits. This confirms that SI canonicalization is consistent across
-shards---the coordinator merges results correctly regardless of which
-unit the query uses.
+and Fig.~\ref{fig:d4-correctness} show that querying in different units
+yields \emph{identical hit counts}: 100~kPa, 100{,}000~Pa, 1~bar, and
+0.987~atm all return exactly 12~hits; 30\textdegree C, 86\textdegree F,
+and 303.15~K all return exactly 20~hits. This confirms that SI
+canonicalization is consistent across shards.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_d4_crossunit_correctness.png}
+\caption{Cross-unit correctness on 70K distributed arXiv documents.
+Different unit expressions for the same physical quantity return
+identical hit counts across 4~GH200 nodes.}
+\label{fig:d4-correctness}
+\end{figure}
 
 \begin{table}[t]
 \centering
