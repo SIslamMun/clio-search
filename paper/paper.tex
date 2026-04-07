@@ -335,14 +335,12 @@ We note two honest limitations of the current prototype relevant to reproducibil
 \section{Evaluation}
 \label{sec:evaluation}
 
-We evaluate CLIO along three axes: (1)~agentic efficiency---does
-wrapping the retrieval pipeline behind a single tool call reduce LLM
-token consumption and latency compared to raw catalog access?
+We evaluate CLIO along three axes: (1)~agentic efficiency---does CLIO
+reduce LLM token consumption and latency compared to raw catalog access?
 (2)~science-aware accuracy---do dimensional conversion and formula
-normalization improve retrieval precision on cross-unit queries where
-text-based methods fail? (3)~storage integration---can CLIO serve as
-the search layer for IOWarp's tiered blob storage, enabling unit-aware
-queries that the native BlobQuery API cannot express?
+normalization improve retrieval precision where text-based methods fail?
+(3)~storage integration and scaling---can CLIO serve as the search layer
+for IOWarp's tiered blob storage and scale across distributed HPC nodes?
 
 \subsection{Experimental Setup}
 \label{sec:setup}
@@ -350,14 +348,15 @@ queries that the native BlobQuery API cannot express?
 \textbf{Platforms.} Single-node experiments run on Linux 6.17 with
 Python 3.11, DuckDB 1.1, and all-MiniLM-L6-v2 embeddings (384-dim).
 Distributed experiments run on NCSA DeltaAI (NVIDIA GH200 Grace
-Hopper nodes). IOWarp experiments run inside Docker with the
-\texttt{iowarp/deps-cpu} image and Chimaera runtime v1.0.3.
+Hopper nodes) with a 2.5M arXiv abstract corpus. IOWarp experiments
+run inside Docker with the \texttt{iowarp/deps-cpu} image and
+Chimaera runtime v1.0.3.
 
 \textbf{Controlled benchmark.} 210 documents across seven scientific
-domains (Table~\ref{tab:dataset}), each containing realistic prose
-with deliberate unit heterogeneity: the same physical quantities are
-expressed in different SI prefixes across documents. We define 80
-queries with automatically generated ground truth.
+domains (Table~\ref{tab:dataset}) with deliberate unit heterogeneity:
+the same physical quantities are expressed in different SI prefixes.
+80~queries with automatically generated ground truth. We additionally
+validate on 288 real NOAA observatory documents~\cite{ghcn2012}.
 
 \begin{table}[!t]
 \centering
@@ -387,46 +386,31 @@ Negative controls   & 10 & No extractable measurements \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-\textbf{Baselines.} We compare five retrieval configurations:
-(1)~BM25-only (DuckDB full-text search); (2)~Dense-only
-(all-MiniLM-L6-v2, cosine similarity); (3)~Hybrid BM25+Dense (linear
-fusion, equal weights); (4)~String normalization, following the Numbers
-Matter! approach~\cite{numbersmatter2024}; and (5)~the full CLIO
-pipeline with dimensional conversion, formula normalization, and
-agentic rewriting.
+\textbf{Baselines.} BM25-only (DuckDB full-text search); Dense-only
+(all-MiniLM-L6-v2, cosine similarity); Hybrid BM25+Dense (linear
+fusion); String normalization~\cite{numbersmatter2024}; and CLIO's
+full pipeline.
 
-\textbf{Metrics.} Precision at $K$ (P@$K$), recall at $K$ (R@$K$),
-and mean reciprocal rank (MRR) at $K{=}5$. For the agentic efficiency
-experiment, we measure total tokens (including sub-agent tokens) and
-wall-clock time.
+\textbf{Metrics.} P@$K$, R@$K$, MRR at $K{=}5$ for retrieval accuracy.
+Total tokens (including sub-agent tokens) and wall time for agentic
+efficiency.
 
-%% ----- 5.2: Agentic Efficiency -----
+%% =====================================================================
 \subsection{Agentic Efficiency}
 \label{sec:agentic-efficiency}
 
-We run 10~scientific discovery queries through three paths using the
-same LLM (\texttt{claude-sonnet-4-20250514}) and the same National
-Data Platform (NDP) catalog:
-
-\begin{itemize}
-\item \textbf{Claude Native Agent:} No domain-specific tools. The
-  agent uses web search and spawns sub-agents for parallel research
-  across NOAA, NASA, and NDP repositories.
-\item \textbf{NDP-MCP:} The agent accesses NDP via the Model Context
-  Protocol, calling \texttt{search\_datasets} and
-  \texttt{get\_dataset\_details} directly. Raw catalog JSON enters
-  the LLM context window.
-\item \textbf{CLIO:} The agent calls a single \texttt{clio\_search}
-  tool. CLIO internally connects to NDP-MCP, indexes 341~datasets
-  (359~chunks, 1{,}945~measurements) into DuckDB, and returns
-  $\sim$2K tokens of ranked citations per query.
-\end{itemize}
+We run 10~scientific discovery queries through three paths using
+\texttt{claude-sonnet-4-20250514} and the National Data Platform (NDP)
+catalog: (1)~a \textbf{Claude Native Agent} with no domain tools (uses
+web search and sub-agents), (2)~an agent with \textbf{NDP-MCP} catalog
+tools, and (3)~an agent with a single \textbf{CLIO} tool that indexes
+341~NDP datasets into DuckDB and returns ranked citations.
 
 \begin{table}[t]
 \centering
 \caption{Agentic efficiency on 10~scientific data discovery queries.
-All three paths use \texttt{claude-sonnet-4-20250514} and query the
-same NDP catalog. $\Delta$~is relative to the Claude Native Agent.}
+All paths use \texttt{claude-sonnet-4-20250514} and the same NDP
+catalog. $\Delta$~is relative to the Claude Native Agent.}
 \label{tab:l1-results}
 \small
 \renewcommand{\arraystretch}{1.2}
@@ -444,41 +428,41 @@ NDP-MCP             & 988{,}954 & $-$0.05\% & $-$65.68\% & 10/10 \\
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
-Table~\ref{tab:l1-results} shows that CLIO reduces total token
-consumption by \textbf{52.08\%} and wall-clock time by
-\textbf{91.27\%} compared to the native agent baseline, while answering
-all 10~queries. The native agent and NDP-MCP consume nearly identical
-tokens ($\sim$989K) through different mechanisms: the native agent
-spawns 9~sub-agents for parallel web research (563K main + 426K
-sub-agent tokens), while NDP-MCP injects raw catalog JSON into the LLM
-context (989K main tokens). CLIO avoids both by keeping catalog text
-in a local index and returning only compact ranked citations.
-
-NDP-MCP reduces wall time by 65.68\% over the native agent
-(17.4~min vs.\ 50.8~min) by querying the API directly rather than
-searching the web, but achieves no token savings because the catalog
-text still enters the prompt. CLIO reduces time by a further 74.57\%
-over NDP-MCP (4.4~min vs.\ 17.4~min) because the agent receives
-10~ranked citations per query rather than 25~full dataset descriptions.
+CLIO reduces tokens by \textbf{52.08\%} and wall time by
+\textbf{91.27\%} (Table~\ref{tab:l1-results}). The native agent and
+NDP-MCP consume $\sim$989K tokens through different mechanisms: the
+native agent spawns 9~sub-agents (563K main + 426K sub-agent tokens);
+NDP-MCP injects raw catalog JSON (989K main tokens). CLIO avoids both
+by indexing catalog content locally and returning $\sim$2K tokens of
+ranked citations per query. NDP-MCP reduces wall time by 66\% over the
+native agent by querying the API directly, but achieves no token
+savings. CLIO reduces time by a further 75\% over NDP-MCP
+(Fig.~\ref{fig:l1-three-path}).
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\columnwidth]{../eval/eval_final/plots/fig_L1_three_path.png}
 \caption{Agentic efficiency: total tokens (left) and wall time (right)
-across 10~queries. CLIO achieves 52\% token reduction and 91\% time
-reduction vs.\ the native agent.}
+across 10~queries. CLIO achieves 52\% token and 91\% time reduction.}
 \label{fig:l1-three-path}
 \end{figure}
 
-%% ----- 5.3: Cross-Unit Retrieval Accuracy -----
-\subsection{Cross-Unit Retrieval Accuracy}
+%% =====================================================================
+\subsection{Science-Aware Retrieval Accuracy}
+\label{sec:accuracy}
 
-We evaluate whether dimensional conversion improves retrieval accuracy
-when query and document units differ.
+\textbf{Cross-unit retrieval.}
+On 40~cross-unit queries (Table~\ref{tab:crossunit}), text baselines
+cannot match across SI prefixes: a query for ``200~kPa'' never
+lexically matches ``200000~Pa.'' BM25 achieves P@5 of 0.40; our
+pipeline canonicalizes to SI base units at index time and achieves
+\textbf{P@5 of 0.99} (+0.59 absolute). On same-unit controls, all
+methods score within 0.05 P@5, confirming gains are specific to
+cross-unit matching.
 
 \begin{table}[!t]
 \centering
-\caption{Retrieval performance on cross-unit queries at $K{=}5$. Best results in bold.}
+\caption{Cross-unit retrieval at $K{=}5$ on controlled benchmark.}
 \label{tab:crossunit}
 \small
 \renewcommand{\arraystretch}{1.2}
@@ -494,314 +478,161 @@ Hybrid             & 0.36 & 0.07 & 0.10 & 0.47 \\
 String norm.       & 0.32 & 0.04 & 0.07 & 0.39 \\
 \midrule
 \rowcolor{gray!15}
-\textbf{Ours}      & \textbf{0.99} & \textbf{0.19} & \textbf{0.29} & \textbf{0.99} \\
+\textbf{CLIO}      & \textbf{0.99} & \textbf{0.19} & \textbf{0.29} & \textbf{0.99} \\
 \bottomrule
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
 \end{table}
-
-Table~\ref{tab:crossunit} reports results on cross-unit queries. R@5 is low across all methods because the 210-document corpus produces a high average number of relevant documents per query (approximately 42), making recall at $K{=}5$ structurally bounded. P@5 and MRR are the more meaningful metrics for this evaluation. The text-oriented baselines---BM25, dense, and hybrid---retrieve only documents whose surface text contains the same unit string as the query. A query for ``200 kPa'' does not lexically match a document containing ``200000 Pa,'' and the embedding model has no mechanism to learn that these denote identical physical quantities. The strongest text baseline (BM25) achieves P@5 of 0.40 and MRR of 0.45; hybrid search adds semantic matching but does not improve on cross-unit queries (P@5 = 0.36), confirming that dense embeddings cannot bridge SI prefixes.
-
-String normalization cannot perform the arithmetic required to recognize that 200~kPa equals 200000~Pa, yielding only P@5 of 0.32. Our full pipeline converts all measurements to canonical SI base units at index time and issues direct range predicates at query time, achieving P@5 of 0.99 and MRR of 0.99---an absolute improvement of 0.59 P@5 and 0.54 MRR over the strongest text baseline.
-
-On the same-unit control set, all baselines achieve comparable performance (P@5 within 0.05 points of each other, range 0.30--0.45), confirming that the observed gains are attributable specifically to cross-unit matching rather than general retrieval quality differences.
-
-\textbf{Per-domain breakdown.} We disaggregate results across the seven scientific domains. Domains with high unit heterogeneity---materials science, fluid dynamics, and chemistry---show the largest baseline degradation and the largest improvement from dimensional conversion. The atmospheric science domain, which contains 32 documents with unsupported hPa units, demonstrates graceful degradation: the system falls back to lexical and vector retrieval without producing false positive dimensional matches. The 10 negative-control documents (containing no extractable measurements) are correctly excluded from dimensional results. Fig.~\ref{fig:crossunit} visualizes the P@5 gap between baselines and our pipeline.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig4_crossunit_p5.pdf}
-\caption{Cross-unit retrieval P@5 across five configurations. Science-aware operators (rightmost) achieve 0.99 vs.\ 0.40 for the best text baseline.}
+\caption{Cross-unit P@5. Science-aware operators achieve 0.99 vs.\ 0.40.}
 \label{fig:crossunit}
 \end{figure}
 
-\subsection{Formula Matching Accuracy}
-
-We evaluate whether formula normalization improves retrieval accuracy
-on queries involving mathematical notation variants.
-
-We construct a set of formula-variant retrieval tasks in which a query references a formula in one notation and relevant documents express the same relationship in alternative forms. Variants include reordering of terms (e.g., $F = ma$ vs.\ $F = am$), equivalent symbolic rearrangements (e.g., $E = mc^2$ vs.\ $m = E/c^2$), and differing variable naming conventions. Each task has a known set of relevant documents.
-
-On the 10 formula queries, BM25 achieves R@5 of 0.48 through loose text matching on formula-related terms. Our full pipeline achieves R@5 of 0.10 on the same queries. This apparent reversal reflects a deliberate design trade-off: the formula normalization operator performs strict normalized matching, requiring exact symbolic equivalence after canonicalization. BM25 matches formula text loosely---retrieving documents that mention formula-related tokens without verifying structural equivalence---which inflates recall at the cost of precision. The formula operator trades recall for precision, producing fewer but more reliable matches.
-
-We also measure the interaction between formula and dimensional operators. The two operators provide independent and complementary value: neither operator's contribution subsumes the other, validating the pluggable design described in Section~3.
-
-\subsection{Federated Search Coverage}
-
-We evaluate whether federated multi-namespace search maintains
-retrieval coverage when the same corpus is distributed across
-heterogeneous backends.
-
-We replicate the benchmark corpus across three storage backends: local filesystem, S3-compatible object store (MinIO), and HDF5 files. Each backend is registered as a separate namespace. We measure coverage---the fraction of relevant documents retrieved regardless of source backend---under single-backend and federated configurations, both with and without science-aware operators.
-
-Single-namespace search achieves an average coverage of 24.4\% of relevant documents. Federated search across multiple namespaces achieves 47.2\% average coverage---nearly a 2$\times$ improvement---recovering documents that any single backend misses.
-
-Critically, science-aware operators compose with federation without degradation. The capability negotiation mechanism (Section~3.5) ensures that connectors lacking scientific measurement tables are gracefully skipped rather than producing errors, so adding a backend that does not support dimensional search does not degrade results from backends that do.
-
-\subsection{IOWarp Blob Storage Integration}
-\label{sec:iowarp}
-
-At IOWarp's target scale of 10~billion blobs, agents need to determine
-\emph{what to retrieve} before fetching. IOWarp's native BlobQuery API
-returns all blobs matching a tag-name regex with no content filtering;
-at 10B blobs this is unusable. CLIO addresses this by indexing
-scientific metadata from IOWarp CTE blobs at ingest time, then
-answering unit-aware queries against the index.
-
-We run the IOWarp Chimaera runtime (v1.0.3) inside Docker and store
-synthetic scientific blobs across four CTE tags (temperature in
-\textdegree C, pressure in kPa, wind in m/s, humidity in \%). Four
-cross-unit queries use deliberately mismatched units: temperature in
-\textdegree F, pressure in psi, wind in km/h.
-
-\begin{table}[t]
-\centering
-\caption{CLIO vs.\ raw BlobQuery on IOWarp CTE blobs. CLIO returns
-top-50 unit-converted matches; BlobQuery returns all blobs in the tag
-with no filtering. All four cross-unit queries succeed at every scale.}
-\label{tab:iowarp}
-\small
-\begin{tabular}{rrrrrr}
-\toprule
-\textbf{Blobs} & \textbf{Index (s)} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQuery} \\
-\midrule
-1{,}000  & 79.8\,s  & 14\,ms & 2{,}750  & 50 & 250 (all) \\
-5{,}000  & 439.8\,s & 18\,ms & 13{,}750 & 50 & 1{,}250 (all) \\
-10{,}000 & 884.4\,s & 22\,ms & 27{,}500 & 50 & 2{,}500 (all) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:iowarp} shows three results. First, CLIO finds
-cross-unit matches at every scale while BlobQuery cannot perform any
-content-level filtering. Second, corpus profiling completes in
-14--22\,ms via DuckDB aggregation. Third, CLIO's inspection rate falls
-from 5.0\% at 1K blobs to \textbf{0.5\% at 10K}: rather than
-returning all 2{,}500 blobs in a tag, CLIO returns 50 matching blobs
-($50\times$ reduction). At 10B blobs, this selectivity eliminates
-brute-force scanning entirely.
-
-\subsection{Distributed Scaling}
-\label{sec:distributed-scaling}
-
-We evaluate CLIO's coordinator--worker pipeline on NCSA DeltaAI
-(NVIDIA GH200 Grace Hopper nodes) with 2.5~million arXiv abstracts
-pre-indexed into four DuckDB shards of 625K documents each. We measure
-query latency across 8~query types $\times$ 10~repeats = 80
-measurements per configuration.
-
-\textbf{Strong scaling.}
-All four shards are available to every configuration; we vary only the
-number of active workers (1, 2, 4).
-
-\begin{table}[t]
-\centering
-\caption{Strong scaling: query latency (ms) at fixed 2.5M-document
-corpus on DeltaAI GH200. 80~queries per configuration.}
-\label{tab:strong-scaling}
-\small
-\begin{tabular}{rrrr}
-\toprule
-\textbf{Workers} & \textbf{p50 (ms)} & \textbf{p95 (ms)} & \textbf{p99 (ms)} \\
-\midrule
-1 & 39.0 & 41.5 & 57.2 \\
-2 & 40.7 & 43.7 & 57.5 \\
-4 & 41.6 & 62.1 & 66.7 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:strong-scaling} shows p50 latency remains sub-42\,ms
-across all configurations. The key result is \emph{sustained low
-latency at scale}: all 80~queries complete under 70\,ms with p50 under
-42\,ms across 2.5~million documents, regardless of worker count. The
-flat scaling profile indicates that DuckDB query time on each shard is
-already fast enough that coordinator fan-out dominates.
-
-\textbf{Weak scaling.}
-Data and workers grow together: 1~worker / 625K docs, 2~workers /
-1.25M docs, 4~workers / 2.5M docs.
-
-\begin{table}[t]
-\centering
-\caption{Weak scaling: latency (ms) as data and workers grow together.
-Efficiency = $\text{p50}_{1\text{w}} / \text{p50}_{N\text{w}}$.}
-\label{tab:weak-scaling}
-\small
-\begin{tabular}{rrrrr}
-\toprule
-\textbf{Workers} & \textbf{Corpus} & \textbf{p50 (ms)} & \textbf{p95 (ms)} & \textbf{Efficiency} \\
-\midrule
-1 & 625K   & 38.5 & 41.2 & 1.00 \\
-2 & 1.25M  & 39.4 & 42.1 & 0.98 \\
-4 & 2.5M   & 41.0 & 59.0 & 0.94 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:weak-scaling} shows weak scaling efficiency of
-\textbf{0.94} at $4\times$ scale: quadrupling both data and workers
-increases p50 latency by only 2.5\,ms (6.5\%). This near-linear weak
-scaling demonstrates that CLIO's architecture supports horizontal
-scale-out with minimal overhead.
-
-\subsection{Ablation Study}
-
-To isolate the marginal contribution of each pipeline component, we evaluate six cumulative configurations on the cross-unit query set:
+\textbf{Real-world validation.} On 288~NOAA GHCN-Daily
+documents~\cite{ghcn2012} (metric units only, queries in imperial),
+CLIO achieves \textbf{0.700~P@5 (+87\%)} over the hybrid baseline
+(0.375). No text method can match ``86\textdegree F'' against
+``30.0~degC'' without arithmetic conversion
+(Table~\ref{tab:real_world}).
 
 \begin{table}[!t]
 \centering
-\caption{Ablation study on cross-unit queries. The science-aware operator transition (B$\to$C) produces the largest gain.}
-\label{tab:ablation}
-\small
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l c c c c}
-\toprule
- & \textbf{Components} & \textbf{P@5} & \textbf{R@5} & \textbf{F1@5} & \textbf{MRR} \\
-\midrule
-A & Lexical (BM25)             & 0.40 & 0.07 & 0.11 & 0.45 \\
-\rowcolor{gray!5}
-B & A + dense vectors          & 0.36 & 0.07 & 0.10 & 0.47 \\
-\midrule
-\rowcolor{gray!15}
-\textbf{C} & \textbf{B + science operators} & \textbf{0.99} & \textbf{0.19} & \textbf{0.29} & \textbf{0.99} \\
-\rowcolor{gray!5}
-D & Full pipeline              & 0.99 & 0.19 & 0.29 & 0.99 \\
-\bottomrule
-\end{tabular}
-\renewcommand{\arraystretch}{1.15}
-\end{table}
-
-Fig.~\ref{fig:ablation} plots P@5 for each configuration. The transition from B to C---adding scientific operators---produces the largest marginal gain: P@5 jumps from 0.36 to 0.99 (+0.63) and MRR from 0.47 to 0.99 (+0.52), confirming that cross-unit matching is the dominant bottleneck for this query class. Adding vector retrieval to the lexical baseline (A to B) provides a marginal change in P@5 (0.40 to 0.36) with a slight MRR improvement (0.45 to 0.47), consistent with the known complementarity of sparse and dense retrieval on non-numeric content. The full pipeline (D) matches configuration C exactly, indicating that the remaining components (graph traversal, agentic rewriting) contribute no additional gain on this benchmark---single-pass retrieval with scientific operators already achieves near-perfect P@5 and MRR. The multi-hop loop is designed for more complex real-world queries where initial formulations are underspecified.
-
-On the same-unit control queries, the A-through-D progression shows all configurations within 0.05 P@5 of each other (range 0.30--0.45), confirming that the science-aware operators' value is specific to the cross-unit retrieval scenario they were designed for. Fig.~\ref{fig:ablation} shows the P@5 and MRR progression.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{figures/fig5_ablation.pdf}
-\caption{Ablation study. Adding science-aware operators (B$\to$C) produces the dominant gain (+0.63 P@5). Additional components provide no measurable improvement on structured measurement queries.}
-\label{fig:ablation}
-\end{figure}
-
-\subsection{Multi-Hop Agentic Retrieval}
-
-We evaluate the agentic retrieval loop (Section~3.6) on the 80 benchmark queries across the 210-document corpus. We compare single-pass retrieval (1 hop), two-hop, and three-hop configurations.
-
-All three configurations achieve P@5 of 0.98 and MRR of 0.94, confirming that the science-aware operators resolve cross-unit matching in a single pass with minimal room for agentic improvement. The agentic loop converges at hop 1--2 on this benchmark, with the metadata-adaptive strategy correctly identifying the corpus as ``metadata-rich'' (87.5\% density) across all test queries.
-
-In practice, the rewriter identifies referenced identifiers in first-hop results and reformulates the query to recover additional linked documents in subsequent hops. For deployments without LLM access, a deterministic fallback expands queries with SI unit variants and achieves comparable P@5 and MRR.
-
-We further evaluate the agentic loop across 8 configurations spanning four inference backends: Ollama (local CPU), Gemini (cloud API), Claude (session-based), and a no-LLM fallback (Table~\ref{tab:llm_providers}).
-
-\begin{table}[!t]
-\centering
-\caption{LLM provider benchmark for agentic rewriting (8 configurations, 10 queries). Additional backends (LM~Studio, vLLM, OpenAI, Together~AI, Groq) supported via unified OpenAI-compatible interface.}
-\label{tab:llm_providers}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}l l c c c c c@{}}
-\toprule
-\textbf{Backend} & \textbf{Model} & \textbf{Params} & \textbf{Lat.(s)} & \textbf{P@5} & \textbf{MRR} & \textbf{Cost/q} \\
-\midrule
-Ollama  & Llama 3.2    & 3B  & 4.93  & 0.90 & 0.95 & \$0 \\
-\rowcolor{gray!5}
-Ollama  & Qwen 2.5     & 14B & 18.08 & 0.90 & 1.00 & \$0 \\
-Ollama  & Mistral      & 7B  & 10.52 & 0.90 & 0.95 & \$0 \\
-\rowcolor{gray!5}
-Gemini  & 2.0 Flash    & --- & 0.09  & 0.90 & 1.00 & $\sim$\$0 \\
-Gemini  & 1.5 Pro      & --- & 0.05  & 0.90 & 1.00 & $\sim$\$0 \\
-\rowcolor{gray!5}
-Claude  & Sonnet       & --- & 8.56  & 0.86 & 0.88 & \$0.008 \\
-Claude  & Opus         & --- & 9.34  & 0.86 & 0.88 & \$0.015 \\
-\rowcolor{gray!5}
-\rowcolor{gray!10}
-No LLM  & SI exp.      & 0   & 0.00  & 0.86 & 0.88 & \$0 \\
-\bottomrule
-\end{tabular}
-\renewcommand{\arraystretch}{1.15}
-\end{table}
-
-Three findings emerge. First, local CPU inference via Ollama matches cloud quality (P@5 = 0.90 across all three models) at zero marginal cost, making the agentic loop practical for HPC environments where outbound network access may be restricted. Qwen~2.5~(14B) achieves perfect MRR despite higher latency on CPU. Second, Gemini Flash models achieve sub-100ms rewriting latency with perfect MRR---an order of magnitude faster than local CPU inference---suitable for interactive deployments. Third, the no-LLM fallback (deterministic SI unit expansion) achieves 96\% of the best LLM-assisted P@5, confirming that the science-aware operators are the primary source of retrieval gains; the LLM provides incremental improvement through query expansion rather than fundamental capability.
-
-\subsection{Indexing Performance}
-
-We measure indexing throughput on a single compute node (Section~4.3) across the three connector types.
-
-Full indexing of the benchmark corpus (210 documents) completes in 67.0 seconds, corresponding to 3.1 documents/second.
-
-Incremental re-indexing completes in 6.7 seconds when 10\% of documents change---10\% of the full-index time (Fig.~\ref{fig:indexing}).
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{figures/fig6_indexing.pdf}
-\caption{Indexing time vs.\ corpus change fraction. Incremental indexing scales linearly with the changed fraction, saving up to 90\% of full-rebuild time.}
-\label{fig:indexing}
-\end{figure}
-
-\subsection{Metadata-Adaptive Strategy Selection}
-\label{sec:adaptive}
-
-We evaluate CLIO's ability to adapt when datasets vary in metadata
-quality. We create three corpus variants from 210~documents:
-\textbf{rich} (87.5\% metadata density, 2{,}674 measurements),
-\textbf{sparse} (measurements stripped, 10.3\% density), and
-\textbf{no-metadata} (all numbers removed, 4.4\% density). CLIO
-correctly classifies each variant and selects the appropriate retrieval
-strategy: rich $\to$ scientific + lexical + vector, sparse $\to$
-lexical + vector (scientific skipped), no-metadata $\to$ lexical +
-vector only. On 10~cross-unit queries, only the rich corpus produces
-hits via SI conversion; the other two correctly fall back to text-based
-retrieval, confirming that unit conversion activates only when metadata
-exists.
-
-\subsection{Real-World Validation on NOAA Observatory Data}
-\label{sec:real-world}
-
-To validate that controlled-benchmark findings generalize, we evaluate
-on 288~real documents from the NOAA Global Historical Climatology
-Network --- Daily (GHCN-D) \cite{ghcn2012}, covering 8~U.S.~stations
-across 2022--2024. Documents report metric units only (degC, mm, m/s);
-8~cross-unit queries use imperial units (\textdegree F, inches, mph).
-
-\begin{table}[!t]
-\centering
-\caption{Real-world evaluation on NOAA GHCN-Daily (288~docs, 8~stations).
-Documents are metric-only; queries use imperial units.}
+\caption{Real-world NOAA GHCN-Daily (288~docs, imperial queries).}
 \label{tab:real_world}
 \small
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Method} & \textbf{P@5} & \textbf{R@5} & \textbf{P@10} & \textbf{MRR} \\
 \midrule
-BM25 Only       & 0.375 & 0.018 & 0.388 & 0.562 \\
-Dense (Vector)  & 0.250 & 0.014 & 0.287 & 0.515 \\
+BM25            & 0.375 & 0.018 & 0.388 & 0.562 \\
+\rowcolor{gray!5}
 Hybrid          & 0.375 & 0.021 & 0.388 & 0.708 \\
-String Norm.    & 0.375 & 0.021 & 0.388 & 0.708 \\
 \rowcolor{gray!15}
 \textbf{CLIO}   & \textbf{0.700} & \textbf{0.055} & \textbf{0.725} & \textbf{0.760} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:real_world} confirms the controlled-benchmark findings
-on real observatory data. Baselines achieve P@5 $\le$ 0.375 because no
-text-based method can match ``86~degrees~Fahrenheit'' against
-``30.0~degC.'' CLIO reaches \textbf{0.700~P@5 (+87\%)} by
-canonicalizing both query and document measurements to Kelvin.
+\textbf{Formula matching.} On 10~formula queries, BM25 achieves R@5 of
+0.48 via loose text matching; CLIO achieves R@5 of 0.10 via strict
+symbolic equivalence. This reflects a precision-over-recall design
+trade-off: CLIO matches only structurally equivalent formulas.
 
-\subsection{Error Analysis}
-\label{sec:errors}
+\textbf{Ablation.} Adding science operators (B$\to$C in
+Table~\ref{tab:ablation}) produces the dominant gain: P@5 jumps from
+0.36 to 0.99 (+0.63). The full pipeline (D) adds no further gain on
+this benchmark, confirming that cross-unit matching is the bottleneck.
+A no-LLM fallback achieves 96\% of LLM-assisted P@5, confirming that
+the operators---not the language model---drive gains.
 
-We catalog the failure modes of the science-aware operators.
-\textbf{Extraction failures:} the regex extractor misses non-standard
-formats (e.g., ``$2 \times 10^3$~Pa''), achieving 95\% precision and
-90\% recall on measurement identification. \textbf{Unit ambiguity:}
-``m'' may denote meters or mass; resolved by requiring a numeric literal
-adjacent to the unit token. \textbf{Unsupported units:} queries
-involving compound units (N/m$^2$, mol/L) produce no dimensional
-matches and fall back to lexical retrieval. The 46-unit registry
-(12~SI domains) can be extended by adding rows without code changes.
+\begin{table}[!t]
+\centering
+\caption{Ablation: cumulative component contributions on cross-unit queries.}
+\label{tab:ablation}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l c c}
+\toprule
+ & \textbf{Components} & \textbf{P@5} & \textbf{MRR} \\
+\midrule
+A & Lexical (BM25)             & 0.40 & 0.45 \\
+\rowcolor{gray!5}
+B & A + dense vectors          & 0.36 & 0.47 \\
+\rowcolor{gray!15}
+\textbf{C} & \textbf{B + science operators} & \textbf{0.99} & \textbf{0.99} \\
+\rowcolor{gray!5}
+D & Full pipeline              & 0.99 & 0.99 \\
+\bottomrule
+\end{tabular}
+\renewcommand{\arraystretch}{1.15}
+\end{table}
+
+\textbf{Metadata-adaptive strategy.} CLIO correctly classifies three
+corpus variants (rich 87.5\% density $\to$ scientific branch, sparse
+10.3\% $\to$ lexical+vector, no-metadata 4.4\% $\to$ lexical only)
+and activates unit conversion only when extractable measurements exist.
+Federated search across filesystem, S3, and HDF5 backends doubles
+coverage from 24.4\% to 47.2\%, with science operators composing
+without degradation via capability negotiation.
+
+%% =====================================================================
+\subsection{Storage Integration and Scaling}
+\label{sec:storage-scaling}
+
+\textbf{IOWarp blob storage.}
+At IOWarp's target scale of 10~billion blobs, the native BlobQuery API
+returns all blobs matching a tag regex with no content filtering. CLIO
+addresses this by indexing scientific metadata from CTE blobs at ingest
+time. We run the Chimaera runtime (v1.0.3) and store synthetic blobs
+across four CTE tags (temperature in \textdegree C, pressure in kPa,
+wind in m/s). Four cross-unit queries use mismatched units
+(\textdegree F, psi, km/h).
+
+\begin{table}[t]
+\centering
+\caption{CLIO vs.\ raw BlobQuery on IOWarp CTE blobs. CLIO returns
+top-50 unit-converted matches; BlobQuery returns all blobs unfiltered.}
+\label{tab:iowarp}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+\textbf{Blobs} & \textbf{Index} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQuery} \\
+\midrule
+1K  & 80\,s  & 14\,ms & 2{,}750  & 50 & 250 (all) \\
+5K  & 440\,s & 18\,ms & 13{,}750 & 50 & 1{,}250 (all) \\
+10K & 884\,s & 22\,ms & 27{,}500 & 50 & 2{,}500 (all) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CLIO finds cross-unit matches at every scale while BlobQuery cannot
+filter by content (Table~\ref{tab:iowarp}). The inspection rate falls
+from 5.0\% at 1K to \textbf{0.5\% at 10K} ($50\times$ reduction over
+BlobQuery). Corpus profiling completes in 14--22\,ms regardless of
+scale.
+
+\textbf{Distributed scaling on 2.5M arXiv abstracts.}
+We evaluate CLIO's coordinator--worker pipeline on NCSA DeltaAI
+(GH200 nodes) with 2.5M arXiv abstracts across four DuckDB shards
+(625K each). 80~queries per configuration.
+
+\begin{table}[t]
+\centering
+\caption{Query latency (ms) on DeltaAI GH200. Strong scaling holds the
+2.5M corpus fixed; weak scaling grows data with workers.}
+\label{tab:scaling}
+\small
+\begin{tabular}{l r r r r r}
+\toprule
+& \textbf{Workers} & \textbf{Corpus} & \textbf{p50} & \textbf{p95} & \textbf{Eff.} \\
+\midrule
+\multirow{3}{*}{\rotatebox{90}{\footnotesize Strong}}
+& 1 & 2.5M & 39.0 & 41.5 & --- \\
+& 2 & 2.5M & 40.7 & 43.7 & --- \\
+& 4 & 2.5M & 41.6 & 62.1 & --- \\
+\midrule
+\multirow{3}{*}{\rotatebox{90}{\footnotesize Weak}}
+& 1 & 625K  & 38.5 & 41.2 & 1.00 \\
+& 2 & 1.25M & 39.4 & 42.1 & 0.98 \\
+& 4 & 2.5M  & 41.0 & 59.0 & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All queries complete under 70\,ms with p50 under 42\,ms across
+2.5M~documents (Table~\ref{tab:scaling}). Weak scaling efficiency
+reaches \textbf{0.94} at $4\times$ scale, demonstrating that CLIO's
+architecture supports horizontal scale-out with minimal coordinator
+overhead.
+
+\textbf{Limitations.} The regex extractor misses non-standard formats
+(``$2 \times 10^3$~Pa''), achieving 95\% precision / 90\% recall.
+Compound units (N/m$^2$, mol/L) are unsupported and fall back to
+lexical retrieval. The 46-unit registry (12~SI domains) is extensible
+by adding rows without code changes.
 
 %% ===================================================================
 %% Section 6: Conclusion
