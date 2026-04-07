@@ -1,24 +1,22 @@
 #!/bin/bash
 # ---------------------------------------------------------------------------
-# L2-B: CLIO + IOWarp CTE Integration — DeltaAI job (native build)
+# L2-B LARGE: CLIO + IOWarp — 500K and 1M scales only (native build)
 #
-# Runs the CLIO+IOWarp integration test (cross-unit search on IOWarp blobs)
-# at scales 1K → 1M using the native iowarp_core 0.6.4 build on GH200.
+# Run after slurm_iowarp_l2.sh (1K–100K) completes.
+# Produces: eval/eval_final/outputs/L2_delta_iowarp_large.json
 #
-# Produces: eval/eval_final/outputs/L2_delta_iowarp.json
-#
-# Usage:  sbatch slurm_iowarp_l2.sh
+# Usage:  sbatch slurm_iowarp_l2_large.sh
 # ---------------------------------------------------------------------------
-#SBATCH --job-name=clio_l2_iowarp
+#SBATCH --job-name=clio_l2_large
 #SBATCH --account=bekn-dtai-gh
 #SBATCH --partition=ghx4
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16
 #SBATCH --gres=gpu:1
-#SBATCH --time=16:00:00
-#SBATCH --output=logs/clio_l2_iowarp_%j.out
-#SBATCH --error=logs/clio_l2_iowarp_%j.err
+#SBATCH --time=48:00:00
+#SBATCH --output=logs/clio_l2_large_%j.out
+#SBATCH --error=logs/clio_l2_large_%j.err
 
 set -euo pipefail
 
@@ -29,8 +27,8 @@ REPO="/u/sislam3/clio-search"
 WORK="/work/nvme/bekn/sislam3"
 INNER_SCRIPT="${REPO}/eval/eval_final/code/delta/l2_iowarp_inner.py"
 DB_DIR="${WORK}/l2_iowarp_db"
-CHECKPOINT_FILE="${WORK}/l2_iowarp_checkpoint.json"
-SCALES_JSON='[1000, 5000, 10000, 50000, 100000]'
+CHECKPOINT_FILE="${WORK}/l2_iowarp_large_checkpoint.json"
+SCALES_JSON='[500000, 1000000]'
 
 IOWARP_VENV="${WORK}/iowarp-venv"
 IOWARP_LIB="${IOWARP_VENV}/lib/python3.11/site-packages/lib"
@@ -41,14 +39,14 @@ CHI_CONF="/u/sislam3/.chimaera/chimaera.yaml"
 echo "========================================"
 echo "Node: $(hostname)"
 echo "Date: $(date)"
+echo "Job: L2-B large scales (500K, 1M)"
 echo "Scales: $SCALES_JSON"
 echo "========================================"
 
 mkdir -p "$DB_DIR"
 
-# ---------- Run ----------
 echo ""
-echo "Running L2-B natively (iowarp_core 0.6.4)..."
+echo "Running L2-B large scales natively (iowarp_core 0.6.4)..."
 echo "  Inner:   $INNER_SCRIPT"
 echo "  DB dir:  $DB_DIR"
 echo "  Chi conf: $CHI_CONF"
@@ -61,9 +59,8 @@ SCALES_JSON="${SCALES_JSON}" \
 DB_DIR="${DB_DIR}" \
 CHECKPOINT_FILE="${CHECKPOINT_FILE}" \
 PYTHONPATH="${IOWARP_PYSITE}:${REPO}/code/src" \
-"${PYTHON}" "${INNER_SCRIPT}" | tee /tmp/l2_raw_output.txt
+"${PYTHON}" "${INNER_SCRIPT}" | tee /tmp/l2_large_raw_output.txt
 
-# ---------- Extract + save JSON ----------
 echo ""
 echo "Extracting results..."
 
@@ -71,7 +68,7 @@ CHECKPOINT_FILE="${CHECKPOINT_FILE}" python3 - <<'PYEOF'
 import json, sys, time, os
 from pathlib import Path
 
-raw = Path("/tmp/l2_raw_output.txt").read_text()
+raw = Path("/tmp/l2_large_raw_output.txt").read_text()
 begin = raw.find("===RESULT_JSON_BEGIN===")
 end   = raw.find("===RESULT_JSON_END===")
 
@@ -92,14 +89,14 @@ else:
         sys.exit(1)
 
 output = {
-    "experiment": "L2-B: CLIO + IOWarp CTE Integration (DeltaAI native)",
+    "experiment": "L2-B: CLIO + IOWarp CTE Integration — large scales (DeltaAI native)",
     "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     "iowarp_version": "0.6.4",
     "environment": "native iowarp_core 0.6.4 on DeltaAI GH200 aarch64",
     **result,
 }
 
-out_path = Path("/u/sislam3/clio-search/eval/eval_final/outputs/L2_delta_iowarp.json")
+out_path = Path("/u/sislam3/clio-search/eval/eval_final/outputs/L2_delta_iowarp_large.json")
 out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(output, indent=2))
 print(f"Saved: {out_path}")
@@ -117,5 +114,5 @@ PYEOF
 
 echo ""
 echo "========================================"
-echo "L2-B complete."
+echo "L2-B large scales complete."
 echo "========================================"

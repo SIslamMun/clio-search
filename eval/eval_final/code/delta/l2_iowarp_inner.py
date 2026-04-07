@@ -8,13 +8,11 @@ are available. Controlled by environment variables:
                  On Delta, bind-mount NVMe here for fast I/O.
 """
 
-import subprocess
 import time
 import json
 import random
 import sys
 import os
-import hashlib
 from pathlib import Path
 
 # --- Init CTE (server mode = embedded runtime, no daemon needed) ---
@@ -38,6 +36,7 @@ from clio_agentic_search.retrieval.scientific import (
 
 scales = json.loads(os.environ["SCALES_JSON"])
 DB_DIR = os.environ.get("DB_DIR", "/tmp")
+CHECKPOINT_FILE = os.environ.get("CHECKPOINT_FILE", "")
 rng = random.Random(42)
 
 # Scientific data templates — each blob is a realistic measurement
@@ -207,8 +206,11 @@ for N in scales:
         lexical_time = (time.perf_counter() - t0) * 1000
 
         t0 = time.perf_counter()
-        tag_regex = f"{q['target_domain']}_{N}"
-        raw_results = list(client.BlobQuery(tag_regex, ".*", N, cte.PoolQuery.Dynamic()))
+        # Use GetContainedBlobs (per-tag) as raw baseline.
+        # BlobQuery hangs on iowarp_core 0.6.4 aarch64 (Broadcast dispatch
+        # deadlock); GetContainedBlobs() returns all blobs in the tag locally.
+        raw_tag = cte.Tag(f"{q['target_domain']}_{N}")
+        raw_results = raw_tag.GetContainedBlobs()
         blobquery_time = (time.perf_counter() - t0) * 1000
 
         # Validate ground truth
@@ -275,6 +277,9 @@ for N in scales:
     }
     all_results["scales"].append(scale_result)
     connector.teardown()
+    if CHECKPOINT_FILE:
+        Path(CHECKPOINT_FILE).write_text(json.dumps(all_results))
+        print(f"  [Checkpoint saved → {CHECKPOINT_FILE}]", flush=True)
     print(f"\n  Scale {N:,} complete.", flush=True)
 
 # --- Teardown runtime ---
