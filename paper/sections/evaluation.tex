@@ -96,15 +96,18 @@ NDP-MCP             & 988{,}954 & $-$0.05\% & $-$65.68\% & 10/10 \\
 \end{table}
 
 CLIO reduces tokens by \textbf{52.08\%} and wall time by
-\textbf{91.27\%} (Table~\ref{tab:l1-results}). The native agent and
+\textbf{91.27\%} (Table~\ref{tab:l1-results}). The token reduction
+reflects two factors: reduced context size (compact ranked citations
+vs.\ raw catalog JSON) and reduced reasoning steps (2~tool calls vs.\
+9~sub-agents spawned by the native agent). The native agent and
 NDP-MCP consume $\sim$989K tokens through different mechanisms: the
 native agent spawns 9~sub-agents (563K main + 426K sub-agent tokens);
 NDP-MCP injects raw catalog JSON (989K main tokens). CLIO avoids both
 by indexing catalog content locally and returning $\sim$2K tokens of
-ranked citations per query. NDP-MCP reduces wall time by 66\% over the
-native agent by querying the API directly, but achieves no token
-savings. CLIO reduces time by a further 75\% over NDP-MCP
-(Fig.~\ref{fig:l1-three-path}).
+ranked citations per query (Fig.~\ref{fig:l1-three-path}).
+We note that 10~queries is a limited sample; the experiment measures
+relative cost across three paths on the same queries rather than
+establishing population-level confidence intervals.
 
 \begin{figure}[t]
 \centering
@@ -157,6 +160,19 @@ String norm.       & 0.32 & 0.04 & 0.07 & 0.39 \\
 \caption{Cross-unit P@5. Science-aware operators achieve 0.99 vs.\ 0.40.}
 \label{fig:crossunit}
 \end{figure}
+
+\textbf{Baseline scope.} We compare against text-based retrieval
+methods (BM25, dense, hybrid, string normalization) rather than
+learned quantity-aware models (CONE, NC-Retriever, DeepQuant) because
+(1)~these systems are not publicly reproducible on our benchmark,
+and (2)~the comparison would be structurally unfair in both directions:
+learned models achieve at best 0.54 binary accuracy on numerical
+content~\cite{numeracygap2026} and 16.3\% on numeric
+constraints~\cite{ncretriever2025}, while our benchmark is specifically
+designed for cross-unit matching where arithmetic is required, not
+approximated. The same-unit controls (P@5 0.30--0.45 across all
+methods) confirm that our benchmark does not inflate scores through
+general retrieval advantages.
 
 \textbf{Real-world validation.} On 288~NOAA GHCN-Daily
 documents~\cite{ghcn2012} (metric units only, queries in imperial),
@@ -368,6 +384,17 @@ p99 latency      & 62\,ms \\
 Compound units (N/m$^2$, mol/L) are unsupported and fall back to
 lexical retrieval. The 58-unit registry (12~SI domains) is extensible
 by adding rows without code changes.
+The distributed evaluation uses 4~GH200 nodes and 2.5M documents;
+scaling to hundreds of nodes and billions of objects remains future
+work. The DuckDB-per-shard architecture is embarrassingly parallel
+(each shard is independent), so the expected bottleneck at larger
+scale is coordinator fan-out and result merging, not per-shard query
+time. The arXiv evaluation verifies cross-unit correctness (identical
+hit counts across unit variants) and latency, but does not report
+P@5 or MRR because no ground-truth relevance judgments exist for this
+corpus. The controlled benchmark (210~documents) is synthetic with
+deliberately planted unit heterogeneity; the NOAA evaluation
+(288~real documents) partially addresses ecological validity.
 
 %% ===================================================================
 %% Section 6: Conclusion
