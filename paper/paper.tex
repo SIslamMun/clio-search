@@ -370,17 +370,19 @@ Claude Native Agent baseline.}
 \label{tab:l1-results}
 \small
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l r r r c}
+\begin{tabular}{l r r r c}
 \toprule
-\textbf{Method} & \textbf{LLM} & \textbf{Tokens} & \textbf{Token $\Delta$} & \textbf{Time $\Delta$} & \textbf{Answered} \\
+\textbf{Method} & \textbf{Tokens} & \textbf{Token $\Delta$} & \textbf{Time $\Delta$} & \textbf{Ans.} \\
 \midrule
-Claude Native Agent & claude-sonnet-4 & 989K & ---       & ---       & 10/10 \\
+Claude Native Agent & 989K & ---       & ---       & 10/10 \\
 \rowcolor{gray!5}
-NDP-MCP             & claude-sonnet-4 & 989K & $-$0.05\% & $-$65.7\% & 10/10 \\
+NDP-MCP             & 989K & $-$0.05\% & $-$65.7\% & 10/10 \\
 \rowcolor{gray!15}
-\textbf{CLIO}       & \textbf{claude-sonnet-4} & \textbf{474K} & $\boldsymbol{-}$\textbf{52.1\%} & $\boldsymbol{-}$\textbf{91.3\%} & \textbf{10/10} \\
+\textbf{CLIO}       & \textbf{474K} & $\boldsymbol{-}$\textbf{52.1\%} & $\boldsymbol{-}$\textbf{91.3\%} & \textbf{10/10} \\
 \bottomrule
 \end{tabular}
+\vspace{0.5mm}
+{\footnotesize All three paths use \texttt{claude-sonnet-4-20250514}.}
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
@@ -424,7 +426,7 @@ measurements per configuration.
 
 \textbf{D1 --- Strong scaling.}
 All four shards are available to every configuration; we vary only the
-number of active workers (1, 2, 4). Each worker holds $\nicefrac{2.5\text{M}}{4}$
+number of active workers (1, 2, 4). Each worker holds $2.5\text{M}/4$
 documents regardless of active worker count.
 
 \begin{table}[t]
