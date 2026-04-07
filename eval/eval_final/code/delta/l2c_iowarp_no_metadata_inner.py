@@ -45,6 +45,7 @@ from clio_agentic_search.retrieval.scientific import (
 
 scales = json.loads(os.environ["SCALES_JSON"])
 DB_DIR = os.environ.get("DB_DIR", "/tmp")
+CHECKPOINT_FILE = os.environ.get("CHECKPOINT_FILE", "")
 rng = random.Random(42)
 
 DOMAINS = ["temperature", "pressure", "wind", "humidity"]
@@ -164,7 +165,27 @@ for N in scales:
     print(f"  CLIO has NO knowledge of blob contents yet.", flush=True)
 
     # --- Phase 2: CLIO indexes by READING blobs from CTE ---
-    print(f"  CLIO reading + indexing {N:,} blobs from CTE (GetBlob path)...", flush=True)
+    # On iowarp_core 0.6.4 aarch64, GetBlobSize/GetBlob hang inside
+    # connector.index() due to a task-queue deadlock after PutBlob fills the
+    # SHM pipeline.  Workaround: read blobs HERE via Tag.GetContainedBlobs()
+    # + Tag.GetBlob(), build blob_texts, then call index_from_texts() — the
+    # semantics are identical (CLIO gets raw blob bytes, no pre-provided text).
+    print(f"  Reading {N:,} blobs from CTE via GetBlob...", flush=True)
+    blob_texts: dict[str, str] = {}
+    t_read = time.time()
+    for d in DOMAINS:
+        tag_obj = tags[d]
+        blob_list = tag_obj.GetContainedBlobs()
+        for blob_name in blob_list:
+            sz = tag_obj.GetBlobSize(blob_name)
+            if sz > 0:
+                raw = tag_obj.GetBlob(blob_name, sz, 0)
+                uri = f"cte://{tag_names[d]}/{blob_name}"
+                blob_texts[uri] = raw if isinstance(raw, str) else raw.decode("utf-8", errors="replace")
+    read_time = time.time() - t_read
+    print(f"  GetBlob read: {read_time:.2f}s  ({len(blob_texts):,} blobs read)", flush=True)
+
+    print(f"  CLIO indexing {N:,} blobs from raw CTE content...", flush=True)
     db_path = f"{DB_DIR}/clio_nm_{N}.duckdb"
     store = DuckDBStorage(Path(db_path))
     tag_pattern = f"nm_(temperature|pressure|wind|humidity)_{N}"
@@ -179,9 +200,7 @@ for N in scales:
     connector.connect()
 
     t0 = time.time()
-    # Uses index() — enumerates via BlobQuery, reads each blob via GetBlob,
-    # parses JSON content, extracts measurements, builds DuckDB index.
-    report = connector.index(full_rebuild=True)
+    report = connector.index_from_texts(blob_texts, full_rebuild=True)
     index_time = time.time() - t0
     print(
         f"  Index: {index_time:.2f}s  scanned={report.scanned_files}  "
@@ -224,8 +243,11 @@ for N in scales:
         lexical_time = (time.perf_counter() - t0) * 1000
 
         t0 = time.perf_counter()
-        tag_regex = f"nm_{q['target_domain']}_{N}"
-        raw_results = list(client.BlobQuery(tag_regex, ".*", N, cte.PoolQuery.Dynamic()))
+        # Use GetContainedBlobs (per-tag) as raw baseline.
+        # BlobQuery hangs on iowarp_core 0.6.4 aarch64 (Broadcast dispatch
+        # deadlock); GetContainedBlobs() returns all blobs in the tag locally.
+        raw_tag = cte.Tag(f"nm_{q['target_domain']}_{N}")
+        raw_results = raw_tag.GetContainedBlobs()
         blobquery_time = (time.perf_counter() - t0) * 1000
 
         # Ground truth: convert query range to stored unit
@@ -288,9 +310,11 @@ for N in scales:
 
     scale_result = {
         "N_blobs": N,
-        "indexing_method": "GetBlob (reads blob content — no external metadata)",
+        "indexing_method": "GetBlob direct read + index_from_texts (no external metadata)",
         "put_time_s": round(put_time, 3),
         "put_throughput_blobs_per_s": round(N / put_time),
+        "getblob_read_time_s": round(read_time, 3),
+        "getblob_read_throughput_blobs_per_s": round(len(blob_texts) / read_time) if read_time > 0 else 0,
         "clio_index_time_s": round(index_time, 3),
         "clio_index_throughput_blobs_per_s": round(report.indexed_files / index_time),
         "scanned_blobs": report.scanned_files,
@@ -305,6 +329,9 @@ for N in scales:
     }
     all_results["scales"].append(scale_result)
     connector.teardown()
+    if CHECKPOINT_FILE:
+        Path(CHECKPOINT_FILE).write_text(json.dumps(all_results))
+        print(f"  [Checkpoint saved → {CHECKPOINT_FILE}]", flush=True)
     print(f"\n  Scale {N:,} complete. Measurements extracted from raw blobs: {profile.measurement_count}", flush=True)
 
 # --- Teardown runtime ---

@@ -114,23 +114,69 @@ class IOWarpConnector:
         self._tag_cache.clear()
         self.storage.teardown()
 
-    def index(self, *, full_rebuild: bool = False) -> IndexReport:
-        """Enumerate blobs from CTE, extract scientific metadata, build index."""
+    def index(
+        self,
+        *,
+        full_rebuild: bool = False,
+        known_tag_names: list[str] | None = None,
+    ) -> IndexReport:
+        """Enumerate blobs from CTE, extract scientific metadata, build index.
+
+        Parameters
+        ----------
+        full_rebuild:
+            Clear the namespace before indexing.
+        known_tag_names:
+            Optional explicit list of tag names to enumerate.  When provided,
+            uses ``Tag.GetContainedBlobs()`` on each tag — avoiding
+            ``BlobQuery`` (which hangs in iowarp_core 0.6.4 due to a
+            Broadcast-dispatch bug on aarch64 64KB-page systems like DeltaAI
+            GH200).  When *not* provided, falls back to ``BlobQuery`` (works
+            on x86 and iowarp_core 1.0.3+).
+        """
         self._ensure_connected()
         start = time.perf_counter()
 
         if full_rebuild:
             self.storage.clear_namespace(self.namespace)
 
-        # Discover blobs via BlobQuery
-        raw_results = list(
-            self._cte_client.BlobQuery(  # type: ignore[union-attr]
-                self.tag_pattern,
-                self.blob_pattern,
-                self.max_blobs_per_query,
-                cte.PoolQuery.Dynamic(),
-            )
-        )
+        # Discover blobs.
+        # known_tag_names fast path: use Tag.GetContainedBlobs() per tag.
+        # This avoids BlobQuery which hangs on iowarp_core 0.6.4 aarch64
+        # (Broadcast dispatch deadlock).
+        if known_tag_names is not None:
+            raw_results: list[tuple[str, str]] = []
+            import re as _re
+            blob_re = _re.compile(self.blob_pattern)
+            for tag_name in known_tag_names:
+                tag_obj = self._get_or_create_tag(tag_name)
+                for blob_name in tag_obj.GetContainedBlobs():
+                    if blob_re.fullmatch(blob_name):
+                        raw_results.append((tag_name, blob_name))
+        else:
+            # BlobQuery path (iowarp_core 1.0.3+ / x86).
+            # Support both iowarp_core 0.6.4+ (requires MemContext as first
+            # arg) and 1.0.3 (no MemContext).
+            if hasattr(cte, "MemContext"):
+                _mctx = cte.MemContext()
+                raw_results = list(
+                    self._cte_client.BlobQuery(  # type: ignore[union-attr]
+                        _mctx,
+                        self.tag_pattern,
+                        self.blob_pattern,
+                        self.max_blobs_per_query,
+                        cte.PoolQuery.Dynamic(),
+                    )
+                )
+            else:
+                raw_results = list(
+                    self._cte_client.BlobQuery(  # type: ignore[union-attr]
+                        self.tag_pattern,
+                        self.blob_pattern,
+                        self.max_blobs_per_query,
+                        cte.PoolQuery.Dynamic(),
+                    )
+                )
 
         scanned = len(raw_results)
         indexed = 0
