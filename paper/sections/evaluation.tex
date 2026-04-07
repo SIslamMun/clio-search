@@ -185,8 +185,12 @@ Hybrid          & 0.375 & 0.021 & 0.388 & 0.708 \\
 
 \textbf{Formula matching.} On 10~formula queries, BM25 achieves R@5 of
 0.48 via loose text matching; CLIO achieves R@5 of 0.10 via strict
-symbolic equivalence. This reflects a precision-over-recall design
-trade-off: CLIO matches only structurally equivalent formulas.
+symbolic equivalence. CLIO underperforms BM25 on this task because its
+formula operator requires exact structural equivalence after
+canonicalization, while BM25 matches formula-related tokens loosely.
+This is a deliberate precision-over-recall trade-off: CLIO produces
+fewer but more reliable matches. Improving formula recall without
+sacrificing precision is future work.
 
 \textbf{Ablation.} Adding science operators (B$\to$C in
 Table~\ref{tab:ablation}) produces the dominant gain: P@5 jumps from
