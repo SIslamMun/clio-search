@@ -3,7 +3,7 @@ Scientific data discovery requires search that thinks before it acts. Before exe
 
 We present CLIO Search, an agentic retrieval system for scientific data that implements a four-stage pipeline: Discover (profile each corpus), Reason (select viable retrieval branches), Transform (execute dimensional conversion and formula normalization as deterministic operators alongside BM25 and dense search), and Execute (federate across backends with iterative refinement). An LLM rewriter drives refinement in connected environments; a deterministic fallback achieves 96\% of LLM quality for air-gapped HPC. Domain knowledge is encoded as algebraic invariants, complementing learned similarity with arithmetic guarantees.
 
-On cross-unit queries, CLIO achieves 0.99~P@5 (BM25: 0.40, NC-Retriever: 0.16); same-unit controls confirm parity across methods (0.30--0.45). Precision improves 87\% on real NOAA data. At scale on 2.5M arXiv abstracts across 4~GH200 nodes: sub-50\,ms latency, 0.94 weak scaling. All code and benchmarks are open-source.\footnote{\url{https://github.com/SIslamMun/clio-search}}
+On cross-unit queries, CLIO achieves 0.99~P@5 (BM25: 0.40, String norm.: 0.32); same-unit controls confirm parity across methods (0.30--0.45). Precision improves 87\% on real NOAA data. At scale on 2.5M arXiv abstracts across 4~GH200 nodes: sub-50\,ms latency, 0.94 weak scaling. All code and benchmarks are open-source.\footnote{\url{https://github.com/SIslamMun/clio-search}}
 \end{abstract}
 
 %% ===================================================================
