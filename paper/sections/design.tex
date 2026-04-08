@@ -6,11 +6,8 @@ To address the three challenges identified in Section~1, we design CLIO Search a
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/Gemini_Generated_arc.png}
-\caption{System architecture of \textsc{clio-agentic-search}. Nine connectors
-mediate heterogeneous backends; science-aware components execute alongside
-standard retrieval branches. The agentic loop iteratively refines queries
-via LLM rewriting.}
+\includegraphics[width=\textwidth]{figures/Clio_Search.pdf}
+\caption{System architecture of CLIO Search. Connectors index data from heterogeneous repositories into a metadata store. At query time, the Namespace Registry routes queries to capable branches; the Retrieval Coordinator executes lexical, vector, graph, and scientific branches in parallel; Merge \& Rerank enforces dimensional correctness and returns top-$K$ results. The agentic loop refines queries iteratively.}
 \label{fig:architecture}
 \end{figure*}
 
