@@ -160,6 +160,11 @@ for N in scales:
         tags[domain].PutBlob(blob_name, blob_bytes)
         ground_truth[domain].append((blob_name, val, unit))
         # NOTE: we do NOT build a blob_texts dict — CLIO gets nothing at write time
+        # Yield to the Chimaera server thread every 10 blobs.
+        # queue_depth=1024 per worker; 10-blob batches keep queue usage
+        # far below capacity, preventing PutBlob deadlock at all scales.
+        if i % 10 == 9:
+            time.sleep(0.5)
     put_time = time.time() - t0
     print(f"  Write: {put_time:.2f}s ({N/put_time:,.0f} blobs/s)", flush=True)
     print(f"  CLIO has NO knowledge of blob contents yet.", flush=True)

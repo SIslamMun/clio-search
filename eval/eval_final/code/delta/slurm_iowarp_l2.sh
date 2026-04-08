@@ -2,9 +2,11 @@
 # ---------------------------------------------------------------------------
 # L2-B: CLIO + IOWarp CTE Integration — DeltaAI job (native build)
 #
-# Runs the CLIO+IOWarp integration test (cross-unit search on IOWarp blobs)
-# at scales 1K → 1M using the native iowarp_core 0.6.4 build on GH200.
+# Runs each scale in a SEPARATE Python process to avoid Chimaera SHM task
+# queue carryover between scales (PutBlob hangs on 2nd+ scale if reusing
+# the same Chimaera runtime).
 #
+# Scales: 1K → 5K → 10K → 50K → 100K
 # Produces: eval/eval_final/outputs/L2_delta_iowarp.json
 #
 # Usage:  sbatch slurm_iowarp_l2.sh
@@ -29,8 +31,8 @@ REPO="/u/sislam3/clio-search"
 WORK="/work/nvme/bekn/sislam3"
 INNER_SCRIPT="${REPO}/eval/eval_final/code/delta/l2_iowarp_inner.py"
 DB_DIR="${WORK}/l2_iowarp_db"
-CHECKPOINT_FILE="${WORK}/l2_iowarp_checkpoint.json"
-SCALES_JSON='[1000, 5000, 10000, 50000, 100000]'
+ALL_RESULTS_FILE="/tmp/l2_all_results_${SLURM_JOB_ID}.json"
+SCALES="1000 5000 10000 50000 100000"
 
 IOWARP_VENV="${WORK}/iowarp-venv"
 IOWARP_LIB="${IOWARP_VENV}/lib/python3.11/site-packages/lib"
@@ -41,55 +43,78 @@ CHI_CONF="/u/sislam3/.chimaera/chimaera.yaml"
 echo "========================================"
 echo "Node: $(hostname)"
 echo "Date: $(date)"
-echo "Scales: $SCALES_JSON"
+echo "Job: L2-B (1K–100K, one process per scale)"
+echo "Scales: $SCALES"
 echo "========================================"
 
 mkdir -p "$DB_DIR"
+echo '{"scales":[]}' > "$ALL_RESULTS_FILE"
 
-# ---------- Run ----------
-echo ""
-echo "Running L2-B natively (iowarp_core 0.6.4)..."
-echo "  Inner:   $INNER_SCRIPT"
-echo "  DB dir:  $DB_DIR"
-echo "  Chi conf: $CHI_CONF"
-echo ""
+chimaera_cleanup() {
+    echo "  [cleanup] killing lingering processes..."
+    pkill -9 -f "l2_iowarp_inner\|l2c_iowarp_no_metadata_inner\|chimaera_start_runtime" 2>/dev/null || true
+    sleep 15
+    echo "  [cleanup] removing stale Chimaera SHM segments..."
+    rm -f /dev/shm/chi_*_sislam3 /dev/shm/hermes_shm_*_sislam3 2>/dev/null || true
+    sleep 15
+    echo "  [cleanup] done."
+}
 
-CHI_SERVER_CONF="${CHI_CONF}" \
-LD_LIBRARY_PATH="${IOWARP_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
-LD_PRELOAD=/usr/lib64/libstdc++.so.6 \
-SCALES_JSON="${SCALES_JSON}" \
-DB_DIR="${DB_DIR}" \
-CHECKPOINT_FILE="${CHECKPOINT_FILE}" \
-PYTHONPATH="${IOWARP_PYSITE}:${REPO}/code/src" \
-"${PYTHON}" "${INNER_SCRIPT}" | tee /tmp/l2_raw_output.txt
+echo "Initial cleanup on $(hostname)..."
+chimaera_cleanup
 
-# ---------- Extract + save JSON ----------
-echo ""
-echo "Extracting results..."
+# ---------- Run one scale at a time (fresh Chimaera per scale) ----------
+for N in $SCALES; do
+    chimaera_cleanup
+    RAW_FILE="/tmp/l2_scale_${N}_${SLURM_JOB_ID}.txt"
+    echo ""
+    echo "========================================"
+    echo "Running scale $N  ($(date))"
+    echo "========================================"
 
-CHECKPOINT_FILE="${CHECKPOINT_FILE}" python3 - <<'PYEOF'
-import json, sys, time, os
+    CHI_SERVER_CONF="${CHI_CONF}" \
+    LD_LIBRARY_PATH="${IOWARP_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
+    LD_PRELOAD=/usr/lib64/libstdc++.so.6 \
+    SCALES_JSON="[$N]" \
+    DB_DIR="${DB_DIR}" \
+    PYTHONPATH="${IOWARP_PYSITE}:${REPO}/code/src" \
+    "${PYTHON}" "${INNER_SCRIPT}" | tee "$RAW_FILE" || {
+        echo "WARNING: scale $N exited non-zero, continuing..."
+    }
+
+    # Merge this scale's result into the accumulator
+    ALL_RESULTS_FILE="$ALL_RESULTS_FILE" RAW_FILE="$RAW_FILE" N="$N" python3 - <<'PYEOF'
+import json, os, sys
 from pathlib import Path
 
-raw = Path("/tmp/l2_raw_output.txt").read_text()
+raw = Path(os.environ["RAW_FILE"]).read_text()
+all_f = Path(os.environ["ALL_RESULTS_FILE"])
+N = int(os.environ["N"])
+
 begin = raw.find("===RESULT_JSON_BEGIN===")
 end   = raw.find("===RESULT_JSON_END===")
+if begin == -1 or end == -1:
+    print(f"  WARNING: scale {N:,} produced no result JSON — skipping")
+    sys.exit(0)
 
-if begin != -1 and end != -1:
-    result = json.loads(raw[begin + len("===RESULT_JSON_BEGIN==="):end].strip())
-    print("Results extracted from stdout markers.")
-else:
-    chk = os.environ.get("CHECKPOINT_FILE", "")
-    if chk and Path(chk).exists():
-        result = json.loads(Path(chk).read_text())
-        n = len(result.get("scales", []))
-        print(f"WARNING: stdout markers missing — loaded checkpoint ({n} scales completed).")
-    else:
-        print("ERROR: result JSON markers not found and no checkpoint available")
-        print("\nLast 50 lines of output:")
-        for line in raw.splitlines()[-50:]:
-            print(f"  {line}")
-        sys.exit(1)
+scale_data = json.loads(raw[begin + len("===RESULT_JSON_BEGIN==="):end].strip())
+all_results = json.loads(all_f.read_text())
+all_results["scales"].extend(scale_data.get("scales", []))
+all_f.write_text(json.dumps(all_results))
+print(f"  Merged scale {N:,} → {len(all_results['scales'])} total scale(s) accumulated.")
+PYEOF
+
+done
+
+# ---------- Extract + save final JSON ----------
+echo ""
+echo "All scales done. Saving results..."
+
+ALL_RESULTS_FILE="$ALL_RESULTS_FILE" python3 - <<'PYEOF'
+import json, time, os
+from pathlib import Path
+
+result = json.loads(Path(os.environ["ALL_RESULTS_FILE"]).read_text())
 
 output = {
     "experiment": "L2-B: CLIO + IOWarp CTE Integration (DeltaAI native)",
