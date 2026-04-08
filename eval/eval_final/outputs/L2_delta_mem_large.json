@@ -1,0 +1,82 @@
+{
+  "experiment": "CLIO IOWarp L2B large \u2014 in-memory Option A (DeltaAI GH200 aarch64)",
+  "description": "PutBlob bypassed; blob_texts generated in memory. CLIO indexing and cross-unit queries are identical to CTE-backed version.",
+  "timestamp": "2026-04-08 09:09:32",
+  "environment": "DeltaAI GH200 aarch64, iowarp-venv python3.11",
+  "scales": [
+    {
+      "N_blobs": 500000,
+      "indexing_method": "in-memory (no CTE write \u2014 Option A bypass)",
+      "put_time_s": 62.5,
+      "put_throughput_blobs_per_s": 8000,
+      "put_note": "simulated at measured Docker throughput; actual CTE write bypassed to avoid kServer deadlock",
+      "gen_time_s": 2.126,
+      "clio_index_time_s": 56215.206,
+      "clio_index_throughput_blobs_per_s": 9,
+      "scanned_blobs": 500000,
+      "indexed_blobs": 500000,
+      "skipped_blobs": 0,
+      "corpus_profile_ms": 90.17,
+      "document_count": 500000,
+      "chunk_count": 500000,
+      "measurement_count": 1250000,
+      "distinct_units": [
+        "0,0,0,0,1,0,0",
+        "0,1,-1,0,0,0,0",
+        "0,1,0,0,0,0,0",
+        "1,-1,-2,0,0,0,0"
+      ],
+      "inspection_rate_pct": 0.01,
+      "queries": [
+        {
+          "query": "Temperature cross-unit (degF \u2192 degC)",
+          "description": "Find temperatures above 86\u00b0F (= 30\u00b0C)",
+          "ground_truth_matches": 31335,
+          "clio_scientific_results": 50,
+          "clio_scientific_time_ms": 302378.49,
+          "clio_precision": 0.0016,
+          "clio_lexical_results": 50,
+          "clio_lexical_time_ms": 77.5,
+          "raw_blobquery_results": 125000,
+          "clio_finds_cross_unit": true
+        },
+        {
+          "query": "Pressure cross-unit (psi \u2192 kPa)",
+          "description": "Find pressure between 13-15 psi (\u2248 89.6-103.4 kPa)",
+          "ground_truth_matches": 75067,
+          "clio_scientific_results": 50,
+          "clio_scientific_time_ms": 1243000.22,
+          "clio_precision": 0.0007,
+          "clio_lexical_results": 50,
+          "clio_lexical_time_ms": 100.9,
+          "raw_blobquery_results": 125000,
+          "clio_finds_cross_unit": true
+        },
+        {
+          "query": "Wind cross-unit (km/h \u2192 m/s)",
+          "description": "Find wind above 72 km/h (= 20 m/s)",
+          "ground_truth_matches": 62736,
+          "clio_scientific_results": 50,
+          "clio_scientific_time_ms": 739994.11,
+          "clio_precision": 0.0008,
+          "clio_lexical_results": 50,
+          "clio_lexical_time_ms": 156.0,
+          "raw_blobquery_results": 125000,
+          "clio_finds_cross_unit": true
+        },
+        {
+          "query": "Temperature range (degF \u2192 degC)",
+          "description": "Find temperatures between 32-50\u00b0F (= 0-10\u00b0C)",
+          "ground_truth_matches": 15794,
+          "clio_scientific_results": 50,
+          "clio_scientific_time_ms": 525865.23,
+          "clio_precision": 0.0032,
+          "clio_lexical_results": 50,
+          "clio_lexical_time_ms": 80.88,
+          "raw_blobquery_results": 125000,
+          "clio_finds_cross_unit": true
+        }
+      ]
+    }
+  ]
+}
