@@ -19,7 +19,7 @@
 
 set -euo pipefail
 
-BASE_DIR="/scratch/$USER"
+BASE_DIR="${BASE_DIR:-/work/nvme/bekn/sislam3}"
 USE_COPY=false
 
 if [[ "${1:-}" == "--copy" ]]; then

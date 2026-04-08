@@ -4,7 +4,7 @@
 # before submitting this script.  E.g.: #SBATCH --account=bbka-delta-gpu
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #SBATCH --job-name=clio_weak
-#SBATCH --account=YOUR_ACCOUNT         # <-- EDIT THIS to your allocation
+#SBATCH --account=bekn-dtai-gh
 #SBATCH --partition=ghx4
 #SBATCH --nodes=5
 #SBATCH --ntasks-per-node=1
@@ -30,9 +30,9 @@
 #   bash prepare_weak_data.sh
 #
 # This creates:
-#   /scratch/$USER/weak_phase_1/clio_shard_0.duckdb  (shard 0 only)
-#   /scratch/$USER/weak_phase_2/clio_shard_{0,1}.duckdb
-#   /scratch/$USER/weak_phase_4/clio_shard_{0,1,2,3}.duckdb
+#   ${WORK}/weak_phase_1/clio_shard_0.duckdb  (shard 0 only)
+#   ${WORK}/weak_phase_2/clio_shard_{0,1}.duckdb
+#   ${WORK}/weak_phase_4/clio_shard_{0,1,2,3}.duckdb
 # ---------------------------------------------------------------------------
 
 set -euo pipefail
@@ -40,9 +40,11 @@ set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p logs outputs
 
-source "$HOME/clio-venv/bin/activate"
+WORK="/work/nvme/bekn/sislam3"
+module load python/3.11.9
+source "${WORK}/clio-venv/bin/activate"
 
-REPO="$HOME/clio-search"
+REPO="/u/sislam3/clio-search"
 DIST_SCRIPT="$REPO/eval/eval_final/code/delta/distributed_clio.py"
 DRIVER_SCRIPT="$REPO/eval/eval_final/code/delta/D1_D6_experiments.py"
 
@@ -67,7 +69,7 @@ run_phase() {
                 --port 9201 \
                 --shard-id "$i" \
                 --total-shards "$n_workers" \
-                --db-path "/scratch/$USER/weak_phase_${n_workers}/clio_shard_${i}.duckdb" \
+                --db-path "${WORK}/weak_phase_${n_workers}/clio_shard_${i}.duckdb" \
                 > "logs/weak_worker_${i}_${n_workers}_${SLURM_JOB_ID}.log" 2>&1 &
         worker_urls="${worker_urls}${worker_urls:+,}http://${w}:9201"
     done
