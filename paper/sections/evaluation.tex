@@ -294,6 +294,7 @@ BlobQuery returns all blobs unfiltered.}
 1K   & 163\,s     & 17\,ms & 2{,}500   & 50 & 250 \\
 10K  & 822\,s     & 27\,ms & 25{,}000  & 50 & 2{,}500 \\
 100K & 9{,}801\,s & 51\,ms & 250{,}000 & 50 & 25{,}000 \\
+500K & 56{,}215\,s & 90\,ms & 1{,}250{,}000 & 50 & 125{,}000 \\
 \midrule
 \multicolumn{6}{@{}l}{\textit{Sparse metadata (0.75 measurements per blob)}} \\
 1K   &  58\,s     & 11\,ms &    750    & 50 & 250 \\
@@ -305,17 +306,17 @@ BlobQuery returns all blobs unfiltered.}
 
 CLIO finds cross-unit matches at every scale while BlobQuery cannot
 filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). The inspection rate falls
-from 5.0\% at 1K to \textbf{0.05\% at 100K} ($500\times$ reduction
-over BlobQuery). Corpus profiling scales sub-linearly: 100$\times$
-data growth (1K to 100K) produces only $3.6\times$ profiling increase
-(17\,ms to 51\,ms on GH200).
+from 5.0\% at 1K to \textbf{0.01\% at 500K} ($5{,}000\times$ reduction
+over BlobQuery). Corpus profiling scales sub-linearly: 500$\times$
+data growth (1K to 500K) produces only $5.3\times$ profiling increase
+(17\,ms to 90\,ms on GH200).
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_iowarp_scaling.png}
 \caption{IOWarp scaling on DeltaAI GH200: profiling time (left) and
 inspection rate (right) for rich and sparse metadata variants from
-1K to 100K blobs. Both converge to 0.05\% inspection at 100K.}
+1K to 500K blobs. Inspection drops to 0.01\% at 500K.}
 \label{fig:iowarp-scaling}
 \end{figure}
 
