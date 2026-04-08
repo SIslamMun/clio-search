@@ -278,20 +278,25 @@ both produce identical cross-unit results.
 
 \begin{table}[t]
 \centering
-\caption{CLIO vs.\ raw BlobQuery on IOWarp blobs (DeltaAI GH200).
-CLIO returns top-50 unit-converted matches; BlobQuery returns all
-blobs unfiltered. All cross-unit queries succeed at every scale.}
+\caption{CLIO on IOWarp blobs (DeltaAI GH200): rich metadata
+(2.5~meas/blob) and sparse metadata (0.75~meas/blob). CLIO returns
+top-50 unit-converted matches; BlobQuery returns all blobs unfiltered.}
 \label{tab:iowarp}
-\small
-\begin{tabular}{rrrrrr}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}r l r r r r r@{}}
 \toprule
-\textbf{Blobs} & \textbf{Index} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQuery} \\
+\textbf{Blobs} & \textbf{Variant} & \textbf{Index} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQ.} \\
 \midrule
-1K   & 163\,s   & 17\,ms & 2{,}500   & 50 & 250 (all) \\
-5K   & 348\,s   & 16\,ms & 12{,}500  & 50 & 1{,}250 (all) \\
-10K  & 822\,s   & 27\,ms & 25{,}000  & 50 & 2{,}500 (all) \\
-50K  & 4{,}718\,s & 45\,ms & 125{,}000 & 50 & 12{,}500 (all) \\
-100K & 9{,}801\,s & 51\,ms & 250{,}000 & 50 & 25{,}000 (all) \\
+1K   & rich   & 163\,s   & 17\,ms & 2{,}500   & 50 & 250 \\
+\rowcolor{gray!5}
+1K   & sparse &  58\,s   & 11\,ms &    750    & 50 & 250 \\
+10K  & rich   & 822\,s   & 27\,ms & 25{,}000  & 50 & 2{,}500 \\
+\rowcolor{gray!5}
+10K  & sparse & 702\,s   & 33\,ms &  7{,}500  & 50 & 2{,}500 \\
+100K & rich   & 9{,}801\,s & 51\,ms & 250{,}000 & 50 & 25{,}000 \\
+\rowcolor{gray!5}
+100K & sparse & 8{,}068\,s & 47\,ms &  75{,}000 & 50 & 25{,}000 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -306,9 +311,9 @@ data growth (1K to 100K) produces only $3.6\times$ profiling increase
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\columnwidth]{figures/fig_iowarp_scaling.png}
-\caption{IOWarp scaling: corpus profiling time (left axis) grows
-sub-linearly while inspection rate (right axis) drops from 5\% to
-0.1\% as blob count increases from 1K to 50K.}
+\caption{IOWarp scaling on DeltaAI GH200: profiling time (left) and
+inspection rate (right) for rich and sparse metadata variants from
+1K to 100K blobs. Both converge to 0.05\% inspection at 100K.}
 \label{fig:iowarp-scaling}
 \end{figure}
 
