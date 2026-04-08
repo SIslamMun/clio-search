@@ -266,11 +266,12 @@ without degradation via capability negotiation.
 \label{sec:storage-scaling}
 
 \textbf{IOWarp blob storage.}
-IOWarp is a distributed I/O middleware for HPC that manages scientific
-data as blobs organized in tags across tiered storage (RAM, NVMe,
-parallel filesystem). At its target scale of 10~billion blobs, the
-native BlobQuery API returns all blobs matching a tag regex with no
-content filtering. CLIO
+IOWarp is an NSF-funded open-source platform for managing scientific
+data at HPC scale. Its core engine organizes data as blobs within
+tags across tiered storage (RAM, NVMe, parallel filesystem), deployed
+at national laboratories including LLNL and ANL. At IOWarp's target scale of 10~billion blobs,
+the native BlobQuery API returns all blobs matching a tag regex with
+no content filtering. CLIO
 addresses this by indexing scientific metadata from blobs at ingest
 time. We store synthetic scientific blobs across four tags
 (temperature in \textdegree C, pressure in kPa, wind in m/s) and
