@@ -252,6 +252,11 @@ D & Full pipeline              & 0.99 & 0.99 \\
 corpus variants (rich 87.5\% density $\to$ scientific branch, sparse
 10.3\% $\to$ lexical+vector, no-metadata 4.4\% $\to$ lexical only)
 and activates unit conversion only when extractable measurements exist.
+We validate this on IOWarp blobs at scale: a rich-metadata variant
+(2.5 measurements/blob) and a sparse variant (0.75 measurements/blob)
+both achieve 0.05\% inspection rate at 100K blobs on DeltaAI GH200,
+with profiling at 51\,ms and 47\,ms respectively. CLIO adapts
+its strategy per variant while maintaining cross-unit correctness.
 Federated search across filesystem, S3, and HDF5 backends doubles
 coverage from 24.4\% to 47.2\%, with science operators composing
 without degradation via capability negotiation.
