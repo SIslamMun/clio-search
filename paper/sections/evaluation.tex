@@ -360,75 +360,27 @@ overhead.
 \textbf{Cross-unit correctness at distributed scale.}
 To verify that dimensional conversion remains correct when the corpus
 is distributed, we issue cross-unit probe queries against the 70K-document
-distributed corpus (4~shards on DeltaAI GH200). Table~\ref{tab:d4-crossunit}
-and Fig.~\ref{fig:d4-correctness} show that querying in different units
+distributed corpus (4~shards on DeltaAI GH200). Fig.~\ref{fig:d4-correctness} shows that querying in different units
 yields \emph{identical hit counts}: 100~kPa, 100{,}000~Pa, 1~bar, and
 0.987~atm all return exactly 12~hits; 30\textdegree C, 86\textdegree F,
-and 303.15~K all return exactly 20~hits. This confirms that SI
-canonicalization is consistent across shards.
+and 303.15~K all return exactly 20~hits at sub-50\,ms latency. This
+confirms that SI canonicalization is consistent across shards.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_d4_crossunit_correctness.png}
 \caption{Distributed cross-unit queries on 70K arXiv (4~GH200 nodes).
 All unit variants return identical hit counts (correctness) at
-sub-50\,ms latency. Pa is slower than kPa/bar/atm due to larger
-raw-value range scan.}
+sub-50\,ms latency.}
 \label{fig:d4-correctness}
 \end{figure}
 
-\begin{table}[t]
-\centering
-\caption{Cross-unit correctness on 70K distributed arXiv documents
-(4~shards, DeltaAI GH200). Different unit expressions for the same
-physical quantity return identical hit counts.}
-\label{tab:d4-crossunit}
-\small
-\begin{tabular}{llrrr}
-\toprule
-\textbf{Quantity} & \textbf{Query unit} & \textbf{Value} & \textbf{Hits} & \textbf{Latency} \\
-\midrule
-Pressure & Pa     & 100{,}000 & 12 & 30\,ms \\
-\rowcolor{gray!5}
-Pressure & kPa    & 100       & 12 & 15\,ms \\
-Pressure & bar    & 1         & 12 & 14\,ms \\
-\rowcolor{gray!5}
-Pressure & atm    & 0.987     & 12 & 14\,ms \\
-\midrule
-Temperature & degC   & 30     & 20 & 49\,ms \\
-\rowcolor{gray!5}
-Temperature & degF   & 86     & 20 & 44\,ms \\
-Temperature & kelvin & 303.15 & 20 & 43\,ms \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \textbf{Numeric query coverage at scale.}
 We run 20~scientific numeric queries spanning 16~unit types (GeV, nm,
-GHz, kelvin, kPa, tesla, etc.) against the distributed corpus
-(Table~\ref{tab:d5-numconq}). All 20~queries return results with
-\textbf{100\% hit rate}, p50 latency of 42\,ms, and p99 of 62\,ms.
-This demonstrates that CLIO's unit registry generalizes beyond the
-controlled benchmark to real scientific literature at scale.
-
-\begin{table}[t]
-\centering
-\caption{Numeric query coverage on distributed 70K arXiv corpus.
-20~queries across 16~unit types, 3~repeats each.}
-\label{tab:d5-numconq}
-\small
-\begin{tabular}{lr}
-\toprule
-\textbf{Metric} & \textbf{Value} \\
-\midrule
-Queries          & 20 (16 unit types) \\
-Hit rate         & 100\% (20/20) \\
-p50 latency      & 42\,ms \\
-p95 latency      & 57\,ms \\
-p99 latency      & 62\,ms \\
-\bottomrule
-\end{tabular}
-\end{table}
+GHz, kelvin, kPa, tesla, etc.) against the distributed corpus. All
+20~queries return results with \textbf{100\% hit rate} at p50 latency
+of 42\,ms, demonstrating that CLIO's unit registry generalizes beyond
+the controlled benchmark to real scientific literature.
 
 \textbf{Limitations.} The regex extractor misses non-standard formats
 (``$2 \times 10^3$~Pa''), achieving 95\% precision / 90\% recall.
