@@ -4,15 +4,15 @@ To address the three challenges identified in Section~1, we design CLIO Search a
 
 \subsection{Architecture Overview}
 
-\begin{figure}[!t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=\columnwidth]{figures/Gemini_Generated_arc.png}
+\includegraphics[width=\textwidth]{figures/Gemini_Generated_arc.png}
 \caption{System architecture of \textsc{clio-agentic-search}. Nine connectors
 mediate heterogeneous backends; science-aware components execute alongside
 standard retrieval branches. The agentic loop iteratively refines queries
 via LLM rewriting.}
 \label{fig:architecture}
-\end{figure}
+\end{figure*}
 
 The system is a staged pipeline with four parallel retrieval branches (Fig.~\ref{fig:architecture}). A query enters through the Query Interface (FastAPI REST endpoint or CLI), which parses the raw query string, extracts typed scientific constraints (numeric ranges, unit filters, formula patterns), and forwards a structured query object to the Namespace Registry. The registry resolves which namespaces, each backed by one of nine connector types, are eligible for the query based on capability negotiation (Sec.~3.5).
 
