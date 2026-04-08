@@ -210,14 +210,14 @@ Hybrid          & 0.375 & 0.021 & 0.388 & 0.708 \\
 \end{tabular}
 \end{table}
 
-\textbf{Formula matching.} On 10~formula queries, BM25 achieves R@5 of
-0.48 via loose text matching; CLIO achieves R@5 of 0.10 via strict
-symbolic equivalence. CLIO underperforms BM25 on this task because its
-formula operator requires exact structural equivalence after
-canonicalization, while BM25 matches formula-related tokens loosely.
-This is a deliberate precision-over-recall trade-off: CLIO produces
-fewer but more reliable matches. Improving formula recall without
-sacrificing precision is future work.
+\textbf{Formula matching (preliminary).} On 10~formula queries, BM25
+achieves R@5 of 0.48 via loose text matching; CLIO achieves R@5 of
+0.10 via strict symbolic equivalence. CLIO's formula operator requires
+exact structural equivalence after canonicalization, producing fewer
+but more reliable matches. We include formula normalization as a
+proof-of-concept for combining symbolic and numeric operators in a
+single retrieval pipeline; improving recall without sacrificing
+precision is future work.
 
 \textbf{Ablation.} Adding science operators (B$\to$C in
 Table~\ref{tab:ablation}) produces the dominant gain: P@5 jumps from
@@ -257,9 +257,9 @@ We validate this on IOWarp blobs at scale: a rich-metadata variant
 both achieve 0.05\% inspection rate at 100K blobs on DeltaAI GH200,
 with profiling at 51\,ms and 47\,ms respectively. CLIO adapts
 its strategy per variant while maintaining cross-unit correctness.
-Federated search across filesystem, S3, and HDF5 backends doubles
-coverage from 24.4\% to 47.2\%, with science operators composing
-without degradation via capability negotiation.
+Federated search across filesystem, S3, and HDF5 backends recovers
+documents that any single backend misses, with science operators
+composing without degradation via capability negotiation.
 
 %% =====================================================================
 \subsection{Storage Integration and Scaling}
