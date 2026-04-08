@@ -38,55 +38,55 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \textbf{Agentic retrieval.} Pezzuti et al.~\cite{agentic_search_picture2026} formalize the emerging shift from human-centric to agent-centric information retrieval, releasing the ASQ dataset of reasoning-induced queries that differ systematically from human queries. Context-1~\cite{context1_2026} trains a 20B-token agentic search agent. PRISM~\cite{prism2025} decomposes retrieval into precision/recall subagents. Agentic-R~\cite{agenticr2026} co-trains retrievers with answer-correctness rewards (10 to 13\% multi-hop gains). CLADD~\cite{cladd2025} and SciAgent~\cite{sciagent2025} add domain knowledge operators for drug discovery and scientific workflows. SciToolAgent~\cite{scitoolagent2025} uses a knowledge graph to select among hundreds of scientific tools with 94\% accuracy. These systems advance orchestration and learned retrieval but none incorporates arithmetic dimensional conversion or formula normalization into the retrieval pipeline. Our work is complementary: PRISM and Agentic-R could be layered on top of our science-aware operators.
 
-\begin{table*}[!t]
+\begin{table}[!t]
 \centering
-\caption{Capability comparison across retrieval and scientific data systems. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
+\caption{Capability comparison. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
 \label{tab:comparison}
-\renewcommand{\arraystretch}{1.2}
-\resizebox{\textwidth}{!}{%
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{l c c c c c c c c c c}
+\renewcommand{\arraystretch}{1.05}
+\resizebox{\columnwidth}{!}{%
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}l c c c c c c c c c c@{}}
 \toprule
- & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
+ & \multicolumn{5}{c}{\textbf{Ours}} & \multicolumn{5}{c}{\textbf{General}} \\
 \cmidrule(lr){2-6} \cmidrule(lr){7-11}
 \textbf{System}
-  & \rotatebox{60}{\scriptsize SI Conv.}
-  & \rotatebox{60}{\scriptsize Formula}
-  & \rotatebox{60}{\scriptsize Sci.\ Branches}
-  & \rotatebox{60}{\scriptsize Federated}
-  & \rotatebox{60}{\scriptsize HDF5/NetCDF}
-  & \rotatebox{60}{\scriptsize Agentic}
-  & \rotatebox{60}{\scriptsize Qty.\ Extract.}
-  & \rotatebox{60}{\scriptsize Paper Search}
-  & \rotatebox{60}{\scriptsize Data Search}
-  & \rotatebox{60}{\scriptsize LLM Integr.} \\
+  & \rotatebox{70}{\tiny SI}
+  & \rotatebox{70}{\tiny Form.}
+  & \rotatebox{70}{\tiny Sci.Br.}
+  & \rotatebox{70}{\tiny Feder.}
+  & \rotatebox{70}{\tiny HDF5}
+  & \rotatebox{70}{\tiny Agent.}
+  & \rotatebox{70}{\tiny Qty.}
+  & \rotatebox{70}{\tiny Paper}
+  & \rotatebox{70}{\tiny Data}
+  & \rotatebox{70}{\tiny LLM} \\
 \midrule
 \rowcolor{gray!15}
-\textbf{CLIO (ours)}   & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
-PANGAEA-GPT            & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
+\textbf{CLIO}   & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+PANGAEA-GPT     & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
 \rowcolor{gray!5}
-LLM-Find               & \xmark & \xmark & \xmark & $\circ$ & \xmark & \cmark & \xmark & \xmark & \cmark & \cmark \\
-OpenScholar            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+LLM-Find        & \xmark & \xmark & \xmark & $\circ$ & \xmark & \cmark & \xmark & \xmark & \cmark & \cmark \\
+OpenScholar     & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-HiPerRAG               & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-Numbers Matter!        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+HiPerRAG        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+Num.\ Matter!   & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
 \rowcolor{gray!5}
-NC-Retriever           & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CONE                   & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+NC-Retriever    & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CONE            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
 \rowcolor{gray!5}
-DeepQuant              & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-Context-1              & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+DeepQuant       & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+Context-1       & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-SciToolAgent           & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-CLADD                  & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciToolAgent    & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+CLADD           & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-SciAgent               & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciAgent        & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
 \end{tabular}%
 }% end resizebox
 \renewcommand{\arraystretch}{1.15}
-\end{table*}
+\end{table}
 
 Table~\ref{tab:comparison} summarizes the landscape across 13 systems. Individual capabilities exist in isolation: UDUNITS converts units offline, PANGAEA-GPT validates scales post-hoc, Numbers Matter! indexes quantities as strings, DeepQuant engineers quantity-aware dense indices, OpenScholar searches papers at scale, NC-Retriever and CONE learn numeric embeddings. No prior system integrates arithmetic SI conversion as a first-class retrieval operator, combines it with formula normalization, profiles corpora before querying, or federates across HPC backends with per-connector capability negotiation. We mark capabilities we lack: CLIO does not index papers. PANGAEA-GPT and LLM-Find receive partial credit for data search and federation respectively, but neither performs arithmetic unit conversion at retrieval time.
 
