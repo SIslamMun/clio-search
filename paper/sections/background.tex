@@ -40,51 +40,50 @@ Three lineages attempt to make retrieval quantity-aware. None succeeds at arithm
 
 \begin{table}[!t]
 \centering
-\caption{Capability comparison. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
+\caption{Capability comparison across 13 retrieval and scientific data systems. \cmark~=~supported, \xmark~=~not supported, $\circ$~=~partial.}
 \label{tab:comparison}
-\renewcommand{\arraystretch}{1.05}
+\renewcommand{\arraystretch}{1.15}
 \resizebox{\columnwidth}{!}{%
-\scriptsize
-\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}l c c c c c c c c c c@{}}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l ccccc ccccc@{}}
 \toprule
- & \multicolumn{5}{c}{\textbf{Ours}} & \multicolumn{5}{c}{\textbf{General}} \\
+ & \multicolumn{5}{c}{\textbf{Our Contributions}} & \multicolumn{5}{c}{\textbf{General Capabilities}} \\
 \cmidrule(lr){2-6} \cmidrule(lr){7-11}
-\textbf{System}
-  & \rotatebox{70}{\tiny SI}
-  & \rotatebox{70}{\tiny Form.}
-  & \rotatebox{70}{\tiny Sci.Br.}
-  & \rotatebox{70}{\tiny Feder.}
-  & \rotatebox{70}{\tiny HDF5}
-  & \rotatebox{70}{\tiny Agent.}
-  & \rotatebox{70}{\tiny Qty.}
-  & \rotatebox{70}{\tiny Paper}
-  & \rotatebox{70}{\tiny Data}
-  & \rotatebox{70}{\tiny LLM} \\
+ & \rotatebox{65}{\scriptsize SI Conv.}
+ & \rotatebox{65}{\scriptsize Formula}
+ & \rotatebox{65}{\scriptsize Sci.\ Branch}
+ & \rotatebox{65}{\scriptsize Federated}
+ & \rotatebox{65}{\scriptsize HDF5}
+ & \rotatebox{65}{\scriptsize Agentic}
+ & \rotatebox{65}{\scriptsize Qty.\ Extr.}
+ & \rotatebox{65}{\scriptsize Paper}
+ & \rotatebox{65}{\scriptsize Data}
+ & \rotatebox{65}{\scriptsize LLM} \\
 \midrule
 \rowcolor{gray!15}
-\textbf{CLIO}   & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
-PANGAEA-GPT     & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
+\textbf{CLIO (ours)} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+PANGAEA-GPT          & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & $\circ$ & \xmark & \cmark & \cmark \\
 \rowcolor{gray!5}
-LLM-Find        & \xmark & \xmark & \xmark & $\circ$ & \xmark & \cmark & \xmark & \xmark & \cmark & \cmark \\
-OpenScholar     & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+LLM-Find             & \xmark & \xmark & \xmark & $\circ$ & \xmark & \cmark & \xmark & \xmark & \cmark & \cmark \\
+OpenScholar          & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-HiPerRAG        & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
-Num.\ Matter!   & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+HiPerRAG             & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \cmark \\
+Numbers Matter!      & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
 \rowcolor{gray!5}
-NC-Retriever    & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-CONE            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+NC-Retriever         & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+CONE                 & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
 \rowcolor{gray!5}
-DeepQuant       & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
-Context-1       & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+DeepQuant            & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+Context-1            & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-SciToolAgent    & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
-CLADD           & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciToolAgent         & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+CLADD                & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \rowcolor{gray!5}
-SciAgent        & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
+SciAgent             & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark & \xmark & \xmark & \cmark \\
 \bottomrule
 \end{tabular}%
-}% end resizebox
+}
 \renewcommand{\arraystretch}{1.15}
 \end{table}
 
