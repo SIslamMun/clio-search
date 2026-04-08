@@ -1,12 +1,13 @@
 \section{Evaluation}
 \label{sec:evaluation}
 
-We evaluate CLIO along three axes: (1)~agentic efficiency---does CLIO
-reduce LLM token consumption and latency compared to raw catalog access?
-(2)~science-aware accuracy---do dimensional conversion and formula
-normalization improve retrieval precision where text-based methods fail?
-(3)~storage integration and scaling---can CLIO serve as the search layer
-for IOWarp's tiered blob storage and scale across distributed HPC nodes?
+We evaluate CLIO along three axes: (1)~agentic efficiency, whether CLIO
+reduces LLM token consumption and latency compared to raw catalog access;
+(2)~science-aware accuracy, whether dimensional conversion and formula
+normalization improve retrieval precision where text-based methods fail;
+and (3)~storage integration and scaling, whether CLIO can serve as the
+search layer for IOWarp's tiered blob storage and scale across
+distributed HPC nodes.
 
 \subsection{Experimental Setup}
 \label{sec:setup}
@@ -224,7 +225,7 @@ Table~\ref{tab:ablation}) produces the dominant gain: P@5 jumps from
 0.36 to 0.99 (+0.63). The full pipeline (D) adds no further gain on
 this benchmark, confirming that cross-unit matching is the bottleneck.
 A no-LLM fallback achieves 96\% of LLM-assisted P@5, confirming that
-the operators---not the language model---drive gains.
+the operators, not the language model, drive gains.
 
 \begin{table}[!t]
 \centering
@@ -254,8 +255,8 @@ corpus variants (rich 87.5\% density $\to$ scientific branch, sparse
 and activates unit conversion only when extractable measurements exist.
 We validate this on IOWarp blobs at scale: a rich-metadata variant
 (2.5 measurements/blob) and a sparse variant (0.75 measurements/blob)
-both achieve 0.05\% inspection rate at 100K blobs on DeltaAI GH200,
-with profiling at 51\,ms and 47\,ms respectively. CLIO adapts
+both achieve 0.01\% inspection rate at 500K blobs on DeltaAI GH200,
+with profiling at 90\,ms and 47\,ms (at 100K) respectively. CLIO adapts
 its strategy per variant while maintaining cross-unit correctness.
 Federated search across filesystem, S3, and HDF5 backends recovers
 documents that any single backend misses, with science operators
