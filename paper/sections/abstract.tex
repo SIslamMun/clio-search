@@ -1,5 +1,5 @@
 \begin{abstract}
 Scientific data search requires human reasoning that does not scale: inspecting corpora, adapting to metadata quality, converting between unit conventions, refining iteratively. Automating it demands agentic search, yet three gaps make this hard: dimensional blindness (200~kPa must match 200000~Pa through arithmetic no system performs), metadata heterogeneity (datasets range from richly annotated to bare files), and storage fragmentation (data spans backends no engine federates).
 We present CLIO Search, which closes all three through an observe-decide-act-evaluate cycle. Science-aware operators execute deterministic SI conversion and formula normalization alongside BM25 and dense search. CLIO inspects what metadata each corpus provides and adapts accordingly. Federated search spans heterogeneous HPC backends with agentic refinement.
-CLIO achieves 0.99~P@5 on cross-unit queries versus 0.40 for the strongest baseline, improves precision 87\% on real NOAA data, and returns results in under 50\,ms across 2.5M~documents at distributed scale. Code and benchmarks will be released.
+CLIO achieves 0.99~P@5 on cross-unit queries versus 0.40 for the strongest baseline, improves precision 87\% on real NOAA data, and returns results in under 50\,ms across 2.5M~documents at distributed scale. All code and benchmarks will be released.
 \end{abstract}
