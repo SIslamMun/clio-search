@@ -47,7 +47,7 @@ Negative controls   & 10 & No extractable measurements \\
 \midrule
 \multicolumn{3}{@{}l}{\textbf{Queries:} 40 cross-unit, 20 same-unit, 10 formula, 10 multi} \\
 \bottomrule
-\multicolumn{3}{@{}l}{\scriptsize $^\dagger$hPa is unsupported; tests graceful degradation.}
+\multicolumn{3}{@{}l}{\scriptsize $^\dagger$hPa was unsupported during benchmark construction; now in the registry.}
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
 \end{table}
@@ -105,6 +105,14 @@ native agent spawns 9~sub-agents (563K main + 426K sub-agent tokens);
 NDP-MCP injects raw catalog JSON (989K main tokens). CLIO avoids both
 by indexing catalog content locally and returning $\sim$2K tokens of
 ranked citations per query (Fig.~\ref{fig:l1-three-path}).
+The token reduction demonstrates that CLIO performs search reasoning
+that would otherwise consume LLM context: corpus profiling, branch
+selection, unit conversion, and result ranking all execute locally as
+deterministic operations, leaving the agent to focus on interpreting
+results rather than navigating heterogeneous data. No other retrieval
+system profiles a corpus before querying it, adapts its strategy per
+dataset, or combines domain-aware operators with federated backend
+access in a single pipeline.
 We note that 10~queries is a limited sample; the experiment measures
 relative cost across three paths on the same queries rather than
 establishing population-level confidence intervals.
@@ -126,9 +134,12 @@ On 40~cross-unit queries (Table~\ref{tab:crossunit}), text baselines
 cannot match across SI prefixes: a query for ``200~kPa'' never
 lexically matches ``200000~Pa.'' BM25 achieves P@5 of 0.40; our
 pipeline canonicalizes to SI base units at index time and achieves
-\textbf{P@5 of 0.99} (+0.59 absolute). On same-unit controls, all
-methods score within 0.05 P@5, confirming gains are specific to
-cross-unit matching.
+\textbf{P@5 of 0.99} (+0.59 absolute) on the controlled benchmark.
+On same-unit controls, all methods score within 0.05 P@5, confirming
+gains are specific to cross-unit matching. R@5 is low across all
+methods (0.07--0.19) because the 210-document corpus produces
+approximately 42 relevant documents per query on average, making
+recall at $K{=}5$ structurally bounded.
 
 \begin{table}[!t]
 \centering
@@ -419,6 +430,10 @@ P@5 or MRR because no ground-truth relevance judgments exist for this
 corpus. The controlled benchmark (210~documents) is synthetic with
 deliberately planted unit heterogeneity; the NOAA evaluation
 (288~real documents) partially addresses ecological validity.
+DuckDB's single-writer model could bottleneck concurrent ingest at
+facility scale. The Python implementation prioritizes correctness and
+extensibility; production deployment at exascale facilities may require
+a compiled-language core for indexing and scoring paths.
 
 %% ===================================================================
 %% Section 6: Conclusion
