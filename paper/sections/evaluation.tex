@@ -266,10 +266,10 @@ without degradation via capability negotiation.
 \label{sec:storage-scaling}
 
 \textbf{IOWarp blob storage.}
-IOWarp (Sec.~3.1) manages scientific data as blobs across tiered
-HPC storage. At its target scale of 10~billion blobs,
-the native BlobQuery API returns all blobs matching a tag regex with
-no content filtering. CLIO
+IOWarp's Context Transfer Engine (Sec.~3.1) organizes scientific data
+as blobs grouped under tags across tiered storage. Its native
+BlobQuery API returns all blobs matching a tag regex with no content
+filtering. CLIO
 addresses this by indexing scientific metadata from blobs at ingest
 time. We store synthetic scientific blobs across four tags
 (temperature in \textdegree C, pressure in kPa, wind in m/s) and
