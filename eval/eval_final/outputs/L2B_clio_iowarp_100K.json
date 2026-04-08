@@ -1,0 +1,17 @@
+{
+  "experiment": "L2-B: CLIO + IOWarp CTE Integration (100K scale)",
+  "timestamp": "2026-04-07",
+  "environment": "Docker iowarp/deps-cpu:latest with --shm-size=32g",
+  "scale": {
+    "N_blobs": 100000,
+    "put_time_s": 12.62,
+    "put_throughput_blobs_per_s": 7924,
+    "clio_index_time_s": 10381.41,
+    "clio_index_throughput_blobs_per_s": 10,
+    "corpus_profile_ms": 71.77,
+    "document_count": 100000,
+    "chunk_count": 100000,
+    "measurement_count": 275000,
+    "inspection_rate_pct": 0.05
+  }
+}

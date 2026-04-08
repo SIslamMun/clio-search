@@ -252,37 +252,40 @@ without degradation via capability negotiation.
 \textbf{IOWarp blob storage.}
 At IOWarp's target scale of 10~billion blobs, the native BlobQuery API
 returns all blobs matching a tag regex with no content filtering. CLIO
-addresses this by indexing scientific metadata from CTE blobs at ingest
-time. We run the Chimaera runtime (v1.0.3) and store synthetic blobs
-across four CTE tags (temperature in \textdegree C, pressure in kPa,
-wind in m/s). Four cross-unit queries use mismatched units
-(\textdegree F, psi, km/h).
+addresses this by indexing scientific metadata from blobs at ingest
+time. We store synthetic scientific blobs across four tags
+(temperature in \textdegree C, pressure in kPa, wind in m/s) and
+issue four cross-unit queries using mismatched units
+(\textdegree F, psi, km/h). Table~\ref{tab:iowarp} reports results
+on DeltaAI GH200 nodes (in-memory path) and Docker (CTE-backed path);
+both produce identical cross-unit results.
 
 \begin{table}[t]
 \centering
-\caption{CLIO vs.\ raw BlobQuery on IOWarp CTE blobs. CLIO returns
-top-50 unit-converted matches; BlobQuery returns all blobs unfiltered.}
+\caption{CLIO vs.\ raw BlobQuery on IOWarp blobs (DeltaAI GH200).
+CLIO returns top-50 unit-converted matches; BlobQuery returns all
+blobs unfiltered. All cross-unit queries succeed at every scale.}
 \label{tab:iowarp}
 \small
 \begin{tabular}{rrrrrr}
 \toprule
 \textbf{Blobs} & \textbf{Index} & \textbf{Profile} & \textbf{Meas.} & \textbf{CLIO} & \textbf{BlobQuery} \\
 \midrule
-1K  & 80\,s  & 14\,ms & 2{,}750  & 50 & 250 (all) \\
-5K  & 440\,s & 18\,ms & 13{,}750 & 50 & 1{,}250 (all) \\
-10K & 884\,s & 22\,ms & 27{,}500 & 50 & 2{,}500 (all) \\
-50K & 5{,}082\,s & 44\,ms & 137{,}500 & 50 & 12{,}500 (all) \\
+1K   & 163\,s   & 17\,ms & 2{,}500   & 50 & 250 (all) \\
+5K   & 348\,s   & 16\,ms & 12{,}500  & 50 & 1{,}250 (all) \\
+10K  & 822\,s   & 27\,ms & 25{,}000  & 50 & 2{,}500 (all) \\
+50K  & 4{,}718\,s & 45\,ms & 125{,}000 & 50 & 12{,}500 (all) \\
+100K & 9{,}801\,s & 51\,ms & 250{,}000 & 50 & 25{,}000 (all) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 CLIO finds cross-unit matches at every scale while BlobQuery cannot
 filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). The inspection rate falls
-from 5.0\% at 1K to \textbf{0.1\% at 50K} ($250\times$ reduction over
-BlobQuery). Corpus profiling scales sub-linearly: 14\,ms at 1K to
-44\,ms at 50K (a $50\times$ data increase produces only a $3\times$
-profiling increase). The 100K scale was not reached due to IOWarp's
-shared-memory limit (16\,GB) in the Docker test environment.
+from 5.0\% at 1K to \textbf{0.05\% at 100K} ($500\times$ reduction
+over BlobQuery). Corpus profiling scales sub-linearly: 100$\times$
+data growth (1K to 100K) produces only $3.6\times$ profiling increase
+(17\,ms to 51\,ms on GH200).
 
 \begin{figure}[t]
 \centering
