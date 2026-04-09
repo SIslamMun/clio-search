@@ -28,7 +28,7 @@ across documents. Ground truth is generated programmatically: a
 document is relevant to a query if and only if it contains a
 measurement within the query's numeric range after SI conversion.
 80~queries test cross-unit, same-unit, formula, and multi-constraint
-retrieval. We additionally validate on 288 real NOAA observatory
+retrieval. We also validate on 288 real NOAA observatory
 documents~\cite{ghcn2012} to assess ecological validity.
 
 \begin{table}[!t]
@@ -307,8 +307,8 @@ returns all blobs unfiltered.}
 
 CLIO finds cross-unit matches at every scale while BlobQuery cannot
 filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). For the rich-metadata variant, the inspection rate falls
-from 5.0\% at 1K to \textbf{0.01\% at 500K} ($5{,}000\times$ reduction
-over BlobQuery). Corpus profiling scales sub-linearly: 500$\times$
+from 5.0\% at 1K to \textbf{0.01\% at 500K} ($500\times$ reduction in
+inspection rate). Corpus profiling scales sub-linearly: 500$\times$
 data growth (1K to 500K) produces only $5.3\times$ profiling increase
 (17\,ms to 90\,ms on GH200).
 
