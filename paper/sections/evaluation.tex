@@ -115,7 +115,7 @@ focus on interpreting results rather than navigating raw data.
 CLIO resolves 9 of 10~queries in a single search invocation; one
 multi-constraint query (Q10) required 4~invocations as the agent
 iteratively refined its search terms. By contrast, the native agent
-averages 25.6~tool calls per query and NDP-MCP averages 6.2.
+averages 25.6~tool calls per query and NDP-MCP averages 7.6.
 We note that 10~queries is a limited sample; the experiment measures
 relative cost across three paths on the same queries.
 
@@ -138,10 +138,10 @@ lexically matches ``200000~Pa.'' BM25 achieves P@5 of 0.40; our
 pipeline canonicalizes to SI base units at index time and achieves
 \textbf{P@5 of 0.99} (+0.59 absolute) on the controlled benchmark.
 On same-unit controls, all methods score within 0.05 P@5, confirming
-gains are specific to cross-unit matching. R@5 is low across all
-methods (0.07--0.19) because the 210-document corpus produces
-approximately 42 relevant documents per query on average, making
-recall at $K{=}5$ structurally bounded.
+gains are specific to cross-unit matching. R@5 is low across all methods (0.07--0.19)
+because the 210-document corpus produces approximately 42 relevant
+documents per query on average, making recall at $K{=}5$ structurally
+bounded.
 
 \begin{table}[!t]
 \centering
@@ -254,12 +254,9 @@ D & Full pipeline              & 0.99 & 0.99 \\
 corpus variants (rich 87.5\% density $\to$ scientific branch, sparse
 10.3\% $\to$ lexical+vector, no-metadata 4.4\% $\to$ lexical only)
 and activates unit conversion only when extractable measurements exist.
-We validate this on IOWarp blobs at scale: a rich-metadata variant
-(2.5 measurements/blob) achieves 0.01\% inspection rate at 500K blobs
-on DeltaAI GH200 with profiling at 90\,ms; a sparse variant
-(0.75 measurements/blob) achieves 0.05\% at 100K with profiling at
-47\,ms. CLIO adapts its strategy per variant while maintaining
-cross-unit correctness.
+We validate this on IOWarp blobs at scale: the rich variant
+(2.5~meas/blob) achieves 0.01\% inspection at 500K (90\,ms profiling);
+the sparse variant (0.75~meas/blob) achieves 0.05\% at 100K (47\,ms).
 To evaluate federated search, we index 100~namespaces (30~rich-scientific, 30~sparse, 30~pure-text, 5~formula, 5~empty) and issue cross-unit queries. Corpus profiling achieves \textbf{routing recall of 1.0} (zero false negatives) while skipping 52\% of namespaces that lack scientific metadata at 9\,ms per namespace, reducing search cost by 52\% with no recall loss.
 
 %% =====================================================================
@@ -267,12 +264,10 @@ To evaluate federated search, we index 100~namespaces (30~rich-scientific, 30~sp
 \label{sec:storage-scaling}
 
 \textbf{IOWarp blob storage.}
-IOWarp's Context Transfer Engine (Sec.~3.1) organizes scientific data
-as blobs grouped under tags across tiered storage. Its native
-BlobQuery API returns all blobs matching a tag regex with no content
-filtering. CLIO
-addresses this by indexing scientific metadata from blobs at ingest
-time. We store synthetic scientific blobs across four tags
+IOWarp's BlobQuery API returns all blobs matching a tag regex with
+no content filtering; CLIO addresses this by indexing scientific
+metadata from blobs at ingest time (Sec.~3.1). We store synthetic
+scientific blobs across four tags
 (temperature in \textdegree C, pressure in kPa, wind in m/s) and
 issue four cross-unit queries using mismatched units
 (\textdegree F, psi, km/h). Table~\ref{tab:iowarp} reports results
@@ -281,9 +276,10 @@ both produce identical cross-unit results.
 
 \begin{table}[t]
 \centering
-\caption{CLIO on IOWarp blobs (DeltaAI GH200). Rich = 2.5~meas/blob,
-Sparse = 0.75~meas/blob. CLIO returns top-50 unit-converted matches;
-BlobQuery returns all blobs unfiltered.}
+\caption{CLIO on IOWarp blobs (DeltaAI GH200). Rich (2.5~meas/blob)
+scales to 500K; sparse (0.75~meas/blob) validates adaptive strategy
+at 100K. CLIO returns top-50 unit-converted matches; BlobQuery
+returns all blobs unfiltered.}
 \label{tab:iowarp}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -293,6 +289,7 @@ BlobQuery returns all blobs unfiltered.}
 \midrule
 \multicolumn{6}{@{}l}{\textit{Rich metadata (2.5 measurements per blob)}} \\
 1K   & 163\,s     & 17\,ms & 2{,}500   & 50 & 250 \\
+5K   & 348\,s     & 16\,ms & 12{,}500  & 50 & 1{,}250 \\
 10K  & 822\,s     & 27\,ms & 25{,}000  & 50 & 2{,}500 \\
 50K  & 4{,}718\,s & 45\,ms & 125{,}000 & 50 & 12{,}500 \\
 100K & 9{,}801\,s & 51\,ms & 250{,}000 & 50 & 25{,}000 \\
@@ -300,17 +297,16 @@ BlobQuery returns all blobs unfiltered.}
 \midrule
 \multicolumn{6}{@{}l}{\textit{Sparse metadata (0.75 measurements per blob)}} \\
 1K   &  58\,s     & 11\,ms &    750    & 50 & 250 \\
+5K   & 300\,s     & 18\,ms &  3{,}750  & 50 & 1{,}250 \\
 10K  & 702\,s     & 33\,ms &  7{,}500  & 50 & 2{,}500 \\
 50K  & 3{,}852\,s & 41\,ms &  37{,}500 & 50 & 12{,}500 \\
 100K & 8{,}068\,s & 47\,ms &  75{,}000 & 50 & 25{,}000 \\
-\rowcolor{red!10}
-500K & \multicolumn{5}{c}{\textit{pending}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 CLIO finds cross-unit matches at every scale while BlobQuery cannot
-filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). The inspection rate falls
+filter by content (Table~\ref{tab:iowarp}, Fig.~\ref{fig:iowarp-scaling}). For the rich-metadata variant, the inspection rate falls
 from 5.0\% at 1K to \textbf{0.01\% at 500K} ($5{,}000\times$ reduction
 over BlobQuery). Corpus profiling scales sub-linearly: 500$\times$
 data growth (1K to 500K) produces only $5.3\times$ profiling increase
@@ -320,9 +316,9 @@ data growth (1K to 500K) produces only $5.3\times$ profiling increase
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_iowarp_scaling.png}
 \caption{IOWarp scaling on DeltaAI GH200: profiling time (left) and
-inspection rate (right). Rich metadata: 1K--500K blobs; sparse
-metadata: 1K--100K (500K pending). Inspection drops to 0.01\% at 500K
-for rich metadata.}
+inspection rate (right). Rich metadata (2.5 meas/blob) scales to 500K;
+sparse metadata (0.75 meas/blob) demonstrates adaptive strategy at
+100K. Inspection drops to 0.01\% at 500K.}
 \label{fig:iowarp-scaling}
 \end{figure}
 
@@ -395,9 +391,18 @@ rather than causing silent omission.
 Compound units (N/m$^2$, mol/L) are unsupported and fall back to
 lexical retrieval. The 58-unit registry (12~SI domains) is extensible
 by adding rows without code changes.
-Scaling beyond 4~GH200 nodes and 2.5M documents remains future work.
-The controlled benchmark is synthetic; the NOAA evaluation
-(288~real documents) partially addresses ecological validity.
+Our distributed experiments use 4~GH200 nodes on DeltaAI with DuckDB
+shards on the Lustre parallel filesystem. We scale \emph{data}, not
+nodes: weak scaling grows the corpus proportionally
+(625K$\to$2.5M), achieving 0.94 efficiency at $4\times$. Each shard
+is independent; coordination overhead stays under 3\,ms. This
+generalizes to more nodes without algorithmic changes, though
+validating at hundreds of nodes remains future work.
+P@5 is a mean over queries without confidence intervals; the
+40-query cross-unit and 80-query full benchmarks provide reasonable
+estimates but not statistical significance. The controlled benchmark
+is synthetic; the NOAA evaluation (288~real documents) partially
+addresses ecological validity.
 
 %% ===================================================================
 %% Section 6: Conclusion
