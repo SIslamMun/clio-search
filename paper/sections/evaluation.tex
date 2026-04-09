@@ -14,16 +14,22 @@ distributed HPC nodes.
 
 \textbf{Platforms.} Single-node experiments run on Linux 6.17 with
 Python 3.11, DuckDB 1.1, and all-MiniLM-L6-v2 embeddings (384-dim).
-Distributed experiments run on NCSA DeltaAI (NVIDIA GH200 Grace
-Hopper nodes) with a 2.5M arXiv abstract corpus. IOWarp experiments
-run inside Docker with the \texttt{iowarp/deps-cpu} image and
-Chimaera runtime v1.0.3.
+Distributed experiments run on NCSA DeltaAI using NVIDIA GH200 Grace
+Hopper nodes (72~ARM Neoverse V2 cores, 480\,GB unified CPU+GPU
+memory, NVLink-C2C, Slingshot-11) with a 2.5M arXiv abstract corpus
+across 4~DuckDB shards. IOWarp experiments run inside Docker with the
+\texttt{iowarp/deps-cpu} image and Chimaera runtime v1.0.3.
 
-\textbf{Controlled benchmark.} 210 documents across seven scientific
-domains (Table~\ref{tab:dataset}) with deliberate unit heterogeneity:
-the same physical quantities are expressed in different SI prefixes.
-80~queries with automatically generated ground truth. We additionally
-validate on 288 real NOAA observatory documents~\cite{ghcn2012}.
+\textbf{Controlled benchmark.} 210 synthetic documents across seven
+scientific domains (Table~\ref{tab:dataset}) with deliberate unit
+heterogeneity: each document contains known numeric-unit pairs, and
+the same physical quantities are expressed in different SI prefixes
+across documents. Ground truth is generated programmatically: a
+document is relevant to a query if and only if it contains a
+measurement within the query's numeric range after SI conversion.
+80~queries test cross-unit, same-unit, formula, and multi-constraint
+retrieval. We additionally validate on 288 real NOAA observatory
+documents~\cite{ghcn2012} to assess ecological validity.
 
 \begin{table}[!t]
 \centering
@@ -48,7 +54,7 @@ Negative controls   & 10 & No extractable measurements \\
 \midrule
 \multicolumn{3}{@{}l}{\textbf{Queries:} 40 cross-unit, 20 same-unit, 10 formula, 10 multi} \\
 \bottomrule
-\multicolumn{3}{@{}l}{\scriptsize $^\dagger$hPa was unsupported during benchmark construction; now in the registry.}
+\multicolumn{3}{@{}l}{\scriptsize $^\dagger$hPa was unsupported during benchmark construction; now in the registry. No benchmark query targets hPa.}
 \end{tabular}
 \renewcommand{\arraystretch}{1.15}
 \end{table}
@@ -70,7 +76,7 @@ We run 10~scientific discovery queries through three paths using
 \texttt{claude-sonnet-4-20250514} and the National Data Platform (NDP)
 catalog: (1)~a \textbf{Claude Native Agent} with no domain tools (uses
 web search and sub-agents), (2)~an agent with \textbf{NDP-MCP} catalog
-tools, and (3)~an agent with a single \textbf{CLIO} tool that indexes
+access, and (3)~an agent backed by \textbf{CLIO Search}, which indexes
 341~NDP datasets into DuckDB and returns ranked citations.
 
 \begin{table}[t]
@@ -106,6 +112,10 @@ ranked citations per query (Fig.~\ref{fig:l1-three-path}).
 Corpus profiling, branch selection, unit conversion, and result ranking
 all execute locally as deterministic operations, leaving the agent to
 focus on interpreting results rather than navigating raw data.
+CLIO resolves 9 of 10~queries in a single search invocation; one
+multi-constraint query (Q10) required 4~invocations as the agent
+iteratively refined its search terms. By contrast, the native agent
+averages 25.6~tool calls per query and NDP-MCP averages 6.2.
 We note that 10~queries is a limited sample; the experiment measures
 relative cost across three paths on the same queries.
 
@@ -245,13 +255,12 @@ corpus variants (rich 87.5\% density $\to$ scientific branch, sparse
 10.3\% $\to$ lexical+vector, no-metadata 4.4\% $\to$ lexical only)
 and activates unit conversion only when extractable measurements exist.
 We validate this on IOWarp blobs at scale: a rich-metadata variant
-(2.5 measurements/blob) and a sparse variant (0.75 measurements/blob)
-both achieve 0.01\% inspection rate at 500K blobs on DeltaAI GH200,
-with profiling at 90\,ms and 47\,ms (at 100K) respectively. CLIO adapts
-its strategy per variant while maintaining cross-unit correctness.
-Federated search across filesystem, S3, and HDF5 backends recovers
-documents that any single backend misses, with science operators
-composing without degradation via capability negotiation.
+(2.5 measurements/blob) achieves 0.01\% inspection rate at 500K blobs
+on DeltaAI GH200 with profiling at 90\,ms; a sparse variant
+(0.75 measurements/blob) achieves 0.05\% at 100K with profiling at
+47\,ms. CLIO adapts its strategy per variant while maintaining
+cross-unit correctness.
+To evaluate federated search, we index 100~namespaces (30~rich-scientific, 30~sparse, 30~pure-text, 5~formula, 5~empty) and issue cross-unit queries. Corpus profiling achieves \textbf{routing recall of 1.0} (zero false negatives) while skipping 52\% of namespaces that lack scientific metadata at 9\,ms per namespace, reducing search cost by 52\% with no recall loss.
 
 %% =====================================================================
 \subsection{Storage Integration and Scaling}
@@ -311,8 +320,9 @@ data growth (1K to 500K) produces only $5.3\times$ profiling increase
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_iowarp_scaling.png}
 \caption{IOWarp scaling on DeltaAI GH200: profiling time (left) and
-inspection rate (right) for rich and sparse metadata variants from
-1K to 500K blobs. Inspection drops to 0.01\% at 500K.}
+inspection rate (right). Rich metadata: 1K--500K blobs; sparse
+metadata: 1K--100K (500K pending). Inspection drops to 0.01\% at 500K
+for rich metadata.}
 \label{fig:iowarp-scaling}
 \end{figure}
 
@@ -379,17 +389,15 @@ generalizes beyond the controlled benchmark to real scientific
 literature at scale.
 
 \textbf{Limitations.} The regex extractor misses non-standard formats
-(``$2 \times 10^3$~Pa''), achieving 95\% precision / 90\% recall.
+(``$2 \times 10^3$~Pa''), achieving 95\% precision / 90\% recall;
+missed measurements fall through to lexical and vector branches
+rather than causing silent omission.
 Compound units (N/m$^2$, mol/L) are unsupported and fall back to
 lexical retrieval. The 58-unit registry (12~SI domains) is extensible
 by adding rows without code changes.
-The distributed evaluation uses 4~GH200 nodes and 2.5M documents;
-scaling to hundreds of nodes and billions of objects remains future
-work. The arXiv evaluation verifies cross-unit correctness and latency
-but does not report P@5 because no ground-truth relevance judgments
-exist for this corpus. The controlled benchmark (210~documents) is
-synthetic; the NOAA evaluation (288~real documents) partially addresses
-ecological validity.
+Scaling beyond 4~GH200 nodes and 2.5M documents remains future work.
+The controlled benchmark is synthetic; the NOAA evaluation
+(288~real documents) partially addresses ecological validity.
 
 %% ===================================================================
 %% Section 6: Conclusion
