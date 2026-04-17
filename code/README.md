@@ -1,99 +1,80 @@
-# clio-agentic-search
+# CLIO Search — Implementation
 
-[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![PyPI version](https://img.shields.io/pypi/v/clio-kit.svg)](https://pypi.org/project/clio-kit/)
-[![CI](https://github.com/iowarp/clio-kit/actions/workflows/quality_control.yml/badge.svg)](https://github.com/iowarp/clio-kit/actions/workflows/quality_control.yml)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
+Science-aware retrieval engine with an observe-decide-act-evaluate cycle for scientific data discovery. 13,100 lines of Python across 60 modules, with 275 tests.
 
-> **Status: Experimental** — API surface and storage format may change between minor releases. Suitable for research and evaluation; not yet recommended for production workloads.
+## Architecture
 
-Part of [**CLIO Kit**](https://github.com/iowarp/clio-kit) — the IoWarp platform's tooling layer for AI agents.
+```
+Query → Namespace Registry → Retrieval Coordinator → 4 parallel branches:
+  ├── Lexical (BM25, k1=1.2, b=0.75)
+  ├── Vector (MiniLM-L6-v2, 384-dim, cosine similarity)
+  ├── Graph (BFS depth=1, protocol-validated)
+  └── Scientific (SI conversion + formula normalization)
+→ Merge + Rerank (scientific hard filter) → Citations + Traces
+```
 
----
+The **AgenticRetriever** wraps this pipeline in a multi-hop loop with LLM query rewriting (expand, narrow, pivot, done).
 
-Hybrid retrieval engine for scientific computing corpora. Indexes documents into namespace-specific backends and supports lexical (BM25), vector, graph, metadata, and scientific-operator retrieval in one pipeline. DuckDB storage, FastAPI server, async job queue, OpenTelemetry tracing, Prometheus metrics.
+## Connectors (9 backends)
+
+| Connector | Capabilities | Location |
+|---|---|---|
+| Filesystem | Lexical, vector, scientific, profile | `connectors/filesystem/` |
+| S3 Object Store | Lexical, vector, scientific, profile | `connectors/object_store/` |
+| HDF5 (h5py) | Metadata, scientific | `connectors/hdf5/` |
+| NetCDF (xarray) | Metadata, scientific | `connectors/netcdf/` |
+| IOWarp CTE | Lexical, vector, scientific, profile | `connectors/iowarp/` |
+| NDP (CKAN API) | Lexical, scientific | `connectors/ndp/` |
+| KV Log Store | Lexical | `connectors/kv_log_store/` |
+| Qdrant Vector | Vector (stub) | `connectors/vector_store/` |
+| Neo4j Graph | Graph (stub) | `connectors/graph_store/` |
+
+## Science-aware operators
+
+- **SI unit conversion**: 58-unit registry across 12 physical domains. Converts measurements to SI base units via dimension vectors + scale factors. Correctness guaranteed by construction.
+- **Formula normalization**: 6-step deterministic pipeline (strip whitespace, lowercase, unify superscripts, split on equality, sort factors, rejoin).
+- **Corpus profiling**: SQL aggregations over indexed metadata — document count, measurement count, metadata density, unit domains — to decide which branches to activate.
 
 ## Quick start
 
 ```bash
-# Via the CLIO Kit launcher (recommended)
-uvx clio-kit search serve                    # Start the API server
-uvx clio-kit search query --namespace local_fs --q "pressure between 190 and 360 kPa"
-uvx clio-kit search index --namespace local_fs
-uvx clio-kit search list --namespace local_fs
-```
-
-### Development mode
-
-```bash
-cd clio-agentic-search
 uv sync --all-extras --dev
-uv run clio serve                            # Start dev server with hot reload
-uv run clio query --namespace local_fs --q "pressure > 200 kPa"
+uv run pytest tests/ -v          # 275 tests
+uv run ruff check src/ tests/    # Lint
+uv run mypy                      # Type check (strict)
+```
+
+## CLI
+
+```bash
+uv run clio query --q "pressure 200 kPa" --numeric-range "190:360:kPa"
+uv run clio query --q "F=ma" --formula "F=ma"
+uv run clio query --q "turbulence" --agentic --max-hops 3
 uv run clio index --namespace local_fs
+uv run clio serve                # FastAPI at localhost:8000
 ```
 
-## Features
+## Source layout
 
-- **Multi-namespace registry** with runtime/auth config bundles
-- **Connectors**: filesystem + DuckDB (`local_fs`), S3 object store, Qdrant vector store, Neo4j graph, Redis KV log
-- **Scientific retrieval operators**: numeric range (`unit`, `min`, `max`), unit matching, formula targeting (normalized signatures)
-- **Background indexing** job API with cancellation tokens and per-namespace serialized execution
-- **Retry/backoff** wrappers for connect/index operations
-- **Telemetry**: OpenTelemetry tracing (opt-in), Prometheus metrics at `/metrics`
-
-## API endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/health` | Liveness probe |
-| `GET` | `/version` | Package version |
-| `GET` | `/documents?namespace=<ns>` | List indexed documents and chunk counts |
-| `POST` | `/query` | Run retrieval, return citations + trace events |
-| `POST` | `/jobs/index` | Submit async index job |
-| `GET` | `/jobs/{job_id}` | Fetch job status/result |
-| `DELETE` | `/jobs/{job_id}` | Request cancellation |
-| `GET` | `/metrics` | Prometheus text exposition format |
-
-## CLI commands
-
-| Command | Description |
-|---------|-------------|
-| `clio query` | Run retrieval queries against a namespace |
-| `clio index` | Index documents into a namespace |
-| `clio list` | List indexed documents |
-| `clio seed` | Seed sample data for testing |
-| `clio serve` | Start the FastAPI server |
-
-## Environment variables
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `CLIO_LOCAL_ROOT` | `.` | Root directory for local filesystem connector |
-| `CLIO_STORAGE_PATH` | `.clio-agentic-search.duckdb` | DuckDB database path |
-| `CLIO_CORS_ORIGINS` | `*` | Allowed CORS origins |
-| `CLIO_OTEL_ENABLED` | `false` | Enable OpenTelemetry tracing (`1`/`true`/`yes`) |
-| `CLIO_ANN_BACKEND` | `exact` | ANN backend (`hnsw` when `[ann]` extra installed) |
-| `CLIO_CACHE_SHARDS` | `16` | Vector index shard count |
-| `CLIO_INDEX_DOCUMENT_BATCH_SIZE` | `32` | Documents per index batch |
-| `CLIO_LEXICAL_BATCH_SIZE` | `50000` | Lexical posting write batch size |
-
-See source for additional `CLIO_LEXICAL_*`, `CLIO_OBJECT_*`, `CLIO_VECTOR_*`, `CLIO_GRAPH_*`, `CLIO_KV_*` variables.
-
-## Quality checks
-
-```bash
-uv run ruff check .
-uv run ruff format --check .
-uv run mypy src/
-uv run pytest --ignore=tests/benchmarks -v
-uv run python -m clio_agentic_search.evals.quality_gate
+```
+src/clio_agentic_search/
+├── api/              FastAPI server + routes
+├── cli/              CLI (query, index, serve, list, seed)
+├── connectors/       9 storage backend connectors
+├── core/             NamespaceConnector protocol, registry
+├── indexing/         SI conversion, measurement extraction, formula normalization
+├── models/           Data contracts (ChunkRecord, CitationRecord, etc.)
+├── retrieval/        4-branch pipeline, agentic orchestrator, query rewriter
+├── storage/          DuckDB adapter (8-table schema)
+├── evals/            Quality gate
+├── telemetry/        OpenTelemetry + Prometheus
+├── jobs.py           Async indexing job queue
+└── retry.py          Retry/backoff wrappers
 ```
 
-## Benchmarks
+## Code style
 
-`tests/benchmarks/test_throughput.py` enforces p95 latency for smaller corpora by default. For 10k-chunk SLO enforcement:
-
-```bash
-CLIO_ENFORCE_LARGE_SLO=1 uv run pytest tests/benchmarks/ -v --benchmark-disable -k "10000_chunks"
-```
+- Python 3.11+, ruff (line-length=100, double quotes)
+- `dataclass(frozen=True, slots=True)` for value types
+- Type annotations everywhere, mypy strict mode
+- Protocol-based capabilities (`LexicalSearchCapable`, `VectorSearchCapable`, etc.)

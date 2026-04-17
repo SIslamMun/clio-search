@@ -13,7 +13,7 @@ All commands run from `code/` directory:
 ```bash
 cd code
 uv sync --all-extras --dev    # Install all dependencies
-uv run pytest tests/ -v       # Run all 283 tests
+uv run pytest tests/ -v       # Run all 275 tests
 uv run pytest tests/unit/ -v  # Unit tests only
 uv run pytest tests/unit/test_formula_normalization.py -v  # Single test file
 uv run pytest -k "test_measurement_range" -v  # Single test by name
@@ -98,7 +98,7 @@ Single DuckDB file with 8 tables. Schema in `storage/duckdb_store.py`. The two s
 
 ## Repository Layout
 
-- `code/` — Python implementation (~13K lines, 283 tests)
+- `code/` — Python implementation (~13K lines, 275 tests)
 - `paper/` — LaTeX paper (paper.tex, references.bib, paper.pdf, figures/)
 - `eval/` — Saved benchmark results (JSON)
 - `.planning/` — WTF-P paper planning infrastructure

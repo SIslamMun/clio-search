@@ -25,15 +25,35 @@ Thumbs.db
 # External reports
 deep-research-report.md
 
-# LaTeX build artifacts
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.log
-paper/*.out
-paper/*.fls
-paper/*.fdb_latexmk
-paper/*.synctex.gz
+# LaTeX build artifacts (all subdirs)
+paper/**/*.aux
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.log
+paper/**/*.out
+paper/**/*.fls
+paper/**/*.fdb_latexmk
+paper/**/*.synctex.gz
 
-# LaTeX scratch in repo root
+# LaTeX scratch
 texput.log
+
+# Large binaries
+*.whl
+
+# Eval data (too large for git)
+eval/eval_final/data/
+data/raw/
+
+# Eval logs
+eval/*.log
+
+# Claude
+CLAUDE.md
+
+# Planning
+.planning/
+
+# PDFs (generated)
+clio_search.pdf
+paper/paper.pdf

@@ -1,0 +1,34 @@
+{
+  "Q02": {
+    "elapsed_s": 13.72,
+    "total_tokens": 40052,
+    "main_usage": {
+      "input_tokens": 7,
+      "output_tokens": 260,
+      "cache_creation_input_tokens": 17734,
+      "cache_read_input_tokens": 22051
+    },
+    "tool_calls": [
+      "ToolSearch",
+      "mcp__clio__clio_search"
+    ],
+    "answer_length": 309,
+    "answer_snippet": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy (https://www.anthropic.com/legal/aup). Try rephrasing the request or attempting a different approach. If you are seeing this refusal repeatedly, try running /model claude-sonnet-4-20250514 to switch models."
+  },
+  "Q10": {
+    "elapsed_s": 9.6,
+    "total_tokens": 39811,
+    "main_usage": {
+      "input_tokens": 7,
+      "output_tokens": 210,
+      "cache_creation_input_tokens": 8131,
+      "cache_read_input_tokens": 31463
+    },
+    "tool_calls": [
+      "ToolSearch",
+      "mcp__clio__clio_search"
+    ],
+    "answer_length": 309,
+    "answer_snippet": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy (https://www.anthropic.com/legal/aup). Try rephrasing the request or attempting a different approach. If you are seeing this refusal repeatedly, try running /model claude-sonnet-4-20250514 to switch models."
+  }
+}
