@@ -173,12 +173,12 @@ Synthetic IOWarp blobs are generated at experiment time under four tags (tempera
 
 \artinpart{Installation and Deployment}
 
-Submit the provided Slurm scripts from \texttt{eval/eval\_final/code/deltaai/}:
+Submit the provided Slurm scripts from \texttt{eval/eval\_final/code/delta/}:
 \begin{itemize}
-\item \texttt{slurm\_l2\_mem.sh} --- IOWarp 1K to 100K
-\item \texttt{slurm\_l2\_mem\_large.sh} --- IOWarp 500K
+\item \texttt{slurm\_iowarp\_l2.sh} --- IOWarp 1K to 100K
+\item \texttt{slurm\_iowarp\_l2\_large.sh} --- IOWarp 500K
 \item \texttt{slurm\_iowarp\_l2c.sh} --- sparse-metadata variant
-\item distributed scaling scripts for 1, 2, and 4 workers
+\item \texttt{slurm\_strong\_scaling.sh}, \texttt{slurm\_weak\_scaling.sh} --- distributed scaling
 \end{itemize}
 
 \artcomp
