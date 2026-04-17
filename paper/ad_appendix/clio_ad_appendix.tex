@@ -1,0 +1,206 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tagging}
+\usepackage{url}
+
+\usepackage{sc26repro}
+
+% Uncomment/comment the following usetag lines
+% if you would like to get an explanation or an example.
+% Don't forget to comment them for the final submission.
+%\usetag{explanation}
+%\usetag{example}
+
+\begin{document}
+
+\twocolumn[%
+{\begin{center}
+\Huge
+Appendix: Artifact Description/Artifact Evaluation
+\end{center}}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  AD Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendixAD
+
+\section{Overview of Contributions and Artifacts}
+
+\subsection{Paper's Main Contributions}
+
+\begin{description}
+\item[$C_1$] Science-aware retrieval operators: deterministic SI dimensional conversion and formula normalization implemented as first-class retrieval branches alongside BM25 and dense vector search, with correctness guaranteed by construction through a 58-unit registry across 12 SI domains.
+\item[$C_2$] Corpus-adaptive search orchestration: a profiling layer that inspects each namespace before querying (document count, measurement count, metadata density) and selects search strategies accordingly, activating science-aware operators only where extractable measurements exist.
+\item[$C_3$] Federated scientific search: a connector architecture spanning heterogeneous HPC backends (filesystems, object stores, HDF5, NetCDF, IOWarp tiered blob storage, external catalogs) with per-connector capability negotiation, and an agentic multi-hop refinement loop that expands, narrows, or pivots queries based on intermediate results.
+\end{description}
+
+
+\subsection{Computational Artifacts}
+
+\begin{description}
+\item[$A_1$] \url{https://github.com/SIslamMun/clio-search}
+\item[$A_2$] \url{https://github.com/SIslamMun/clio-search/tree/main/eval/eval_final}
+\end{description}
+
+\begin{center}
+\begin{tabular}{rll}
+\toprule
+Artifact ID  &  Contributions &  Related \\
+             &  Supported     &  Paper Elements \\
+\midrule
+$A_1$   &  $C_1$, $C_2$ & Tables IV--VIII \\
+        &               & Figures 2, 3 \\
+\midrule
+$A_2$   &  $C_1$, $C_2$, $C_3$ & Tables IX, X \\
+        &                      & Figures 4, 5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Artifact Identification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newartifact
+
+\artrel
+
+Artifact $A_1$ contains the CLIO Search implementation (13{,}140 lines, 60 modules, 275 tests) and the controlled benchmark (210 synthetic documents, 80 queries). It supports contributions $C_1$ (science-aware operators) and $C_2$ (corpus-adaptive orchestration) by reproducing the cross-unit retrieval accuracy, NOAA real-world validation, ablation, and agentic efficiency experiments.
+
+\artexp
+
+Running the controlled benchmark reproduces Table~VI (cross-unit retrieval at $K{=}5$ with CLIO achieving P@5 of 0.99 versus 0.40 for BM25), Table~VII (NOAA GHCN-Daily real-world validation with CLIO at 0.700~P@5 versus 0.375 for the hybrid baseline), and Table~VIII (ablation showing science operators as the dominant gain). The agentic efficiency experiment reproduces Table~V (52.08\% token reduction, 91.27\% time reduction). Figures~2 and 3 are generated from the same result files.
+
+\arttime
+
+Artifact Setup: 15 minutes (dependency installation via \texttt{uv}, corpus generation).
+Artifact Execution: 30 minutes (benchmark runs + NOAA evaluation + ablation).
+Artifact Analysis: 5 minutes (plot generation).
+Total: approximately 50 minutes.
+
+\artin
+
+\artinpart{Hardware}
+
+Any x86\_64 Linux system with 16~GB RAM and 20~GB free disk. No GPU required. The agentic efficiency experiment requires network access to the Claude API.
+
+\artinpart{Software}
+
+\begin{itemize}
+\item Python 3.11 or newer \url{https://www.python.org/}
+\item \texttt{uv} package manager \url{https://github.com/astral-sh/uv}
+\item DuckDB 1.1.0 (installed via Python dependencies)
+\item all-MiniLM-L6-v2 sentence-transformer (downloaded on first run)
+\item Claude Agent SDK for the agentic efficiency experiment
+\item \texttt{claude-sonnet-4-20250514} API access (optional; deterministic fallback available)
+\end{itemize}
+
+\artinpart{Datasets / Inputs}
+
+The 210-document controlled benchmark is generated programmatically from configuration files in \texttt{code/benchmarks/}. Ground truth is defined by a document containing a measurement within the query's numeric range after SI conversion. The NOAA GHCN-Daily dataset (288 documents) is included in the repository under \texttt{eval/eval\_final/data/}.
+
+\artinpart{Installation and Deployment}
+
+\begin{verbatim}
+git clone https://github.com/SIslamMun/clio-search
+cd clio-search/code
+uv sync --all-extras --dev
+uv run pytest tests/ -v
+\end{verbatim}
+
+\artcomp
+
+The experiment workflow consists of four tasks:
+$T_1$: generate the 210-document synthetic corpus;
+$T_2$: index the corpus into DuckDB with SI canonicalization;
+$T_3$: run 80 queries across five methods (BM25, Dense, Hybrid, String norm., CLIO) and record P@5, R@5, F1@5, MRR;
+$T_4$: aggregate results into tables and generate Figure~3.
+
+Dependencies: $T_1 \rightarrow T_2 \rightarrow T_3 \rightarrow T_4$.
+
+Parameters: BM25 uses $k_1{=}1.2$, $b{=}0.75$; the dense branch uses all-MiniLM-L6-v2 (384-dim) with cosine similarity; $K{=}5$ for all retrieval metrics; the agentic efficiency experiment issues 10 scientific discovery queries through three paths (Claude Native Agent, NDP-MCP, CLIO) with a single repetition using \texttt{claude-sonnet-4-20250514}.
+
+\artout
+
+Raw results are written as JSON under \texttt{eval/eval\_final/outputs/}. The analysis pipeline reads these JSON files and produces: (i) the cross-unit P@5 table (Table~VI), (ii) the NOAA validation table (Table~VII), (iii) the ablation table (Table~VIII), (iv) the L1 three-path efficiency table (Table~V), (v) the cross-unit P@5 bar chart (Figure~3), and (vi) the L1 three-path figure (Figure~2). Plots are generated via \texttt{eval/eval\_final/code/generate\_plots.py}.
+
+
+\newartifact
+
+\artrel
+
+Artifact $A_2$ contains the IOWarp integration experiments and the distributed scaling experiments on NCSA DeltaAI GH200 nodes. It supports contributions $C_2$ (corpus-adaptive orchestration validated on IOWarp blobs) and $C_3$ (federated search and distributed scaling across HPC backends).
+
+\artexp
+
+The IOWarp scaling experiment reproduces Table~IX: profiling time scales sub-linearly from 17~ms at 1K blobs to 90~ms at 500K blobs for the rich-metadata variant, while the inspection rate falls from 5.0\% to 0.01\%. Figure~4 visualizes this. The distributed scaling experiment reproduces Table~X: weak-scaling efficiency of 0.94 at 4~workers with 2.5M arXiv abstracts. The cross-unit correctness experiment reproduces Figure~5: identical hit counts across unit variants (Pa, kPa, bar, atm; degC, degF, kelvin) at sub-50~ms latency.
+
+\arttime
+
+Artifact Setup: 60 minutes (DeltaAI node allocation, Docker image build for IOWarp, Python environment).
+Artifact Execution: 20 hours for the 500K IOWarp rich-metadata scale; 2 hours for distributed scaling on 2.5M arXiv; 1 hour for cross-unit correctness probes.
+Artifact Analysis: 10 minutes (plot generation).
+
+\artin
+
+\artinpart{Hardware}
+
+NVIDIA GH200 Grace Hopper nodes (72 ARM Neoverse V2 cores, 480~GB unified CPU+GPU memory, NVLink-C2C, Slingshot-11 interconnect). The distributed scaling experiment requires 1--4 GH200 nodes with shared Lustre storage. IOWarp experiments run on a single GH200 node inside Docker.
+
+\artinpart{Software}
+
+\begin{itemize}
+\item Linux kernel 6.x with Slurm workload manager
+\item Python 3.11 with \texttt{uv}
+\item Docker with the \texttt{iowarp/deps-cpu} image \url{https://hub.docker.com/u/iowarp}
+\item IOWarp Chimaera runtime v1.0.3 \url{https://github.com/iowarp}
+\item DuckDB 1.1.0
+\item 2.5M arXiv abstract corpus (obtained via the arXiv bulk data API)
+\end{itemize}
+
+\artinpart{Datasets / Inputs}
+
+Synthetic IOWarp blobs are generated at experiment time under four tags (temperature in \textdegree C, pressure in kPa, wind in m/s, and mixed). The arXiv abstract corpus is obtained via the public arXiv bulk data API and split into four DuckDB shards of 625K abstracts each.
+
+\artinpart{Installation and Deployment}
+
+Submit the provided Slurm scripts from \texttt{eval/eval\_final/code/delta/}:
+\begin{itemize}
+\item \texttt{slurm\_iowarp\_l2.sh} --- IOWarp 1K to 100K
+\item \texttt{slurm\_iowarp\_l2\_large.sh} --- IOWarp 500K
+\item \texttt{slurm\_iowarp\_l2c.sh} --- sparse-metadata variant
+\item \texttt{slurm\_strong\_scaling.sh}, \texttt{slurm\_weak\_scaling.sh} --- distributed scaling
+\end{itemize}
+
+\artcomp
+
+Workflow for IOWarp scaling:
+$T_1$: generate synthetic blobs at each scale (1K, 5K, 10K, 50K, 100K, 500K);
+$T_2$: index blobs into DuckDB via the IOWarp connector;
+$T_3$: profile the corpus and issue four cross-unit queries;
+$T_4$: record profiling time, inspection rate, and match counts.
+
+Workflow for distributed scaling:
+$T_5$: partition 2.5M arXiv abstracts into four DuckDB shards;
+$T_6$: launch coordinator and worker processes over TCP/JSON;
+$T_7$: issue 80 queries per configuration (strong and weak scaling);
+$T_8$: record p50/p95 latency and weak-scaling efficiency.
+
+Dependencies: $T_1 \rightarrow T_2 \rightarrow T_3 \rightarrow T_4$ for IOWarp; $T_5 \rightarrow T_6 \rightarrow T_7 \rightarrow T_8$ for distributed scaling.
+
+Parameters: IOWarp rich variant uses 2.5 measurements per blob, sparse variant uses 0.75; top-$K{=}50$ for CLIO queries; distributed weak scaling uses 625K abstracts per worker; 80 queries per configuration with no repetitions (latency percentiles computed over 80 samples).
+
+\artout
+
+Raw results are written as JSON to \texttt{eval/eval\_final/outputs/} (files prefixed \texttt{L2\_}, \texttt{L2C\_}, and \texttt{D\_}). The analysis pipeline reads these JSON files and produces Table~IX, Table~X, Figure~4 (IOWarp scaling dual-axis plot), and Figure~5 (distributed cross-unit correctness bars). Plots are generated via \texttt{eval/eval\_final/code/generate\_plots.py}.
+
+\end{document}
