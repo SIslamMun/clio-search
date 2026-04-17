@@ -54,6 +54,9 @@ CLAUDE.md
 # Planning
 .planning/
 
+# GCASR poster
+paper/gcasr_poster/
+
 # PDFs (generated)
 clio_search.pdf
 paper/paper.pdf
