@@ -1,0 +1,19 @@
+\newcommand\setheadervars[1]{%
+  \setsepchar{,}%
+  \readlist*\params{#1}%
+  \foreachitem\param\in\params{%
+    \setsepchar{=}%
+    \readlist*\kv{\param}%
+    \expandafter\edef\csname header\kv[1]\endcsname{\kv[2]}%
+  }
+}
+
+\newcommand\headerwithtwologos[1]{%
+  \setheadervars{#1}%
+  \input{includes/header/two-logos}%
+}
+
+\newcommand\headerwithfourlogos[1]{%
+  \setheadervars{#1}%
+  \input{includes/header/four-logos}%
+}

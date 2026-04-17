@@ -1,0 +1,38 @@
+\footercontent{
+    
+    \begin{columns}
+        \begin{column}{0.47\linewidth}
+       
+            \begin{figure}
+                \centering
+                \ifdefined\footerleftlogoheight
+                    \includegraphics[height=\footerleftlogoheight]{\footerleftlogo}
+                \else
+                    \includegraphics[height=8ex]{\footerleftlogo}                
+                \fi
+                \captionsetup{width=20cm}
+                \caption*{\footerlefttext}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.06\linewidth}
+            \includegraphics[width=\linewidth]{images/grc/qr-code-website.png}
+        \end{column}
+        \begin{column}{0.47\linewidth}
+
+            \begin{figure}
+                \centering
+                \ifdefined\footerrightlogoheight
+                    \includegraphics[height=\footerrightlogoheight]{\footerrightlogo}
+                \else
+                    \includegraphics[height=8ex]{\footerrightlogo}                
+                \fi
+                \captionsetup{width=20cm}
+                \caption*{\footerrighttext}
+            \end{figure}
+
+        \end{column}
+    \end{columns}
+
+    \input{includes/footer/_iit_logo}
+
+}

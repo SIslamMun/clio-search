@@ -1,0 +1,54 @@
+\footercontent{
+
+    \setlength{\tabcolsep}{18pt} % Default value: 6pt
+    \renewcommand{\arraystretch}{0.5} % Default value: 1
+    \vspace{-0.5em}
+    \begin{table}[]
+    \large
+
+    \ifdefined\footercolablogofirst
+        \ifdefined\footercolablogosecond
+            \ifdefined\footerfundinglogofirst
+                \ifdefined\footerfundinglogosecond
+                    % all defined
+                    \begin{tabular}{ccccc}
+                    \multicolumn{2}{c}{In Collaboration With} & \multicolumn{2}{c}{Funded By} & More Information \\ \\
+                    \includegraphics[height=10ex]{\footercolablogofirst} & \includegraphics[height=10ex]{\footercolablogosecond} & \includegraphics[height=10ex]{\footerfundinglogofirst} & \includegraphics[height=10ex]{\footerfundinglogosecond} & \includegraphics[height=10ex]{images/grc/qr-code-website.png}
+                    \end{tabular}
+                \else
+                    % all but footerfundinglogosecond defined
+                    \begin{tabular}{cccc}
+                    \multicolumn{2}{c}{In Collaboration With} & Funded By & More Information \\ \\
+                    \includegraphics[height=10ex]{\footercolablogofirst} & \includegraphics[height=10ex]{\footercolablogosecond} & \includegraphics[height=10ex]{\footerfundinglogofirst} & \includegraphics[height=10ex]{images/grc/qr-code-website.png}
+                    \end{tabular}
+                \fi
+            \else
+                % all but footerfundinglogofirst and footerfundinglogosecond defined
+                \begin{tabular}{ccc}
+                \multicolumn{2}{c}{In Collaboration With} & More Information \\ \\
+                \includegraphics[height=10ex]{\footercolablogofirst} & \includegraphics[height=10ex]{\footercolablogosecond} & \includegraphics[height=10ex]{images/grc/qr-code-website.png}
+                \end{tabular}
+            \fi
+        \else
+            \ifdefined\footerfundinglogofirst
+                % footercolablogofirst and footerfundinglogofirst defined
+                \begin{tabular}{ccc}
+                In Collaboration With & Funded By & More Information \\ \\
+                \includegraphics[height=10ex]{\footercolablogofirst} & \includegraphics[height=10ex]{\footerfundinglogofirst} & \includegraphics[height=10ex]{images/grc/qr-code-website.png}
+                \end{tabular}
+            \else
+                % only footercolablogofirst defined
+                \begin{tabular}{cc}
+                In Collaboration With & More Information \\ \\
+                \includegraphics[height=10ex]{\footercolablogofirst} & \includegraphics[height=10ex]{images/grc/qr-code-website.png}
+                \end{tabular}
+            \fi
+        \fi
+    \else
+    \fi
+
+    
+    \end{table}
+    \vspace{-1em}
+
+}

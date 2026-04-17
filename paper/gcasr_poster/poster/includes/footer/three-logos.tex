@@ -1,0 +1,54 @@
+\footercontent{
+    
+    \begin{columns}
+        \begin{column}{0.25\linewidth}
+       
+            \begin{figure}
+                \raggedright
+                \ifdefined\footerleftlogoheight
+                    \includegraphics[height=\footerleftlogoheight]{\footerleftlogo}
+                \else
+                    \includegraphics[height=8ex]{\footerleftlogo}                
+                \fi
+            \end{figure}
+
+            \footerlefttext
+
+        \end{column}
+        \begin{column}{0.25\linewidth}
+       
+            \begin{figure}
+                \raggedright
+                \ifdefined\footercenterlogoheight
+                    \includegraphics[height=\footercenterlogoheight]{\footercenterlogo}
+                \else
+                    \includegraphics[height=8ex]{\footercenterlogo}                
+                \fi
+            \end{figure}
+
+            \footercentertext
+
+        \end{column}
+        \begin{column}{0.25\linewidth}
+       
+            \begin{figure}[h!]
+                \raggedright
+                \ifdefined\footerrightlogoheight
+                    \includegraphics[height=\footerrightlogoheight]{\footerrightlogo}
+                \else
+                    \includegraphics[height=8ex]{\footerrightlogo}                
+                \fi
+            \end{figure}
+
+            \footerrighttext
+
+        \end{column}
+
+        \begin{column}{0.06\linewidth}
+            \includegraphics[width=\linewidth]{images/grc/qr-code-website.png}
+        \end{column}
+    \end{columns}
+
+    \input{includes/footer/_iit_logo}
+
+}
