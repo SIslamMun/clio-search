@@ -36,8 +36,7 @@ clio-search/
 │   ├── sections/                   # Per-section LaTeX files
 │   ├── figures/                    # Architecture diagram + plots
 │   ├── references.bib              # 52 BibTeX entries
-│   ├── ad_appendix/                # SC26 Artifact Description appendix
-│   └── gcasr_poster/               # GCASR poster abstract
+│   └── ad_appendix/                # SC26 Artifact Description appendix
 │
 ├── eval/eval_final/                # Evaluation data
 │   ├── code/laptop/                # L1–L8 experiments
