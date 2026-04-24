@@ -47,7 +47,8 @@ Appendix: Artifact Description/Artifact Evaluation
 
 \begin{description}
 \item[$A_1$] \url{https://github.com/SIslamMun/clio-search}
-\item[$A_2$] \url{https://github.com/SIslamMun/clio-search/tree/main/eval/eval_final}
+\item[$A_2$] \url{https://github.com/SIslamMun/clio-search/tree/main/eval/eval_final/code/laptop}
+\item[$A_3$] \url{https://github.com/SIslamMun/clio-search/tree/main/eval/eval_final/code/delta}
 \end{description}
 
 \begin{center}
@@ -56,11 +57,14 @@ Appendix: Artifact Description/Artifact Evaluation
 Artifact ID  &  Contributions &  Related \\
              &  Supported     &  Paper Elements \\
 \midrule
-$A_1$   &  $C_1$, $C_2$ & Tables IV--VIII \\
-        &               & Figures 2, 3 \\
+$A_1$   &  $C_1$, $C_2$ & Tables IV, VI--VIII \\
+        &               & Figure 3 \\
 \midrule
-$A_2$   &  $C_1$, $C_2$, $C_3$ & Tables IX, X \\
-        &                      & Figures 4, 5 \\
+$A_2$   &  $C_1$, $C_2$ & Table V \\
+        &               & Figure 2 \\
+\midrule
+$A_3$   &  $C_2$, $C_3$ & Tables IX, X \\
+        &               & Figures 4, 5 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -70,28 +74,32 @@ $A_2$   &  $C_1$, $C_2$, $C_3$ & Tables IX, X \\
 \section{Artifact Identification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A1 -- Deterministic retrieval experiments (no API)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newartifact
 
 \artrel
 
-Artifact $A_1$ contains the CLIO Search implementation (13{,}140 lines, 60 modules, 275 tests) and the controlled benchmark (210 synthetic documents, 80 queries). It supports contributions $C_1$ (science-aware operators) and $C_2$ (corpus-adaptive orchestration) by reproducing the cross-unit retrieval accuracy, NOAA real-world validation, ablation, and agentic efficiency experiments.
+Artifact $A_1$ contains the CLIO Search implementation (13{,}100 lines, 60 modules, 283 tests), the 210-document controlled benchmark, and the 288-document NOAA GHCN-Daily real-world sample. It supports $C_1$ (science-aware operators) and $C_2$ (corpus-adaptive orchestration) through three deterministic single-node retrieval experiments that require no external API access.
 
 \artexp
 
-Running the controlled benchmark reproduces Table~VI (cross-unit retrieval at $K{=}5$ with CLIO achieving P@5 of 0.99 versus 0.40 for BM25), Table~VII (NOAA GHCN-Daily real-world validation with CLIO at 0.700~P@5 versus 0.375 for the hybrid baseline), and Table~VIII (ablation showing science operators as the dominant gain). The agentic efficiency experiment reproduces Table~V (52.08\% token reduction, 91.27\% time reduction). Figures~2 and 3 are generated from the same result files.
+Reproduces Table~IV (benchmark corpus composition), Table~VI (cross-unit retrieval at $K{=}5$ with CLIO achieving P@5 of 0.99 versus 0.40 for BM25), Table~VII (NOAA GHCN-Daily validation with CLIO at 0.700~P@5 versus 0.375 for the hybrid baseline), Table~VIII (ablation showing science operators as the dominant gain: P@5 jumps from 0.36 to 0.99 once operators are added), and Figure~3 (cross-unit P@5 bar chart).
 
 \arttime
 
-Artifact Setup: 15 minutes (dependency installation via \texttt{uv}, corpus generation).
-Artifact Execution: 30 minutes (benchmark runs + NOAA evaluation + ablation).
+Artifact Setup: 15 minutes (\texttt{uv sync} plus one-time embedding model download).
+Artifact Execution: approximately 15 minutes --- controlled cross-unit benchmark $\sim$5 min, NOAA real-world validation $\sim$5 min, ablation $\sim$5 min.
 Artifact Analysis: 5 minutes (plot generation).
-Total: approximately 50 minutes.
+Total: approximately 35 minutes.
 
 \artin
 
 \artinpart{Hardware}
 
-Any x86\_64 Linux system with 16~GB RAM and 20~GB free disk. No GPU required. The agentic efficiency experiment requires network access to the Claude API.
+Any x86\_64 Linux system with 16~GB RAM and 20~GB free disk. No GPU required. No network required after the initial model download.
 
 \artinpart{Software}
 
@@ -100,13 +108,11 @@ Any x86\_64 Linux system with 16~GB RAM and 20~GB free disk. No GPU required. Th
 \item \texttt{uv} package manager \url{https://github.com/astral-sh/uv}
 \item DuckDB 1.1.0 (installed via Python dependencies)
 \item all-MiniLM-L6-v2 sentence-transformer (downloaded on first run)
-\item Claude Agent SDK for the agentic efficiency experiment
-\item \texttt{claude-sonnet-4-20250514} API access (optional; deterministic fallback available)
 \end{itemize}
 
 \artinpart{Datasets / Inputs}
 
-The 210-document controlled benchmark is generated programmatically from configuration files in \texttt{code/benchmarks/}. Ground truth is defined by a document containing a measurement within the query's numeric range after SI conversion. The NOAA GHCN-Daily dataset (288 documents) is included in the repository under \texttt{eval/eval\_final/data/}.
+The 210-document controlled benchmark (Table~IV) is generated by \texttt{code/benchmarks/generate\_corpus\_v2.py} and also ships pre-generated under \texttt{code/benchmarks/corpus\_v2/} (seven domain subdirectories: materials science, atmospheric science, fluid dynamics, chemistry, HPC simulation, cross-domain mixed, negative controls). Ground truth is generated programmatically: a document is relevant to a query if and only if it contains a measurement within the query's numeric range after SI conversion. The NOAA GHCN-Daily real-world corpus (1{,}728 station-month files; 288 are sampled for Table~VII) is included in the repository under \texttt{code/benchmarks/corpus\_real/}.
 
 \artinpart{Installation and Deployment}
 
@@ -119,36 +125,104 @@ uv run pytest tests/ -v
 
 \artcomp
 
-The experiment workflow consists of four tasks:
-$T_1$: generate the 210-document synthetic corpus;
-$T_2$: index the corpus into DuckDB with SI canonicalization;
-$T_3$: run 80 queries across five methods (BM25, Dense, Hybrid, String norm., CLIO) and record P@5, R@5, F1@5, MRR;
-$T_4$: aggregate results into tables and generate Figure~3.
+$T_1$: generate the 210-document synthetic corpus (\texttt{generate\_corpus\_v2.py}) and index it into DuckDB with SI canonicalization;
+$T_2$: run \texttt{eval/eval\_final/code/laptop/L4\_numconq\_benchmark.py} to execute 80 queries across five methods (BM25, Dense, Hybrid, String norm., CLIO) and record P@5, R@5, F1@5, MRR (Table~VI);
+$T_3$: run \texttt{code/benchmarks/evaluate\_real.py} over the 288-document NOAA sample drawn from \texttt{corpus\_real/} (Table~VII);
+$T_4$: run \texttt{eval/eval\_final/code/laptop/L3\_si\_unit\_cross\_prefix.py} to produce the cumulative-components ablation (Table~VIII);
+$T_5$: run \texttt{eval/eval\_final/code/generate\_plots.py} to emit Figure~3 from the Table~VI JSON.
 
-Dependencies: $T_1 \rightarrow T_2 \rightarrow T_3 \rightarrow T_4$.
+Dependencies: $T_1 \rightarrow \{T_2, T_3, T_4\} \rightarrow T_5$; tasks $T_2$, $T_3$, $T_4$ are independent once $T_1$ is complete.
 
-Parameters: BM25 uses $k_1{=}1.2$, $b{=}0.75$; the dense branch uses all-MiniLM-L6-v2 (384-dim) with cosine similarity; $K{=}5$ for all retrieval metrics; the agentic efficiency experiment issues 10 scientific discovery queries through three paths (Claude Native Agent, NDP-MCP, CLIO) with a single repetition using \texttt{claude-sonnet-4-20250514}.
+Parameters: BM25 uses $k_1{=}1.2$, $b{=}0.75$; the dense branch uses all-MiniLM-L6-v2 (384-dim) with cosine similarity; $K{=}5$ for all retrieval metrics; ablation follows the cumulative-component staging A (BM25) $\rightarrow$ B (+dense) $\rightarrow$ C (+science operators) $\rightarrow$ D (full pipeline).
 
 \artout
 
-Raw results are written as JSON under \texttt{eval/eval\_final/outputs/}. The analysis pipeline reads these JSON files and produces: (i) the cross-unit P@5 table (Table~VI), (ii) the NOAA validation table (Table~VII), (iii) the ablation table (Table~VIII), (iv) the L1 three-path efficiency table (Table~V), (v) the cross-unit P@5 bar chart (Figure~3), and (vi) the L1 three-path figure (Figure~2). Plots are generated via \texttt{eval/eval\_final/code/generate\_plots.py}.
+Raw results are written as JSON under \texttt{eval/eval\_final/outputs/}: \texttt{L4\_numconq\_benchmark.json} (Table~VI), the NOAA run (Table~VII), and \texttt{L3\_si\_unit\_cross\_prefix.json} (Table~VIII). Figure~3 (\texttt{plots/fig\_crossunit\_p5\_bar.png}) is generated from the Table~VI JSON via \texttt{generate\_plots.py}.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A2 -- Agentic three-path efficiency (Claude API)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newartifact
 
 \artrel
 
-Artifact $A_2$ contains the IOWarp integration experiments and the distributed scaling experiments on NCSA DeltaAI GH200 nodes. It supports contributions $C_2$ (corpus-adaptive orchestration validated on IOWarp blobs) and $C_3$ (federated search and distributed scaling across HPC backends).
+Artifact $A_2$ contains the agentic three-path evaluation: 10~scientific discovery queries issued through (1) a Claude Native Agent with web search and sub-agents, (2) an agent with NDP-MCP catalog access, and (3) an agent backed by CLIO Search indexing 341 NDP datasets. It supports $C_1$ (science-aware operators) and $C_2$ (corpus-adaptive orchestration) by demonstrating that CLIO's local deterministic operators reduce LLM token consumption and wall time compared to raw catalog access.
 
 \artexp
 
-The IOWarp scaling experiment reproduces Table~IX: profiling time scales sub-linearly from 17~ms at 1K blobs to 90~ms at 500K blobs for the rich-metadata variant, while the inspection rate falls from 5.0\% to 0.01\%. Figure~4 visualizes this. The distributed scaling experiment reproduces Table~X: weak-scaling efficiency of 0.94 at 4~workers with 2.5M arXiv abstracts. The cross-unit correctness experiment reproduces Figure~5: identical hit counts across unit variants (Pa, kPa, bar, atm; degC, degF, kelvin) at sub-50~ms latency.
+Reproduces Table~V (CLIO achieves 52.08\% token reduction and 91.27\% wall-time reduction versus the Claude Native Agent, with 10/10 correct answers on the same queries) and Figure~2 (token and wall-time bar chart).
 
 \arttime
 
-Artifact Setup: 60 minutes (DeltaAI node allocation, Docker image build for IOWarp, Python environment).
+Artifact Setup: 5 minutes after $A_1$ is installed (export \texttt{ANTHROPIC\_API\_KEY}).
+Artifact Execution: approximately 75 minutes --- Claude Native Agent path $\sim$51~min (spawns 9~sub-agents), NDP-MCP path $\sim$17~min, CLIO path $\sim$4~min; 10 queries each, single repetition.
+Artifact Analysis: 5 minutes (plot generation).
+Total: approximately 85 minutes.
+
+\artin
+
+\artinpart{Hardware}
+
+Same as $A_1$ (x86\_64 Linux, 16~GB RAM, 20~GB disk), plus outbound HTTPS to the Claude API endpoint.
+
+\artinpart{Software}
+
+\begin{itemize}
+\item All of $A_1$'s software stack
+\item Claude Agent SDK
+\item \texttt{claude-sonnet-4-20250514} API access (paid). Required to reproduce Table~V; a deterministic fallback lets the CLIO path run without it but does not reproduce the agentic token/time comparison.
+\end{itemize}
+
+\artinpart{Datasets / Inputs}
+
+Ten scientific discovery queries are embedded in \texttt{L1\_three\_path.py}. The National Data Platform (NDP) catalog (341 datasets) is fetched at runtime and indexed locally by the CLIO path.
+
+\artinpart{Installation and Deployment}
+
+After completing $A_1$'s \texttt{uv sync}:
+\begin{verbatim}
+export ANTHROPIC_API_KEY=<key>
+cd clio-search
+python3 eval/eval_final/code/laptop/\
+  L1_three_path.py
+\end{verbatim}
+
+\artcomp
+
+$T_1$: run \texttt{L1\_three\_path.py} --- for each of 10 queries, issue it through all three paths (Claude Native Agent, NDP-MCP, CLIO); record per-path total tokens (main + sub-agent), wall time, and answer correctness;
+$T_2$: run \texttt{eval/eval\_final/code/generate\_L1\_three\_path\_plot.py} to emit Figure~2.
+
+Dependencies: $T_1 \rightarrow T_2$.
+
+Parameters: \texttt{claude-sonnet-4-20250514}; single repetition per (query, path) pair; CLIO indexes 341 NDP datasets locally and returns $\sim$2K tokens of ranked citations per query; the agentic loop terminates on \texttt{done} or after an invocation cap.
+
+\artout
+
+\texttt{eval/eval\_final/outputs/L1\_three\_path.json} containing per-query token and time breakdowns per path, and the aggregated summary (52.08\% token reduction, 91.27\% wall-time reduction). Figure~2 is emitted as \texttt{plots/fig\_L1\_three\_path.png} and \texttt{.pdf}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A3 -- IOWarp + distributed scaling (DeltaAI GH200)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newartifact
+
+\artrel
+
+Artifact $A_3$ contains the IOWarp integration experiments and the distributed scaling experiments on NCSA DeltaAI GH200 nodes. It supports $C_2$ (corpus-adaptive orchestration validated on IOWarp blobs) and $C_3$ (federated search and distributed scaling across HPC backends).
+
+\artexp
+
+Reproduces Table~IX (IOWarp profiling time scales sub-linearly from 17~ms at 1K blobs to 90~ms at 500K blobs for the rich-metadata variant, while the inspection rate falls from 5.0\% to 0.01\%), Figure~4 (IOWarp scaling dual-axis plot), Table~X (weak-scaling efficiency of 0.94 at 4~workers with 2.5M arXiv abstracts), and Figure~5 (distributed cross-unit probes across unit variants Pa/kPa/bar/atm and \textdegree C/\textdegree F/K return identical hit counts at sub-50~ms latency).
+
+\arttime
+
+Artifact Setup: 60 minutes (DeltaAI node allocation, Docker image build for IOWarp, Python environment) plus a one-time $\sim$2~hour arXiv bulk download and shard build via \texttt{slurm\_setup.sh}.
 Artifact Execution: 20 hours for the 500K IOWarp rich-metadata scale; 2 hours for distributed scaling on 2.5M arXiv; 1 hour for cross-unit correctness probes.
 Artifact Analysis: 10 minutes (plot generation).
+Total: approximately 25 hours (dominated by the 500K IOWarp run).
 
 \artin
 
@@ -173,29 +247,33 @@ Synthetic IOWarp blobs are generated at experiment time under four tags (tempera
 
 \artinpart{Installation and Deployment}
 
-Submit the provided Slurm scripts from \texttt{eval/eval\_final/code/delta/}:
+One-time prep (required before any distributed experiment): \texttt{sbatch eval/eval\_final/code/delta/slurm\_setup.sh}. This creates the venv, downloads the 2.5M arXiv corpus via \texttt{download\_arxiv.py}, builds four DuckDB shards via \texttt{index\_shard.py}, and stages weak-scaling phase directories.
+
+Then submit the provided Slurm scripts from \texttt{eval/eval\_final/code/delta/}:
 \begin{itemize}
-\item \texttt{slurm\_iowarp\_l2.sh} --- IOWarp 1K to 100K
-\item \texttt{slurm\_iowarp\_l2\_large.sh} --- IOWarp 500K
-\item \texttt{slurm\_iowarp\_l2c.sh} --- sparse-metadata variant
-\item \texttt{slurm\_strong\_scaling.sh}, \texttt{slurm\_weak\_scaling.sh} --- distributed scaling
+\item \texttt{slurm\_iowarp\_l2.sh} --- IOWarp 1K to 100K (rich)
+\item \texttt{slurm\_iowarp\_l2\_large.sh} --- IOWarp 500K (rich)
+\item \texttt{slurm\_iowarp\_l2c.sh} --- sparse-metadata 1K--100K
+\item \texttt{slurm\_iowarp\_l2c\_large.sh} --- sparse-metadata 500K (optional)
+\item \texttt{slurm\_strong\_scaling.sh}, \texttt{slurm\_weak\_scaling.sh} --- distributed scaling on arXiv (Table~X)
+\item \texttt{slurm\_d4\_d5.sh} --- distributed cross-unit correctness (Figure~5) and NumConQ numeric-range queries
 \end{itemize}
 
 \artcomp
 
-Workflow for IOWarp scaling:
+Workflow for IOWarp scaling (Table~IX, Figure~4):
 $T_1$: generate synthetic blobs at each scale (1K, 5K, 10K, 50K, 100K, 500K);
 $T_2$: index blobs into DuckDB via the IOWarp connector;
-$T_3$: profile the corpus and issue four cross-unit queries;
+$T_3$: profile the corpus and issue four cross-unit queries (using mismatched units: \textdegree F, psi, km/h);
 $T_4$: record profiling time, inspection rate, and match counts.
 
-Workflow for distributed scaling:
-$T_5$: partition 2.5M arXiv abstracts into four DuckDB shards;
-$T_6$: launch coordinator and worker processes over TCP/JSON;
-$T_7$: issue 80 queries per configuration (strong and weak scaling);
-$T_8$: record p50/p95 latency and weak-scaling efficiency.
+Workflow for distributed scaling (Table~X, Figure~5):
+$T_5$: one-time setup via \texttt{slurm\_setup.sh} (downloads arXiv and builds four DuckDB shards through \texttt{download\_arxiv.py} + \texttt{index\_shard.py});
+$T_6$: launch coordinator and worker processes over TCP/JSON (\texttt{distributed\_clio.py}) via \texttt{slurm\_strong\_scaling.sh} / \texttt{slurm\_weak\_scaling.sh};
+$T_7$: issue 80 queries per configuration (strong and weak scaling) and record p50/p95 latency and weak-scaling efficiency (Table~X);
+$T_8$: run \texttt{slurm\_d4\_d5.sh} to issue cross-unit probes (pressure and temperature) across the distributed shards and record per-unit hit counts and latency (Figure~5, \texttt{D\_cross\_unit.json}).
 
-Dependencies: $T_1 \rightarrow T_2 \rightarrow T_3 \rightarrow T_4$ for IOWarp; $T_5 \rightarrow T_6 \rightarrow T_7 \rightarrow T_8$ for distributed scaling.
+Dependencies: $T_1 \rightarrow T_2 \rightarrow T_3 \rightarrow T_4$ for IOWarp; $T_5 \rightarrow \{T_6 \rightarrow T_7,\ T_8\}$ for distributed experiments ($T_6$--$T_7$ and $T_8$ are independent given $T_5$).
 
 Parameters: IOWarp rich variant uses 2.5 measurements per blob, sparse variant uses 0.75; top-$K{=}50$ for CLIO queries; distributed weak scaling uses 625K abstracts per worker; 80 queries per configuration with no repetitions (latency percentiles computed over 80 samples).
 
