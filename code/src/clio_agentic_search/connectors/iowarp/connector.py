@@ -104,7 +104,12 @@ class IOWarpConnector:
                 "iowarp_core is not installed. "
                 "Install the wheel: pip install iowarp_core-*.whl"
             )
-        self._cte_client = cte.get_cte_client()
+        # NOTE: iowarp_core's chimaera client and DuckDB cannot share a Python
+        # process — once chimaera_init is called, every subsequent DuckDB
+        # ``execute()`` deadlocks (pthread/futex collision between ZMQ worker
+        # threads and DuckDB's executor). So we keep the CLIO/DuckDB process
+        # iowarp-free, and spawn a subprocess for any iowarp call that needs
+        # the live runtime (see ``fetch_blob_content``).
         self.storage.connect()
         self._connected = True
 
@@ -609,6 +614,134 @@ class IOWarpConnector:
             snippet=snippet,
             score=round(chunk.combined_score, 6),
         )
+
+    def fetch_blob_content(self, uri: str) -> str:
+        """Fetch the full original blob content from IOWarp's CTE at query time.
+
+        Use this after ``search_scientific`` / ``search_lexical`` to retrieve
+        the full original blob content for a matching URI. The actual
+        ``Tag.GetBlob`` call runs in a short-lived subprocess (see
+        ``connect()`` for why) — the chimaera daemon must already be running
+        on the node so the subprocess can attach as a kClient.
+
+        Parameters
+        ----------
+        uri:
+            CTE URI of the form ``cte://<tag>/<blob>`` returned by CLIO's
+            search results.
+
+        Returns
+        -------
+        str
+            Full blob content as text.
+
+        Raises
+        ------
+        ValueError
+            If the URI does not have the ``cte://<tag>/<blob>`` form.
+        RuntimeError
+            If the connector is not connected (call ``connect()`` first), or
+            if the iowarp subprocess fails.
+        """
+        self._ensure_connected()
+        if not uri.startswith("cte://"):
+            raise ValueError(f"expected cte:// URI, got: {uri!r}")
+        rest = uri[len("cte://"):]
+        if "/" not in rest:
+            raise ValueError(f"URI missing tag/blob separator: {uri!r}")
+        return self._fetch_blobs_via_subprocess([uri])[0]
+
+    def _fetch_blobs_via_subprocess(self, uris: list[str]) -> list[str]:
+        """Fetch many blobs in a single iowarp subprocess (one chimaera_init).
+
+        Used by ``fetch_blob_content`` and ``search_scientific_with_content``
+        to keep chimaera state out of the CLIO/DuckDB process.
+        """
+        import subprocess
+        import sys
+
+        helper = (
+            "import json, sys, os\n"
+            "from iowarp_core import wrp_cte_core_ext as cte\n"
+            "cte.chimaera_init(cte.ChimaeraMode.kClient)\n"
+            "cte.initialize_cte('', cte.PoolQuery.Dynamic())\n"
+            "uris = json.load(sys.stdin)\n"
+            "out = []\n"
+            "for uri in uris:\n"
+            "    rest = uri[len('cte://'):]\n"
+            "    tag, blob = rest.split('/', 1)\n"
+            "    t = cte.Tag(tag)\n"
+            "    size = t.GetBlobSize(blob)\n"
+            "    if size <= 0:\n"
+            "        out.append('')\n"
+            "        continue\n"
+            "    raw = t.GetBlob(blob, size, 0)\n"
+            "    if isinstance(raw, str):\n"
+            "        out.append(raw)\n"
+            "    else:\n"
+            "        data = bytes(raw)\n"
+            "        try: out.append(data.decode('utf-8'))\n"
+            "        except UnicodeDecodeError: out.append(data.decode('utf-8', errors='replace'))\n"
+            "json.dump(out, sys.stdout)\n"
+            "sys.stdout.flush()\n"
+            # iowarp_core has a benign segfault on Python interpreter shutdown
+            # after chimaera_init; exit via os._exit(0) to skip the cleanup path
+            # so the parent doesn't see returncode=-11.
+            "os._exit(0)\n"
+        )
+        # Suppress chimaera/HSHM C++ stdout logging so it doesn't pollute the
+        # JSON channel. HSHM_LOG_OUT redirects HSHM logs to a file; the
+        # remaining CHI stderr logs are captured separately.
+        import os
+        env = dict(os.environ)
+        env.setdefault("HSHM_LOG_OUT", "/tmp/.hshm_subproc.log")
+        env.setdefault("HSHM_LOG_LEVEL", "fatal")
+        proc = subprocess.run(
+            [sys.executable, "-c", helper],
+            input=_json.dumps(uris),
+            text=True,
+            capture_output=True,
+            timeout=60,
+            env=env,
+        )
+        if proc.returncode != 0:
+            raise RuntimeError(
+                f"iowarp fetch subprocess failed (rc={proc.returncode}): "
+                f"stderr={proc.stderr[-500:]}"
+            )
+        try:
+            return _json.loads(proc.stdout)
+        except _json.JSONDecodeError as exc:
+            raise RuntimeError(
+                f"iowarp fetch subprocess returned non-JSON: {proc.stdout[:200]!r}"
+            ) from exc
+
+    def search_scientific_with_content(
+        self,
+        query: str,
+        top_k: int,
+        operators: ScientificQueryOperators,
+    ) -> list[tuple[ScoredChunk, str]]:
+        """Convenience: science-aware search + IOWarp blob fetch for each hit.
+
+        Returns a list of ``(ScoredChunk, full_blob_content)`` pairs. The
+        scoring/ranking comes from CLIO's DuckDB index; the full content
+        for each top-K hit comes from IOWarp's distributed CTE storage.
+
+        This makes IOWarp's role at query time explicit: CLIO ranks, IOWarp
+        serves the heavy original content for the top-K only.
+        """
+        scored = self.search_scientific(query=query, top_k=top_k, operators=operators)
+        if not scored:
+            return []
+        # Resolve URIs first (DuckDB-only path)
+        uris = [self.storage.get_document_uri(self.namespace, c.document_id) for c in scored]
+        # Fetch all blob content in ONE iowarp subprocess
+        try:
+            contents = self._fetch_blobs_via_subprocess(uris)
+        except Exception as e:
+            contents = [f"<error fetching blob: {type(e).__name__}: {e}>"] * len(uris)
+        return list(zip(scored, contents))
 
     def corpus_profile(self) -> CorpusProfile:
         self._ensure_connected()

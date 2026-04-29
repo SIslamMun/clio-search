@@ -35,8 +35,9 @@ from clio_agentic_search.storage.contracts import DocumentBundle, FileIndexState
 
 
 class DuckDBStorage:
-    def __init__(self, database_path: Path) -> None:
+    def __init__(self, database_path: Path, *, read_only: bool = False) -> None:
         self._database_path = database_path
+        self._read_only = read_only
         self._connection: duckdb.DuckDBPyConnection | None = None
         self._connection_lock = threading.RLock()
 
@@ -56,11 +57,19 @@ class DuckDBStorage:
 
     def connect(self) -> None:
         with self._connection_lock:
-            self._database_path.parent.mkdir(parents=True, exist_ok=True)
+            if not self._read_only:
+                self._database_path.parent.mkdir(parents=True, exist_ok=True)
             try:
-                self._connection = duckdb.connect(str(self._database_path))
+                self._connection = duckdb.connect(
+                    str(self._database_path), read_only=self._read_only
+                )
             except Exception as exc:
                 raise RuntimeError(f"Cannot open database at {self._database_path}: {exc}") from exc
+            if self._read_only:
+                # Read-only connections cannot create tables — assume schema
+                # was set up by a prior writer (this is the federated-query path
+                # where many ranks open the same shard concurrently).
+                return
             connection = self._require_connection()
             connection.execute(
                 """

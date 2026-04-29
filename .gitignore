@@ -48,6 +48,22 @@ data/raw/
 # Eval logs
 eval/*.log
 
+# Agent I/O pilot — large/transient artifacts
+eval/agent_io_test/results/
+eval/agent_io_test/probe*/
+eval/agent_io_test/sanity*/
+eval/agent_io_test/v3/
+eval/agent_io_test/workspaces/
+eval/agent_io_test/era5_blobs.json
+eval/agent_io_test/era5_test_index*
+eval/agent_io_test/test_index*.duckdb*
+eval/agent_io_test/blobs*.json
+eval/agent_io_test/groundtruth*.json
+eval/agent_io_test/q.py
+arm_*/
+clio_*.o*
+clio_*.e*
+
 # Claude
 CLAUDE.md
 
