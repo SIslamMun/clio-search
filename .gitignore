@@ -54,6 +54,9 @@ CLAUDE.md
 # Planning
 .planning/
 
+# Paper folder (kept locally only; not tracked)
+paper/
+
 # GCASR poster
 paper/gcasr_poster/
 
